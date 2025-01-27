@@ -1,0 +1,5 @@
+.containerMaster {
+    background-color: var(--darkgreen);
+    height: 80px;
+    width: 100%;
+}

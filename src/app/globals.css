@@ -1,6 +1,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --darkgreen: #00473C; 
+  --lightgreen: #009981;
+  --mediumgreen: #00846F;
 }
 
 html,
