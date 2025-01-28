@@ -1,0 +1,17 @@
+.containerMaster {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerTitle {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: var(--white);
+    font-size: 25px;
+    font-family: "Poppins";
+}
+
+.iconModule {
+    font-size: 22px;
+}

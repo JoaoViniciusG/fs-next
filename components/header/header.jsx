@@ -6,17 +6,21 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <div className={styles.containerMaster}>
-            <Image 
-                src='/LogoEstoTech-Horizontal.png'
-                objectFit="cover"
-                fill
-                alt='Logo horizontal EstoTech'
-            />
-            
-            <div>
-
+        <header className={styles.containerMaster}>
+            <div className={styles.logo}>
+                <Image
+                    src='/LogoEstoTech-Horizontal.png'
+                    layout="fill"
+                    objectFit="contain"
+                    alt='Logo horizontal EstoTech'
+                />
             </div>
-        </div>
+
+            <nav className={styles.icons}>
+                <div className={styles.icon}>
+
+                </div>
+            </nav>
+        </header>
     );
 }

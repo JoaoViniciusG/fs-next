@@ -1,0 +1,6 @@
+.containerMaster {
+    background-color: var(--darkgreen);
+    padding: 20px;
+    width: min-content;
+    height: 100%;
+}

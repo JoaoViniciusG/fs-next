@@ -1,5 +1,30 @@
 .containerMaster {
     background-color: var(--darkgreen);
+    color: white;
     height: 80px;
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--white);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    gap: 35px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
 }

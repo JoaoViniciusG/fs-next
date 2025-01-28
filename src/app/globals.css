@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white: #ffffff;
+
+  --black: #171717;
+  --darckgrey: #0B221F; 
+  --mediumgrey: #2e2e2e;
+
+  --bolddarkgreen: #00332B;
   --darkgreen: #00473C; 
   --lightgreen: #009981;
-  --mediumgreen: #00846F;
+  --mediumligthgreen: #00846F;
+  --mediumgreen: #2D887A;
+  --cyan: #63C7B8;
 }
 
 html,
@@ -13,9 +22,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
