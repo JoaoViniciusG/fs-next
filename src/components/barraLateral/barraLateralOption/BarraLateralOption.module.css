@@ -1,0 +1,11 @@
+.containerMaster {
+    display: flex;
+    color: var(--white);
+    font-size: 17px;
+    margin-left: 15px;
+    gap: 10px;
+    font-family: 'Poppins';
+    font-weight: 300;
+    flex-wrap: nowrap;
+    text-wrap: nowrap;
+}

@@ -1,6 +1,9 @@
 .containerMaster {
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .containerTitle {
@@ -10,8 +13,16 @@
     color: var(--white);
     font-size: 25px;
     font-family: "Poppins";
+    cursor: pointer;
 }
 
 .iconModule {
     font-size: 22px;
+}
+
+.containerOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
 }

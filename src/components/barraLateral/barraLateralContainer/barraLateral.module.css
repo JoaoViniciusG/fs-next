@@ -1,6 +1,9 @@
 .containerMaster {
+    display: flex;
+    flex-direction: column;
     background-color: var(--darkgreen);
     padding: 20px;
     width: min-content;
-    height: 100%;
+    height: calc(100% - 80px);
+    gap: 15px;
 }
