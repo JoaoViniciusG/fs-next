@@ -7,8 +7,9 @@ import Image from "next/image";
 export default function Header() {
     return (
         <header className={styles.containerMaster}>
-            <div className={styles.logo}>
+            <div className={styles.logoContainer}>
                 <Image
+                    className={styles.logo}
                     src='/LogoEstoTech-Horizontal.png'
                     layout="fill"
                     objectFit="contain"
@@ -18,7 +19,7 @@ export default function Header() {
 
             <nav className={styles.icons}>
                 <div className={styles.icon}>
-
+                    <i className="bi bi-person-circle"></i>
                 </div>
             </nav>
         </header>

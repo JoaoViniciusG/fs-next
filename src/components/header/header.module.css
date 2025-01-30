@@ -8,12 +8,20 @@
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 2px solid var(--white);
+    padding: 0 20px;
+}
+
+.logoContainer {
+    cursor: pointer;
+    height: 100%;
+    width: unset;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+    object-fit: contain;
+    height: 100% !important;
+    position: relative !important;
+    width: unset !important;
 }
 
 .icons {
