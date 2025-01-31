@@ -1,9 +1,20 @@
 import styles from './standardButton.module.css';
 
-export default function StandardButton({ text, hoverColor }) {
+import { motion } from 'framer-motion';
+
+export default function StandardButton({ text, hoverColor, callback }) {
     return (
-        <div className={styles.buttonContainer}>
+        <motion.button 
+            onCLick={callback}
+            className={styles.buttonContainer}
+            transition={{
+                duration: .3,
+                repeatDelay: 0,
+            }}
+            whileHover={{
+                backgroundColor: hoverColor
+            }}>
             <p className={styles.textButton}>{text}</p>
-        </div>
+        </motion.button>
     );
 }
