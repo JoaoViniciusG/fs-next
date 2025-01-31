@@ -51,7 +51,7 @@ export default function BarraLateralModule({ name, options, opened, setOpened })
                 className={styles.containerOptions}>
                 {options.map((option, index) => {
                     return (
-                        <BarraLateralOption key={index} optionName={option.name} />
+                        <BarraLateralOption key={index} optionName={option.name} optionRoute={option.route} />
                     )
                 })}
             </motion.div>

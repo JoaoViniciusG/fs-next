@@ -1,15 +1,15 @@
 export const sideBarConfig = [
     {
-        name: "Pedidos",
+        name: "Pedido",
         id: 1,
         subOptions: [
             {
                 name: "Criar pedidos",
-                route: "modulos/pedidos/html/criar_pedido.html"
+                route: "/interno/teste"
             },
             {
                 name: "Consultar pedidos",
-                route: "modulos/pedidos/html/consultar.html"
+                route: "/interno"
             }
         ]
     },

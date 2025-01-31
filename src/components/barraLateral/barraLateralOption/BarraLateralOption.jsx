@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import styles from './BarraLateralOption.module.css'
 
-export default function BarraLateralOption({ optionName }) {
+export default function BarraLateralOption({ optionName, optionRoute }) {
     return (
-        <div className={styles.containerMaster}>
+        <Link href={optionRoute} className={styles.containerMaster}>
             <i className="bi bi-arrow-return-right"></i>
             <p>{optionName}</p>
-        </div>
+        </Link>
     );
 }
