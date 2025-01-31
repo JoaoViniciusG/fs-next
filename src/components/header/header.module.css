@@ -5,6 +5,7 @@
     width: 100%;
     position: relative;
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 2px solid var(--white);
@@ -24,15 +25,52 @@
     width: unset !important;
 }
 
-.icons {
+.headerButtonsContainer {
     display: flex;
-    gap: 35px;
+    align-items: center;
+    gap: 25px;
 }
 
-.icon {
+.iconAccountContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     position: relative;
+    background-color: var(--lightgray);
+    color: var(--darkgreen);
+    height: min-content;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.iconBellContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    color: var(--white);
+    height: min-content;
+    font-size: 1.5vw;
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--white);
+    border-radius: 8px;
+}
+
+.notificationIcon {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    border-radius: 100%;
+    background-color: var(--orange);
+    top: -7px;
+    right: -7px;
+}
+
+.icon {
+    height: 27px;
+    width: 27px;
 }

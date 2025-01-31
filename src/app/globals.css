@@ -4,8 +4,9 @@
   --white: #ffffff;
 
   --black: #171717;
-  --darckgrey: #0B221F; 
-  --mediumgrey: #2e2e2e;
+  --darckgray: #0B221F; 
+  --mediumgray: #2e2e2e;
+  --lightgray: #D9D9D9;
 
   --bolddarkgreen: #00332B;
   --darkgreen: #00473C; 
@@ -13,6 +14,8 @@
   --mediumligthgreen: #00846F;
   --mediumgreen: #2D887A;
   --cyan: #63C7B8;
+
+  --orange: #9c5334;
 }
 
 html,

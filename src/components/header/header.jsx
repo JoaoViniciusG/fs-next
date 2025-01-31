@@ -1,6 +1,8 @@
 import {
 } from 'react';
 
+import * as Icon from 'react-feather';
+
 import styles from './header.module.css';
 import Image from "next/image";
 
@@ -17,9 +19,13 @@ export default function Header() {
                 />
             </div>
 
-            <nav className={styles.icons}>
-                <div className={styles.icon}>
-                    <i className="bi bi-person-circle"></i>
+            <nav className={styles.headerButtonsContainer}>
+                <div className={styles.iconBellContainer}>
+                    <i className={styles.notificationIcon}/>
+                    <Icon.Bell className={styles.icon}/>
+                </div>
+                <div className={styles.iconAccountContainer}>
+                    <Icon.User className={styles.icon}/>
                 </div>
             </nav>
         </header>
