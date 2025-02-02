@@ -9,7 +9,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar pedidos",
-                route: "/interno"
+                route: "/interno/teste1"
             }
         ]
     },

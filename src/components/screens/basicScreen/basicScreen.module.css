@@ -1,0 +1,31 @@
+.pageMasterContainer {
+  background-color: var(--darkgreen);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  flex: 1;
+  padding: 0 15px 15px 15px;
+}
+
+.titleContainer {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.pageTitle {
+  color: var(--white);
+  font-family: 'Poppins';
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.iconBack {
+  top: 15px;
+  left: 15px;
+  position: absolute;
+  color: var(--white);
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+}

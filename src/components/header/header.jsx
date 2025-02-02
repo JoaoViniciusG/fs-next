@@ -54,6 +54,7 @@ export default function Header() {
                 className={styles.containerModalMaster}>
 
                     <motion.div
+                        onClick={toggleState}
                         transition={{
                             duration: .3,
                             repeatDelay: 0,
@@ -69,12 +70,49 @@ export default function Header() {
                         }}
                         animate={{right: (isOpen) ? 0 : -250, opacity: (isOpen) ? 1 : 0}}
                         className={styles.containerContent}>
-                            <h2 className={styles.titleContent}>Dados gerais</h2>
+                            <motion.h2
+                                transition={{
+                                    duration: .3,
+                                    delay: (isOpen) ? .1 : 0,
+                                    repeatDelay: 0,
+                                    ease: 'easeInOut'
+                                }}
+                                animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}
+                                className={styles.titleContent}>
+                                Dados gerais
+                            </motion.h2>
 
                             <div className={styles.containerTextContent}>
-                                <p>Perfil</p>
-                                <p>Dados da empresa</p>
-                                <p>Trocar usuário</p>
+                                <motion.p
+                                    transition={{
+                                        duration: .3,
+                                        delay: (isOpen) ? .12 : .1,
+                                        repeatDelay: 0,
+                                        ease: 'easeInOut'
+                                    }}
+                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
+                                    Perfil
+                                </motion.p>
+                                <motion.p
+                                    transition={{
+                                        duration: .3,
+                                        delay: (isOpen) ? .15 : .15,
+                                        repeatDelay: 0,
+                                        ease: 'easeInOut'
+                                    }}
+                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
+                                    Dados da empresa
+                                </motion.p>
+                                <motion.p
+                                    transition={{
+                                        duration: .3,
+                                        delay: (isOpen) ? .18 : .2,
+                                        repeatDelay: 0,
+                                        ease: 'easeInOut'
+                                    }}
+                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
+                                    Trocar usuário
+                                </motion.p>
                             </div>
                     </motion.div>
             </motion.div>
