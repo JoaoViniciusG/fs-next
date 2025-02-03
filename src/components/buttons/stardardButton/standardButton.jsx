@@ -10,6 +10,7 @@ export default function StandardButton({ text, hoverColor, callback }) {
             transition={{
                 duration: .3,
                 repeatDelay: 0,
+                delay: 0
             }}
             whileHover={{
                 backgroundColor: hoverColor

@@ -37,11 +37,11 @@ export default function Header() {
 
                 <nav className={styles.headerButtonsContainer}>
                     <div className={styles.iconBellContainer}>
-                        <i className={styles.notificationIcon}/>
-                        <Icon.Bell className={styles.icon}/>
+                        <i className={styles.notificationIcon} />
+                        <Icon.Bell className={styles.icon} />
                     </div>
                     <div className={styles.iconAccountContainer} onClick={toggleState}>
-                        <Icon.User className={styles.icon}/>
+                        <Icon.User className={styles.icon} />
                     </div>
                 </nav>
             </header>
@@ -50,72 +50,78 @@ export default function Header() {
                     duration: .55,
                     repeatDelay: 0,
                 }}
-                animate={{display: (isOpen) ? "block" : "none"}}
+                animate={{ display: (isOpen) ? "block" : "none" }}
                 className={styles.containerModalMaster}>
 
-                    <motion.div
-                        onClick={toggleState}
+                <motion.div
+                    onClick={toggleState}
+                    transition={{
+                        duration: .3,
+                        repeatDelay: 0,
+                    }}
+                    animate={{ opacity: (isOpen) ? .5 : 0 }}
+                    className={styles.containerBackground} />
+
+                <motion.div
+                    transition={{
+                        duration: .5,
+                        repeatDelay: 0,
+                        ease: 'easeInOut'
+                    }}
+                    animate={{ right: (isOpen) ? 0 : -250, opacity: (isOpen) ? 1 : 0 }}
+                    className={styles.containerContent}>
+                    <motion.h2
                         transition={{
                             duration: .3,
-                            repeatDelay: 0,
-                        }}
-                        animate={{opacity: (isOpen) ? .5 : 0}}
-                        className={styles.containerBackground} />
-
-                    <motion.div
-                        transition={{
-                            duration: .5,
+                            delay: (isOpen) ? .1 : 0,
                             repeatDelay: 0,
                             ease: 'easeInOut'
                         }}
-                        animate={{right: (isOpen) ? 0 : -250, opacity: (isOpen) ? 1 : 0}}
-                        className={styles.containerContent}>
-                            <motion.h2
-                                transition={{
-                                    duration: .3,
-                                    delay: (isOpen) ? .1 : 0,
-                                    repeatDelay: 0,
-                                    ease: 'easeInOut'
-                                }}
-                                animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}
-                                className={styles.titleContent}>
-                                Dados gerais
-                            </motion.h2>
+                        animate={{ translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0 }}
+                        className={styles.titleContent}>
+                        Dados gerais
+                    </motion.h2>
 
-                            <div className={styles.containerTextContent}>
-                                <motion.p
-                                    transition={{
-                                        duration: .3,
-                                        delay: (isOpen) ? .12 : .1,
-                                        repeatDelay: 0,
-                                        ease: 'easeInOut'
-                                    }}
-                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
-                                    Perfil
-                                </motion.p>
-                                <motion.p
-                                    transition={{
-                                        duration: .3,
-                                        delay: (isOpen) ? .15 : .15,
-                                        repeatDelay: 0,
-                                        ease: 'easeInOut'
-                                    }}
-                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
-                                    Dados da empresa
-                                </motion.p>
-                                <motion.p
-                                    transition={{
-                                        duration: .3,
-                                        delay: (isOpen) ? .18 : .2,
-                                        repeatDelay: 0,
-                                        ease: 'easeInOut'
-                                    }}
-                                    animate={{translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0}}>
-                                    Trocar usuário
-                                </motion.p>
-                            </div>
-                    </motion.div>
+                    <div className={styles.containerTextContent}>
+                        <PTest text="Perfil" index={0} isOpen={isOpen} />
+                        <PTest text="Dados da empresa" index={1} isOpen={isOpen} />
+                        <PTest text="Trocar usuário" index={2} isOpen={isOpen} />
+                    </div>
+                </motion.div>
             </motion.div>
         </>
+    );
+}
+
+function PTest({ text, callback, index, isOpen }) {
+    const [hover, setHover] = useState(false);
+
+    return (
+        <motion.div 
+            onHoverStart={() => setHover(true)} 
+            onHoverEnd={() => setHover(false)} 
+            className={styles.containerText}>
+
+            <motion.p
+                transition={{
+                    duration: .3,
+                    delay: (isOpen) ? (.12 + index * .15) : (.1 + index * .05),
+                    repeatDelay: 0,
+                    ease: 'easeInOut'
+                }}
+                onClick={callback}
+                animate={{ translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0 }}>
+                {text}
+            </motion.p>
+
+            <motion.div
+                transition={{
+                    duration: .3,
+                    delay: 0,
+                    repeatDelay: 0,
+                    ease: 'easeOut'
+                }}
+                animate={{ width: (hover) ? "100%" : 0 }} />
+        </motion.div>
     );
 }

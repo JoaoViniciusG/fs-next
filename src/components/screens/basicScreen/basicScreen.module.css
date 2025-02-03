@@ -29,3 +29,7 @@
   width: 35px;
   cursor: pointer;
 }
+
+.contentContainer {
+  flex: 1
+}
