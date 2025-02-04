@@ -1,7 +1,6 @@
 "use client";
 
 import styles from './basicScreen.module.css';
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as Icon from 'react-feather'; 
 
@@ -18,7 +17,9 @@ export default function BasicScreen({ pageTitle, children }) {
         <h1 className={styles.pageTitle}>{pageTitle}</h1>
       </div>
 
-      {children}
+      <div className={styles.contentContainer}>
+        {children}
+      </div>
     </section>
   );
 }

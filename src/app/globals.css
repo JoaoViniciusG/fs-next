@@ -6,16 +6,37 @@
   --black: #171717;
   --darckgray: #0B221F; 
   --mediumgray: #2e2e2e;
+  --dark-medium-gray:#202020;
   --lightgray: #D9D9D9;
+  --ligth-medium-gray: #c7c7c7;
+  --ligth-white:#e7e7e7;
 
-  --bolddarkgreen: #00332B;
+  --bold-darkgreen: #00332B;
   --darkgreen: #00473C; 
   --lightgreen: #009981;
-  --mediumligthgreen: #00846F;
-  --mediumgreen: #2D887A;
+  --medium-ligth-green: #00846F;
+  --light-teal: #137264;
+  --medium-seagreen:#319183;
+  --medium-green: #2D887A;
+
+  --medium-darkcyan: #63c7b886;
+  --ligth-aquamarine: #83FEEC;
+  --mediumturquoise: #63c7b886;
   --cyan: #63C7B8;
+  --light-medium-seagreen:#23bda6;
+  --green-turquoise: #1a9683;
+
+  --cadetblue-ligtht: #63b5c7;
+  --powderblue: #b2dfdb;
+
+  --green: #2da631;
+  --darkred: #8d0404;
 
   --orange: #9c5334;
+  --darkbrown: #470800;
+  --lightbrown: #c79263;
+  --salmonlight:#c78163;
+  
 }
 
 html,

@@ -19,7 +19,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar clientes",
-                route: "modulos/clientes/index.html"
+                route: "/interno/adicionarCliente"
             },
             {
                 name: "Consultar clientes",
@@ -51,7 +51,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar funcionário",
-                route: "modulos/funcionarios/index.html"
+                route: "/interno/funcionario/teste"
             },
             {
                 name: "Consultar funcionário",
