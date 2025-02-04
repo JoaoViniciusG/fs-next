@@ -1,0 +1,20 @@
+.fieldset {
+    border: 4px solid #ddd;
+    margin-top: 1em;
+    width: 500px;
+    border-radius: 15px;
+}
+
+.fieldset h1 {
+    font-family: "Poppins";
+    font-size: 15px;
+    text-align: center;
+}
+
+.fieldset h1 span {
+    display: inline;
+    padding: 5px 10px;
+    background-color: var(--darkgreen);
+    position: relative;
+    top: -1em;
+}
