@@ -19,7 +19,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar clientes",
-                route: "/interno/adicionarCliente"
+                route: "/interno/cliente/adicionarCliente"
             },
             {
                 name: "Consultar clientes",
