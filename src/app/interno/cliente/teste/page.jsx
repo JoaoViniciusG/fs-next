@@ -2,6 +2,7 @@
 
 import StandardButton from '@/components/buttons/stardardButton/StandardButton';
 import styles from './page.module.css';
+import BorderContainer from '@/components/containers/borderContainer/page';
 
 
 export default function Teste() {
@@ -14,12 +15,7 @@ export default function Teste() {
             </div>
 
             <div className={styles.divContentMaster}>
-                <div className={styles.divBorderField}>
-                    <div className={styles.titleSectionField}>
-                        <h2>Dados pessoais:</h2>
-                    </div>
-
-                    <div className={styles.containerMasterInputField}>
+                <BorderContainer title="Dados do cliente:">
                         <div>
                             <div className={styles.containerInputField}>
                                 <h3 className={styles.labelInputField}>Nome:</h3>
@@ -54,15 +50,10 @@ export default function Teste() {
                                 <label><input type="radio" name="sexo" value="masculino" /> Masculino</label>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <div className={styles.divBorderField}>
-                    <div className={styles.titleSectionField}>
-                        <h2>Endereço:</h2>
-                    </div>
+                </BorderContainer>
+                <BorderContainer title="Endereço">
                     <button type="button" className={styles.btnAdicionar}>Adicionar endereço +</button>
-                </div>
+                </BorderContainer>
 
                 <StandardButton text="CADASTRAR" hoverColor="#63C7B8"/>
             </div>

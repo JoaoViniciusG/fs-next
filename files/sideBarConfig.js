@@ -5,7 +5,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Criar pedidos",
-                route: "/interno/teste"
+                route: "/interno/cliente/teste"
             },
             {
                 name: "Consultar pedidos",
