@@ -93,7 +93,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar endereço",
-                route: "modulos/enderecos/cadastrarEndereco.html"
+                route: "/interno/endereco/cadastrar"
             },
             {
                 name: "Visualizar endereço",

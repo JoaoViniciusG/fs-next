@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label {
+    font-size: 25px;
+    font-family: "Poppins";
+    color: var(--white);
+}
+
+.input {
+    border: none;
+    outline: none;
+    font-family: "Poppins";
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.input:focus {
+    border: none;
+    outline: none;
+}
