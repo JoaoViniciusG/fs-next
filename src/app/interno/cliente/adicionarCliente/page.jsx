@@ -16,7 +16,7 @@ export default function PageAdicionarCliente() {
           <div>
             <div className={styles.containerinputfield}>
               <h3 className={styles.labelinputfield}>Nome:</h3>
-              <input className={styles.inputfield} type="text" readOnly />
+              <input className={styles.inputfield} type="text"  />
             </div>
 
             <div className={styles.containerinputfield}>

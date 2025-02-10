@@ -1,19 +1,22 @@
-"use client"
-import BasicScreen from '@/components/screens/basicScreen/basicScreen';
-import StandardButton from '@/components/buttons/stardardButton/StandardButton';
-import styles from './page.module.css';
-import styles from '../../../../components/screens/basicScreen/basicScreen.module.css';
+"use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import * as Icon from 'react-feather';
+import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 
 
-export default function criar_pedidos(){
-            <BasicScreen pageTitle="Criação de pedido">
-                <h2>Criar pedido</h2>
-            </BasicScreen>           
+export default function PageCriarPedidos() {
+  return (
+    <BasicScreen pageTitle="Criar pedido">
+      <div style={{height: "70vh", width: "100%", flex: 1, backgroundColor: "blue"}}>
+      </div>
+
+      <StandardButton text="ALTERAR" hoverColor="var(--orange)" callback={() => {}}/>
+    </BasicScreen>
+  );
 }
+
+
+
 
 {/* <div class="div-content-cliente">
                     <div class="div-title-border">
@@ -153,6 +156,4 @@ export default function criar_pedidos(){
                 </div>
             </div> 
         </div>
-    </div>
-}
-     */}
+    </div> */}

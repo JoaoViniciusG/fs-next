@@ -1,10 +1,11 @@
 import styles from './page.module.css';
 
-export default function BorderContainer() {
+export default function BorderContainer({ title, children}) {
     return (
-        <div className={styles.fieldset}>
-            <h1><span>Title</span></h1>
-            <p>Content</p>
+        <div className={styles.containerMaster}>
+            <h1 className={styles.titleContainer}><span>{title}</span></h1>
+            
+            <div className={styles.contentContainer}>{ children }</div>
         </div>
     );
 }

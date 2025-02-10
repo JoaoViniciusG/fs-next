@@ -1,0 +1,174 @@
+.divcontainercontent {
+    background-color: #00473C;
+    min-height: 100%;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .sexo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Poppins";
+    font-size: 1.7vw;
+    color: #FFF;
+    font-weight: 200;
+    padding-top: 30px;
+  }
+  
+  .sexo label {
+    margin: 0;
+  }   
+  .divcontentmaster {
+    padding: 0 30px;
+  }
+  
+  .titlemaster {
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #FFF;
+    font-size: 3.5vw;
+  }
+  
+  .divcontentheader {
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+    margin-bottom: 50px;
+  }
+  
+  .iconpageback {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    height: 36px;
+  }
+  
+  .titlesectionfield {
+    font-family: "Poppins";
+    font-size: 1.7vw;
+    color: #FFF;
+    background: #00473C;
+    position: absolute;
+    padding: 5px 15px;
+    top: -22px;
+  }
+  
+  .divborderfield {
+    position: relative;
+    border: 5px solid #FFF;
+    border-radius: 20px;
+    padding: 50px;
+    margin-bottom: 80px;
+  }
+  
+  .containermasterinputfield {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .containerinputfield {
+    width: 30%;
+  }
+  
+  .inputfield {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 60vh;
+    box-shadow: 2px 2px 5px #2e2e2e;
+  
+  }
+  
+  .labelinputfield {
+    font-size: 1.7vw;
+    color: #FFF;
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    font-weight: 200;
+    padding-top: 10px;
+  }
+  
+  
+  .titlecontentmaster {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 2.1vw;
+    color: #FFF;
+    margin-bottom: 30px;
+  }
+  
+  .btnadicionar{
+    padding: 30px;
+    font-size: 1.7vw;
+    color: #000000;
+    font-weight: 400;
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    margin: 20px;
+  }
+  .btncadastrar{
+    margin-left: 80%;
+    margin-bottom: 3%;
+    padding: 5 10px;
+    border-radius: 8px;
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #00473C;
+    font-size: 20px
+  }
+  .btnacao{
+    margin-left: 0px;
+    padding: 3 30px;
+    border-radius: 8px;
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #00473C;
+    font-size: 1.5vw;
+    transition: .5s;
+    cursor: pointer;
+  }
+  .btncadastrar:hover{
+    background-color: #63C7B8;
+    color: white;
+  }
+  .addresscard {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    font-family: "Poppins";
+  }
+  
+  .pin {
+    width: 30px;
+    margin-right: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .address {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 400;
+    margin: 0;
+    color: black;
+  }
+  
+  .details {
+    font-size: 14px;
+    color: gray;
+    margin: 0;
+  }
