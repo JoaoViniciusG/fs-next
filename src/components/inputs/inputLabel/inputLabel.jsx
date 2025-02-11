@@ -7,7 +7,7 @@ export default function InputLabel({label, value, setValue, readonly=false, widt
         <div className={styles.container}>
             <p className={styles.label}>{label}</p>
             <input
-                style={{width:width, color}}
+                style={{width:width}}
                 className={styles.input} 
                 value={value} 
                 onChange={(e) => setValue(e.target.value)}
