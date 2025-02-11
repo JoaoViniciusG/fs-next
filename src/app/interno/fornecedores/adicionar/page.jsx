@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import StandardButton from "@/components/buttons/stardardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
+import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 export default function PageCriarFornecedor() {
     return (
@@ -12,13 +13,16 @@ export default function PageCriarFornecedor() {
                 <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
                         <div className={styles.contaner_box}>
-                            <h3 className={styles.titule_box}>Nome da empresa</h3>
-                            <input type="text" name="nome_fornecedor" id="nome_fornecedor" placeholder="Nome Empresa LTDA" required className={styles.input_box}/>
+                            <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
+                            <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
+                            <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
                         </div>
                     </div>
                 </div>
             </BorderContainer>
-            <StandardButton text="CADASTRAR" hoverColor="var(--cyan)"/>
+            <div className={styles.contaner_footer_button}>
+                <StandardButton text="CADASTRAR" hoverColor="var(--cyan)"/> 
+            </div>
         </BasicScreen>
     );
 }

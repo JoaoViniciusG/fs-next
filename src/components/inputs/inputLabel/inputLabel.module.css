@@ -19,7 +19,6 @@
     border-radius: 8px;
 }
 
-.input:focus {
-    border: none;
-    outline: none;
+.input:focus-visible {
+    outline: 2px solid var(--green-turquoise);
 }
