@@ -31,5 +31,6 @@
 }
 
 .contentContainer {
-  flex: 1
+  flex: 1;
+  padding: 35px; 
 }
