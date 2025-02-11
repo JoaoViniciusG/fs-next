@@ -55,7 +55,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar funcionário",
-                route: "/interno/funcionarios/consultarFuncionario"
+                route: "/interno/funcionario/consultarFuncionario"
             }
         ]
     },
