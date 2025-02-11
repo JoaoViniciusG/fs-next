@@ -79,7 +79,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar fornecedores",
-                route: "modulos/fornecedores/index.html"
+                route: "/interno/fornecedores/cadastrar"
             },
             {
                 name: "Consultar fornecedores",

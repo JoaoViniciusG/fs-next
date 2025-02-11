@@ -14,8 +14,8 @@ export default function PageCriarFornecedor() {
                     <div className={styles.container_content_dados}>
                         <div className={styles.contaner_box}>
                             <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
-                            <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
-                            <InputLabel label="Nome da empresa" placeholder= "Nome Empresa LTDA" required={true}  readonly={false} width='100vh' />
+                            <InputLabel label="CNPJ" placeholder= "XX.XXX.XXX/0001-XX" pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" required={true}  readonly={false} width='100vh'/>
+                            <InputLabel label="E-mail" placeholder= "example@gmail.com" required={true}  readonly={false} width='100vh' />
                         </div>
                     </div>
                 </div>
