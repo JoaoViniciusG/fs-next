@@ -11,6 +11,7 @@
 }
 
 .input {
+    height: 42px;
     border: none;
     outline: none;
     font-family: "Poppins";
