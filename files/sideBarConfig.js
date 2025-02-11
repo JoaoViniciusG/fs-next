@@ -51,11 +51,11 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar funcionário",
-                route: "/interno/funcionario/teste"
+                route: "/interno/funcionario/cadastrarFuncionario"
             },
             {
                 name: "Consultar funcionário",
-                route: "modulos/funcionarios/consultar.html"
+                route: "/interno/funcionarios/consultarFuncionario"
             }
         ]
     },
