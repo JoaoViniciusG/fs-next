@@ -1,0 +1,59 @@
+.tableContainer {
+    margin: 20px;
+    border: 3px solid #FFF;
+    border-radius: 20px;
+    overflow: hidden;
+    font-family: 'Poppins';
+  }
+  
+  .produtosTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .produtosTable th, .produtosTable td {
+    padding: 10px;
+    text-align: center;
+    color: #FFF;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  
+  .produtosTable th {
+    background-color: #137264;
+    border-bottom: 10px solid #00473C;
+  }
+  
+  .produtosTable td {
+    background-color: #308378;
+    border-bottom: 5px solid #137264;
+  }
+  
+  .tdQuantity {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .containerItemQuantity {
+    display: flex;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 0 5px;
+  }
+  
+  .containerItemQuantity input {
+    border: none;
+    outline: none;
+    width: 7vw;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: #FFF;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  
