@@ -1,6 +1,15 @@
 .linha {
     margin-bottom: 20px;
     display: flex;
-    justify-content: space-between; 
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
+/* 
+.label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 5px;
+    padding-right: 20px;
+} */
+
+
