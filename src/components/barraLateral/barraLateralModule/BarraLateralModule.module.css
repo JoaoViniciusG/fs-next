@@ -11,13 +11,13 @@
     gap: 20px;
     align-items: center;
     color: var(--white);
-    font-size: 25px;
+    font-size: 1.7em;
     font-family: "Poppins";
     cursor: pointer;
 }
 
 .iconModule {
-    font-size: 22px;
+    font-size: 24px;
 }
 
 .containerOptions {

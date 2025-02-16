@@ -4,7 +4,7 @@ import styles from './basicScreen.module.css';
 import { useRouter } from "next/navigation";
 import * as Icon from 'react-feather'; 
 
-export default function BasicScreen({ pageTitle, children }) {
+export default function BasicScreen({ pageTitle, children, contentContainerStyle }) {
   const router = useRouter();
 
   return (
@@ -17,7 +17,7 @@ export default function BasicScreen({ pageTitle, children }) {
         <h1 className={styles.pageTitle}>{pageTitle}</h1>
       </div>
 
-      <div className={styles.contentContainer}>
+      <div className={styles.contentContainer} style={contentContainerStyle}>
         {children}
       </div>
     </section>

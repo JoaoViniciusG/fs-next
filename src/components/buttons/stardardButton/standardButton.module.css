@@ -3,7 +3,7 @@
     border-radius: 8px;
     cursor: pointer;
     width: min-content;
-    padding: 3px 15px;
+    padding: 5px 15px;
     transition: .3s;
     border: none;
 }
@@ -12,7 +12,7 @@
     color: var(--darkgreen);
     font-family: "Poppins";
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.9em;
     transition: .3s;
     text-wrap: nowrap;
 }

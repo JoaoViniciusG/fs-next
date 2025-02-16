@@ -101,7 +101,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Alterar endereço",
-                route: "modulos/enderecos/alterarEndereco.html"
+                route: "/interno/pedidos/criar_pedidos"
             }
         ]
     }

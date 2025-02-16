@@ -32,7 +32,7 @@
 
 .contentContainer {
   flex: 1;
-  padding: 35px; 
+  padding: 25px; 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
