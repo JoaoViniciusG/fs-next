@@ -12,7 +12,7 @@ export default function PageAdicionarCliente() {
       <BorderContainer title = 'Dados pessoais'>
       <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
-                        <div className={styles.contaIner_box}>
+                        <div className={styles.container_box}>
                           <div>
                             <InputLabel label="Nome:" required={true}  readonly={false} width='50vh' />
                             <InputLabel label="CPF:"  required={true}  readonly={false} width='50vh'/>
