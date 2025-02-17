@@ -1,0 +1,153 @@
+/* dadosEmpresa.module.css */
+
+.containerr {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: Poppins, sans-serif;
+    gap: 1%;
+    padding: 7vh 2vw;
+}
+
+  
+.campos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    flex-grow: 1;
+    gap: 40px;
+}
+
+
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+
+.divContainerMaster {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.divContainerContent {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.divContentHeader {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.iconPageBack {
+    cursor: pointer;
+}
+
+.divContentMaster {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.divTitleBorder {
+    border-bottom: 2px solid #00332B;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+
+.alterarSenha {
+    color: white;
+    font-family: 'Poppins';
+    font-size: 1.8vw;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: .3s;
+    gap: 5px;
+}
+
+.alterarSenha:hover {
+    color: black;
+}
+
+.containerDadosPessoais {
+    margin-top: 40px;
+}
+
+.camposInput {
+    padding: 60px;
+}
+
+/* //Pq os botoes de seleção ficam em cima?/ */
+.sexo {
+    display: flex;
+    align-items: center;
+    font-family: Poppins;
+    font-size: 1.7vw;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    padding-top: 30px;
+    margin-left: 10px;
+    gap: 10px;
+}
+
+
+
+.divEnderecos {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.btnAdicionar {
+    padding: 30px;
+    font-size: 1.7vw;
+    color: #00332B;
+    font-weight: 400;
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    margin: 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* //por que nao funciona?????????// */  
+.sair{
+    display: flex;
+    margin-top: 10px;
+    font-family: Poppins;
+    justify-content: flex-end;
+    font-size: 1.6vw;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 14px;
+    transition: 0.3s;
+}
+
+.sair:hover {
+    color: black;
+}
+
+
+.editar {
+    background-color: transparent;
+    color: white;
+    font-size: 2.3vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
