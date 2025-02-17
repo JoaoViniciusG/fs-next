@@ -1,0 +1,23 @@
+.containerInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5vh;
+    padding: 3vw 0;
+}
+
+.containerInputsRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    width: 59vw;
+}
+
+.bottomButtonsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 

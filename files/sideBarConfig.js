@@ -55,7 +55,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar funcionário",
-                route: "/interno/funcionarios/consultarFuncionario"
+                route: "/interno/funcionario/consultarFuncionario"
             }
         ]
     },
@@ -79,7 +79,7 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar fornecedores",
-                route: "modulos/fornecedores/index.html"
+                route: "/interno/fornecedores/cadastrar"
             },
             {
                 name: "Consultar fornecedores",
@@ -101,7 +101,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Alterar endereço",
-                route: "modulos/enderecos/alterarEndereco.html"
+                route: "/interno/pedidos/criar_pedidos"
             }
         ]
     }
