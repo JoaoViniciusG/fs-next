@@ -85,8 +85,8 @@ const MovimentarEstoque = () => {
             <Image
               src="/img/chevron-down.svg"
               alt="Diminuir quantidade"
-              width={20}
-              height={20}
+              width={10}
+              height={10}
               onClick={() => diminuirQuantidade(produto.id)}
             />
           </div>
@@ -106,6 +106,7 @@ const MovimentarEstoque = () => {
 
         </table>
       </div>
+      
       <div className={styles.containerBottomButtons}>
         <StandardButton text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" ></StandardButton>
         <StandardButton text="MOVIMENTAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>

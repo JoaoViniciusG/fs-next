@@ -6,6 +6,7 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import Image from 'next/image'; 
 import styles from './page.module.css'; 
 import BorderContainer from '@/components/containers/borderContainer/page';
+import StandardButton from '@/components/buttons/stardardButton/standardButton';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -24,7 +25,7 @@ export default function pageDadosConta(){
                             <Image 
                                 src="/usuario.png" 
                                 alt="Usuário" 
-                                width={220} 
+                                width={260} 
                                 height={240} 
                                 className={styles.imagemUsuario} 
                             />
@@ -118,9 +119,13 @@ export default function pageDadosConta(){
                     </div>
             </BorderContainer>
           
-          <div className={styles.sair}>
-            <span>Sair</span>
+          <div className={styles.baixo}>
+            <StandardButton text="CONFIRMAR" ></StandardButton>
+            <div className={styles.sair}>
+              <span>Sair</span>
+            </div> 
           </div>
+          
         </BasicScreen>
   );
 };

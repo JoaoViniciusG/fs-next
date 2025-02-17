@@ -1,9 +1,12 @@
+/* apenas conferir o tamanho das setas */
+
 .tableContainer {
   margin: 20px;
   border: 3px solid #fff;
   border-radius: 20px;
   overflow: hidden;
   font-family: 'Poppins';
+  width: 100%;
 }
 
 .produtosTable {
@@ -76,8 +79,9 @@
 }
 
 .containerBottomButtons {
-  /* position:relative; */
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 40px 40px 30px 40px;
+
 }

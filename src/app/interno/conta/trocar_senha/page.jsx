@@ -28,8 +28,8 @@ const TrocarSenha = () => {
             <Image 
                 src="/usuario.png" 
                 alt="Usuário" 
-                width={220} 
-                height={240} 
+                width={300} 
+                height={3200} 
                 className={styles.imagemUsuario} 
                             />
               <p>Jose Santo de Rubia Olivera</p>
