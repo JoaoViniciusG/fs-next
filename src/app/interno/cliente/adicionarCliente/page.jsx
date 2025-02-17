@@ -1,12 +1,36 @@
 "use client";
 
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
 import styles from './page.module.css';
-import BasicScreen from '@/components/screens/basicScreen/basicScreen';
+import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import BasicScreen from "@/components/screens/basicScreen/basicScreen";
+import BorderContainer from "@/components/containers/borderContainer/page";
+import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 export default function PageAdicionarCliente() {
   return (
     <BasicScreen pageTitle="Cadastrar cliente">
+      <BorderContainer title = 'Dados pessoais'>
+      <div className={styles.div_content_main}>
+                    <div className={styles.container_content_dados}>
+                        <div className={styles.contaIner_box}>
+                          <div>
+                            <InputLabel label="Nome:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel label="CPF:"  required={true}  readonly={false} width='50vh'/>
+                            <InputLabel label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
+                          </div>
+
+                          <div>
+                            <InputLabel label="Telefone:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel label="E-mail:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel label="Sexo" required={true}  readonly={false} width='50vh' />
+                          </div>   
+                        </div>
+                    </div>
+                </div>
+      </BorderContainer>
+      <BorderContainer title = 'Endereço'>
+      <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
+      </BorderContainer>
       <div className={styles.divborderfield}>
         <div className={styles.titlesectionfield}>
           <h2>Dados pessoais:</h2>
