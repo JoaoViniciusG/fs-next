@@ -1,0 +1,111 @@
+.divContainerMaster {
+    height: max-content;
+    min-height: calc(92vh + 20px);
+    width: calc(100% - 60px);
+    padding: 30px;
+  }
+  
+  .divContainerContent {
+    min-height: calc(92vh - 80px);
+    width: calc(100% - 40px);
+    padding: 20px;
+  }
+  
+  .divContentHeader {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+  
+  .iconPageBack {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    height: 36px;
+  }
+  
+  .todoConteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    background-color: #00473C;
+    border-radius: 20px;
+    width: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 5px 15px #00473C;
+  }
+  
+  .perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .perfil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .perfil p {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .form {
+    width: 100%;
+  }
+  
+  .label {
+    display: block;
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .campoInput {
+    width: 100%;
+    height: 1.8vw;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .botao {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    margin-top: 30px;
+    font-size: 1.1vw;
+    font-weight: 600;
+    padding: 3px 10px;
+    background: #FFF;
+    color: #00332B;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #2e2e2e;
+    cursor: pointer;
+    transition: .5s;
+  }
+  
+  .button:hover {
+    background-color: #F0F0F0;
+  }
+  

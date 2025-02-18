@@ -22,32 +22,25 @@ export default function PageCriarPedidos() {
       <BasicScreen pageTitle="Criar pedido">
         <BorderContainer title="Dados do cliente">
 
-          {/* <div className={styles.linha}>
-          <InputLabel label="Nome:" style= {{paddingTop: "990px", width: "90%"}} />
-          <InputLabel label="CPF:" style= {{paddingTop: "990px", width: "90%",
-           display: "flex",
-            flexDirection: "column",
-            flex: "1 1 0%",
-            padding: "5px 20px 5px 5px"}} />
-                            
-                        
-                    </div> */}
-          <div>
+        
+
+
+          <div className={styles.dvInputs}>
             <div className={styles.linha}>
-                <InputLabel className={styles.label} label="Nome:" value={nome} setValue={setNome}  width="190%" />
-                <InputLabel className={styles.label} label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj} width="110%" />
+                <InputLabel className={styles.label} label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
+                <InputLabel className={styles.label} label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel className={styles.label} label="Endereço:" value={endereco} setValue={setEndereco}  width="130%" />
-                <InputLabel className={styles.label} label="Bairro:" value={bairro} setValue={setBairro}  width="80%" />
-                <InputLabel className={styles.label} label="CEP:" value={cep} setValue={setCep}  width="70%" />
+                <InputLabel className={styles.label} label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
+                <InputLabel className={styles.label} label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
+                <InputLabel className={styles.label} label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel  className={styles.label} label="Cidade:" value={cidade} setValue={setCidade}  width="90%" />
-                <InputLabel className={styles.label} label="Estado:" value={estado} setValue={setEstado} width="90%" />
-                <InputLabel className={styles.label} label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" />
+                <InputLabel  className={styles.label} label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
+                <InputLabel className={styles.label} label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
+                <InputLabel className={styles.label} label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
             </div>
         </div>
                     
