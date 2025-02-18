@@ -14,15 +14,15 @@ export default function PageAdicionarCliente() {
                     <div className={styles.container_content_dados}>
                         <div className={styles.container_box}>
                           <div>
-                            <InputLabel label="Nome:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="CPF:"  required={true}  readonly={false} width='50vh'/>
-                            <InputLabel label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="Nome" label="Nome:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="000.000.000-00" label="CPF:"  required={true}  readonly={false} width='50vh'/>
+                            <InputLabel placeholder="dd/mm/aaaa" label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
                           </div>
 
                           <div>
-                            <InputLabel label="Telefone:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="E-mail:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel placeholder='Teste' label="Sexo:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel label="Sexo:" required={true}  readonly={false} width='50vh' />
                           </div>   
                         </div>
                     </div>
