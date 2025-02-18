@@ -113,14 +113,14 @@ export default function pageDadosConta(){
 
             <BorderContainer title="Endereço">
                     <div className={styles.divEnderecos}>
-                        <button type="button" className={styles.btnAdicionar}>
+                        <button type="button" className={styles.btnAdicionar} >
                             Adicionar endereço +
                     </button>
                     </div>
             </BorderContainer>
           
           <div className={styles.baixo}>
-            <StandardButton text="CONFIRMAR" ></StandardButton>
+            <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
             <div className={styles.sair}>
               <span>Sair</span>
             </div> 
