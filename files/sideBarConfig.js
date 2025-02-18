@@ -97,11 +97,11 @@ export const sideBarConfig = [
             },
             {
                 name: "Visualizar endereço",
-                route: "modulos/enderecos/informacoesEndereco.html"
+                route: "/interno/endereco/visualizar"
             },
             {
                 name: "Alterar endereço",
-                route: "/interno/pedidos/criar_pedidos"
+                route: "/interno/endereco/alterar"
             }
         ]
     }

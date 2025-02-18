@@ -1,0 +1,28 @@
+.containerMaster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    padding: 0 1.5vw;
+}
+
+.containerTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2vw;
+}
+
+.containerTitle div {
+    border-radius: 10px;
+    height: 2px;
+    width: 100%;
+    background-color: var(--white);
+}
+
+.containerTitle h1 {
+    color: var(--white);
+    text-wrap: nowrap;
+}

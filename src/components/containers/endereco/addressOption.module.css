@@ -1,0 +1,36 @@
+.containerMaster {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--white);
+    padding: 8px 10px;
+    width: 18vw;
+    border-radius: 8px;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.iconLocation {
+    font-size: 27px;
+}
+
+.textTitle {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 1.25em;
+    color: var(--black);
+}
+
+.text {
+    color: #9F9F9F;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.1em;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
