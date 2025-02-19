@@ -27,23 +27,6 @@
   margin-bottom: 50px;
 }
 
-.titlesectionfield {
-  font-family: "Poppins";
-  font-size: 1.7vw;
-  color: #FFF;
-  background: #00473C;
-  position: absolute;
-  padding: 5px 15px;
-  top: -22px;
-}
-
-.divborderfield {
-  position: relative;
-  border: 5px solid #FFF;
-  border-radius: 20px;
-  padding: 50px;
-  margin-bottom: 80px;
-}
 
 .containermasterinputfield {
   display: flex;
@@ -57,14 +40,14 @@
   width: 30%;
 }
 
-.inputfield {
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  height: 40px;
-  width: 60vh;
-  box-shadow: 2px 2px 5px #2e2e2e;
-
+.container_box {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  gap: 250px;
 }
 
 .labelinputfield {
@@ -78,23 +61,14 @@
 
 .btnadicionar{
   padding: 30px;
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   color: #000000;
   font-weight: 400;
   font-family: "Poppins";
   margin-bottom: 7px;
-  margin: 20px;
+  margin: 40px;
 }
-.btncadastrar{
-  margin-left: 80%;
-  margin-bottom: 3%;
-  padding: 5 10px;
-  border-radius: 8px;
-  font-family: "Poppins";
-  font-weight: 600;
-  color: #00473C;
-  font-size: 20px
-}
+
 
 .pin {
   width: 30px;
@@ -104,10 +78,4 @@
 .content {
   display: flex;
   flex-direction: column;
-}
-
-.details {
-  font-size: 14px;
-  color: gray;
-  margin: 0;
 }

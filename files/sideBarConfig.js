@@ -23,7 +23,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar clientes",
-                route: "modulos/clientes/consultar.html"
+                route: "/interno/cliente/informacoesCliente"
             }
         ]
     },
