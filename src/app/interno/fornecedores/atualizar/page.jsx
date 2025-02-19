@@ -6,9 +6,9 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
-export default function PageCriarFornecedor() {
+export default function PageAtualizarFornecedor() {
     return (
-        <BasicScreen pageTitle="Cadastrar fornecedor">
+        <BasicScreen pageTitle="Atualizar fornecedor">
             <BorderContainer title="Dados do Fornecedor:">
                 <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
@@ -21,7 +21,8 @@ export default function PageCriarFornecedor() {
                 </div>
             </BorderContainer>
             <div className={styles.contaner_footer_button}>
-                <StandardButton text="CADASTRAR" hoverColor="var(--cyan)"/> 
+                <StandardButton text="CANCELAR" hoverColor="var(--darkred)"/> 
+                <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"/> 
             </div>
         </BasicScreen>
     );

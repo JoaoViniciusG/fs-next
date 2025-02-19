@@ -83,7 +83,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar fornecedores",
-                route: "modulos/fornecedores/html/consultar_fornecedor.html"
+                route: "/interno/fornecedores/consultar"
             }
         ]
     },
