@@ -24,7 +24,7 @@ export default function PageInternoInicio() {
       </div>
 
       <section className={styles.containerContentRanking}>
-        <RankingContainer title="Vendedores do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
+        <RankingContainer title="Vendedores do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "https://scontent.fpbq1-1.fna.fbcdn.net/v/t39.30808-1/468601899_9449518431745179_785855118294425223_n.jpg", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
         <RankingContainer title="Produtos do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
         <RankingContainer title="Clientes do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
       </section>

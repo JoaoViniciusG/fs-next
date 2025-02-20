@@ -1,5 +1,6 @@
 import styles from './rankingContainer.module.css';
-
+import * as Icon from 'react-feather';
+import Image from 'next/image';
 
 // [
 //   name: "",
@@ -17,8 +18,21 @@ export default function RankingContainer({ title, suffix, infos = [] }) {
       <div className={styles.containerContent}>
         {
           infos.map((item, index) => (
-            <div className={styles.listItem}>
-              <div style={{height: 40, width: 40, backgroundColor: 'red'}}></div>
+            <div key={index} className={styles.listItem}>
+              <div className={styles.itemImageContainer}>
+                {
+                  (typeof item.image == "string" && item.image.length > 0) ?
+                  <Image 
+                    src={item.image}
+                    alt={`Imagem ${item.name}`}
+                    width={45}
+                    height={45}/>
+                  :
+                  <div className={styles.undefinedImage}>
+                    <Icon.User className={styles.iconImage}/>
+                  </div>
+                }
+              </div>
 
               <div className={styles.temNameContainer}>
                 <p className={styles.itemName}>{item.name}</p>

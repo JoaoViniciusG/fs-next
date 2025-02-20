@@ -66,3 +66,27 @@
     font-size: 1em;
     font-weight: 600;
 }
+
+.itemImageContainer {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    outline: 2px solid var(--darkgreen);
+    border: 2px solid var(--white);
+    overflow: hidden;
+}
+
+.undefinedImage {
+    background-color: var(--lightgray);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconImage {
+    color: var(--darkgreen);
+    height: 25px;
+    width: 25px;
+}
