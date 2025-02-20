@@ -6,14 +6,21 @@ import {
 import styles from './smallContainer.module.css';
 
 
-export default function SmallContainer({ title, value, variance, prefix, hoverColor, callback = () => {}, backgroundColor = "#FFF" }) {
+export default function SmallContainer({ title, value, variance, prefix, suffix, hoverColor, callback = () => {}, backgroundColor = "#FFF" }) {
     const [varianceColor, setVarianceColor] = useState(null);
     const [varianceText, setVarianceText] = useState(null);
     const [varianceIcon, setVarianceIcon] = useState(null);
+    const [varianceState, setVarianceState] = useState(false);
 
 
     useEffect(() => {
-        if(typeof variance != "number" ) {
+        if(typeof variance != "number") {
+            setVarianceState(false); 
+            return;
+        }
+        
+        setVarianceState(true);
+        if(variance == 0 ) {
             setVarianceIcon("bi-code")
             setVarianceColor("#616161");
             setVarianceText("(0)");
@@ -36,8 +43,9 @@ export default function SmallContainer({ title, value, variance, prefix, hoverCo
                 <div className={styles.containerValue}>
                     <p className={styles.prefix}>{prefix}</p>
                     <p className={styles.value}>{value}</p>
+                    <p className={styles.suffix}>{suffix}</p>
                 </div>
-                <div className={styles.containerVariance}>
+                <div className={styles.containerVariance} style={{display: (varianceState) ? "flex" : "none"}}>
                     <p 
                         style={{color: varianceColor}}
                         className={styles.variance}>{varianceText}</p>

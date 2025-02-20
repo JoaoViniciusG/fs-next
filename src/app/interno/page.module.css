@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    justify-self: center;
+    width: 93%;
     flex: 1;
     padding: 0 1.5vw;
 }
@@ -42,7 +44,7 @@
 
 .containerBlockBig {
     background-color: #FFF;
-    width: calc(42% + 5.3%);
+    width: calc(46% + 2.6%);
     border-radius: 10px;
     height: 17vh;
 }
