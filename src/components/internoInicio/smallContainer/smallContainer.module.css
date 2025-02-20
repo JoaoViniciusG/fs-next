@@ -19,7 +19,6 @@
     top: 0;
     left: 5;
     font-size: 1.15em;
-    color: var(--darkgreen);
 }
 
 .containerContent {
@@ -58,7 +57,6 @@
 
 .value {
     font-family: "Poppins";
-    color: var(--valuegreen);
     font-size: 2em;
     font-weight: 600;
 }

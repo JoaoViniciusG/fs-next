@@ -3,6 +3,7 @@
 import SmallContainer from '@/components/internoInicio/smallContainer/smallContainer';
 import styles from './page.module.css';
 import RankingContainer from '@/components/internoInicio/rankingContainer/rankingContainer';
+import AlertContainer from '@/components/internoInicio/alertContainer/alertContainer';
 
 export default function PageInternoInicio() {
   return (
@@ -20,11 +21,11 @@ export default function PageInternoInicio() {
         <SmallContainer title="Dia do período" value="14/10/2024" />
         <SmallContainer title="Novos Cliente" value={21} variance={2} decimalPlaces={0}/>
         <SmallContainer title="Quantidade Total" value={59} suffix="un." variance={-5} decimalPlaces={0}/>
-        <SmallContainer title="Baixo Estoque" value={455894.90} variance="produtos"/>
+        <AlertContainer title="Baixo Estoque" value={5} label="produtos"/>
       </div>
 
       <section className={styles.containerContentRanking}>
-        <RankingContainer title="Vendedores do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "https://scontent.fpbq1-1.fna.fbcdn.net/v/t39.30808-1/468601899_9449518431745179_785855118294425223_n.jpg", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
+        <RankingContainer title="Vendedores do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "/img_content/initial_panel/imgTeste1.jpg", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
         <RankingContainer title="Produtos do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
         <RankingContainer title="Clientes do mês" suffix="vendas" infos={[{name: "Douglas Legramante", image: "", value: 20}, {name: "Bruno Rover", image: "", value: 20}, {name: "Aremilson", image: "", value: 20} ]}/>
       </section>
