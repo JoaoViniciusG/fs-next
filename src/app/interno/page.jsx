@@ -1,6 +1,7 @@
+"use client";
+
 import SmallContainer from '@/components/internoInicio/smallContainer/smallContainer';
 import styles from './page.module.css';
-import AddressOption from '@/components/containers/endereco/addressOption';
 
 export default function PageInternoInicio() {
   return (
@@ -12,7 +13,13 @@ export default function PageInternoInicio() {
       </div>
 
       <div className={styles.containerContentMain}>
-        <AddressOption id={10} logradouro="Av. Rio Branco" numero={1890} bairro="Centro" cidade="Vilhena" UF="RO"/>
+        <div className={styles.containerBlockBig}></div>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
+        <SmallContainer title="Valor total" prefix="R$" value="455.894,90" variance={-15549.79}/>
       </div>
     </div>
   );
