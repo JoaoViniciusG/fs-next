@@ -6,7 +6,7 @@ import {
 import styles from './smallContainer.module.css';
 
 
-export default function SmallContainer({ title, value, variance, prefix, suffix, hoverColor, callback = () => {}, backgroundColor = "#FFF" }) {
+export default function SmallContainer({ title, value, variance, prefix, suffix, hoverColor, decimalPlaces = 2, callback = () => {}, backgroundColor = "#FFF" }) {
     const [varianceColor, setVarianceColor] = useState(null);
     const [varianceText, setVarianceText] = useState(null);
     const [varianceIcon, setVarianceIcon] = useState(null);
@@ -29,7 +29,7 @@ export default function SmallContainer({ title, value, variance, prefix, suffix,
 
         setVarianceIcon((variance > 0) ? "bi-arrow-up-short" : "bi-arrow-down-short")
         setVarianceColor((variance > 0) ? "var(--valuegreen)" : "var(--valuered)");
-        setVarianceText("(" + ((variance > 0) ? "+ " : "- ") + Math.abs(variance).toLocaleString('pt-br', {minimumFractionDigits: 2}) + ")");
+        setVarianceText("(" + ((variance > 0) ? "+ " : "- ") + Math.abs(variance).toLocaleString('pt-br', {minimumFractionDigits: decimalPlaces}) + ")");
     }, [variance])
     
     return (
@@ -42,7 +42,7 @@ export default function SmallContainer({ title, value, variance, prefix, suffix,
             <div className={styles.containerContent}>
                 <div className={styles.containerValue}>
                     <p className={styles.prefix}>{prefix}</p>
-                    <p className={styles.value}>{value}</p>
+                    <p className={styles.value}>{value.toLocaleString('pt-br', {minimumFractionDigits: decimalPlaces})}</p>
                     <p className={styles.suffix}>{suffix}</p>
                 </div>
                 <div className={styles.containerVariance} style={{display: (varianceState) ? "flex" : "none"}}>
