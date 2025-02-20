@@ -33,11 +33,11 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar produtos",
-                route: "modulos/produtos/index.html"
+                route: "/interno/produtos/cadastrar"
             },
             {
                 name: "Consultar produtos",
-                route: "modulos/produtos/html/consultar_produtos.html"
+                route: "/interno/produtos/consultar"
             },
             {
                 name: "Movimentar estoque",
