@@ -1,0 +1,35 @@
+.div_content_main {
+    width: 100%;
+    padding: 50px;
+}
+
+.container_content_dados {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    gap: 10%;
+    padding: 20px 0;
+}
+
+.contaner_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    gap: 35px;
+}
+
+.contaner_footer_button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    gap: 50px;
+    margin-top: 50px;
+}
