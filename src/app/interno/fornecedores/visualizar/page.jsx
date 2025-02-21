@@ -1,7 +1,7 @@
 "use client";
 
 import styles from './page.module.css';
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
@@ -21,8 +21,8 @@ export default function PageVisualizarFornecedor() {
                 </div>
             </BorderContainer>
             <div className={styles.contaner_footer_button}>
-                <StandardButton text="EXCLUIR" hoverColor="var(--darkred)"/> 
-                <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"/> 
+                <DefaultApplicationButton text="EXCLUIR" hoverColor="var(--darkred)"/> 
+                <DefaultApplicationButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"/> 
             </div>
         </BasicScreen>
     );

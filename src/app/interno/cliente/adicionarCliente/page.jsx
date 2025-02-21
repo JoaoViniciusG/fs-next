@@ -1,7 +1,7 @@
 "use client";
 
 import styles from './page.module.css';
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
@@ -33,7 +33,7 @@ export default function PageAdicionarCliente() {
       </BorderContainer>
       
 
-        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
+        <DefaultApplicationButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
 
     </BasicScreen>
   );

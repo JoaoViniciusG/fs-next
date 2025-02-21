@@ -5,7 +5,7 @@ import styles from './page.module.css';
 
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from '@/components/containers/borderContainer/page';
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
+import DefaultApplicationButton from '@/components/buttons/defaultApplicationButton/defaultApplicationButton';
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -125,11 +125,11 @@ export default function PageEnderecoCadastrar() {
             </BorderContainer>
 
             <div className={styles.bottomButtonsContainer}>
-                <StandardButton 
+                <DefaultApplicationButton 
                     text={buttonsConfig.button1.text} 
                     hoverColor={buttonsConfig.button1.hoverColor} 
                     callback={buttonsConfig.button1.callback} />
-                <StandardButton 
+                <DefaultApplicationButton 
                     text={buttonsConfig.button2.text} 
                     hoverColor={buttonsConfig.button2.hoverColor} 
                     callback={buttonsConfig.button2.callback} />

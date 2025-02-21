@@ -1,6 +1,6 @@
 "use client"
 
-import StandardButton from '@/components/buttons/stardardButton/StandardButton';
+import DefaultApplicationButton from '@/components/buttons/defaultApplicationButton/DefaultApplicationButton';
 import styles from './page.module.css';
 import BorderContainer from '@/components/containers/borderContainer/page';
 
@@ -55,7 +55,7 @@ export default function Teste() {
                     <button type="button" className={styles.btnAdicionar}>Adicionar endereço +</button>
                 </BorderContainer>
 
-                <StandardButton text="CADASTRAR" hoverColor="#63C7B8"/>
+                <DefaultApplicationButton text="CADASTRAR" hoverColor="#63C7B8"/>
             </div>
         </div>
     </div>

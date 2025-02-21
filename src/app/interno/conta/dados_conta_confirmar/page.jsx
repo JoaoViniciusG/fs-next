@@ -6,7 +6,7 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import Image from 'next/image'; 
 import styles from './page.module.css'; 
 import BorderContainer from '@/components/containers/borderContainer/page';
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
+import DefaultApplicationButton from '@/components/buttons/defaultApplicationButton/defaultApplicationButton';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -120,7 +120,7 @@ export default function pageDadosConta(){
             </BorderContainer>
           
           <div className={styles.baixo}>
-            <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+            <DefaultApplicationButton text="CONFIRMAR" hoverColor="var(--cyan)"></DefaultApplicationButton>
             <div className={styles.sair}>
               <span>Sair</span>
             </div> 

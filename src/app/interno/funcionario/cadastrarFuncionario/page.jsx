@@ -1,6 +1,6 @@
 "use client";
 
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
+import DefaultApplicationButton from '@/components/buttons/defaultApplicationButton/defaultApplicationButton';
 import styles from './page.module.css';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
 
@@ -57,7 +57,7 @@ export default function PageAdicionarFuncionario() {
         <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
       </div>
       <div className={styles.divbuttonscontainer}>
-        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" callback={() => { }} />
+        <DefaultApplicationButton text="CADASTRAR" hoverColor="#63C7B8" callback={() => { }} />
       </div>
     </BasicScreen>
   );

@@ -1,6 +1,6 @@
 "use client"
 
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 
 import {

@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 import BasicScreen from "@/components/screens/basicScreen/basicScreen"
 import React, { useState } from "react";
 import Image from 'next/image';
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
 
 const MovimentarEstoque = () => {
   const [produtos, setProdutos] = useState([
@@ -108,8 +108,8 @@ const MovimentarEstoque = () => {
       </div>
       
       <div className={styles.containerBottomButtons}>
-        <StandardButton text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" ></StandardButton>
-        <StandardButton text="MOVIMENTAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
+        <DefaultApplicationButton text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" ></DefaultApplicationButton>
+        <DefaultApplicationButton text="MOVIMENTAR PRODUTO" hoverColor="var(--cyan)"></DefaultApplicationButton>
       </div>
     
     </BasicScreen>
