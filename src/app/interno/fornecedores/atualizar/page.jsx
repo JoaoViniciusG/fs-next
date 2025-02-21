@@ -1,7 +1,7 @@
 "use client";
 
 import styles from './page.module.css';
-import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
@@ -21,8 +21,8 @@ export default function PageAtualizarFornecedor() {
                 </div>
             </BorderContainer>
             <div className={styles.contaner_footer_button}>
-                <DefaultApplicationButton text="CANCELAR" hoverColor="var(--darkred)"/> 
-                <DefaultApplicationButton text="CONFIRMAR" hoverColor="var(--cyan)"/> 
+                <StandardButton text="CANCELAR" hoverColor="var(--darkred)"/> 
+                <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"/> 
             </div>
         </BasicScreen>
     );

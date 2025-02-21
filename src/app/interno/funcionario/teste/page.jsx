@@ -1,6 +1,6 @@
 "use client";
 
-import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 
 import {
@@ -22,11 +22,11 @@ export default function PageCadastroFuncionario() {
 
       <input type="text" style={{fontSize: 30}} value={textTeste} onChange={(e) => setTextTeste(e.target.value)} />
       <div>
-        <DefaultApplicationButton text="SEM USECALLBACK" hoverColor="var(--orange)"/>
-        <DefaultApplicationButton text="COM USECALLBACK" hoverColor="var(--orange)"/>
+        <StandardButton text="SEM USECALLBACK" hoverColor="var(--orange)"/>
+        <StandardButton text="COM USECALLBACK" hoverColor="var(--orange)"/>
       </div>
 
-      <DefaultApplicationButton text="Atualizar" callback={() => setAtualizar(!atualizar)}/>
+      <StandardButton text="Atualizar" callback={() => setAtualizar(!atualizar)}/>
     </BasicScreen>
   );
 }

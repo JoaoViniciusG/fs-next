@@ -1,6 +1,6 @@
 "use client";
 
-import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
 import styles from "./page.module.css"

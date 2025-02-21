@@ -1,8 +1,8 @@
-import styles from './defaultApplicationButton.module.css';
+import styles from './standardButton.module.css';
 
 import { motion } from 'framer-motion';
 
-export default function DefaultApplicationButton({ text, hoverColor, callback = () => {}, style }) {
+export default function StandardButton({ text, hoverColor, callback = () => {}, style }) {
     return (
         <motion.button 
             onClick={callback}

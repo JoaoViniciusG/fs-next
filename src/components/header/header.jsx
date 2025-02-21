@@ -27,7 +27,7 @@ export default function Header() {
                     <Link href='/interno'>
                         <Image
                             className={styles.logo}
-                            src='/LogoEstoTech-Horizontal.png'
+                            src='/logo/Logo_Horizontal.png'
                             layout="fill"
                             objectFit="contain"
                             alt='Logo horizontal EstoTech'

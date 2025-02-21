@@ -3,7 +3,7 @@
 import styles from './page.module.css';
 import * as Icon from 'react-feather';
 
-import DefaultApplicationButton from "@/components/buttons/defaultApplicationButton/defaultApplicationButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
@@ -21,7 +21,7 @@ export default function PageConsultarProdutos() {
                     </div>
                     <div className={styles.div_content_busca}>
                         <InputLabel label="Buscar o produto" type="search" placeholder="Pesquise as informações do produto" required={false} readonly={false} width='100vh' />
-                        <DefaultApplicationButton text="BUSCAR" hoverColor="var(--cyan)" />
+                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" />
                     </div>
                 </div>
             </BorderContainer>
