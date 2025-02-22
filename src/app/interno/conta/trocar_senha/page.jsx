@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from "./page.module.css"
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
+import StandardButton from '@/components/buttons/standardButton/standardButton';
 import Image from 'next/image';
 
 const TrocarSenha = () => {
@@ -12,7 +13,7 @@ const TrocarSenha = () => {
 
   return (
 
-        <div className={styles.divContainerMaster}>
+    <div className={styles.divContainerMaster}>
       <div className={styles.divContainerContent}>
         <div className={styles.divContentHeader}>
           <img
@@ -28,10 +29,10 @@ const TrocarSenha = () => {
             <Image 
                 src="/usuario.png" 
                 alt="Usuário" 
-                width={300} 
-                height={3200} 
+                width={150} 
+                height={160} 
                 className={styles.imagemUsuario} 
-                            />
+              />
               <p>Jose Santo de Rubia Olivera</p>
             </div>
             <div className={styles.form}>
@@ -59,9 +60,9 @@ const TrocarSenha = () => {
                 placeholder="Confirme a nova senha"
                 required={true}
               />
-              <div className={styles.botao}>
-                <button className={styles.button} type="button">CONFIRMAR</button>
-              </div>
+
+              <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+              
             </div>
           </div>
         </div>

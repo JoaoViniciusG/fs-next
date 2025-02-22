@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
 import InputLabel from '@/components/inputs/inputLabel/inputLabel'; 
 import Image from 'next/image'; 
-import styles from './page.module.css'; 
+import styles from './page.module.css'
 import BorderContainer from '@/components/containers/borderContainer/page';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
+import AddressOption from '@/components/containers/endereco/addressOption';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -69,14 +70,14 @@ export default function pageDadosConta(){
                 value={cpf} 
                 setValue={setCpf} 
                 className={styles.inputDadosPessoais} 
-                readonly={true} 
+                 
               />
               <InputLabel 
                 label="Telefone" 
                 value={telefone} 
                 setValue={setTelefone} 
                 className={styles.inputDadosPessoais} 
-                readonly={true} 
+                 
               />
               <InputLabel 
                 label="Data de Nascimento" 
@@ -84,7 +85,7 @@ export default function pageDadosConta(){
                 setValue={setDataNascimento} 
                 type="date" 
                 className={styles.inputDadosPessoais} 
-                readonly={true} 
+                
               />
 
               <div className={styles.sexo}>
@@ -113,10 +114,19 @@ export default function pageDadosConta(){
 
             <BorderContainer title="Endereço">
                     <div className={styles.divEnderecos}>
+                      
                         <button type="button" className={styles.btnAdicionar} >
                             Adicionar endereço +
-                    </button>
+                      </button>
+                      <AddressOption 
+                          logradouro="Av.beira Rio"
+                          bairro="Centro" 
+                          cidade="Vilhena"
+                          UF="Ro">
+                      </AddressOption>
                     </div>
+
+                    
             </BorderContainer>
           
           <div className={styles.baixo}>

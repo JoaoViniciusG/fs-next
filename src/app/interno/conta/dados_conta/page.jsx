@@ -6,6 +6,9 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import Image from 'next/image'; 
 import styles from './page.module.css'; 
 import BorderContainer from '@/components/containers/borderContainer/page';
+import StandardButton from "@/components/buttons/standardButton/standardButton";
+import AddressOption from '@/components/containers/endereco/addressOption';
+import Link from 'next/link';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -37,12 +40,14 @@ export default function pageDadosConta(){
                         value={nome} 
                         setValue={setNome} 
                         className={styles.inputDadosPessoais} 
+                        readonly={true} 
                     />
                     <InputLabel 
                         label="Senha" 
                         value={senha} 
                         setValue={setSenha} 
                         className={styles.inputDadosPessoais} 
+                        readonly={true} 
                     />
                     <InputLabel 
                         label="E-mail" 
@@ -50,10 +55,8 @@ export default function pageDadosConta(){
                         setValue={setEmail} 
                         type="email" 
                         className={styles.inputDadosPessoais} 
+                        readonly={true} 
                     />
-                    <div className={styles.alterarSenha}>
-                        <p>Alterar senha</p>
-                    </div>
                 </div>
           </div>
             </BorderContainer>
@@ -65,12 +68,14 @@ export default function pageDadosConta(){
                 value={cpf} 
                 setValue={setCpf} 
                 className={styles.inputDadosPessoais} 
+                readonly={true}
               />
               <InputLabel 
                 label="Telefone" 
                 value={telefone} 
                 setValue={setTelefone} 
                 className={styles.inputDadosPessoais} 
+                readonly={true}
               />
               <InputLabel 
                 label="Data de Nascimento" 
@@ -78,6 +83,7 @@ export default function pageDadosConta(){
                 setValue={setDataNascimento} 
                 type="date" 
                 className={styles.inputDadosPessoais} 
+                readonly={true} 
               />
 
               <div className={styles.sexo}>
@@ -105,16 +111,29 @@ export default function pageDadosConta(){
             </BorderContainer>
 
             <BorderContainer title="Endereço">
-                    <div className={styles.divEnderecos}>
-                        <button type="button" className={styles.btnAdicionar}>
+                      
+              <div className={styles.enderocos}>
+                <button type="button" className={styles.btnAdicionar} >
                             Adicionar endereço +
-                    </button>
-                    </div>
+                      </button>
+                <AddressOption
+                      logradouro="Av.Beira Rio" 
+                      bairro="Centro" 
+                      cidade="Vilhena" 
+                      UF="Ro"
+                      >  
+                    </AddressOption>
+                    
+              </div>
+                  
             </BorderContainer>
           
-          <div className={styles.sair}>
-            <span>Sair</span>
-          </div>
+            <div className={styles.baixo}>
+              <Link href='/interno/conta/dados_conta_confirmar'>
+                    <StandardButton text="ALTERAR" hoverColor="var(--ligth-aquamarine)" />
+                </Link>
+                <span className={styles.sair}>Sair</span>
+            </div>
         </BasicScreen>
   );
 };
