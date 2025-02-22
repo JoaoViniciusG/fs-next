@@ -1,4 +1,4 @@
-import styles from './standardButton.module.css';
+import styles from './standardButton.css';
 
 import { motion } from 'framer-motion';
 

@@ -1,31 +1,21 @@
 "use client";
 
 import styles from './page.module.css';
-import * as Icon from 'react-feather';
 
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
-export default function PageConsultarFuncionarios() {
+export default function PageCadastarMarcas() {
     return (
-        <BasicScreen pageTitle="Consultar funcionário">
-            <BorderContainer title="Consultar funcionário:">
+        <BasicScreen pageTitle="Cadastrar marca">
+            <BorderContainer title="Dados da marca:">
                 <div className={styles.div_contener_main}>
-                    <div className={styles.filter_dados}>
-                        <div className={styles.button_filter}>
-                            <p className={styles.filter_text}>Filtro: </p>
-                            <Icon.Filter className={styles.icon_filter} />
-                        </div>
-                    </div>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Buscar o funcionário:" type="search" placeholder="Nome do funcionário" required={false} readonly={false} width='100vh' />
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" />
+                        <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} width='100vh' />
                     </div>
                 </div>
-            </BorderContainer>
-            <BorderContainer title="Funcionários:">
                 <div className={styles.content_table}>
                     <table className={styles.table_fornecedores}>
                         <thead className={styles.table_header}>
