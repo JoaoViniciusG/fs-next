@@ -11,6 +11,145 @@
 }
 
 .dvInputs{
+
+    
     margin-top: 30px;
     width: 100%;
+}
+
+
+
+
+/* Estilos para o campo de dados do pedido */
+.fieldMasterComponent {
+    border: 5px solid #FFF;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.fieldMasterComponent legend {
+    font-family: "Poppins";
+    color: #FFF;
+    padding: 10px;
+    margin-left: 1.8vw;
+    font-size: 2vw;
+}
+
+.containerHeaderListOptions {
+    width: 100%;
+    margin-top: 20px; 
+    
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-width: 5px 0;
+    border-color: #FFF;
+    border-style: solid;
+}
+
+.buttonHeaderOptions {
+    font-family: 'Poopins', sans-serif;
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 1.4vw;
+    font-weight: 600;
+    box-shadow: 3px 3px 5px #2e2e2e;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+
+.tableProducts {
+    width: 100%;
+    color: #FFF;
+    font-family: "Poppins";
+}
+
+.headerListProducts {
+    background-color: #137264;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listHeaderTitle {
+    font-size: 1.2vw;
+}
+
+.divTableContainerContent {
+    height: 70vh;
+    background-color: #137264;
+    width: 100%;
+    overflow: scroll;
+    position: relative;
+}
+
+.tableContainerContent {
+    width: 100%;
+    border-spacing: 30px;
+}
+
+/* Corrigido: Agora a classe é local para evitar erro de pureza */
+.tableContainerContent trFirstLast {
+    border: none;
+}
+
+.hrBorder {
+    width: 2px;
+    height: 100%;
+    background-color: #FFF;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    border: none;
+}
+
+.tableContainerContent td {
+    text-align: center;
+    background-color: #63C7B8;
+    padding: 10px 0;
+    color: #FFF;
+    font-size: 1.2vw;
+}
+
+.tableContainerContent tr {
+    width: 100%;
+    border-bottom: 5px solid #137264;
+}
+
+.labelInputLogin {
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins";
+    font-size: 1.8vw;
+    color: #FFF;
+    gap: 5px;
+    position: relative;
+    z-index: 1;
+
+    
+}
+
+.textarea{
+    border: none;
+    height: 6vw;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px #2e2e2e;
+    outline: none;
+    font-size: 1.4vw;
+    font-weight: 400;
+    color: #00332B;
+    padding: 0 15px;
+    width: 100%;
+    background-color: #FFF;
+    resize: none;
+}
+
+.labelInputLogin span {
+    font-weight: 300;
 }
