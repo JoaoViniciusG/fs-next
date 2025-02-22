@@ -5,7 +5,7 @@ import styles from './page.module.css';
 
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from '@/components/containers/borderContainer/page';
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
+import StandardButton from '@/components/buttons/standardButton/standardButton';
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';

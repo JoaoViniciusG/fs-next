@@ -1,0 +1,117 @@
+.nav_home {
+    background-color: var(--darkgreen);
+    border-bottom: 5px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-style: solid;
+    border-color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 4px 21px var(--transpert-ligth-gray), 0 9px 12px var(--transpert-medium-gray);
+}
+
+.div_nav {
+    display: flex;
+    align-items: center;
+    padding: 0 5rem;
+    height: auto;
+    line-height: 1.5;
+}
+
+.logo_nav {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-right: 50px;
+}
+
+.logo {
+    width: auto;
+    height: auto;
+}
+
+.nav_menu {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0px;
+    font-size: 17px;
+    font-weight: 400; 
+    transition: 0.3s;
+}
+
+.nav_menu > li {
+    border-bottom: 2px solid transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    transition: 0.3s;
+}
+
+.nav_menu > li > a {
+    color: var(--white);
+}
+
+.menu_funcionalidade {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav_menu > li + li{
+    margin-left: 50px;
+}
+
+.nav_menu > li > a {
+    transition: 0.3s;
+}
+
+.nav_menu > li:hover {
+    border-color: var(--cyan);
+}
+
+.nav_menu > li:hover > a {
+    color: var(--ligth-aquamarine);
+}
+
+.button_login {
+    margin-left: auto;
+}
+
+.button_entrar {
+    display: flex;
+    align-items: center;
+    padding: 4px 25px;
+    background-color: var(--white);
+    border: 0px solid var(--white);
+    border-radius: 30px;
+    width: max-content;
+    line-height: 20px;
+    color: var(--bold-darkgreen);
+    font-weight: 550;
+    text-align: center;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+.button_entrar > .svg_color_nav {
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    color: var(--bold-darkgreen);
+}
+
+.button_entrar > span {
+    padding: 0 0 0 15px;
+}
+
+.button_entrar:hover{
+    background-color: var(--cyan);
+    color: var(--white);
+}
+
+.button_entrar:hover > .svg_color_nav{
+    color: var(--white);
+}

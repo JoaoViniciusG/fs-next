@@ -6,7 +6,7 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import Image from 'next/image'; 
 import styles from './page.module.css'; 
 import BorderContainer from '@/components/containers/borderContainer/page';
-import StandardButton from '@/components/buttons/stardardButton/standardButton';
+import StandardButton from '@/components/buttons/standardButton/standardButton';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');

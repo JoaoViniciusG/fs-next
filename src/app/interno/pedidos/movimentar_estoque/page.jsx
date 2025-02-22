@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 import BasicScreen from "@/components/screens/basicScreen/basicScreen"
 import React, { useState } from "react";
 import Image from 'next/image';
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 
 const MovimentarEstoque = () => {
   const [produtos, setProdutos] = useState([

@@ -23,7 +23,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar clientes",
-                route: "modulos/clientes/consultar.html"
+                route: "/interno/cliente/informacoesCliente"
             }
         ]
     },
@@ -33,11 +33,11 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar produtos",
-                route: "modulos/produtos/index.html"
+                route: "/interno/produtos/cadastrar"
             },
             {
                 name: "Consultar produtos",
-                route: "modulos/produtos/html/consultar_produtos.html"
+                route: "/interno/produtos/consultar"
             },
             {
                 name: "Movimentar estoque",
@@ -83,7 +83,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Consultar fornecedores",
-                route: "modulos/fornecedores/html/consultar_fornecedor.html"
+                route: "/interno/fornecedores/consultar"
             }
         ]
     },
@@ -97,11 +97,11 @@ export const sideBarConfig = [
             },
             {
                 name: "Visualizar endereço",
-                route: "modulos/enderecos/informacoesEndereco.html"
+                route: "/interno/endereco/visualizar"
             },
             {
                 name: "Alterar endereço",
-                route: "/interno/pedidos/criar_pedidos"
+                route: "/interno/endereco/alterar"
             }
         ]
     }

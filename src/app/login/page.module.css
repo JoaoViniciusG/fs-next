@@ -1,0 +1,43 @@
+.containerMaster {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(#0B221F -60%, #2D887A 100%);
+}
+
+.containerLeft {
+  height: 100vh;
+  width: 33vw;
+  background-color: var(--darkgreen);
+  border-right: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 7%;
+}
+
+.imageLogo {
+  width: 35%;
+}
+
+.titleLeft {
+  font-size: 2.2em;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.textContent {
+  color: var(--white);
+  font-size: 1.4em;
+  width: 75%;
+  font-weight: 600;
+}
+
+.textContent span {
+  color: var(--medium-ligth-green);
+  font-weight: 700;
+}

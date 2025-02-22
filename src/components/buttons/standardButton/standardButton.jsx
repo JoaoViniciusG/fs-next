@@ -1,10 +1,8 @@
-"use client";
-
-import styles from './standardButton.module.css';
+import styles from './standardButton.css';
 
 import { motion } from 'framer-motion';
 
-export default function StandardButton({ text, hoverColor, callback, style }) {
+export default function StandardButton({ text, hoverColor, callback = () => {}, style }) {
     return (
         <motion.button 
             onClick={callback}

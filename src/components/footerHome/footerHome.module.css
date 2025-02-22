@@ -1,0 +1,127 @@
+.footer_home {
+    box-shadow: 0 2px 4px 0 var(--transpert-medium-ligth-black), 0 2px 8px 0 var(  --transpert-medium-dark-black), 0 1px 5px 0 var(--transpert-medium-ligth-black);
+    padding: 7rem 60px 50px 50px;
+    border-radius: 0 0 30px 30px;
+}
+
+.footer_conter {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 80px;
+}
+
+.list_footer_log {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.list_footer_log > .footer_redes {
+    display: flex;
+}
+
+.list_redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 13px;
+    gap: 15px;
+    min-height: 40px;
+    margin: 20px 0;
+}
+
+.list_redes > li{
+    list-style-type: none;
+} 
+
+.list_redes > li {
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.list_redes > li > a > .svg_color_footer path{
+    transition: 0.3s;
+    fill:var(--bold-darkgreen);
+}
+
+.list_redes > li > a > .svg_color_footer:hover path{
+    fill:var(--light-teal);
+}
+
+.list_redes > li:hover {
+    transform: scale(1.2);
+}
+
+.list_footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.list_footer_contener {
+    width: max-content;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.list_sobr_titul {
+    font-size: 1.5rem;
+    line-height: 1.41;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 15px;
+    color: var(--bold-darkgreen);
+}
+
+.list_footer_contener > ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;  
+    margin: 16px 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.list_footer_contener > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    min-height: 40px;
+    transition: 0.3s;
+}
+
+.list_footer_contener > ul > li > a {
+    color: var(--dark-medium-grey); 
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.list_footer_contener > ul > li > a:hover {
+    color: var(--light-teal);
+    text-decoration: underline;
+    opacity: 0.7s;
+}
+
+.footer_copyright_sytle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+#footer_copyright {
+    color: var(--light-teal);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 0;
+    unicode-bidi: isolate;
+} 

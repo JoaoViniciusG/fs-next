@@ -1,0 +1,81 @@
+.sexo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Poppins";
+    font-size: 1.7vw;
+    color: #FFF;
+    font-weight: 200;
+    padding-top: 30px;
+  }
+  
+  .sexo label {
+    margin: 0;
+  }   
+  
+  .titlemaster {
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #FFF;
+    font-size: 3.5vw;
+  }
+  
+  .divcontentheader {
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+    margin-bottom: 50px;
+  }
+  
+  
+  .containermasterinputfield {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .containerinputfield {
+    width: 30%;
+  }
+  
+  .container_box {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    gap: 250px;
+  }
+  
+  .labelinputfield {
+    font-size: 1.7vw;
+    color: #FFF;
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    font-weight: 200;
+    padding-top: 10px;
+  }
+  
+  .btnadicionar{
+    padding: 30px;
+    font-size: 1.5vw;
+    color: #000000;
+    font-weight: 400;
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    margin: 40px;
+  }
+  
+  
+  .pin {
+    width: 30px;
+    margin-right: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }

@@ -1,0 +1,68 @@
+.containerMaster {
+    width: 23%;
+    border-radius: 10px;
+    height: 17vh;
+    padding: 7px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin: 0;
+}
+
+.titleContainer {
+    display: flex;
+    font-family: "Poppins";
+    position: absolute;
+    font-weight: 600;
+    top: 0;
+    left: 5;
+    font-size: 1.15em;
+}
+
+.containerContent {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerValue {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.containerVariance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prefix {
+    font-family: "Poppins";
+    color: var(--darkgreen);
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.suffix {
+    font-family: "Poppins";
+    color: var(--darkgreen);
+    font-weight: 500;
+    font-size: 1em;
+    align-self: flex-end;
+}
+
+.value {
+    font-family: "Poppins";
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.variance {
+    flex-wrap: nowrap;
+    font-size: 1em;
+    font-weight: 500;
+}

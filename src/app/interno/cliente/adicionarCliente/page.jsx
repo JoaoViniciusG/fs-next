@@ -1,7 +1,7 @@
 "use client";
 
 import styles from './page.module.css';
-import StandardButton from "@/components/buttons/stardardButton/standardButton";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
@@ -14,15 +14,15 @@ export default function PageAdicionarCliente() {
                     <div className={styles.container_content_dados}>
                         <div className={styles.container_box}>
                           <div>
-                            <InputLabel label="Nome:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="CPF:"  required={true}  readonly={false} width='50vh'/>
-                            <InputLabel label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="Nome" label="Nome:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="000.000.000-00" label="CPF:"  required={true}  readonly={false} width='50vh'/>
+                            <InputLabel placeholder="dd/mm/aaaa" label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
                           </div>
 
                           <div>
-                            <InputLabel label="Telefone:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="E-mail:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="Sexo" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
+                            <InputLabel label="Sexo:" required={true}  readonly={false} width='50vh' />
                           </div>   
                         </div>
                     </div>
@@ -31,58 +31,10 @@ export default function PageAdicionarCliente() {
       <BorderContainer title = 'Endereço'>
       <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
       </BorderContainer>
-      <div className={styles.divborderfield}>
-        <div className={styles.titlesectionfield}>
-          <h2>Dados pessoais:</h2>
-        </div>
+      
 
-        <div className={styles.containermasterinputfield}>
-          <div>
-            <div className={styles.containerinputfield}>
-              <h3 className={styles.labelinputfield}>Nome:</h3>
-              <input className={styles.inputfield} type="text"  />
-            </div>
+        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
 
-            <div className={styles.containerinputfield}>
-              <h3 className={styles.labelinputfield}>CPF:</h3>
-              <input className={styles.inputfield} type="text" readOnly />
-            </div>
-
-            <div className={styles.containerinputfield}>
-              <h3 className={styles.labelinputfield}>Nascimento:</h3>
-              <input className={styles.inputfield} type="text" readOnly />
-            </div>
-          </div>
-
-          <div>
-            <div className={styles.containerinputfield}>
-              <h3 className={styles.labelinputfield}>Telefone:</h3>
-              <input className={styles.inputfield} type="text" readOnly />
-            </div>
-
-            <div className={styles.containerinputfield}>
-              <h3 className={styles.labelinputfield}>E-mail:</h3>
-              <input className={styles.inputfield} type="text" readOnly />
-            </div>
-
-            <div className={styles.sexo}>
-              <label>Sexo:</label>
-              <label><input type="radio" name="sexo" value="feminino" /> Feminino</label>
-              <label><input type="radio" name="sexo" value="masculino" /> Masculino</label>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div className={styles.divborderfield}>
-        <div className={styles.titlesectionfield}>
-          <h2>Endereço:</h2>
-        </div>
-        <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
-      </div>
-      <div className={styles.divbuttonscontainer}>
-        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" callback={() => { }} />
-      </div>
     </BasicScreen>
   );
 }
