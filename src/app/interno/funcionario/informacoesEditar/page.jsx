@@ -8,7 +8,7 @@ import BorderContainerAdress from "@/components/containers/borderContainerAdress
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddressOption from '@/components/containers/endereco/addressOption'
 
-export default function PageInformacoesFuncionario() {
+export default function PageInformacoesFuncionarioEditavel() {
   return (
     <BasicScreen pageTitle="Informações do funcionário">
      <BorderContainer title = 'Dados pessoais'>
@@ -41,6 +41,7 @@ export default function PageInformacoesFuncionario() {
       </BorderContainer>
       <BorderContainerAdress title = 'Endereço'>
         <AddressOption id = '1' logradouro = 'Rua Barão do rio Branco' numero = '2314' bairro = 'Centro' cidade = 'Vilhena' uf = 'RO' ></AddressOption>
+        <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
       </BorderContainerAdress>
       
 

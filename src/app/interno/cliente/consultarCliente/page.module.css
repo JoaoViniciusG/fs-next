@@ -43,9 +43,9 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 50px;
+    gap: 3px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .content_table {
@@ -102,4 +102,32 @@
 .table_body > tr:hover > td {
     border-left: none;
 }
-
+.sexoContainer {
+    margin-bottom: 7px;
+    padding-top: 10px;
+    font-size: 25px;
+    font-family: "Poppins";
+    color: var(--white);
+  
+  }
+  
+  .radiolabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 200;
+  }
+  
+  .customradio {
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    font-weight: 200;
+    padding-top: 10px;
+    font-size: 25px;
+    color: var(--white);
+  }
+  
+  .radiolabel input[type="radio"]:checked + .customradio {
+    background-color: var(--white);
+  }

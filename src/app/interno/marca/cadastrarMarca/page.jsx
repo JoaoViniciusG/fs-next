@@ -5,9 +5,10 @@ import styles from './page.module.css';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
+import BorderContainerTable from "@/components/containers/borderContainerTable/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
-export default function PageCadastarMarcas() {
+export default function PageCadastrarMarca() {
     return (
         <BasicScreen pageTitle="Cadastrar marca">
             <BorderContainer title="Dados da marca:">
@@ -16,70 +17,56 @@ export default function PageCadastarMarcas() {
                         <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} width='100vh' />
                     </div>
                 </div>
+                <BorderContainerTable title = 'Fornecedores'>
                 <div className={styles.content_table}>
                     <table className={styles.table_fornecedores}>
                         <thead className={styles.table_header}>
                             <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">CPF</th>
-                                <th scope="col">Data de Nascimento</th>
-                                <th scope="col">Telefone</th>
-                                <th scope="col">Sexo</th>
+                                <th scope="col">Nome do fornecedor</th>
+                                <th scope="col">CPF / CNPJ</th>
+                                <th scope="col">Email</th>
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
                             <tr>
                                 <td>Beatriz Alves</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Feminino</td>
+                                <td>bia@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>Josana Silva</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Feminino</td>
+                                <td>email@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>Marcos Souza</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Masculino</td>
+                                <td>email@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>Pedro Alves</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Masculino</td>
+                                <td>email@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>Ana Sousa</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Feminino</td>
+                                <td>email@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>Laís Pedrosa</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Feminino</td>
+                                <td>email@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>José Alves</td>
                                 <td>091.846.297-98</td>
-                                <td>09/10/2004</td>
-                                <td>(87) 99018-0098</td>
-                                <td>Masculino</td>
+                                <td>email@gmail.com</td>    
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                </BorderContainerTable> 
             </BorderContainer>
         </BasicScreen>
     )

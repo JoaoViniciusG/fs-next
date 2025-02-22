@@ -5,8 +5,9 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
+import AddressOption from '@/components/containers/endereco/addressOption'
 
-export default function PageAdicionarCliente() {
+export default function PageInformacoesCliente() {
   return (
     <BasicScreen pageTitle="Informações do cliente">
       <BorderContainer title = 'Dados pessoais'>
@@ -22,14 +23,23 @@ export default function PageAdicionarCliente() {
                           <div>
                             <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
                             <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel label="Sexo:" required={true}  readonly={false} width='50vh' />
+  
+                          <div className={styles.sexoContainer}>
+                              <label>Sexo:</label> <br></br>
+                              <label className={styles.radiolabel}>
+                                  <input type="radio" name="sexo" value="feminino" />
+                                  <span className={styles.customradio}></span> Feminino
+                                  <input type="radio" name="sexo" value="masculino" />
+                                  <span className={styles.customradio}></span> Masculino
+                              </label>
+                          </div>
                           </div>   
                         </div>
                     </div>
                 </div>
       </BorderContainer>
       <BorderContainer title = 'Endereço'>
-      <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
+        <AddressOption id = '1' logradouro = 'Rua Barão do rio Branco' numero = '2314' bairro = 'Centro' cidade = 'Vilhena' uf = 'RO' ></AddressOption>
       </BorderContainer>
       
 
