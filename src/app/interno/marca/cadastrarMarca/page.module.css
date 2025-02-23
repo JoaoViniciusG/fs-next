@@ -1,9 +1,8 @@
 .div_content_busca {
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     gap: 50px;
     width: 100%;
     margin-top: 10px;
@@ -11,7 +10,6 @@
 
 .content_table {
     overflow-x: auto;
-    margin-top: 15px;
     width: 100%;
 }
 
@@ -64,3 +62,29 @@
     border-left: none;
 }
 
+.containerContentMaster {
+    padding: 1.2em 50px 45px 50px  !important;
+}
+
+.containerContent {
+    width: 100%;
+}
+
+.containerTable {
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.titleTable {
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1.6em;
+    margin-top: 4vh;
+}
+
+.containerButtons {
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+    margin-top: 35px;
+}
