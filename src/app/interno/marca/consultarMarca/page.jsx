@@ -10,7 +10,7 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 export default function PageConsultarMarca() {
     return (
-        <BasicScreen pageTitle="Consultar marcas">
+        <BasicScreen pageTitle="Consultar marca">
             <BorderContainer title="Pesquisar marcas:">
                 <div className={styles.div_contener_main}>
                     <div className={styles.filter_dados}>
@@ -21,7 +21,7 @@ export default function PageConsultarMarca() {
                     </div>
                     <div className={styles.div_content_busca}>
                         <InputLabel label="Buscar a marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} width='100vh' />
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" />
+                        <StandardButton className={styles.busca} text="BUSCAR" hoverColor="var(--cyan)" />
                     </div>
                 </div>
             </BorderContainer>

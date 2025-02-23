@@ -44,25 +44,6 @@
     padding-top: 10px;
   }
   
-  .btnadicionar{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    background-color: var(--white);
-    padding: 30px 30px;
-    width: 18vw;
-    border-radius: 8px;
-    gap: 15px;
-    cursor: pointer;
-    font-family: "Poppins";
-    font-weight: 500;
-    font-size: 1.25em;
-    color: var(--black);
-  }
-  
-  
-
-  
   .content {
     display: flex;
     flex-direction: column;
@@ -95,4 +76,13 @@
   
   .radiolabel input[type="radio"]:checked + .customradio {
     background-color: var(--white);
+  }
+  .containerEndereco{
+    gap: 30px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%;
   }

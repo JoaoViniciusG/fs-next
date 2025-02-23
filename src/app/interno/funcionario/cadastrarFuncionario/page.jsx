@@ -5,6 +5,7 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
+import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 
 export default function PageCadastrarFuncionario() {
   return (
@@ -38,12 +39,9 @@ export default function PageCadastrarFuncionario() {
                 </div>
       </BorderContainer>
       <BorderContainer title = 'Endereço'>
-      <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
+        <AddAddressButton/>
       </BorderContainer>
-      
-
         <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
-
     </BasicScreen>
   );
 }

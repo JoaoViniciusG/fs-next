@@ -89,3 +89,12 @@
   .radiolabel input[type="radio"]:checked + .customradio {
     background-color: var(--white);
   }
+  .containerEndereco{
+    gap: 30px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
