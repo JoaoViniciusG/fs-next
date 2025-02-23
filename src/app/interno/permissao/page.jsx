@@ -11,10 +11,13 @@ import RadioButton from '@/components/inputs/radioButton/radioButton';
 import PermissionOption from '@/components/containers/permissionOption/permissionOption';
 
 import { useEffect, useState } from 'react';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import ActionModal from '@/components/modals/actionModal/actionModal';
 
 export default function PermissoesPage() {
   const [data, setData] = useState(null);
   const [selectedOption, setSelectedOption] = useState("Admin");
+  const [modalOpen, setModalOpen] = useState(true);
 
   const handleOptionChange = (event) => {
     const value = event.target.value;
@@ -50,45 +53,47 @@ export default function PermissoesPage() {
 
 
   return (
-    <BasicScreen pageTitle="Permissões">
-      <BorderContainer title="Dados pessoais:">
-        <div className={styles.containerUserData}>
-          <InputLabel label="ID:" width='20vw' readonly={true} />
-          <InputLabel label="Nome:" width='20vw' readonly={true} />
-        </div>
-      </BorderContainer>
+    <>
+      <BasicScreen pageTitle="Permissões">
+        <BorderContainer title="Dados pessoais:">
+          <div className={styles.containerUserData}>
+            <InputLabel label="ID:" width='20vw' readonly={true} />
+            <InputLabel label="Nome:" width='20vw' readonly={true} />
+          </div>
+        </BorderContainer>
 
-      <div className={styles.containerPermissionSection}>
-        <h1 className={styles.containerPermissionTitle}>Permissões:</h1>
+        <div className={styles.containerPermissionSection}>
+          <h1 className={styles.containerPermissionTitle}>Permissões:</h1>
 
-        <div className={styles.radioButtonGroup}>
-          <RadioButton
-            text="Administrador"
-            valueName="Admin"
-            selectedOption={selectedOption}
-            handleOptionChange={handleOptionChange}
-            textInLeft={false}
-            radioGroup="userPermission" />
-          <RadioButton
-            text="Personalizado"
-            valueName="Personalizado"
-            selectedOption={selectedOption}
-            handleOptionChange={handleOptionChange}
-            textInLeft={false}
-            radioGroup="userPermission" />
-        </div>
+          <div className={styles.radioButtonGroup}>
+            <RadioButton
+              text="Administrador"
+              valueName="Admin"
+              selectedOption={selectedOption}
+              handleOptionChange={handleOptionChange}
+              textInLeft={false}
+              radioGroup="userPermission" />
+            <RadioButton
+              text="Personalizado"
+              valueName="Personalizado"
+              selectedOption={selectedOption}
+              handleOptionChange={handleOptionChange}
+              textInLeft={false}
+              radioGroup="userPermission" />
+          </div>
 
-        <div className={styles.containerPermissions}>
-          {
-            (data !== null) &&
-            data.map((item) => (
-              <PermissionOption
-                key={item.cardId}
-                element={item} />
-            ))
-          }
+          <div className={styles.containerPermissions}>
+            {
+              (data !== null) &&
+              data.map((item) => (
+                <PermissionOption
+                  key={item.cardId}
+                  element={item} />
+              ))
+            }
+          </div>
         </div>
-      </div>
-    </BasicScreen>
+      </BasicScreen>
+    </>
   );
 }

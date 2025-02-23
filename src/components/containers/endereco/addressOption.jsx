@@ -4,11 +4,12 @@ import styles from './addressOption.module.css';
 
 import { useRouter } from 'next/navigation';
 
-export default function AddressOption({ id, logradouro, numero, bairro, cidade, UF }) {
+export default function AddressOption({ id, logradouro, numero, bairro, cidade, UF, width = "max-content" }) {
     const router = useRouter();
 
     return (
         <div 
+            style={{width: width}}
             className={styles.containerMaster} 
             onClick={() => router.push(`/interno/endereco/visualizar?${id}`)}>
             

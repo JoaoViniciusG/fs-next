@@ -1,0 +1,18 @@
+.buttonContainer {
+    background-color: var(--white);
+    border-radius: 8px;
+    cursor: pointer;
+    width: min-content;
+    padding: 0px 10px;
+    transition: .3s;
+    border: none;
+}
+
+.textButton {
+    color: var(--darkgreen);
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 1.45em;
+    transition: .3s;
+    text-wrap: nowrap;
+}

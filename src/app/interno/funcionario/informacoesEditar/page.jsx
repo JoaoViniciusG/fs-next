@@ -11,41 +11,40 @@ import AddressOption from '@/components/containers/endereco/addressOption'
 export default function PageInformacoesFuncionarioEditavel() {
   return (
     <BasicScreen pageTitle="Informações do funcionário">
-     <BorderContainer title = 'Dados pessoais'>
-      <div className={styles.div_content_main}>
-                    <div className={styles.container_content_dados}>
-                        <div className={styles.container_box}>
-                          <div>
-                            <InputLabel placeholder="Nome" label="Nome:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel placeholder="000.000.000-00" label="CPF:"  required={true}  readonly={false} width='50vh'/>
-                            <InputLabel placeholder="dd/mm/aaaa" label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
-                          </div>
+      <BorderContainer title='Dados pessoais'>
+        <div className={styles.div_content_main}>
+          <div className={styles.container_content_dados}>
+            <div className={styles.container_box}>
+              <div>
+                <InputLabel placeholder="Nome" label="Nome:" required={true} readonly={false} width='50vh' />
+                <InputLabel placeholder="000.000.000-00" label="CPF:" required={true} readonly={false} width='50vh' />
+                <InputLabel placeholder="dd/mm/aaaa" label="Data de nascimento:" required={true} readonly={false} width='50vh' />
+              </div>
 
-                          <div>
-                            <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
-                            <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
-  
-                          <div className={styles.sexoContainer}>
-                              <label>Sexo:</label> <br></br>
-                              <label className={styles.radiolabel}>
-                                  <input type="radio" name="sexo" value="feminino" />
-                                  <span className={styles.customradio}></span> Feminino
-                                  <input type="radio" name="sexo" value="masculino" />
-                                  <span className={styles.customradio}></span> Masculino
-                              </label>
-                          </div>
-                          </div>   
-                        </div>
-                    </div>
+              <div>
+                <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true} readonly={false} width='50vh' />
+                <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true} readonly={false} width='50vh' />
+
+                <div className={styles.sexoContainer}>
+                  <label>Sexo:</label> <br></br>
+                  <label className={styles.radiolabel}>
+                    <input type="radio" name="sexo" value="feminino" />
+                    <span className={styles.customradio}></span> Feminino
+                    <input type="radio" name="sexo" value="masculino" />
+                    <span className={styles.customradio}></span> Masculino
+                  </label>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </BorderContainer>
-      <BorderContainerAdress title = 'Endereço'>
-        <AddressOption id = '1' logradouro = 'Rua Barão do rio Branco' numero = '2314' bairro = 'Centro' cidade = 'Vilhena' uf = 'RO' ></AddressOption>
+      <BorderContainerAdress title='Endereço'>
+        <AddressOption id='1' logradouro='Rua Barão do rio Branco' numero='2314' bairro='Centro' cidade='Vilhena' uf='RO' />
         <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
       </BorderContainerAdress>
-      
 
-        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
+      <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={() => { }} />
 
     </BasicScreen>
   );
