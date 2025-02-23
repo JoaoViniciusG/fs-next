@@ -19,7 +19,7 @@ export default function HeaderHome() {
                         <li><Link href="#sobre_estotech">Sobre</Link></li>
                     </ul>
                     <div className={styles.button_login}>
-                        <Link href="/interno" className={styles.button_entrar}><Icon.User className={styles.svg_color_nav}/><span>Entrar</span></Link>
+                        <Link href="/login" className={styles.button_entrar}><Icon.User className={styles.svg_color_nav}/><span>Entrar</span></Link>
                     </div>
                 </div>
             </nav>

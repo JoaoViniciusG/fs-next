@@ -2,9 +2,9 @@
 
 import styles from './page.module.css';
 
-import { 
+import {
   useEffect,
-  useState 
+  useState
 } from 'react';
 
 import Link from 'next/link';
@@ -29,12 +29,12 @@ export default function LoginPage() {
     <div className={styles.containerMaster}>
       <div className={styles.containerLeft}>
         <img
-          className={styles.imageLogo} 
-          src='/logo/Logo_Vertical_SF.png'/>
+          className={styles.imageLogo}
+          src='/logo/Logo_Vertical_SF.png' />
 
         <h2 className={styles.titleLeft}>Ainda não é cliente?</h2>
 
-        <ShineButton text="Entre em contato" backgroundColor="var(--bold-darkgreen)" fontColor="var(--white)"/>
+        <ShineButton text="Entre em contato" backgroundColor="var(--bold-darkgreen)" fontColor="var(--white)" />
 
         <p className={styles.textContent}>
           Descubra como nosso sistema de gerenciamento de estoque e pessoas pode <span>transformar</span> seu <span>negócio!</span>
@@ -48,16 +48,22 @@ export default function LoginPage() {
         <div className={styles.containerContent}>
           <div className={styles.inputsContainer}>
             <InputLogin label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
-            <InputLogin label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true}/>
+            <InputLogin label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true} />
           </div>
 
           <div className={styles.containerContentOptions}>
             <Link className={styles.resetPassword} href="/login">Esqueci a senha</Link>
-            <CheckBox value={stayLoggedValue} setValue={setStayLoggedValue} text="Lembrar de mim" textInLeft={false}/>
+
+            <CheckBox
+              value={stayLoggedValue}
+              setValue={setStayLoggedValue}
+              text="Lembrar de mim"
+              textInLeft={true}
+              className={styles.stayLoggedCheckbox} />
           </div>
         </div>
 
-        <StandardButton text="ENTRAR" hoverColor="var(--medium-darkcyan)" callback={submitFunction}/>
+        <StandardButton text="ENTRAR" hoverColor="var(--medium-darkcyan)" callback={submitFunction} />
       </div>
     </div>
   )
