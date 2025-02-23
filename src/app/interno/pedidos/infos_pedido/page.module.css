@@ -48,17 +48,6 @@
     border-style: solid;
 }
 
-.buttonHeaderOptions {
-    font-family: 'Poopins', sans-serif;
-    background-color: #FFF;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 1.4vw;
-    font-weight: 600;
-    box-shadow: 3px 3px 5px #2e2e2e;
-    cursor: pointer;
-    transition: 0.5s;
-}
 
 
 
@@ -178,6 +167,7 @@
 }
 
 .containerDataMaster {
+    margin-top: 5px;
     width: 100%;
     display: flex;
     align-items: stretch;
@@ -186,4 +176,9 @@
 
 .borderContainer {
     padding: 1.2em 0 0 0 !important;
+}
+
+.buttons{
+    display: flex;
+    gap: 10px;
 }

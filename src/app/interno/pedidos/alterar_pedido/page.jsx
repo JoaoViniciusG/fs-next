@@ -8,7 +8,7 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
-export default function PageCriarPedidos() {
+export default function PageAlterarPedidos() {
 
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
@@ -26,7 +26,7 @@ export default function PageCriarPedidos() {
     const [observacao, setObservacao] = useState("");
     
     return (
-      <BasicScreen pageTitle="Criar pedido">
+      <BasicScreen pageTitle="Alterar Pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
             <InputLabel 
@@ -143,7 +143,11 @@ export default function PageCriarPedidos() {
 
                           <span>N° 000</span>
                       </div>
-                <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
+                <div className={styles.buttons}>
+                    <StandardButton text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
+                    <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+                </div>
+                
             </div>
 
       </BasicScreen>
