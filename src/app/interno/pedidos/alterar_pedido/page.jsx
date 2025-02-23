@@ -8,7 +8,7 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
-export default function PageCriarPedidos() {
+export default function PageAlterarPedidos() {
 
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
@@ -26,17 +26,17 @@ export default function PageCriarPedidos() {
     const [observacao, setObservacao] = useState("");
     
     return (
-      <BasicScreen pageTitle="Criar pedido">
+      <BasicScreen pageTitle="Alterar Pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
             <InputLabel 
-                label="Buscar cliente" 
-                value={busca} 
-                setValue={setBusca} 
-                showLupa={true}
-                width= "70%" 
-                style={{flex:1} }
-                />
+                  label="Buscar o cliente" 
+                  value={busca} 
+                  setValue={setBusca} 
+                  showLupa={true}
+                  width= "70%" 
+                  style={{flex:1} }
+                  />
             <div className={styles.linha}>
                 <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
                 <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
@@ -143,7 +143,11 @@ export default function PageCriarPedidos() {
 
                           <span>N° 000</span>
                       </div>
-                <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
+                <div className={styles.buttons}>
+                    <StandardButton text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
+                    <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+                </div>
+                
             </div>
 
       </BasicScreen>

@@ -7,8 +7,9 @@ import styles from "./page.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
+import Link from "next/link";
 
-export default function PageCriarPedidos() {
+export default function PageAlterarPedidos() {
 
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
@@ -26,32 +27,24 @@ export default function PageCriarPedidos() {
     const [observacao, setObservacao] = useState("");
     
     return (
-      <BasicScreen pageTitle="Criar pedido">
+      <BasicScreen pageTitle="Informações do pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
-            <InputLabel 
-                label="Buscar cliente" 
-                value={busca} 
-                setValue={setBusca} 
-                showLupa={true}
-                width= "70%" 
-                style={{flex:1} }
-                />
             <div className={styles.linha}>
-                <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
-                <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
+                <InputLabel readonly={true}  label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
-                <InputLabel  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
-                <InputLabel  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
+                <InputLabel readonly={true}  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
+                <InputLabel readonly={true}  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
             </div>
         </div>
       </BorderContainer>
@@ -59,12 +52,7 @@ export default function PageCriarPedidos() {
 
       <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
         <div className={styles.containerDataMaster}>
-          <div className={styles.containerHeaderListOptions}>
-            <StandardButton className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)"> </StandardButton>
-          </div>
-
+        
           <div className={styles.tableProducts}>
             <div className={styles.headerListProducts}>
               <p className={styles.listHeaderTitle}>Cód. do Produto</p>
@@ -143,8 +131,13 @@ export default function PageCriarPedidos() {
 
                           <span>N° 000</span>
                       </div>
-                <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
-            </div>
+
+                      <Link href='/interno/pedidos/alterar_pedido'>
+                          <StandardButton  text="ALTERAR PEDIDO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>    
+                      </Link>
+
+            
+              </div>
 
       </BasicScreen>
     );
