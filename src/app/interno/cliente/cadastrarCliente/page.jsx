@@ -4,14 +4,12 @@ import styles from './page.module.css';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import BorderContainerAdress from "@/components/containers/borderContainerAdress/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
-import AddressOption from '@/components/containers/endereco/addressOption'
 
-export default function PageInformacoesFuncionario() {
+export default function PageAdicionarCliente() {
   return (
-    <BasicScreen pageTitle="Informações do funcionário">
-     <BorderContainer title = 'Dados pessoais'>
+    <BasicScreen pageTitle="Cadastrar cliente">
+      <BorderContainer title = 'Dados pessoais'>
       <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
                         <div className={styles.container_box}>
@@ -39,12 +37,12 @@ export default function PageInformacoesFuncionario() {
                     </div>
                 </div>
       </BorderContainer>
-      <BorderContainerAdress title = 'Endereço'>
-        <AddressOption id = '1' logradouro = 'Rua Barão do rio Branco' numero = '2314' bairro = 'Centro' cidade = 'Vilhena' uf = 'RO' ></AddressOption>
-      </BorderContainerAdress>
+      <BorderContainer title = 'Endereço'>
+      <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
+      </BorderContainer>
       
 
-        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
+        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
 
     </BasicScreen>
   );

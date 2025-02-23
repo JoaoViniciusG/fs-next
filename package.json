@@ -11,6 +11,7 @@
   "dependencies": {
     "bootstrap-icons": "^1.11.3",
     "framer-motion": "^12.0.6",
+    "fs": "^0.0.1-security",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

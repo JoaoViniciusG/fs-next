@@ -1,0 +1,47 @@
+.containerMaster {
+  background-color: var(--medium-seagreen);
+  min-width: 20%;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .5s;
+}
+
+.optionTitle {
+  padding: 5px 0;
+  background-color: var(--darkgreen);
+  display: flex;
+  justify-content: center;
+}
+
+.optionsContainer {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px 15px 30px 35px;
+}
+
+.containerOptionsInside {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.checkOptionHeader span {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.checkOptionHeader p {
+  font-size: 1.37em;
+}
+
+.checkOption span {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.checkOption p {
+  font-size: 1.3em;
+}

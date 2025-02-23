@@ -43,9 +43,9 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 50px;
+    gap: 3px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .content_table {

@@ -19,11 +19,11 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar clientes",
-                route: "/interno/cliente/adicionarCliente"
+                route: "/interno/cliente/cadastrarCliente"
             },
             {
                 name: "Consultar clientes",
-                route: "/interno/cliente/informacoesCliente"
+                route: "/interno/cliente/consultarCliente"
             }
         ]
     },
@@ -65,11 +65,11 @@ export const sideBarConfig = [
         subOptions: [
             {
                 name: "Cadastrar marcas",
-                route: "modulos/marcas/index.html"
+                route: "/interno/marca/cadastrarMarca"
             },
             {
                 name: "Consultar marcas",
-                route: "modulos/marcas/consultar.html"
+                route: "/interno/marca/consultarMarca"
             }
         ]
     },
@@ -102,6 +102,16 @@ export const sideBarConfig = [
             {
                 name: "Alterar endereço",
                 route: "/interno/endereco/alterar"
+            }
+        ]
+    },
+    {
+        name: "Permissões",
+        id: 8,
+        subOptions: [
+            {
+                name: "Permissões",
+                route: "/interno/permissao"
             }
         ]
     }

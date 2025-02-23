@@ -3,13 +3,13 @@
     width: 100%;
     border-radius: 15px;
     position: relative;
-    padding: 1.2em 15px 15px 15px;
-    margin-top: 2em;
+    padding: 19px 0px 0px 0px;
+    margin-top: 2.2em;
 }
 
 .titleContainer {
     font-family: "Poppins";
-    font-size: 1.8em;
+    font-size: 40px;
     font-weight: 600;
     letter-spacing: 1.2px;
     text-align: center;
@@ -23,7 +23,7 @@
     padding: 5px 20px;
     background-color: var(--darkgreen);
     position: relative;
-    top: -1.5em;
+    top: -1.2em;
 }
 
 .contentContainer {

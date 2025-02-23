@@ -1,0 +1,41 @@
+.containerMaster {
+  width: 100%;
+  position: relative;
+}
+
+.inputLabel {
+  font-family: "Poppins";
+  font-size: 1.7em;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  font-family: "Poppins";
+  font-size: 1.4em;
+  font-weight: 600;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 7px 15px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+  color: var(--bold-darkgreen);
+}
+
+.buttonPassword {
+  position: absolute;
+  right: 15px;
+  bottom: .7em;
+  border: none;
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+}
+
+.iconEye {
+  height: 100%;
+  width: 100%;
+  color: var(--bold-darkgreen);
+  cursor: pointer;
+}
