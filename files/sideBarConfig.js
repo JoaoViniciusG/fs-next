@@ -104,5 +104,15 @@ export const sideBarConfig = [
                 route: "/interno/endereco/alterar"
             }
         ]
+    },
+    {
+        name: "Permissões",
+        id: 8,
+        subOptions: [
+            {
+                name: "Permissões",
+                route: "/interno/permissao"
+            }
+        ]
     }
 ]

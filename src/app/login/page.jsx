@@ -1,10 +1,30 @@
 "use client";
 
-import ShineButton from '@/components/buttons/shineButton/shineButton';
 import styles from './page.module.css';
-import Router from 'next/navigation';
+
+import { 
+  useEffect,
+  useState 
+} from 'react';
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import ShineButton from '@/components/buttons/shineButton/shineButton';
+import InputLogin from '@/components/inputs/inputLogin/inputLogin';
+import StandardButton from '@/components/buttons/standardButton/standardButton';
+import CheckBox from '@/components/inputs/checkbox/checkbox';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [user, setUser] = useState("")
+  const [password, setPassword] = useState("");
+  const [stayLoggedValue, setStayLoggedValue] = useState(false);
+
+  const submitFunction = () => router.replace("/interno");
+
+  useEffect(() => console.log(stayLoggedValue));
+
   return (
     <div className={styles.containerMaster}>
       <div className={styles.containerLeft}>
@@ -21,8 +41,23 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className={styles.containerRight}>
 
+      <div className={styles.containerRight}>
+        <h1 className={styles.loginTitle}>Login</h1>
+
+        <div className={styles.containerContent}>
+          <div className={styles.inputsContainer}>
+            <InputLogin label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
+            <InputLogin label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true}/>
+          </div>
+
+          <div className={styles.containerContentOptions}>
+            <Link className={styles.resetPassword} href="/login">Esqueci a senha</Link>
+            <CheckBox value={stayLoggedValue} setValue={setStayLoggedValue} text="Lembrar de mim" textInLeft={false}/>
+          </div>
+        </div>
+
+        <StandardButton text="ENTRAR" hoverColor="var(--medium-darkcyan)" callback={submitFunction}/>
       </div>
     </div>
   )

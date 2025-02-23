@@ -1,0 +1,43 @@
+.containerUserData {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+}
+
+.containerPermissionSection {
+  margin-top: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: end;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.radioButtonGroup {
+  width: min-content;
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+.containerPermissionTitle {
+  color: var(--white);
+  font-size: 1.9em;
+  font-weight: 500;
+}
+
+.containerPermissions {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 60px 10%;
+  width: 100%;
+  background-color: var(--light-teal);
+  border-radius: 30px;
+  border: 3px solid var(--white);
+  padding: 50px;
+}

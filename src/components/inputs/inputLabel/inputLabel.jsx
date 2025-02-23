@@ -2,7 +2,7 @@
 
 import styles from './inputLabel.module.css';
 
-export default function InputLabel({label, value, setValue, placeholder, maxLength, style, required=false, readonly=false, type="text", width="100%"}) {
+export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style, required=false, readonly=false, type="text", width="100%"}) {
     return (
         <div className={styles.container} style={style}>
             <p className={styles.label}>{label}</p>
