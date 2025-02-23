@@ -92,6 +92,11 @@
     justify-content: end;
     gap: 15px;
     margin-top: 35px;
+}
+.containerButtonsAlterar{
+    align-self: flex-end;
+    gap: 15px;
+    margin-top: 35px;
 
 }
 

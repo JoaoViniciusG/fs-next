@@ -92,6 +92,6 @@
     justify-content: end;
     gap: 15px;
     margin-top: 35px;
-
+    align-self: flex-end;
 }
 

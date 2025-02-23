@@ -102,3 +102,6 @@
 .table_body > tr:hover > td {
     border-left: none;
 }
+.containerFuncionario{
+    padding: 1.2em 0 0 0 !important;
+}
