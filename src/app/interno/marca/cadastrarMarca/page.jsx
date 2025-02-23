@@ -5,19 +5,18 @@ import styles from './page.module.css';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import BorderContainerTable from "@/components/containers/borderContainerTable/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 export default function PageCadastrarMarca() {
     return (
         <BasicScreen pageTitle="Cadastrar marca">
-            <BorderContainer title="Dados da marca:">
-                <div className={styles.div_contener_main}>
+            <BorderContainer title="Dados da marca:" className={styles.containerContentMaster}>
+                <div className={styles.containerContent}>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} width='100vh' />
+                        <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} />
                     </div>
-                </div>
-                <BorderContainerTable title = 'Fornecedores'>
+                    <h2 className={styles.titleTable}>Fornecedor:</h2>
+                <BorderContainer className={styles.containerTable}>
                 <div className={styles.content_table}>
                     <table className={styles.table_fornecedores}>
                         <thead className={styles.table_header}>
@@ -66,7 +65,13 @@ export default function PageCadastrarMarca() {
                         </tbody>
                     </table>
                 </div>
-                </BorderContainerTable> 
+                </BorderContainer> 
+                <div className={styles.containerButtons}>
+                    <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)'></StandardButton>
+                    <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)'></StandardButton>
+                    <StandardButton text='EXCLUIR' hoverColor='var(--darkred)'></StandardButton>
+                </div>
+                </div>
             </BorderContainer>
         </BasicScreen>
     )
