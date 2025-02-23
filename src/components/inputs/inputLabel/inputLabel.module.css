@@ -23,3 +23,26 @@
 .input:focus-visible {
     outline: 2px solid var(--green-turquoise);
 }
+
+
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .botaoLupa {
+    position: absolute;
+    left: 65%; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .iconLupa {
+    width: 20px; /* Ajuste conforme o tamanho desejado */
+    height: 20px;
+  }

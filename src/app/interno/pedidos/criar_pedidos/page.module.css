@@ -133,6 +133,7 @@
 }
 
 .textarea{
+   
     border: none;
     height: 6vw;
     border-radius: 8px;
@@ -149,6 +150,30 @@
 
 .labelInputLogin span {
     font-weight: 300;
+}
+
+.baixo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.divTagBottom{
+    display: flex;
+    align-items: center;
+    font-family: "Poppins";
+    color: #FFF;
+    font-size: 1.5vw;
+    gap: 20px;
+    font-weight: 600;
+}
+
+.divTagBottom span{
+    background-color: #FFF;
+    color: #00332B;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #2e2e2e;
 }
 
 .containerDataMaster {

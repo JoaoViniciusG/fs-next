@@ -113,9 +113,6 @@ export default function pageDadosConta(){
             <BorderContainer title="Endereço">
                       
               <div className={styles.enderocos}>
-                <button type="button" className={styles.btnAdicionar} >
-                            Adicionar endereço +
-                      </button>
                 <AddressOption
                       logradouro="Av.Beira Rio" 
                       bairro="Centro" 

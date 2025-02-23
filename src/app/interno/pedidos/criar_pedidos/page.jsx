@@ -6,6 +6,7 @@ import InputLabel from "@/components/inputs/inputLabel/inputLabel";
 import styles from "./page.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
+import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
 export default function PageCriarPedidos() {
 
@@ -18,31 +19,40 @@ export default function PageCriarPedidos() {
   const [estado, setEstado] = useState("");
   const [telefone, setTelefone] = useState("");
 
-  const [subtotal, setSubtotal] = useState("");
-  const [desconto, setDesconto] = useState("");
-  const [total, setTotal] = useState("");
-  const [observacao, setObservacao] = useState("");
+    const[busca, setBusca]= useState('');
+    const [subtotal, setSubtotal] = useState("");
+    const [desconto, setDesconto] = useState("");
+    const [total, setTotal] = useState("");
+    const [observacao, setObservacao] = useState("");
+    
+    return (
+      <BasicScreen pageTitle="Criar pedido">
+        <BorderContainer title="Dados do cliente">
+          <div className={styles.dvInputs}>
+            <InputLabel 
+                  label="Buscar o cliente" 
+                  value={busca} 
+                  setValue={setBusca} 
+                  showLupa={true}
+                  width= "70%" 
+                  style={{flex:1} }
+                  />
+            <div className={styles.linha}>
+                <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
+                <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
+            </div>
 
-  return (
-    <BasicScreen pageTitle="Criar pedido">
-      <BorderContainer title="Dados do cliente">
-        <div className={styles.dvInputs}>
-          <div className={styles.linha}>
-            <InputLabel className={styles.label} label="Nome:" value={nome} setValue={setNome} width="80%" style={{ flex: 1 }} />
-            <InputLabel className={styles.label} label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj} width="80%" style={{ flex: 1 }} />
-          </div>
+            <div className={styles.linha}>
+                <InputLabel  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
+                <InputLabel  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
+                <InputLabel  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
+            </div>
 
-          <div className={styles.linha}>
-            <InputLabel className={styles.label} label="Endereço:" value={endereco} setValue={setEndereco} width="90%" style={{ flex: 1 }} />
-            <InputLabel className={styles.label} label="Bairro:" value={bairro} setValue={setBairro} width="80%" style={{ flex: 1 }} />
-            <InputLabel className={styles.label} label="CEP:" value={cep} setValue={setCep} width="70%" style={{ flex: 1 }} />
-          </div>
-
-          <div className={styles.linha}>
-            <InputLabel className={styles.label} label="Cidade:" value={cidade} setValue={setCidade} width="90%" style={{ flex: 1 }} />
-            <InputLabel className={styles.label} label="Estado:" value={estado} setValue={setEstado} width="90%" style={{ flex: 1 }} />
-            <InputLabel className={styles.label} label="Telefone:" value={telefone} setValue={setTelefone} width="90%" style={{ flex: 1 }} />
-          </div>
+            <div className={styles.linha}>
+                <InputLabel  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
+                <InputLabel  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
+                <InputLabel  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
+            </div>
         </div>
       </BorderContainer>
 
@@ -90,46 +100,56 @@ export default function PageCriarPedidos() {
         </div>
       </BorderContainer>
 
-      <BorderContainer>
-        <div className={styles.divContentInputTotal}>
-          <div className={styles.linha}>
-            <InputLabel
-              label="Subtotal"
-              value={subtotal}
-              setValue={setSubtotal}
-              className={styles.inputDadosPessoais}
-              readonly={true}
-              width="80%"
-            />
-            <InputLabel
-              label="Desconto"
-              value={desconto}
-              setValue={setDesconto}
-              className={styles.inputDadosPessoais}
-              readonly={true}
-              width="80%"
-            />
-            <InputLabel
-              label="Total"
-              value={total}
-              setValue={setTotal}
-              className={styles.inputDadosPessoais}
-              readonly={true}
-              width="80%"
-            />
-          </div>
+        <BorderContainer> 
+          <div className={styles.divContentInputTotal}>
+            <div className={styles.linha}>
+            <InputLabel 
+            label="Subtotal" 
+            value={subtotal} 
+            setValue={setSubtotal} 
+            className={styles.inputDadosPessoais} 
+            readonly={true} 
+            width= "80%"
+          />
+          <InputLabel 
+            label="Desconto" 
+            value={desconto} 
+            setValue={setDesconto} 
+            className={styles.inputDadosPessoais} 
+            readonly={true} 
+            width= "80%"
+          />
+          <InputLabel 
+            label="Total" 
+            value={total} 
+            setValue={setTotal} 
+            className={styles.inputDadosPessoais} 
+            readonly={true} 
+            width= "80%"
+          />
+            </div>
 
-          <label className={styles.labelInputLogin}>
-            <span>Observação:</span>
-            <textarea className={styles.textarea} type="text" ></textarea>
-          </label>
-        </div>
-      </BorderContainer>
+            <TextAreaInput 
+                  label="Observação:" 
+                  placeholder="Escreva sua descrição..." 
+                  id="input-total" 
+                />
+              </div>
+        </BorderContainer>
 
-    </BasicScreen>
-  );
-}
+          <div className={styles.baixo}>
+                <div className={styles.divTagBottom}>
+                          <p>Código do pedido:</p>
 
+                          <span>N° 000</span>
+                      </div>
+                <StandardButton text="CRIAR PEDIDO"></StandardButton>
+            </div>
+
+      </BasicScreen>
+    );
+  }
+  
 
 
 
