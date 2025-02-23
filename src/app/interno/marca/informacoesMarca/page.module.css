@@ -1,56 +1,15 @@
-.div_contener_main {
-    margin: 0px 10px 30px;
-    width: 100%;
-}
-
-.filter_dados {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 70px;
-    margin-top: 5px;
-}
-
-.button_filter {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.button_filter > .filter_text {
-    font-size: 18px;
-    font-weight: 500px;
-    color: var(--white);
-}
-
-.button_filter > .icon_filter {
-    color: var(--white);
-    height: 27px;
-    width: 27px;
-    transition: 0.3s;
-}
-
-.button_filter:hover > .icon_filter{
-    color: var(--ligth-aquamarine);
-}
-
 .div_content_busca {
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 3px;
+    flex-direction: column;
+    gap: 50px;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .content_table {
     overflow-x: auto;
-    margin-top: 15px;
     width: 100%;
 }
 
@@ -102,6 +61,37 @@
 .table_body > tr:hover > td {
     border-left: none;
 }
-.containerFuncionario{
-    padding: 1.2em 0 0 0 !important;
+
+.containerContentMaster{
+    padding: 1.2em 50px 45px 50px !important;
 }
+
+.containerContent{
+    width: 100%;
+}
+
+.containerTable{
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.containerTable div{
+    border-radius: 0 !important;
+
+}
+
+.titleTable{
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1.6em;
+    margin-top: 3vh;
+}
+
+.containerButtons{
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+    margin-top: 35px;
+    align-self: flex-end;
+}
+

@@ -131,3 +131,7 @@
   .radiolabel input[type="radio"]:checked + .customradio {
     background-color: var(--white);
   }
+
+  .containerClientes{
+    padding: 1.2em 0 0 0 !important;
+  }

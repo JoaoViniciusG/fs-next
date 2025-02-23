@@ -7,7 +7,6 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
-import BorderContainerTable from '@/components/containers/borderContainerTable/page';
 
 export default function PageConsultarFuncionarios() {
     return (
@@ -26,7 +25,7 @@ export default function PageConsultarFuncionarios() {
                     </div>
                 </div>
             </BorderContainer>
-            <BorderContainerTable title="Funcionários:">
+            <BorderContainer className={styles.containerFuncionario} title="Funcionários:">
                 <div className={styles.content_table}>
                     <table className={styles.table_fornecedores}>
                         <thead className={styles.table_header}>
@@ -91,7 +90,7 @@ export default function PageConsultarFuncionarios() {
                         </tbody>
                     </table>
                 </div>
-            </BorderContainerTable>
+            </BorderContainer>
         </BasicScreen>
     )
 }
