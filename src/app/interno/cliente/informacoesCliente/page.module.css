@@ -47,7 +47,7 @@
     margin-bottom: 1rem;
     margin-top: 1rem;
     width: 100%;
-    gap: 250px;
+    gap: 150px;
   }
   
   .labelinputfield {
@@ -78,4 +78,34 @@
   .content {
     display: flex;
     flex-direction: column;
+  }
+
+  .sexoContainer {
+    margin-bottom: 7px;
+    padding-top: 10px;
+    font-size: 25px;
+    font-family: "Poppins";
+    color: var(--white);
+  
+  }
+  
+  .radiolabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 200;
+  }
+  
+  .customradio {
+    font-family: "Poppins";
+    margin-bottom: 7px;
+    font-weight: 200;
+    padding-top: 10px;
+    font-size: 25px;
+    color: var(--white);
+  }
+  
+  .radiolabel input[type="radio"]:checked + .customradio {
+    background-color: var(--white);
   }

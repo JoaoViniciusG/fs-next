@@ -12,7 +12,7 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
   width: 100%;
-  gap: 250px;
+  gap: 150px;
 }
 
 .labelinputfield {
@@ -34,49 +34,36 @@
   margin: 40px;
 }
 
-
-.pin {
-  width: 30px;
-  margin-right: 10px;
-}
-
 .content {
   display: flex;
   flex-direction: column;
 }
 .sexoContainer {
-  font-size: 1.7vw;
-  color: #FFF;
-  font-family: "Poppins";
   margin-bottom: 7px;
-  font-weight: 200;
   padding-top: 10px;
+  font-size: 25px;
+  font-family: "Poppins";
+  color: var(--white);
+
 }
 
-.label-titulo {
-  font-weight: bold;
-}
-
-.radio-label {
+.radiolabel {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  font-weight: 200;
 }
 
-.radio-label input[type="radio"] {
-  display: none;
-}
-
-.custom-radio {
-  font-size: 1.7vw;
-  color: #FFF;
+.customradio {
   font-family: "Poppins";
   margin-bottom: 7px;
   font-weight: 200;
   padding-top: 10px;
+  font-size: 25px;
+  color: var(--white);
 }
 
-.radio-label input[type="radio"]:checked + .custom-radio {
+.radiolabel input[type="radio"]:checked + .customradio {
   background-color: var(--white);
 }

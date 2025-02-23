@@ -6,9 +6,9 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
-export default function PageAdicionarCliente() {
+export default function PageCadastrarFuncionario() {
   return (
-    <BasicScreen pageTitle="Cadastrar cliente">
+    <BasicScreen pageTitle="Cadastrar funcionário">
       <BorderContainer title = 'Dados pessoais'>
       <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
@@ -23,15 +23,13 @@ export default function PageAdicionarCliente() {
                             <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
                             <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
   
-                          <div className="sexoContainer">
+                          <div className={styles.sexoContainer}>
                               <label>Sexo:</label> <br></br>
-                              <label className="radio-label">
+                              <label className={styles.radiolabel}>
                                   <input type="radio" name="sexo" value="feminino" />
-                                  <span className="custom-radio"></span> Feminino
-                              </label>
-                              <label className="radio-label">
+                                  <span className={styles.customradio}></span> Feminino
                                   <input type="radio" name="sexo" value="masculino" />
-                                  <span className="custom-radio"></span> Masculino
+                                  <span className={styles.customradio}></span> Masculino
                               </label>
                           </div>
                           </div>   
