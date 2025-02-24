@@ -46,7 +46,11 @@ export default function PageAlterarPedidos() {
     const [modalExcluirProdutoOpen, setModalExcluirProdutoOpen ] =useState(false)
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
-  
+    const [showAlertModalCancel, setShowAlertModalCancel]= useState(false);
+
+    const handleCancel=()=>{
+      setShowAlertModalCancel(true)
+    }
     const handleConfirmClick = () => {
       setModalOpen(true);
     };
@@ -71,6 +75,8 @@ export default function PageAlterarPedidos() {
       setModalExcluirProdutoOpen(false); 
       setShowAlertModalExcluido(true); 
     };
+
+    
   
 
     
@@ -199,14 +205,27 @@ export default function PageAlterarPedidos() {
                           <span>N° 000</span>
                       </div>
                 <div className={styles.buttons}>
-                    <StandardButton callback={handleCancelar} text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
+                    <StandardButton callback={handleCancel} text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
                     <StandardButton callback={handleAlterar } text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
                 </div>
                 
             </div>
 
       </BasicScreen>
-      <AlertModal
+
+      
+            <ActionModal
+              title="AVISO"
+              text="Tem certeza de que deseja cancelar? Lembre-se de que todas as alterações feitas serão excluídas ao cancelar!"
+              bsIcon="bi bi-exclamation-triangle"
+              isOpen={showAlertModalCancel}
+              setIsOpen={setShowAlertModalCancel} 
+              textBtn1="DISPENSAR"
+              textBtn2="CONFIRMAR"
+              callbackB1={()=>console.log("CANCELOU")}
+              callbackB2={(handleConfirmarAlterarProduto)}
+            />
+            <AlertModal
               title="Alterado"
               text="Alterado com sucesso!"
               bsIcon="bi-check2-circle"
@@ -214,7 +233,7 @@ export default function PageAlterarPedidos() {
               setIsOpen={setShowAlertModal} 
             />
 
-      <AlertModal
+          <AlertModal
               title="Alterado"
               text="Alterado com sucesso!"
               bsIcon="bi-check2-circle"

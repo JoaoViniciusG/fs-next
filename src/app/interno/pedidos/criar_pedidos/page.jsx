@@ -37,6 +37,7 @@ export default function PageCriarPedidos() {
   const [modalExcluirProdutoOpen, setModalExcluirProdutoOpen ] =useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false);
   const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
+  
 
   const handleConfirmClick = () => {
     setModalOpen(true);
@@ -218,6 +219,7 @@ export default function PageCriarPedidos() {
         isOpen={showAlertModalExcluido}
         setIsOpen={setShowAlertModalExcluido} 
       />
+
             
       
       <BuscarClienteModal 
@@ -250,6 +252,8 @@ export default function PageCriarPedidos() {
       bsIcon="bi bi-exclamation-triangle"
       text="Tem certeza de deseja excluir esse produto?"
     />
+
+
     </>
   );
 }
