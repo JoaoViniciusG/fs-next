@@ -9,6 +9,7 @@ import BorderContainer from '@/components/containers/borderContainer/page';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import AddressOption from '@/components/containers/endereco/addressOption';
 import Link from 'next/link';
+import ActionModal from '@/components/modals/actionModal/actionModal';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -18,8 +19,16 @@ export default function pageDadosConta(){
   const [cpf, setCpf] = useState('');
   const [telefone, setTelefone] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+
+   const[modalOpen, setModalOpen] = useState(false)
+    
+      const handleConfirmClick = () => {
+        setModalOpen(true);
+      }
+  
   
   return (
+      <>
         <BasicScreen>
             <BorderContainer title="Dados da conta">
                 <div className={styles.containerr}>
@@ -129,9 +138,22 @@ export default function pageDadosConta(){
               <Link href='/interno/conta/dados_conta_confirmar'>
                     <StandardButton text="ALTERAR" hoverColor="var(--ligth-aquamarine)" />
                 </Link>
-                <span className={styles.sair}>Sair</span>
+                <span className={styles.sair} onClick={handleConfirmClick}>Sair</span>
             </div>
         </BasicScreen>
+        <ActionModal
+                title="Aviso"
+                text="Tem certeza que deseja sair da conta? "
+                bsIcon="bi bi-exclamation-triangle"
+                isOpen={modalOpen}
+                setIsOpen={setModalOpen}
+                textBtn1="CANCELAR"
+                textBtn2="CONFIRMAR"
+                callbackB1={()=>console.log("CANCELOU")}
+                callbackB2={()=> console.log("CONFIRMOU")}
+                
+             />
+      </>
   );
 };
 

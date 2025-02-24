@@ -8,6 +8,9 @@ import styles from './page.module.css'
 import BorderContainer from '@/components/containers/borderContainer/page';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
 import AddressOption from '@/components/containers/endereco/addressOption';
+import Link from 'next/link';
+import ActionModal from '@/components/modals/actionModal/actionModal';
+import AlertModal from '@/components/modals/alertModal/alertModal';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -17,9 +20,22 @@ export default function pageDadosConta(){
   const [cpf, setCpf] = useState('');
   const [telefone, setTelefone] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+
+  const[modalOpenSair, setModalOpenSair] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+      
+        const handleConfirmClick = () => {
+          setModalOpen(true)
+        }
+
+        const handleConfirmClickSair=()=>{
+          setModalOpenSair(true);
+        }
+    
   
   return (
-        <BasicScreen>
+        <>
+          <BasicScreen>
             <BorderContainer title="Dados da conta">
                 <div className={styles.containerr}>
                         <div className={styles.perfil}>
@@ -57,7 +73,10 @@ export default function pageDadosConta(){
                         readonly={true} 
                     />
                     <div className={styles.alterarSenha}>
-                        <p>Alterar senha</p>
+                      <Link href= "/interno/conta/trocar_senha">
+                          <p>Alterar senha</p>
+                      </Link>
+                        
                     </div>
                 </div>
           </div>
@@ -130,12 +149,36 @@ export default function pageDadosConta(){
             </BorderContainer>
           
           <div className={styles.baixo}>
-            <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+            <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick}></StandardButton>
             <div className={styles.sair}>
-              <span>Sair</span>
+              <span onClick={handleConfirmClickSair}>Sair</span>
             </div> 
           </div>
           
         </BasicScreen>
+        <ActionModal
+             title="Aviso"
+              text="Tem certeza que deseja sair da conta? "
+              bsIcon="bi bi-exclamation-triangle"
+              isOpen={modalOpenSair}
+             setIsOpen={setModalOpenSair}
+              textBtn1="CANCELAR"
+              textBtn2="CONFIRMAR"
+              callbackB1={()=>console.log("CANCELOU")}
+             callbackB2={()=> console.log("CONFIRMOU")}
+                        
+         />
+
+         <AlertModal
+            title="Atualizado"
+            text="Atualização realizada com sucesso!"
+            bsIcon="bi bi-exclamation-triangle"
+            isOpen={modalOpen}
+            setIsOpen={setModalOpen}
+         />
+
+        
+        
+      </>
   );
 };

@@ -1,12 +1,13 @@
-"use client";
-
+'use client'
+import React, { useState } from "react";
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
+import AlertModal from "@/components/modals/alertModal/alertModal";
+
 
 export default function PageCriarPedidos() {
 
@@ -19,139 +20,154 @@ export default function PageCriarPedidos() {
   const [estado, setEstado] = useState("");
   const [telefone, setTelefone] = useState("");
 
-    const[busca, setBusca]= useState('');
-    const [subtotal, setSubtotal] = useState("");
-    const [desconto, setDesconto] = useState("");
-    const [total, setTotal] = useState("");
-    const [observacao, setObservacao] = useState("");
-    
-    return (
+  const [busca, setBusca] = useState('');
+  const [subtotal, setSubtotal] = useState("");
+  const [desconto, setDesconto] = useState("");
+  const [total, setTotal] = useState("");
+  const [observacao, setObservacao] = useState("");
+
+  const [cliente, setCliente] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenn, setModalOpenn] = useState(false);
+
+  const handleConfirmClick = () => {
+    setModalOpenn(true);
+  }
+
+  return (
+    <>
       <BasicScreen pageTitle="Criar pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
             <InputLabel 
-                label="Buscar cliente" 
-                value={busca} 
-                setValue={setBusca} 
-                showLupa={true}
-                width= "70%" 
-                style={{flex:1} }
-                />
+              label="Buscar cliente" 
+              value={busca} 
+              setValue={setBusca} 
+              showLupa={true}
+              width="70%" 
+              style={{ flex: 1 }}
+ 
+            />
             <div className={styles.linha}>
-                <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
-                <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
+              <InputLabel label="Nome:" value={nome} setValue={setNome} width="80%" style={{ flex: 1 }} />
+              <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj} width="80%" style={{ flex: 1 }} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
-                <InputLabel  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
+              <InputLabel label="Endereço:" value={endereco} setValue={setEndereco} width="90%" style={{ flex: 1 }} />
+              <InputLabel label="Bairro:" value={bairro} setValue={setBairro} width="80%" style={{ flex: 1 }} />
+              <InputLabel label="CEP:" value={cep} setValue={setCep} width="70%" style={{ flex: 1 }} />
             </div>
 
             <div className={styles.linha}>
-                <InputLabel  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
-                <InputLabel  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
+              <InputLabel label="Cidade:" value={cidade} setValue={setCidade} width="90%" style={{ flex: 1 }} />
+              <InputLabel label="Estado:" value={estado} setValue={setEstado} width="90%" style={{ flex: 1 }} />
+              <InputLabel label="Telefone:" value={telefone} setValue={setTelefone} width="90%" style={{ flex: 1 }} />
             </div>
-        </div>
-      </BorderContainer>
-
-
-      <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
-        <div className={styles.containerDataMaster}>
-          <div className={styles.containerHeaderListOptions}>
-            <StandardButton className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)"> </StandardButton>
           </div>
+        </BorderContainer>
 
-          <div className={styles.tableProducts}>
-            <div className={styles.headerListProducts}>
-              <p className={styles.listHeaderTitle}>Cód. do Produto</p>
-              <p className={styles.listHeaderTitle}>Nome do Produto / Modelo</p>
-              <p className={styles.listHeaderTitle}>Marca</p>
-              <p className={styles.listHeaderTitle}>Quantidade</p>
-              <p className={styles.listHeaderTitle}>Valor Unit.</p>
-              <p className={styles.listHeaderTitle}>Subtotal</p>
+        <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
+          <div className={styles.containerDataMaster}>
+            <div className={styles.containerHeaderListOptions}>
+              <StandardButton onClick={openModal}  className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" />
+              <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)" />
+              <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)" />
             </div>
 
-            <div className={styles.divTableContainerContent}>
-              <div>
-                <hr className={styles.hrBorder} style={{ left: '15%' }} />
-                <hr className={styles.hrBorder} style={{ left: '45%' }} />
-                <hr className={styles.hrBorder} style={{ left: '55%' }} />
-                <hr className={styles.hrBorder} style={{ left: '75%' }} />
-                <hr className={styles.hrBorder} style={{ left: '87%' }} />
+            <div className={styles.tableProducts}>
+              <div className={styles.headerListProducts}>
+                <p className={styles.listHeaderTitle}>Cód. do Produto</p>
+                <p className={styles.listHeaderTitle}>Nome do Produto / Modelo</p>
+                <p className={styles.listHeaderTitle}>Marca</p>
+                <p className={styles.listHeaderTitle}>Quantidade</p>
+                <p className={styles.listHeaderTitle}>Valor Unit.</p>
+                <p className={styles.listHeaderTitle}>Subtotal</p>
               </div>
-              <table className={styles.tableContainerContent}>
-                <thead>
-                  <tr>
-                    <th style={{ width: '15%' }}></th>
-                    <th style={{ width: '30%' }}></th>
-                    <th style={{ width: '10%' }}></th>
-                    <th style={{ width: '20%' }}></th>
-                    <th style={{ width: '12%' }}></th>
-                    <th style={{ width: '13%' }}></th>
-                  </tr>
-                </thead>
-              </table>
+
+              <div className={styles.divTableContainerContent}>
+                <div>
+                  <hr className={styles.hrBorder} style={{ left: '15%' }} />
+                  <hr className={styles.hrBorder} style={{ left: '45%' }} />
+                  <hr className={styles.hrBorder} style={{ left: '55%' }} />
+                  <hr className={styles.hrBorder} style={{ left: '75%' }} />
+                  <hr className={styles.hrBorder} style={{ left: '87%' }} />
+                </div>
+                <table className={styles.tableContainerContent}>
+                  <thead>
+                    <tr>
+                      <th style={{ width: '15%' }}></th>
+                      <th style={{ width: '30%' }}></th>
+                      <th style={{ width: '10%' }}></th>
+                      <th style={{ width: '20%' }}></th>
+                      <th style={{ width: '12%' }}></th>
+                      <th style={{ width: '13%' }}></th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      </BorderContainer>
+        </BorderContainer>
 
-        <BorderContainer> 
+        <BorderContainer>
           <div className={styles.divContentInputTotal}>
             <div className={styles.linha}>
-            <InputLabel 
-            label="Subtotal" 
-            value={subtotal} 
-            setValue={setSubtotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-          <InputLabel 
-            label="Desconto" 
-            value={desconto} 
-            setValue={setDesconto} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-          <InputLabel 
-            label="Total" 
-            value={total} 
-            setValue={setTotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
+              <InputLabel 
+                label="Subtotal" 
+                value={subtotal} 
+                setValue={setSubtotal} 
+                className={styles.inputDadosPessoais} 
+                readonly={true} 
+                width="80%"
+              />
+              <InputLabel 
+                label="Desconto" 
+                value={desconto} 
+                setValue={setDesconto} 
+                className={styles.inputDadosPessoais} 
+                readonly={true} 
+                width="80%"
+              />
+              <InputLabel 
+                label="Total" 
+                value={total} 
+                setValue={setTotal} 
+                className={styles.inputDadosPessoais} 
+                readonly={true} 
+                width="80%"
+              />
             </div>
 
             <TextAreaInput 
-                  label="Observação:" 
-                  placeholder="Escreva sua descrição..." 
-                  id="input-total" 
-                />
-              </div>
+              label="Observação:" 
+              placeholder="Escreva sua descrição..." 
+              id="input-total" 
+            />
+          </div>
         </BorderContainer>
 
-          <div className={styles.baixo}>
-                <div className={styles.divTagBottom}>
-                          <p>Código do pedido:</p>
-
-                          <span>N° 000</span>
-                      </div>
-                <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
-            </div>
-
+        <div className={styles.baixo}>
+          <div className={styles.divTagBottom}>
+            <p>Código do pedido:</p>
+            <span>N° 000</span>
+          </div>
+          <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)" callback={handleConfirmClick} />
+        </div>
       </BasicScreen>
-    );
-  }
-  
+
+     
+      <AlertModal
+        title="Criado"
+        text="Pedido criado com sucesso!"
+        bsIcon="bi-check2-circle"
+        isOpen={modalOpenn}
+        setIsOpen={setModalOpenn}
+      />
 
 
-
-
-
+      
+<ModalBuscarCliente isOpen={modalOpen} onClose={closeModal} />
+    </>
+  );
+}
