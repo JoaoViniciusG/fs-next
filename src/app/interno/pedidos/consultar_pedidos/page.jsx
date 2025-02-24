@@ -23,7 +23,7 @@ export default function pageConsultarpedido(){
                 width= "80%" 
                 style={{flex:1} }
             />
-            <StandardButton text="BUSCAR PEDIDO"></StandardButton>
+            <StandardButton text="BUSCAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
             </div>
             
         </BorderContainer>
