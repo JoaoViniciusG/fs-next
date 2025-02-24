@@ -13,56 +13,56 @@ import ActionModal from '@/components/modals/actionModal/actionModal';
 
 export default function PageDadosEmpresa() {
   const [modalOpenSair, setModalOpenSair] = useState(false)
-  
-    const handleConfirmClickSair = () => {
-      setModalOpenSair(true);
-    };
+
+  const handleConfirmClickSair = () => {
+    setModalOpenSair(true);
+  };
   return (
     <>
-    <BasicScreen>
-      <BorderContainer title="Dados da empresa:">
-        <PerfilEdicao readonly={true}> </PerfilEdicao>
-      </BorderContainer>
+      <BasicScreen>
+        <BorderContainer title="Dados da empresa:">
+          <PerfilEdicao readonly={true}> </PerfilEdicao>
+        </BorderContainer>
 
-      <BorderContainer title="Endereço: ">
-        <div className={styles.divEnderecos}>
-            <AddressOption 
-                logradouro="Av.beira Rio"
-                bairro="Centro" 
-                cidade="Vilhena"
-                UF="Ro">
+        <BorderContainer title="Endereço: ">
+          <div className={styles.divEnderecos}>
+            <AddressOption
+              logradouro="Av.beira Rio"
+              bairro="Centro"
+              cidade="Vilhena"
+              UF="Ro">
             </AddressOption>
-        </div>
-      </BorderContainer>
+          </div>
+        </BorderContainer>
 
-      <div className={styles.baixo}>
-        <Link href='/interno/conta/dados_empresa_confirmar'>
+        <div className={styles.baixo}>
+          <Link href='/interno/conta/dados_empresa_confirmar'>
             <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-        </Link>
-                
-                <div className={styles.sair}>
-                <span onClick={handleConfirmClickSair}>Sair</span>
-            </div> 
-      </div>
-      
-    
+          </Link>
 
-    </BasicScreen>
-     <ActionModal
-                 title="Aviso"
-                  text="Tem certeza que deseja sair da conta? "
-                  bsIcon="bi bi-exclamation-triangle"
-                  isOpen={modalOpenSair}
-                 setIsOpen={setModalOpenSair}
-                  textBtn1="CANCELAR"
-                  textBtn2="CONFIRMAR"
-                  callbackB1={()=>console.log("CANCELOU")}
-                 callbackB2={()=> console.log("CONFIRMOU")}
-                            
-             />
+          <div className={styles.sair}>
+            <span onClick={handleConfirmClickSair}>Sair</span>
+          </div>
+        </div>
+
+
+
+      </BasicScreen>
+      <ActionModal
+        title="Aviso"
+        text="Tem certeza que deseja sair da conta? "
+        bsIcon="bi-exclamation-triangle"
+        isOpen={modalOpenSair}
+        setIsOpen={setModalOpenSair}
+        textBtn1="CANCELAR"
+        textBtn2="CONFIRMAR"
+        callbackB1={() => console.log("CANCELOU")}
+        callbackB2={() => console.log("CONFIRMOU")}
+
+      />
 
 
     </>
-    
+
   );
 }
