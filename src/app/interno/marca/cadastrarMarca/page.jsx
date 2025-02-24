@@ -10,10 +10,9 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 export default function PageCadastrarMarca() {
     return (
         <BasicScreen pageTitle="Cadastrar marca">
-            <BorderContainer title="Dados da marca:">
-                <div className={styles.div_contener_main}>
+            <BorderContainer title="Dados da marca:" className={styles.containerContentMaster}>
+                <div className={styles.containerContent}>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} />
                         <InputLabel label="Nome da Marca:" type="search" placeholder="Nome da marca" required={false} readonly={false} />
                     </div>
                     <h2 className={styles.titleTable}>Fornecedor: </h2>

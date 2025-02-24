@@ -5,7 +5,6 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
-import AddressOption from '@/components/containers/endereco/addressOption';
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 
 export default function PageAdicionarCliente() {
@@ -40,11 +39,9 @@ export default function PageAdicionarCliente() {
         </div>
       </BorderContainer>
       <BorderContainer title='Endereço'>
-        <AddAddressButton />
+        <AddAddressButton/>
       </BorderContainer>
-
       <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={() => { }} />
-
     </BasicScreen>
   );
 }
