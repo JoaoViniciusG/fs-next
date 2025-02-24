@@ -4,7 +4,7 @@ import { useState } from 'react';
 import InputLabel from '../inputs/inputLabel/inputLabel';
 import styles from './pedidos.module.css';
 import ShineButton from '../buttons/shineButton/shineButton';
-import TextAreaInput from '../inputs/inputLabelObs/inputLabel';
+import Link from 'next/link';
 
 export default function PedidoCard({
   numeroPedido,
@@ -15,6 +15,7 @@ export default function PedidoCard({
   observacao,
   statusPedido,
   corStatus,
+  onExcluir,
   botoes = ["ALTERAR", "VER MAIS", "EXCLUIR"], // Aqui, o padrão é exibir todos os botões
 }) {
   // Usando useState para tornar os campos editáveis
@@ -69,9 +70,23 @@ export default function PedidoCard({
       </div>
 
       <div className={styles.buttons}>
-        {botoes.includes("ALTERAR") && <ShineButton text="ALTERAR" />}
-        {botoes.includes("VER MAIS") && <ShineButton text="VER MAIS" />}
-        {botoes.includes("EXCLUIR") && <ShineButton text="EXCLUIR" />}
+        {botoes.includes("ALTERAR") && (
+          <Link href={`/interno/pedidos/alterar_pedido`} passHref>
+            <ShineButton text="ALTERAR" />
+          </Link>
+        )}
+        
+        {botoes.includes("EXCLUIR") && (
+          <ShineButton text="EXCLUIR" callback={onExcluir} />
+        )
+        }
+        {botoes.includes("VER MAIS") && (
+          <Link href={`/interno/pedidos/infos_pedido`} passHref>
+            <ShineButton text="VER MAIS" />
+          </Link>
+        )}
+
+        
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import styles from './inputLabel.module.css';
 
-export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style, required=false, readonly=false, type="text", width="100%", showLupa = false}) {
+export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style, required=false, readonly=false, type="text", width="100%", showLupa = false, onClick = () => {}}) {
     return (
         <div className={styles.container} style={style}>
             <p className={styles.label}>{label}</p>
@@ -17,7 +17,9 @@ export default function InputLabel({label, placeholder, maxLength, value, setVal
                     placeholder={placeholder}
                     value={value} 
                     onChange={(e) => setValue(e.target.value)}
-                    readOnly={readonly} />
+                    readOnly={readonly}
+                    onClick={onClick} 
+                    />
 
                 {showLupa && (
                     <button type="button" className={styles.botaoLupa}>

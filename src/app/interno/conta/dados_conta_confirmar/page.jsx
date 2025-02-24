@@ -171,8 +171,8 @@ export default function pageDadosConta(){
 
          <AlertModal
             title="Atualizado"
-            text="Atualização realizada com sucesso!"
-            bsIcon="bi bi-exclamation-triangle"
+            text="Atualização realizada com sucesso! "
+            bsIcon="bi-check2-circle"
             isOpen={modalOpen}
             setIsOpen={setModalOpen}
          />

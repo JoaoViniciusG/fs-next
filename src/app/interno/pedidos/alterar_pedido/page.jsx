@@ -26,7 +26,7 @@ export default function PageAlterarPedidos() {
     const [observacao, setObservacao] = useState("");
     
     return (
-      <BasicScreen pageTitle="Alterar Pedido">
+      <BasicScreen pageTitle="Alterar pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
             <InputLabel 
