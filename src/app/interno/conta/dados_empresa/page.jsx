@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
 import BorderContainer from '@/components/containers/borderContainer/page';
 import PerfilEdicao from '@/components/userPerfil/page';
@@ -16,36 +16,30 @@ export default function PageDadosConta() {
   const [cpf, setCpf] = useState('');
   const [telefone, setTelefone] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
-  
-  
+
   return (
     <BasicScreen>
-      <BorderContainer title="Dados da empresa: ">
+      <BorderContainer title="Dados da empresa:">
         <PerfilEdicao readonly={true}> </PerfilEdicao>
-
       </BorderContainer>
 
       <BorderContainer title="Endereço: ">
-        <div className={StyleSheet.divEnderecos}>
-            <AddressOption 
-                logradouro="Av.beira Rio"
-                bairro="Centro" 
-                cidade="Vilhena"
-                UF="Ro">
-            </AddressOption>
+        <div className={styles.divEnderecos}>
+          <AddressOption
+            logradouro="Av.beira Rio"
+            bairro="Centro"
+            cidade="Vilhena"
+            UF="Ro">
+          </AddressOption>
         </div>
       </BorderContainer>
 
       <div className={styles.baixo}>
-                <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-                <div className={styles.sair}>
-                <span>Sair</span>
-            </div> 
-          </div>
-      
-
-
+        <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
+        <div className={styles.sair}>
+          <span>Sair</span>
+        </div>
+      </div>
     </BasicScreen>
-    
   );
 }

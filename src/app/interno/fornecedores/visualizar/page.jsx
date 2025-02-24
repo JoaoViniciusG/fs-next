@@ -7,6 +7,7 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import ActionModal from '@/components/modals/actionModal/actionModal';
+import { useState } from 'react';
 
 export default function PageVisualizarFornecedor() {
     const [modalPergunta, setModalPergunta] = useState(false);
