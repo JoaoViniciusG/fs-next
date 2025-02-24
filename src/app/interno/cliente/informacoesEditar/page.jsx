@@ -4,9 +4,9 @@ import styles from './page.module.css';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import BorderContainerAdress from "@/components/containers/borderContainerAdress/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddressOption from '@/components/containers/endereco/addressOption'
+import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 
 export default function PageInformacoesClienteEditavel() {
   return (
@@ -39,14 +39,13 @@ export default function PageInformacoesClienteEditavel() {
                     </div>
                 </div>
       </BorderContainer>
-      <BorderContainerAdress title = 'Endereço'>
-        <AddressOption id = '1' logradouro = 'Rua Barão do rio Branco' numero = '2314' bairro = 'Centro' cidade = 'Vilhena' uf = 'RO' ></AddressOption>
-        <button type="button" className={styles.btnadicionar}>Adicionar endereço +</button>
-      </BorderContainerAdress>
-      
-
+      <BorderContainer title='Endereço'>
+        <div className={styles.containerEndereco}>
+        <AddressOption id='1' logradouro='Rua Barão do rio Branco' numero='2314' bairro='Centro' cidade='Vilhena' uf='RO' />
+        <AddAddressButton/>
+        </div>
+      </BorderContainer>
         <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
-
     </BasicScreen>
   );
 }

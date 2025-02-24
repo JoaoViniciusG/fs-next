@@ -1,0 +1,60 @@
+.containerMaster {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  background-color: #FFF;
+  width: calc(48.6%);
+  border-radius: 10px;
+  height: 17vh;
+  padding: 0 7px;
+}
+
+.containerTitle {
+  color: var(--darkgreen);
+  font-family: "Poppins";
+  font-weight: 600;
+  top: 0;
+  left: 5;
+  font-size: 1.15em;
+}
+
+.containerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  color: var(--bold-darkgreen);
+}
+
+.chevronIcon {
+  font-size: 1.7em;
+  cursor: pointer;
+  -webkit-text-stroke: 1.3px;
+}
+
+.contentText {
+  font-weight: 500;
+  font-family: "Poppins";
+  font-size: 2em;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+
+}
+
+.dateContent {
+  color: var(--darkgreen);
+  font-family: "Poppins";
+  font-size: 1em;
+}
+
+.dateContent h3 {
+  font-weight: 400;
+}
+.dateContent p {
+  font-weight: 600;
+}
