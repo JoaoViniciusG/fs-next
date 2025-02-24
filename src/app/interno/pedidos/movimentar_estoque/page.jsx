@@ -6,9 +6,11 @@ import React, { useState } from "react";
 import Image from 'next/image';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BuscarProdutoModal from "@/components/bigModals/buscarProduto/page";
+import AlertModal from "@/components/modals/alertModal/alertModal";
 
 const MovimentarEstoque = () => {
   const [modalOpenBusca, setModalOpenBusca]=useState(false)
+  const[showAlertModal, setShowAlertModal]=useState(false)
 
   const [produtos, setProdutos] = useState([
     { id: 1, nome: "Placa de vídeo RTX 4090 TI", marca: "Nvidia", quantidadeAtual: 25, movimentacao: 0 },
@@ -17,7 +19,9 @@ const MovimentarEstoque = () => {
     { id: 4, nome: "Placa de vídeo RTX 3060", marca: "Nvidia", quantidadeAtual: 40, movimentacao: 0 },
     { id: 5, nome: "Placa de vídeo RTX 3050", marca: "Nvidia", quantidadeAtual: 50, movimentacao: 0 }
   ]);
-
+  const handleMostrarPop=()=>{
+    setShowAlertModal(true)
+  }
   
   const handleBuscarProduto = () => {
     setModalOpenBusca(true); 
@@ -118,7 +122,7 @@ const MovimentarEstoque = () => {
         
         <div className={styles.containerBottomButtons}>
           <StandardButton callback={handleBuscarProduto}  text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" ></StandardButton>
-          <StandardButton text="MOVIMENTAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
+          <StandardButton callback={handleMostrarPop} text="MOVIMENTAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
         </div>
       
       </BasicScreen>
@@ -126,6 +130,15 @@ const MovimentarEstoque = () => {
          isOpen={modalOpenBusca} 
          setIsOpen={setModalOpenBusca} 
       />
+      <AlertModal
+         title="Movimentado"
+         text="Movimentação realizada com sucesso!"
+         bsIcon="bi-check2-circle"
+         isOpen={showAlertModal}
+         setIsOpen={setShowAlertModal} 
+
+      />
+
     </>
     
     

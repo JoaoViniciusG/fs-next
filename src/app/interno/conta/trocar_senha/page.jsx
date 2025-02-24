@@ -41,18 +41,21 @@ const TrocarSenha = () => {
                   value={password} 
                   setValue={setPassword} 
                   isPassword={true} 
+                   color="white"
                 />
               <InputLogin 
                 label="Nova senha" 
                 value={newPassword} 
                 setValue={setNewPassword} 
                 isPassword={true} 
+                color="white"
               />
               <InputLogin 
                 label="Confirmar senha" 
                 value={confirmPassword} 
                 setValue={setConfirmpassword} 
                 isPassword={true} 
+                color="white"
               />
             <div className={styles.buttonn}>
             <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick}></StandardButton>

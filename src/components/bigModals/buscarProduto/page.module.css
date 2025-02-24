@@ -101,12 +101,14 @@
   .fornecedoresTable th {
     background-color: var(--valuegreen);
     border-bottom: 10px solid var(--darkgreen);
+    
   }
   
   .fornecedoresTable td {
     background-color: var(--light-teal );
     border-bottom: 5px solid var(--lightseagreen);
     border-left: 2px solid white;
+    cursor: pointer;
   }
   
   .pagina {

@@ -51,6 +51,30 @@ export default function BuscarProdutoModal({
                 <td>R$569,00</td>
                 <td>9-</td>
               </tr>
+
+              <tr >
+                <td>00001</td>
+                <td>Placa de vídeo</td>
+                <td>Sotf</td>
+                <td>R$569,00</td>
+                <td>9-</td>
+              </tr>
+
+              <tr >
+                <td>00001</td>
+                <td>Placa de vídeo</td>
+                <td>Sotf</td>
+                <td>R$569,00</td>
+                <td>9-</td>
+              </tr>
+
+              <tr >
+                <td>00001</td>
+                <td>Placa de vídeo</td>
+                <td>Sotf</td>
+                <td>R$569,00</td>
+                <td>9-</td>
+              </tr>
               
             </tbody>
           </table>
