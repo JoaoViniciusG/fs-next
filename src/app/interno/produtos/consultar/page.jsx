@@ -8,10 +8,14 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
+import { useRouter } from 'next/navigation';
+
 export default function PageConsultarProdutos() {
+    const router = useRouter();
+
     return (
         <BasicScreen pageTitle="Consultar produtos">
-            <BorderContainer title="Consultar produtos:">
+            <BorderContainer title="Consultar Produtos:">
                 <div className={styles.div_contener_main}>
                     <div className={styles.filter_dados}>
                         <div className={styles.button_filter}>
@@ -38,7 +42,7 @@ export default function PageConsultarProdutos() {
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr>
+                            <tr onClick={() => router.push("/interno/produtos/visualizar")}>
                                 <td>00001</td>
                                 <td>Monitor 15”</td>
                                 <td>HP</td>

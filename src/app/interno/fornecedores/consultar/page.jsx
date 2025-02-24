@@ -8,10 +8,14 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
+import { useRouter } from 'next/navigation';
+
 export default function PageConsultarFornecedores() {
+    const router = useRouter();
+
     return (
         <BasicScreen pageTitle="Consultar fornecedores">
-            <BorderContainer title="Pesquisar fornecedor:">
+            <BorderContainer title="Consultar Fornecedor:">
                 <div className={styles.div_contener_main}>
                     <div className={styles.filter_dados}>
                         <div className={styles.button_filter}>
@@ -20,8 +24,8 @@ export default function PageConsultarFornecedores() {
                         </div>
                     </div>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Buscar a fornecedor" type="search" placeholder="Pesquise as informações da fornecedor." required={false} readonly={false} width='100vh' />
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" />
+                        <InputLabel label="Buscar a fornecedor" type="search" placeholder="Pesquise as informações da fornecedor." required={false} readonly={false} width='100vh'/>
+                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)"/>
                     </div>
                 </div>
             </BorderContainer>
@@ -37,7 +41,7 @@ export default function PageConsultarFornecedores() {
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr>
+                            <tr onClick={() => router.push("/interno/fornecedores/visualizar")}>
                                 <td>00001</td>
                                 <td>Fornecedor 1</td>
                                 <td>XX.XXX.XXX/0001.XX</td>
