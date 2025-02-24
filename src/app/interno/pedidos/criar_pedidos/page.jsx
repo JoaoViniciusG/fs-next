@@ -1,12 +1,12 @@
-"use client";
-
+'use client'
+import React, { useState } from "react";
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
+import AlertModal from "@/components/modals/alertModal/alertModal";
 
 export default function PageCriarPedidos() {
 
@@ -18,51 +18,58 @@ export default function PageCriarPedidos() {
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [telefone, setTelefone] = useState("");
+  
+  const [busca, setBusca] = useState('');
+  const [subtotal, setSubtotal] = useState("");
+  const [desconto, setDesconto] = useState("");
+  const [total, setTotal] = useState("");
+  const [observacao, setObservacao] = useState("");
 
-    const[busca, setBusca]= useState('');
-    const [subtotal, setSubtotal] = useState("");
-    const [desconto, setDesconto] = useState("");
-    const [total, setTotal] = useState("");
-    const [observacao, setObservacao] = useState("");
-    
-    return (
+  const [modalOpen, setModalOpen] = useState(false)
+        
+          const handleConfirmClick = () => {
+            setModalOpen(true)
+          }
+  
+  return (
+    <>
       <BasicScreen pageTitle="Criar pedido">
-        <BorderContainer title="Dados do cliente">
-          <div className={styles.dvInputs}>
-            <InputLabel 
-                label="Buscar cliente" 
-                value={busca} 
-                setValue={setBusca} 
-                showLupa={true}
-                width= "70%" 
-                style={{flex:1} }
-                />
-            <div className={styles.linha}>
-                <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
-                <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
-            </div>
+      <BorderContainer title="Dados do cliente">
+        <div className={styles.dvInputs}>
+          <InputLabel 
+            label="Buscar cliente" 
+            value={busca} 
+            setValue={setBusca} 
+            showLupa={true}
+            width="70%" 
+            style={{ flex: 1 }}
+            
+          />
+          <div className={styles.linha}>
+            <InputLabel label="Nome:" value={nome} setValue={setNome} width="80%" style={{ flex: 1 }} />
+            <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj} width="80%" style={{ flex: 1 }} />
+          </div>
 
-            <div className={styles.linha}>
-                <InputLabel  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
-                <InputLabel  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
-            </div>
+          <div className={styles.linha}>
+            <InputLabel label="Endereço:" value={endereco} setValue={setEndereco} width="90%" style={{ flex: 1 }} />
+            <InputLabel label="Bairro:" value={bairro} setValue={setBairro} width="80%" style={{ flex: 1 }} />
+            <InputLabel label="CEP:" value={cep} setValue={setCep} width="70%" style={{ flex: 1 }} />
+          </div>
 
-            <div className={styles.linha}>
-                <InputLabel  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
-                <InputLabel  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
-                <InputLabel  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
-            </div>
+          <div className={styles.linha}>
+            <InputLabel label="Cidade:" value={cidade} setValue={setCidade} width="90%" style={{ flex: 1 }} />
+            <InputLabel label="Estado:" value={estado} setValue={setEstado} width="90%" style={{ flex: 1 }} />
+            <InputLabel label="Telefone:" value={telefone} setValue={setTelefone} width="90%" style={{ flex: 1 }} />
+          </div>
         </div>
       </BorderContainer>
-
 
       <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
         <div className={styles.containerDataMaster}>
           <div className={styles.containerHeaderListOptions}>
-            <StandardButton className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)"> </StandardButton>
+            <StandardButton className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)" />
+            <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)" />
+            <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)" />
           </div>
 
           <div className={styles.tableProducts}>
@@ -100,58 +107,61 @@ export default function PageCriarPedidos() {
         </div>
       </BorderContainer>
 
-        <BorderContainer> 
-          <div className={styles.divContentInputTotal}>
-            <div className={styles.linha}>
+      <BorderContainer>
+        <div className={styles.divContentInputTotal}>
+          <div className={styles.linha}>
             <InputLabel 
-            label="Subtotal" 
-            value={subtotal} 
-            setValue={setSubtotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
+              label="Subtotal" 
+              value={subtotal} 
+              setValue={setSubtotal} 
+              className={styles.inputDadosPessoais} 
+              readonly={true} 
+              width="80%"
+            />
+            <InputLabel 
+              label="Desconto" 
+              value={desconto} 
+              setValue={setDesconto} 
+              className={styles.inputDadosPessoais} 
+              readonly={true} 
+              width="80%"
+            />
+            <InputLabel 
+              label="Total" 
+              value={total} 
+              setValue={setTotal} 
+              className={styles.inputDadosPessoais} 
+              readonly={true} 
+              width="80%"
+            />
+          </div>
+
+          <TextAreaInput 
+            label="Observação:" 
+            placeholder="Escreva sua descrição..." 
+            id="input-total" 
           />
-          <InputLabel 
-            label="Desconto" 
-            value={desconto} 
-            setValue={setDesconto} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-          <InputLabel 
-            label="Total" 
-            value={total} 
-            setValue={setTotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-            </div>
+        </div>
+      </BorderContainer>
 
-            <TextAreaInput 
-                  label="Observação:" 
-                  placeholder="Escreva sua descrição..." 
-                  id="input-total" 
-                />
-              </div>
-        </BorderContainer>
+      <div className={styles.baixo}>
+        <div className={styles.divTagBottom}>
+          <p>Código do pedido:</p>
+          <span>N° 000</span>
+        </div>
+        <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)" callback={handleConfirmClick} />
+      </div>
 
-          <div className={styles.baixo}>
-                <div className={styles.divTagBottom}>
-                          <p>Código do pedido:</p>
+      
+    </BasicScreen>
 
-                          <span>N° 000</span>
-                      </div>
-                <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)"></StandardButton>
-            </div>
-
-      </BasicScreen>
-    );
-  }
-  
-
-
-
-
-
+   <AlertModal
+               title="Criado"
+               text="Pedido criado com sucesso!"
+               bsIcon="bi-check2-circle"
+               isOpen={modalOpen}
+               setIsOpen={setModalOpen}
+            />
+    </>
+  );
+}

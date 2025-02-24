@@ -6,18 +6,19 @@ import BorderContainer from '@/components/containers/borderContainer/page';
 import PerfilEdicao from '@/components/userPerfil/page';
 import AddressOption from '@/components/containers/endereco/addressOption';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
+import Link from 'next/link';
 import styles from './page.module.css'
+import { AlertCircle } from 'react-feather';
+import ActionModal from '@/components/modals/actionModal/actionModal';
 
-export default function PageDadosConta() {
-  const [nome, setNome] = useState('Nome');
-  const [senha, setSenha] = useState('');
-  const [email, setEmail] = useState('08.561.701/0001-01');
-  const [sexo, setSexo] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
-
+export default function PageDadosEmpresa() {
+  const [modalOpenSair, setModalOpenSair] = useState(false)
+  
+    const handleConfirmClickSair = () => {
+      setModalOpenSair(true);
+    };
   return (
+    <>
     <BasicScreen>
       <BorderContainer title="Dados da empresa:">
         <PerfilEdicao readonly={true}> </PerfilEdicao>
@@ -25,21 +26,43 @@ export default function PageDadosConta() {
 
       <BorderContainer title="Endereço: ">
         <div className={styles.divEnderecos}>
-          <AddressOption
-            logradouro="Av.beira Rio"
-            bairro="Centro"
-            cidade="Vilhena"
-            UF="Ro">
-          </AddressOption>
+            <AddressOption 
+                logradouro="Av.beira Rio"
+                bairro="Centro" 
+                cidade="Vilhena"
+                UF="Ro">
+            </AddressOption>
         </div>
       </BorderContainer>
 
       <div className={styles.baixo}>
-        <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-        <div className={styles.sair}>
-          <span>Sair</span>
-        </div>
+        <Link href='/interno/conta/dados_empresa_confirmar'>
+            <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
+        </Link>
+                
+                <div className={styles.sair}>
+                <span onClick={handleConfirmClickSair}>Sair</span>
+            </div> 
       </div>
+      
+    
+
     </BasicScreen>
+     <ActionModal
+                 title="Aviso"
+                  text="Tem certeza que deseja sair da conta? "
+                  bsIcon="bi bi-exclamation-triangle"
+                  isOpen={modalOpenSair}
+                 setIsOpen={setModalOpenSair}
+                  textBtn1="CANCELAR"
+                  textBtn2="CONFIRMAR"
+                  callbackB1={()=>console.log("CANCELOU")}
+                 callbackB2={()=> console.log("CONFIRMOU")}
+                            
+             />
+
+
+    </>
+    
   );
 }
