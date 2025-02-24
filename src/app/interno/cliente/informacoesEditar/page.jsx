@@ -7,10 +7,14 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddressOption from '@/components/containers/endereco/addressOption'
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import { useState } from 'react';
 
 export default function PageInformacoesClienteEditavel() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
-    <BasicScreen pageTitle="Informações do cliente">
+  <>
+  <BasicScreen pageTitle="Informações do cliente">
       <BorderContainer title = 'Dados pessoais'>
       <div className={styles.div_content_main}>
                     <div className={styles.container_content_dados}>
@@ -45,7 +49,15 @@ export default function PageInformacoesClienteEditavel() {
         <AddAddressButton/>
         </div>
       </BorderContainer>
-        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
+        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}} callback={() => {setModalOpen(true)}} />
     </BasicScreen>
+    <AlertModal
+      title='ATUALIZADO'
+      text='Cliente atualizado com sucesso! '
+      bsIcon="bi-check2-circle"
+      isOpen={modalOpen}
+      setIsOpen={setModalOpen}
+      />
+  </>
   );
 }
