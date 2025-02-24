@@ -6,8 +6,13 @@ import Link from 'next/link';
 import * as Icon from 'react-feather';
 import FooterHome from '@/components/footerHome/footerHome';
 import HeaderHome from '@/components/headerHome/headerHome';
+import InicioPlano from '@/components/inicioPlano/inicioPlano';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function HomeInicio() {
+    const [showAnualPrice, setShowAnualPrice] = useState(false);
+
     return (
         <div>
             <HeaderHome />
@@ -82,101 +87,107 @@ export default function HomeInicio() {
                             <p className={styles.header_plans_subtitle}>Expanda seu negócio com o melhor investimento que cabe no seu
                                 bolso!</p>
                             <div className={styles.div_plans_payment_period}>
-                                <span id={styles.span_selected_payment_period}></span>
-                                <div className={styles.container_option_payment_period} style={{ color: "#FFF" }}
-                                    onClick={() => (togglePaymentPeriodTypes(true))}>
+                                <motion.span 
+                                    transition={{
+                                        delay: 0,
+                                        duration: .5,
+                                        ease: "easeOut"
+                                    }}
+                                    animate={{
+                                        right: (showAnualPrice) ? 0 : "auto",
+                                        left: (showAnualPrice) ? "auto" : 0,
+                                        borderTopLeftRadius: (showAnualPrice) ? 0 : "5vw",
+                                        borderBottomLeftRadius: (showAnualPrice) ? 0 : "5vw",
+                                        borderTopRightRadius: (!showAnualPrice) ? 0 : "5vw",
+                                        borderBottomRightRadius: (!showAnualPrice) ? 0 : "5vw",
+                                    }}
+                                    className={styles.span_selected_payment_period} />
+                                <div
+                                    className={styles.container_option_payment_period} 
+                                    style={{ color: (showAnualPrice) ? "#000" : "#FFF" }}
+                                    onClick={() => (setShowAnualPrice(false))}>
                                     <p>Mensal</p>
                                 </div>
-                                <div className={styles.container_option_payment_period} onClick={() => (togglePaymentPeriodTypes(false))}>
+                                <div 
+                                    className={styles.container_option_payment_period} 
+                                    style={{ color: (!showAnualPrice) ? "#000" : "#FFF" }}
+                                    onClick={() => (setShowAnualPrice(true))}>
                                     <p>Anual</p>
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.container_content_plans}>
-                            <div id={styles.plan_period_1} className={styles.container_plan}>
-                                <div className={styles.plan_header}>
-                                    <div className={styles.div_plan_name}>
-                                        <h2 className={styles.plan_name}>Bit</h2>
-                                        <div className={styles.plan_header_lines}>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                    <p className={styles.plan_header_description}>O melhor custo-benefício para simplificar suas vendas,
-                                        impulsionar seu crescimento e aumentar a eficiência.</p>
-                                    <div className={styles.div_plan_header_price}>
-                                        <p id={styles.text_full_year_price}>R$1.559,88</p>
-                                        <p>R$</p>
-                                        <h3 id={styles.plan_period_price}>129</h3>
-                                        <div>
-                                            <p id={styles.plan_period_price_cents}>,99</p>
-                                            <span id={styles.plan_period}>/mês</span>
-                                        </div>
-                                    </div>
-                                    <button className={styles.button_plan_start_now}><a href="#fale_conosco">Comece agora</a></button>
-                                    <p id={styles.text_equivalent_price}>equivalente a R$108,33/mês</p>
-                                </div>
-                                <hr className={styles.hr_plans} />
-                                <div className={styles.plan_unlimited_resources}>
-                                    <div className={styles.div_plan_unlimited_resources}>
-                                        <h3 className={styles.div_plan_unlimited_resources_title}>Recursos ilimitados:</h3>
-                                        <div className={styles.list_unlimited_resources}>
-                                            <div className={styles.unlimited_resource}>
-                                                <Icon.CheckSquare className={styles.icones_unlimited} />
-                                                <p>Vendas e movimentações ilimitadas para crescimento sem restrições e rápida adaptação ao mercado.</p>
-                                            </div>
-                                            <div className={styles.unlimited_resource}>
-                                                <Icon.CheckSquare className={styles.icones_unlimited} />
-                                                <p>Organização eficiente de cadastros para melhor gestão e satisfação do cliente.</p>
-                                            </div>
-                                            <div className={styles.unlimited_resource}>
-                                                <Icon.CheckSquare className={styles.icones_unlimited} />
-                                                <p>Atualizações diárias do software para um gerenciamento mais eficiente e seguro.</p>
-                                            </div>
-                                            <div className={styles.unlimited_resource}>
-                                                <Icon.CheckSquare className={styles.icones_unlimited} />
-                                                <p>Funcionalidades para aumentar a produtividade dinâmica da equipe.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.div_master_plan_user_db}>
-                                        <div className={styles.div_plan_user_db}>
-                                            <Icon.Users className={styles.icones_plan_user} />
-                                            <h4>5 usuários</h4>
-                                        </div>
-                                        <div className={styles.div_plan_user_db}>
-                                            <Icon.Database className={styles.icones_plan_user} />
-                                            <h4>0 MB</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr className={styles.hr_plans}/>
-                                <div className={styles.plan_resources}>
-                                    <h3 className={styles.div_plan_unlimited_resources_title}>Recursos ilimitados:</h3>
-                                    <div className={styles.list_unlimited_resources}>
-                                        <div className={styles.unlimited_resource}>
-                                            <Icon.CheckSquare className={styles.icones_unlimited} />
-                                            <p>Possibilidade 150 produtos cadastrado.</p>
-                                        </div>
-                                        <div className={styles.unlimited_resource}>
-                                            <Icon.CheckSquare className={styles.icones_unlimited} />
-                                            <p>Gerenciamento de permissões personalizáveis simples</p>
-                                        </div>
-                                        <div className={styles.unlimited_resource}>
-                                            <Icon.CheckSquare className={styles.icones_unlimited} />
-                                            <p>Resumo de vendas simplificado e intuitivo.</p>
-                                        </div>
-                                        <div className={styles.unlimited_resource}>
-                                            <Icon.CheckSquare className={styles.icones_unlimited} />
-                                            <p>Até 5 fornecedores para cadastro.</p>
-                                        </div>
-                                    </div>
-                                    <div className={styles.plan_resources_label_suport}>
-                                        <p> Suporte gratuito e ilimitado, todos os dias, por telefone e e-mail.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        
+                        <div className={styles.containerPlans}>
+                            <InicioPlano
+                                showAnual={showAnualPrice}
+                                planName="Bit"
+                                planDescription="O melhor custo-benefício para simplificar suas vendas, impulsionar seu crescimento e aumentar a eficiência."
+                                monthPrice={129.99}
+                                equivalentMonthPrice={108.33}
+                                oldAnualPrice={1559.88}
+                                anualPrice={1300}
+                                unlimitedResources={[
+                                    "Vendas e movimentações ilimitadas para crescimento sem restrições e rápida adaptação ao mercado.", 
+                                    "Organização eficiente de cadastros para melhor gestão e satisfação do cliente.",
+                                    "Atualizações diárias do software para um gerenciamento mais eficiente e seguro.",
+                                    "Funcionalidades para aumentar a produtividade dinâmica da equipe."
+                                ]}
+                                planResourcesTitle="No Plano Bit, você tem:"
+                                usersCapacity={5}
+                                dataBaseCapacity={0}
+                                planResourcesContent={[
+                                    "Possibilidade 150 produtos cadastrado.", 
+                                    "Gerenciamento de permissões personalizáveis simples.",
+                                    "Resumo de vendas simplificado e intuitivo.",
+                                    "Até 5 fornecedores para cadastro."
+                                ]}/>
+
+                            <InicioPlano
+                                showAnual={showAnualPrice}
+                                isMajorPlan={true}
+                                planName="Giga"
+                                planDescription="Para negócios que exigem alta organização, eficiência e controle preciso do estoque com grande capacidade de dados."
+                                monthPrice={399.99}
+                                equivalentMonthPrice={248.33}
+                                oldAnualPrice={9587.88}
+                                anualPrice={6570}
+                                unlimitedResources={[
+                                    "Vendas e movimentações ilimitadas para crescimento sem restrições e rápida adaptação ao mercado.", 
+                                    "Organização eficiente de cadastros para melhor gestão e satisfação do cliente.",
+                                    "Atualizações diárias do software para um gerenciamento mais eficiente e seguro.",
+                                    "Funcionalidades para aumentar a produtividade dinâmica da equipe."
+                                ]}
+                                usersCapacity={20}
+                                dataBaseCapacity={0}
+                                planResourcesTitle="No Plano Giga, você tem:"
+                                planResourcesContent={[
+                                    "Até 500 produtos cadastrados.", 
+                                    "Gerenciamento de permissões personalizáveis.",
+                                    "Possibilidade ilimitada de cadastro de fornecedores.",
+                                    "Resumo de vendas dinâmico e intuitivo."
+                                ]}/>
+
+                            <InicioPlano
+                                showAnual={showAnualPrice}
+                                planName="Tera"
+                                planDescription="O máximo de benefícios para aumentar a eficiência e impulsionar o crescimento do seu negócio!"
+                                monthPrice={999.99}
+                                equivalentMonthPrice={455.83}
+                                oldAnualPrice={11999.88}
+                                anualPrice={9999}
+                                unlimitedResources={[
+                                    "Vendas e movimentações ilimitadas para crescimento sem restrições e rápida adaptação ao mercado.", 
+                                    "Organização eficiente de cadastros para melhor gestão e satisfação do cliente.",
+                                    "Atualizações diárias do software para um gerenciamento mais eficiente e seguro.",
+                                    "Funcionalidades para aumentar a produtividade dinâmica da equipe."
+                                ]}
+                                usersCapacity={150}
+                                dataBaseCapacity={0}
+                                planResourcesTitle="Todos os recursos da EstoTech!"
+                                planResourcesContent={[
+                                    "Possibilidade ilimitado produtos cadastrados.", 
+                                    "Gerenciamento Avançado de Pedidos."
+                                ]}/>
                         </div>
                     </section>
 
