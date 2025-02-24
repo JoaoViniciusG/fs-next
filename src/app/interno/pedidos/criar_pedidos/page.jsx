@@ -36,10 +36,7 @@ export default function PageCriarPedidos() {
   const [modalAlterarProdutoOpen, setModalAlterarProdutoOpen] = useState(false);
   const [modalExcluirProdutoOpen, setModalExcluirProdutoOpen ] =useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false);
-
-
-
-  
+  const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
 
   const handleConfirmClick = () => {
     setModalOpen(true);
@@ -62,7 +59,7 @@ export default function PageCriarPedidos() {
   };
 
   const handleExcluirProduto = () => {
-    // Lógicaa
+  
     
     setModalExcluirProdutoOpen(false); 
     setShowAlertModal(true); 
@@ -218,8 +215,8 @@ export default function PageCriarPedidos() {
         title="Excluído"
         text="Produto excluído com sucesso!"
         bsIcon="bi-check2-circle"
-        isOpen={showAlertModal}
-        setIsOpen={setShowAlertModal} 
+        isOpen={showAlertModalExcluido}
+        setIsOpen={setShowAlertModalExcluido} 
       />
             
       
