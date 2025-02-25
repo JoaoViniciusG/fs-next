@@ -42,7 +42,7 @@ export default function ExcluirProduto({
         </div>
 
         <div className={styles.buttonGroup}>
-          <SmallButton text="CANCELAR" callback={() => {setIsOpen(false); callback()}} />
+          <SmallButton text="CANCELAR" callback={() => {setIsOpen(false);}} />
           <SmallButton text="CONFIRMAR" callback={() => { callbackConfirmar(); setIsOpen(false); }} />
         </div>
 
