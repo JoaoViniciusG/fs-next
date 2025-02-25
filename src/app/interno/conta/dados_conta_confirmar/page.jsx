@@ -11,6 +11,7 @@ import AddressOption from '@/components/containers/endereco/addressOption';
 import Link from 'next/link';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -134,9 +135,7 @@ export default function pageDadosConta(){
             <BorderContainer title="Endereço">
                     <div className={styles.divEnderecos}>
                       
-                        <button type="button" className={styles.btnAdicionar} >
-                            Adicionar endereço +
-                      </button>
+                      <AddAddressButton />
                       <AddressOption 
                           logradouro="Av.beira Rio"
                           bairro="Centro" 
@@ -144,7 +143,6 @@ export default function pageDadosConta(){
                           UF="Ro">
                       </AddressOption>
                     </div>
-
                     
             </BorderContainer>
           
