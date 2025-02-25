@@ -9,8 +9,11 @@ const poppinsFont = Poppins({
 });
 
 export const metadata = {
-  title: "EstoTech",
-  description: "",
+  title: "EstoTech: Soluções Inteligentes para Seu Estoque",
+  description: "EstoTech: Simplificando o Gerenciamento de Estoque de forma Inteligente",
+  charset: "UTF-8",
+  author: "EstoTech Corporation - IFRO Campus Vilhena | 2° A Informática",
+  keywords: "gerenciamento de estoque, EstoTech, controle de estoque, soluções tecnológicas, gerenciamento de equipe, gerenciamento de cadastro, relatorio de estoque e desempenho"
 };
 
 export default function RootLayout({ children }) {

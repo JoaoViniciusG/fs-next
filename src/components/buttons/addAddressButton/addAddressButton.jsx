@@ -7,7 +7,7 @@ export default function AddAddressButton(className, style, callback = () => { })
       style={style}>
       Adicionar Endereço
 
-      <i class={`bi bi-plus ${styles.icon}`}></i>
+      <i className={`bi bi-plus ${styles.icon}`}></i>
     </button>
   );
 }

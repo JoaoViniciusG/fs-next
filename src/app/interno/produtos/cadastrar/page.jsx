@@ -9,7 +9,6 @@ import AlertModal from '@/components/modals/alertModal/alertModal';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ConsultModal from '@/components/modals/consultModal/consultModal';
 
 export default function PageCriarProduto() {
     const router = useRouter();
@@ -44,9 +43,6 @@ export default function PageCriarProduto() {
                 isOpen={modalCadastrar}
                 setIsOpen={setModalCadastrar}
                 callback={() => router.push("/interno/produtos/consultar")} />
-
-            <ConsultModal
-                isOpen={modalCadastrar}/>
         </>
     );
 }
