@@ -1,5 +1,6 @@
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Poppins } from "next/font/google";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 
 const poppinsFont = Poppins({
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR">
       <body className={poppinsFont.variable}>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
