@@ -158,7 +158,7 @@ export default function PageCriarPedidos() {
                 setValue={setSubtotal} 
                 className={styles.inputDadosPessoais} 
                 readonly={true} 
-                width="80%"
+                width="90%"
               />
               <InputLabel 
                 label="Desconto" 
@@ -166,7 +166,7 @@ export default function PageCriarPedidos() {
                 setValue={setDesconto} 
                 className={styles.inputDadosPessoais} 
                 readonly={true} 
-                width="80%"
+                width="90%"
               />
               <InputLabel 
                 label="Total" 
@@ -174,7 +174,7 @@ export default function PageCriarPedidos() {
                 setValue={setTotal} 
                 className={styles.inputDadosPessoais} 
                 readonly={true} 
-                width="80%"
+                width="90%"
               />
             </div>
 
