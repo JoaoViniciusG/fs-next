@@ -15,7 +15,7 @@
     margin-top: 10px;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    gap: 20px;
 }
 .sair:hover {
     color: red;
@@ -23,6 +23,7 @@
 
 
 .baixo{
+    margin-top: 30px;
     display: flex;
     width:100%;
     justify-content: space-between;

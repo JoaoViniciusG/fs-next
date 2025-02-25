@@ -8,7 +8,7 @@ export default function PerfilEdicao({ nome, email, cnpj, razaoSocial, telefone,
   return (
     <div className={styles.containerr}>
       <div className={styles.perfil}>
-        <Image src={imagemUrl || "/Usuario.png"} alt="Usuário" className={styles.imagemUsuario} width={150} height={150} />
+        <Image src="/Usuario.png" alt="Usuário" className={styles.imagemUsuario} width={240} height={270} />
         <button className={styles.editar} onClick={onEditar}>Editar</button>
       </div>
       <div className={styles.campos}>
