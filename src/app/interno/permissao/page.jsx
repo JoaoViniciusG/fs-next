@@ -13,11 +13,17 @@ import PermissionOption from '@/components/containers/permissionOption/permissio
 import { useEffect, useState } from 'react';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import ActionModal from '@/components/modals/actionModal/actionModal';
+import StandardButton from '@/components/buttons/standardButton/standardButton';
+import { useRouter } from 'next/navigation';
 
 export default function PermissoesPage() {
+  const router = useRouter();
+  const [userId, setUserId] = useState(1457);
+  const [userName, setUserName] = useState("João Vinícius")
+
   const [data, setData] = useState(null);
   const [selectedOption, setSelectedOption] = useState("Admin");
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalQuestionOpen, setModalQuestionOpen] = useState(false);
 
   const handleOptionChange = (event) => {
     const value = event.target.value;
@@ -57,8 +63,8 @@ export default function PermissoesPage() {
       <BasicScreen pageTitle="Permissões">
         <BorderContainer title="Dados pessoais:">
           <div className={styles.containerUserData}>
-            <InputLabel label="ID:" width='20vw' readonly={true} />
-            <InputLabel label="Nome:" width='20vw' readonly={true} />
+            <InputLabel label="ID:" width='20vw' readonly={true} value={userId} setValue={setUserId} />
+            <InputLabel label="Nome:" width='20vw' readonly={true} value={userName} setValue={setUserName} />
           </div>
         </BorderContainer>
 
@@ -93,7 +99,22 @@ export default function PermissoesPage() {
             }
           </div>
         </div>
+
+        <StandardButton
+          text="CONFIRMAR"
+          hoverColor="var(--ligth-darkcyan)"
+          style={{ alignSelf: "flex-end", marginTop: 25 }}
+          callback={() => setModalQuestionOpen(true)} />
+
       </BasicScreen>
+
+      <AlertModal
+        title='ALTERADAS'
+        text='Permissões alteradas com sucesso!'
+        bsIcon="bi-check2-circle"
+        isOpen={modalQuestionOpen}
+        setIsOpen={setModalQuestionOpen}
+        callback={() => router.back()}/>
     </>
   );
 }
