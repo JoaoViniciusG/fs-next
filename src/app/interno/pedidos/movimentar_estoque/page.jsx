@@ -91,8 +91,8 @@ const MovimentarEstoque = () => {
               <Image
                 src="/img_movimentar/chevron-up.svg"
                 alt="Aumentar quantidade"
-                width={20}
-                height={20}
+                width={10}
+                height={10}
                 onClick={() => aumentarQuantidade(produto.id)}
               />
               <Image
