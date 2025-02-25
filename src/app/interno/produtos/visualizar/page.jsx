@@ -60,7 +60,7 @@ export default function PageVisualizarProduto() {
                 bsIcon="bi-check2-circle" 
                 isOpen={modalExcluir} 
                 setIsOpen={setModalExcluir}
-                callback={() => router.replace("/interno/fornecedores/consultar")}/>
+                callback={() => router.replace("/interno/produtos/consultar")}/>
         </>
     );
 }

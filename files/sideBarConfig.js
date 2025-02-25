@@ -41,7 +41,7 @@ export const sideBarConfig = [
             },
             {
                 name: "Movimentar estoque",
-                route: "modulos/pedidos/html/movimentacao_estoque.html"
+                route: "/interno/pedidos/movimentar_estoque"
             }
         ]
     },

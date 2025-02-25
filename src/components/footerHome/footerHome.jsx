@@ -11,7 +11,7 @@ export default function FooterHome() {
             <div className={styles.footer_conter}>
                 <div className={styles.list_footer_log}>
                     <div className={styles.btn_log}>
-                        <Link href="#home"><Image src='/logo/Logo_Horizontal_black.png' height={99} width={299} alt='Logo EstoTech'/></Link>
+                        <Link href="#home"><Image src='/logo/Logo_Horizontal_black.png' height={90} width={300} alt='Logo EstoTech'/></Link>
                     </div>
                     <div className={styles.footer_redes}>
                         <ul className={styles.list_redes}>

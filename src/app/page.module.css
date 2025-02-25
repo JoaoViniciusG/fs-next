@@ -5,7 +5,7 @@
 /*Banner contener*/
 
 .home_banner {
-    height: calc(91vh - 135px);
+    height: calc(93vh - 40px);
     background-color: var(--paleturquoise);
     padding: 50px 58px 80px;
 }
@@ -385,6 +385,7 @@
 
 
 .fale_conosco {
+    height: 100vh;
     background-color: var(--azure);
     padding: 50px 58px 80px;
 }

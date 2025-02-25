@@ -34,7 +34,11 @@ export default function LoginPage() {
 
         <h2 className={styles.titleLeft}>Ainda não é cliente?</h2>
 
-        <ShineButton text="Entre em contato" backgroundColor="var(--bold-darkgreen)" fontColor="var(--white)" />
+        <ShineButton 
+          text="Entre em contato" 
+          backgroundColor="var(--bold-darkgreen)" 
+          fontColor="var(--white)"
+          callback={() => router.push("/#fale_conosco")}/>
 
         <p className={styles.textContent}>
           Descubra como nosso sistema de gerenciamento de estoque e pessoas pode <span>transformar</span> seu <span>negócio!</span>

@@ -1,13 +1,12 @@
 
 .container {
-  
   background-color: #00695c;
   color: #fff;
   padding: 20px;
   width: 48%;
   border-radius: 8px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 49%;
 }
 
 
@@ -21,7 +20,7 @@
 
 .header .title {
   font-weight: 500;
-  font-size: 1.9vw;
+  font-size: 1.3vw;
 }
 
 .header .order-number {
@@ -30,7 +29,7 @@
   padding: 5px 21px;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
 
 }
 
@@ -38,7 +37,7 @@
   color: #ffffff;
   border-radius: 7px;
   font-weight: 500;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
   margin-left: auto;
   padding: 5px;
 }
@@ -79,12 +78,11 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 15px;
-  
 }
 
 .buttons button {
   font-family: "Poppins";
-  font-size: 1.3vw;
+  font-size: 1.1vw;
   font-weight: 700;
   padding: 5px 14px;
   background: #FFF;
@@ -117,7 +115,7 @@
 
 .pedidoContainer{
   display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
