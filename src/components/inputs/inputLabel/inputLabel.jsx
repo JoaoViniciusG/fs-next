@@ -23,7 +23,7 @@ export default function InputLabel({label, placeholder, maxLength, value, setVal
 
                 {showLupa && (
                     <button type="button" className={styles.botaoLupa}>
-                        <i class={`bi bi-search ${styles.iconLupa}`}></i>
+                        <i className={`bi bi-search ${styles.iconLupa}`}></i>
                     </button>
                 )}
             </div>

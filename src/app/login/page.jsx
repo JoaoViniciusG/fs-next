@@ -47,8 +47,8 @@ export default function LoginPage() {
 
         <div className={styles.containerContent}>
           <div className={styles.inputsContainer}>
-            <InputLogin label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
-            <InputLogin label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true} />
+            <InputLogin color="var(--white)" label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
+            <InputLogin color="var(--white)" label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true} />
           </div>
 
           <div className={styles.containerContentOptions}>
