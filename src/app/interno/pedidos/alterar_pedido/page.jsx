@@ -7,6 +7,11 @@ import styles from "./page.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
+import AlertModal from "@/components/modals/alertModal/alertModal";
+import ActionModal from "@/components/modals/actionModal/actionModal";
+import BuscarClienteModal from "@/components/bigModals/buscarClienteModal/page";
+import AdicionarProdutoModal from "@/components/bigModals/addProdutoModal/page";
+import ExcluirProduto from "@/components/bigModals/excluirProdutoModal/page";
 
 export default function PageAlterarPedidos() {
 
@@ -24,9 +29,60 @@ export default function PageAlterarPedidos() {
     const [desconto, setDesconto] = useState("");
     const [total, setTotal] = useState("");
     const [observacao, setObservacao] = useState("");
+    const[modalOpenCancel, setmodalOpenCancel]= useState(false)
+  const [modalOpenn, setModalOpenn] = useState(false);
+    const handleCancelar = () => {
+      setmodalOpenCancel(true); 
+    };
+  
+  const handleAlterar = () => {
+    setShowAlertModal(true); 
+  };
+
+
+   const [modalOpen, setModalOpen] = useState(false);
+    const [modalAdicionarProdutoOpen, setModalAdicionarProdutoOpen] = useState(false); 
+    const [modalAlterarProdutoOpen, setModalAlterarProdutoOpen] = useState(false);
+    const [modalExcluirProdutoOpen, setModalExcluirProdutoOpen ] =useState(false)
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
+    const [showAlertModalCancel, setShowAlertModalCancel]= useState(false);
+
+    const handleCancel=()=>{
+      setShowAlertModalCancel(true)
+    }
+    const handleConfirmClick = () => {
+      setModalOpen(true);
+    };
+  
+    const handleConsultar = () => {
+      console.log("Consultando cliente...");
+    };
+  
+    const handleConfirmarBuscarCliente = () => {
+      setModalOpenn(false);
+    };
+  
+    const handleConfirmarAdicionarProduto = () => {
+      setModalAdicionarProdutoOpen(false); 
+    };
+  
+    const handleConfirmarAlterarProduto = () => {
+      setShowAlertModal(true)
+    };
+  
+    const handleExcluirProduto = () => {
+      setModalExcluirProdutoOpen(false); 
+      setShowAlertModalExcluido(true); 
+    };
+
+    
+  
+
     
     return (
-      <BasicScreen pageTitle="Alterar Pedido">
+      <>
+      <BasicScreen pageTitle="Alterar pedido">
         <BorderContainer title="Dados do cliente">
           <div className={styles.dvInputs}>
             <InputLabel 
@@ -60,9 +116,14 @@ export default function PageAlterarPedidos() {
       <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
         <div className={styles.containerDataMaster}>
           <div className={styles.containerHeaderListOptions}>
-            <StandardButton className={styles.buttonHeaderOptions} text="ADICIONAR PRODUTO" hoverColor="var(--cyan)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
-            <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)"> </StandardButton>
+          <StandardButton 
+                className={styles.buttonHeaderOptions} 
+                text="ADICIONAR PRODUTO" 
+                hoverColor="var(--cyan)" 
+                callback={() => setModalAdicionarProdutoOpen(true)} // Abre o modal ao clicar
+              />
+           <StandardButton className={styles.buttonHeaderOptions} text="ALTERAR PRODUTO" hoverColor="var(--cadetblue-ligtht)" callback={() => setModalAlterarProdutoOpen(true)} />
+           <StandardButton className={styles.buttonHeaderOptions} text="EXCLUIR PRODUTO" hoverColor="var(--darkred)" callback={() => setModalExcluirProdutoOpen(true)} />
           </div>
 
           <div className={styles.tableProducts}>
@@ -144,13 +205,81 @@ export default function PageAlterarPedidos() {
                           <span>N° 000</span>
                       </div>
                 <div className={styles.buttons}>
-                    <StandardButton text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
-                    <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
+                    <StandardButton callback={handleCancel} text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
+                    <StandardButton callback={handleAlterar } text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
                 </div>
                 
             </div>
 
       </BasicScreen>
+
+      
+            <ActionModal
+              title="AVISO"
+              text="Tem certeza de que deseja cancelar? Lembre-se de que todas as alterações feitas serão excluídas ao cancelar!"
+              bsIcon="bi bi-exclamation-triangle"
+              isOpen={showAlertModalCancel}
+              setIsOpen={setShowAlertModalCancel} 
+              textBtn1="DISPENSAR"
+              textBtn2="CONFIRMAR"
+              callbackB1={()=>console.log("CANCELOU")}
+              callbackB2={(handleConfirmarAlterarProduto)}
+            />
+            <AlertModal
+              title="Alterado"
+              text="Alterado com sucesso!"
+              bsIcon="bi-check2-circle"
+              isOpen={showAlertModal}
+              setIsOpen={setShowAlertModal} 
+            />
+
+          <AlertModal
+              title="Alterado"
+              text="Alterado com sucesso!"
+              bsIcon="bi-check2-circle"
+              isOpen={showAlertModal}
+              setIsOpen={setShowAlertModal}
+            />
+            <AlertModal
+              title="Excluído"
+              text="Produto excluído com sucesso!"
+              bsIcon="bi-check2-circle"
+              isOpen={showAlertModalExcluido}
+              setIsOpen={setShowAlertModalExcluido} 
+            />
+                  
+            
+            <BuscarClienteModal 
+              isOpen={modalOpenn} 
+              setIsOpen={setModalOpenn} 
+              callbackConsultar={handleConsultar} 
+              callbackConfirmar={handleConfirmarBuscarCliente} 
+            />
+      
+            
+            <AdicionarProdutoModal 
+              isOpen={modalAdicionarProdutoOpen} 
+              setIsOpen={setModalAdicionarProdutoOpen} 
+              callbackConfirmar={handleConfirmarAdicionarProduto} 
+              title="Adicionar produto"
+            />
+      
+           
+            <AdicionarProdutoModal 
+              isOpen={modalAlterarProdutoOpen} 
+              setIsOpen={setModalAlterarProdutoOpen} 
+              callbackConfirmar={handleConfirmarAlterarProduto} 
+              title="Alterar produto"
+            />
+          <ExcluirProduto
+            isOpen={modalExcluirProdutoOpen} 
+            setIsOpen={setModalExcluirProdutoOpen} 
+            callbackConfirmar={handleExcluirProduto} 
+            title="AVISO"
+            bsIcon="bi bi-exclamation-triangle"
+            text="Tem certeza de deseja excluir esse produto?"
+          />
+      </>
     );
   }
   

@@ -7,16 +7,21 @@ import StandardButton from '@/components/buttons/standardButton/standardButton';
 import Image from 'next/image';
 import InputLogin from '@/components/inputs/inputLogin/inputLogin';
 import ActionModal from '@/components/modals/actionModal/actionModal';
+import AlertModal from '@/components/modals/alertModal/alertModal';
 
 const TrocarSenha = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword]= useState('')
   const[confirmPassword, setConfirmpassword] =useState('')
+  const[showAlertModal, setShowAlertModal]=useState(false)
 
   const[modalOpen, setModalOpen] = useState(false)
   
     const handleConfirmClick = () => {
       setModalOpen(true);
+    }
+    const handleMostrarPop=()=>{
+      setShowAlertModal(true)
     }
 
   return (
@@ -41,18 +46,21 @@ const TrocarSenha = () => {
                   value={password} 
                   setValue={setPassword} 
                   isPassword={true} 
+                   color="white"
                 />
               <InputLogin 
                 label="Nova senha" 
                 value={newPassword} 
                 setValue={setNewPassword} 
                 isPassword={true} 
+                color="white"
               />
               <InputLogin 
                 label="Confirmar senha" 
                 value={confirmPassword} 
                 setValue={setConfirmpassword} 
                 isPassword={true} 
+                color="white"
               />
             <div className={styles.buttonn}>
             <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick}></StandardButton>
@@ -74,9 +82,17 @@ const TrocarSenha = () => {
         textBtn1="CANCELAR"
         textBtn2="CONFIRMAR"
         callbackB1={()=>console.log("CANCELOU")}
-        callbackB2={()=> console.log("CONFIRMOU")}
-        
+        callbackB2={(handleMostrarPop)}
      />
+
+    <AlertModal
+             title="Alterado"
+             text="Senha alterada com sucesso!"
+             bsIcon="bi-check2-circle"
+             isOpen={showAlertModal}
+             setIsOpen={setShowAlertModal} 
+    
+          />
     
     </>
     

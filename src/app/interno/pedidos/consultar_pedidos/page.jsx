@@ -8,12 +8,22 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 import PedidoCard from "@/components/pedidos/pedidos";
+import ExcluirPedido from "@/components/bigModals/excluirPedido/page";
+import AlertModal from "@/components/modals/alertModal/alertModal";
 
 
 export default function pageConsultarpedido(){
     const[busca, setBusca]= useState('')
+    const [modalExcluirPedidoOpen, setModalExcluirPedidoOpen] = useState(false);
+     const [showAlertModal, setShowAlertModal] = useState(false);
+
+     const handleExcluirPedido = () => {
+        setModalExcluirPedidoOpen(false);  // Fecha o modal de exclusão
+        setShowAlertModal(true);  // Abre o alerta de sucesso
+      };
     return(
-        <BasicScreen pageTitle="Consultar pedidos">
+        <>
+             <BasicScreen pageTitle="Consultar pedidos">
         <BorderContainer title="Consultar pedidos">
             <div className={styles.container}>
             <InputLabel 
@@ -39,7 +49,8 @@ export default function pageConsultarpedido(){
                 observacao="Requisição: N° 000153."
                 statusPedido="Pedido Criado"
                 corStatus="rgba(99, 181, 199, 1)"
-                botoes={[ "VER MAIS", "ALTERAR","EXCLUIR"]} 
+                botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
+                onExcluir={() => setModalExcluirPedidoOpen(true)} 
                 />
             <PedidoCard
                 numeroPedido="001"
@@ -93,6 +104,29 @@ export default function pageConsultarpedido(){
         
 </BorderContainer>
     </BasicScreen>
+
+    <ExcluirPedido
+        isOpen={modalExcluirPedidoOpen}
+        setIsOpen={setModalExcluirPedidoOpen}
+        callbackCancelar={() => setModalExcluirPedidoOpen(false)}
+        callbackConfirmar={handleExcluirPedido} // Agora o alerta aparece
+        bsIcon="bi bi-exclamation-triangle "
+        title="Excluir Pedido"
+        text="Tem certeza de que deseja excluir este pedido?"
+      />
+
+
+    <AlertModal
+        title="Excluído"
+        text="Produto excluído com sucesso!"
+        bsIcon="bi-check2-circle"
+        isOpen={showAlertModal}
+        setIsOpen={setShowAlertModal} 
+      />        
+     </>
+
+     
+        
     )
     
 }

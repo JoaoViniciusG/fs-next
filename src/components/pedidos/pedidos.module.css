@@ -31,6 +31,7 @@
   border-radius: 5px;
   font-weight: bold;
   font-size: 1.3vw;
+
 }
 
 .header .status {
@@ -112,4 +113,11 @@
 
 .excluir:hover {
   background-color: rgba(141, 4, 4, 1);
+}
+
+.pedidoContainer{
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
 }
