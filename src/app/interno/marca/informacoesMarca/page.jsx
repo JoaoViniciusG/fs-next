@@ -6,9 +6,17 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import ActionModal from '@/components/modals/actionModal/actionModal';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function PageInformacoesMarca() {
+    const [modalPergunta, setModalPergunta] = useState(false);
+    const [modalExcluir, setModalExcluir] = useState(false);
+    const router = useRouter();
     return (
+        <>
         <BasicScreen pageTitle="Informações da marca">
             <BorderContainer title="Dados da marca:" className={styles.containerContentMaster}>
                 <div className={styles.containerContent}>
@@ -69,9 +77,27 @@ export default function PageInformacoesMarca() {
                 </div>
             </BorderContainer>
                 <div className={styles.containerButtons}>
-                    <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)'></StandardButton>
-                    <StandardButton text='EXCLUIR' hoverColor='var(--darkred)'></StandardButton>
+                    <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => router.push('/interno/marca/alterarMarca')}></StandardButton>
+                    <StandardButton text='EXCLUIR' hoverColor='var(--darkred)' callback={() => {setModalPergunta(true)}}></StandardButton>
                 </div>
         </BasicScreen>
+        <ActionModal
+        title='AVISO'
+        text='Tem certeza que deseja excluir o cadastro dessa marca?'
+        bsIcon="bi bi-exclamation-triangle-fill"
+        isOpen={modalPergunta}
+        setIsOpen={setModalPergunta}
+        textBtn1='CANCELAR'
+        textBtn2='CONFIRMAR'
+        callbackB2={() => setModalExcluir(true)}
+        />
+        <AlertModal
+          title='EXCLUÍDO'
+          text='Marca excluída com sucesso!'
+          bsIcon="bi-check2-circle"
+          setIsOpen={setModalExcluir}
+          isOpen={modalExcluir}
+        />
+        </>
     )
 }

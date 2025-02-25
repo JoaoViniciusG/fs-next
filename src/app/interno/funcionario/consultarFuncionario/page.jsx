@@ -7,8 +7,10 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
+import { useRouter } from 'next/navigation';
 
 export default function PageConsultarFuncionarios() {
+    const router = useRouter();
     return (
         <BasicScreen pageTitle="Consultar funcionário">
             <BorderContainer title="Consultar funcionário:">
@@ -38,7 +40,7 @@ export default function PageConsultarFuncionarios() {
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr>
+                            <tr onClick={() => router.push('/interno/funcionario/informacoesFuncionario')}> 
                                 <td>Beatriz Alves</td>
                                 <td>091.846.297-98</td>
                                 <td>09/10/2004</td>

@@ -6,9 +6,13 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import { useState } from 'react';
 
 export default function PageAlterarMarca() {
+    const [modalOpen, setModalOpen] = useState(false);
     return (
+        <>
         <BasicScreen pageTitle="Alterar marca">
             <BorderContainer title="Dados da marca:" className={styles.containerContentMaster}>
                 <div className={styles.containerContent}>
@@ -74,8 +78,16 @@ export default function PageAlterarMarca() {
                 </div>
             </BorderContainer>
             <div className={styles.containerButtonsAlterar}>
-                <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)'></StandardButton>
+                <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => {setModalOpen(true)}} ></StandardButton>
             </div>
         </BasicScreen>
+         <AlertModal
+         title='ALTERADO'
+         text='Marca alterada com sucesso! '
+         bsIcon="bi-check2-circle"
+         isOpen={modalOpen}
+         setIsOpen={setModalOpen}
+         />
+        </>
     )
 }

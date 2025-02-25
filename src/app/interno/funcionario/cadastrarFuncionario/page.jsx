@@ -6,9 +6,13 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import { useState } from 'react';
 
 export default function PageCadastrarFuncionario() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
+    <>
     <BasicScreen pageTitle="Cadastrar funcionário">
       <BorderContainer title = 'Dados pessoais'>
       <div className={styles.div_content_main}>
@@ -19,11 +23,9 @@ export default function PageCadastrarFuncionario() {
                             <InputLabel placeholder="000.000.000-00" label="CPF:"  required={true}  readonly={false} width='50vh'/>
                             <InputLabel placeholder="dd/mm/aaaa" label="Data de nascimento:" required={true}  readonly={false} width='50vh' />
                           </div>
-
                           <div>
                             <InputLabel placeholder="(DDD) 0 0000-0000" label="Telefone:" required={true}  readonly={false} width='50vh' />
                             <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
-  
                           <div className={styles.sexoContainer}>
                               <label>Sexo:</label> <br></br>
                               <label className={styles.radiolabel}>
@@ -41,7 +43,15 @@ export default function PageCadastrarFuncionario() {
       <BorderContainer title = 'Endereço'>
         <AddAddressButton/>
       </BorderContainer>
-        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => { }} />
+        <StandardButton text="CADASTRAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}}callback={() => {setModalOpen(true)}} />
     </BasicScreen>
+    <AlertModal
+    title='CADASTRADO'
+    text='Funcionário cadastrado com sucesso! '
+    bsIcon="bi-check2-circle"
+    isOpen={modalOpen}
+    setIsOpen={setModalOpen}
+    />
+    </>
   );
 }

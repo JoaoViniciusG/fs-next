@@ -7,10 +7,14 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddressOption from '@/components/containers/endereco/addressOption'
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import { useState } from 'react';
 
 
 export default function PageInformacoesFuncionarioEditavel() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
+    <>
     <BasicScreen pageTitle="Informações do funcionário">
       <BorderContainer title='Dados pessoais'>
         <div className={styles.div_content_main}>
@@ -46,7 +50,15 @@ export default function PageInformacoesFuncionarioEditavel() {
         <AddAddressButton/>
         </div>
       </BorderContainer>
-      <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={() => { }} />
+      <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={() => {setModalOpen(true)}} />
     </BasicScreen>
+    <AlertModal
+      title='ATUALIZADO'
+      text='Funcionário atualizado com sucesso! '
+      bsIcon="bi-check2-circle"
+      isOpen={modalOpen}
+      setIsOpen={setModalOpen}
+      />
+    </>
   );
 }
