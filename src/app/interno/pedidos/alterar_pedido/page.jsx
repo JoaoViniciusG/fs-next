@@ -47,6 +47,7 @@ export default function PageAlterarPedidos() {
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
     const [showAlertModalCancel, setShowAlertModalCancel]= useState(false);
+    const[showBusca, setShowBusca]= useState(false)
 
     const handleCancel=()=>{
       setShowAlertModalCancel(true)
@@ -76,6 +77,10 @@ export default function PageAlterarPedidos() {
       setShowAlertModalExcluido(true); 
     };
 
+    const handleBusca=()=>{
+      setShowBusca(true)
+    }
+
     
   
 
@@ -92,6 +97,7 @@ export default function PageAlterarPedidos() {
                   showLupa={true}
                   width= "70%" 
                   style={{flex:1} }
+                  onClick={() => setShowBusca(true)}
                   />
             <div className={styles.linha}>
                 <InputLabel label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
@@ -171,6 +177,7 @@ export default function PageAlterarPedidos() {
             className={styles.inputDadosPessoais} 
             readonly={true} 
             width= "80%"
+            
           />
           <InputLabel 
             label="Desconto" 
@@ -279,6 +286,13 @@ export default function PageAlterarPedidos() {
             bsIcon="bi bi-exclamation-triangle"
             text="Tem certeza de deseja excluir esse produto?"
           />
+
+          <BuscarClienteModal 
+                  isOpen={showBusca} 
+                  setIsOpen={setShowBusca} 
+                  callbackConsultar={handleConsultar} 
+                  callbackConfirmar={handleConfirmarBuscarCliente} 
+                />
       </>
     );
   }
