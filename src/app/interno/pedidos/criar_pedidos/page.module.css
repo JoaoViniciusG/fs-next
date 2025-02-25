@@ -93,7 +93,7 @@
     border-spacing: 30px;
 }
 
-/* Corrigido: Agora a classe é local para evitar erro de pureza */
+
 .tableContainerContent trFirstLast {
     border: none;
 }
