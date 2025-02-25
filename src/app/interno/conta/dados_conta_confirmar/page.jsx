@@ -42,7 +42,7 @@ export default function pageDadosConta(){
                             <Image 
                                 src="/usuario.png" 
                                 alt="Usuário" 
-                                width={260} 
+                                width={220} 
                                 height={240} 
                                 className={styles.imagemUsuario} 
                             />
