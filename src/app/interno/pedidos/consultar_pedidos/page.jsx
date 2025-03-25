@@ -117,7 +117,7 @@ export default function pageConsultarpedido() {
 
             <AlertModal
                 title="Excluído"
-                text="Produto excluído com sucesso!"
+                text="Pedido excluído com sucesso!"
                 bsIcon="bi-check2-circle"
                 isOpen={showAlertModal}
                 setIsOpen={setShowAlertModal}

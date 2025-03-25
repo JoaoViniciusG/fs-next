@@ -60,8 +60,6 @@ export default function PageCriarPedidos() {
   };
 
   const handleExcluirProduto = () => {
-  
-    
     setModalExcluirProdutoOpen(false); 
     setShowAlertModal(true); 
   };
@@ -244,13 +242,14 @@ export default function PageCriarPedidos() {
         callbackConfirmar={handleConfirmarAlterarProduto} 
         title="Alterar produto"
       />
+      
     <ExcluirProduto
       isOpen={modalExcluirProdutoOpen} 
       setIsOpen={setModalExcluirProdutoOpen} 
       callbackConfirmar={handleExcluirProduto} 
       title="AVISO"
       bsIcon="bi bi-exclamation-triangle"
-      text="Tem certeza de deseja excluir esse produto?"
+      text="Tem certeza de deseja excluir esse produto da lista?"
     />
 
 

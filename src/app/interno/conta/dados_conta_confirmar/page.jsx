@@ -56,7 +56,6 @@ export default function pageDadosConta(){
                         value={nome} 
                         setValue={setNome} 
                         className={styles.inputDadosPessoais} 
-                        readonly={true} 
                     />
                     <InputLabel 
                         label="Senha" 
@@ -71,7 +70,6 @@ export default function pageDadosConta(){
                         setValue={setEmail} 
                         type="email" 
                         className={styles.inputDadosPessoais} 
-                        readonly={true} 
                     />
                     <div className={styles.alterarSenha}>
                       <Link href= "/interno/conta/trocar_senha">
