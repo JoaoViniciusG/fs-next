@@ -7,10 +7,16 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import AlterarFornecedorModal from "@/components/bigModals/addFornecedorModal/page";
 import { useState } from 'react';
 
 export default function PageAlterarMarca() {
     const [modalOpen, setModalOpen] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [modalAlterarFornecedorOpen, setModalAlterarFornecedorOpen] = useState(false);
+    const handleConfirmarAlterarFornecedor = () => {
+        setShowAlertModal(true)
+      };
     return (
         <>
         <BasicScreen pageTitle="Alterar marca">
@@ -72,13 +78,13 @@ export default function PageAlterarMarca() {
                 </BorderContainer> 
                 <div className={styles.containerButtons}>
                     <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)'></StandardButton>
-                    <StandardButton text='ATUALIZAR' hoverColor='var(--cadetblue-ligtht)'></StandardButton>
+                    <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => setModalAlterarFornecedorOpen(true)} ></StandardButton>
                     <StandardButton text='EXCLUIR' hoverColor='var(--darkred)'></StandardButton>
                 </div>
                 </div>
             </BorderContainer>
             <div className={styles.containerButtonsAlterar}>
-                <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => {setModalOpen(true)}} ></StandardButton>
+                <StandardButton text='ALTERAR MARCA' hoverColor='var(--cadetblue-ligtht)' callback={() => {setModalOpen(true)}} ></StandardButton>
             </div>
         </BasicScreen>
          <AlertModal
@@ -88,6 +94,12 @@ export default function PageAlterarMarca() {
          isOpen={modalOpen}
          setIsOpen={setModalOpen}
          />
+         <AlterarFornecedorModal 
+        isOpen={modalAlterarFornecedorOpen} 
+        setIsOpen={setModalAlterarFornecedorOpen} 
+        callbackConfirmar={handleConfirmarAlterarFornecedor} 
+        title="Alterar fornecedor"
+        />
         </>
     )
 }
