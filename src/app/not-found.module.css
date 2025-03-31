@@ -1,7 +1,7 @@
 .containerMaster {
   height: 100vh;
   width: 100vw;
-  background-color: var(--white);
+  background-color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
