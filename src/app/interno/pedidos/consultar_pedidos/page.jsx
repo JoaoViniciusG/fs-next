@@ -6,7 +6,7 @@ import InputLabel from "@/components/inputs/inputLabel/inputLabel";
 import styles from "./page.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
-import PedidoCard from "@/components/pedidos/pedidos";
+import PedidoCard from "@/components/componentPedidos/pedidos/pedidos";
 import ExcluirPedido from "@/components/bigModals/excluirPedido/page";
 import AlertModal from "@/components/modals/alertModal/alertModal";
 

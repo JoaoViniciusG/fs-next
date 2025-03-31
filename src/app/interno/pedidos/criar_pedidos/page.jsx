@@ -12,6 +12,7 @@ import BuscarClienteModal from "@/components/bigModals/buscarClienteModal/page";
 import AdicionarProdutoModal from "@/components/bigModals/addProdutoModal/page";
 import Modal from "@/components/bigModals/excluirProdutoModal/page";
 import ExcluirProduto from "@/components/bigModals/excluirProdutoModal/page";
+import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
 export default function PageCriarPedidos() {
 
@@ -149,7 +150,7 @@ export default function PageCriarPedidos() {
           </div>
         </BorderContainer>
 
-        <BorderContainer>
+        {/* <BorderContainer>
           <div className={styles.divContentInputTotal}>
             <div className={styles.linha}>
               <InputLabel 
@@ -184,7 +185,9 @@ export default function PageCriarPedidos() {
               id="input-total" 
             />
           </div>
-        </BorderContainer>
+        </BorderContainer> */}
+        <TotalSummary/>
+
 
         <div className={styles.baixo}>
           <div className={styles.divTagBottom}>

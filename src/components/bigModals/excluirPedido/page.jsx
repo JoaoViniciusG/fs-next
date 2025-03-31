@@ -1,6 +1,6 @@
 import SmallButton from '@/components/buttons/smallButton/smallButton';
 import styles from './page.module.css';
-import PedidoCard from '@/components/pedidos/pedidos';
+import PedidoCard from '@/components/componentPedidos/pedidos/pedidos';
 
 export default function ExcluirPedido({ 
     isOpen = false, 
