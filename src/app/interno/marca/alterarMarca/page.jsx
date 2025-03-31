@@ -84,7 +84,7 @@ export default function PageAlterarMarca() {
                 </div>
                 </BorderContainer> 
                 <div className={styles.containerButtons}>
-                    <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)'></StandardButton>
+                    <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)' callback={() => setModalAlterarFornecedorOpen(true)}></StandardButton>
                     <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => setModalAlterarFornecedorOpen(true)} ></StandardButton>
                     <StandardButton text='EXCLUIR' hoverColor='var(--darkred)' callback={() => setModalExcluirFornecedorOpen(true)} ></StandardButton>
                 </div>
@@ -105,7 +105,13 @@ export default function PageAlterarMarca() {
         isOpen={modalAlterarFornecedorOpen} 
         setIsOpen={setModalAlterarFornecedorOpen} 
         callbackConfirmar={handleConfirmarAlterarFornecedor} 
-        title="Alterar fornecedor"
+        title="Alterar o fornecedor"
+        />
+        <AlterarFornecedorModal 
+        isOpen={modalAlterarFornecedorOpen} 
+        setIsOpen={setModalAlterarFornecedorOpen} 
+        callbackConfirmar={handleConfirmarAlterarFornecedor} 
+        title="Buscar pelo fornecedor"
         />
         <ExcluirFornecedor
         isOpen={modalExcluirFornecedorOpen} 

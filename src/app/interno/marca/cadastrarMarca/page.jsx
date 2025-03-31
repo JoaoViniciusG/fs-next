@@ -93,7 +93,7 @@ export default function PageCadastrarMarca() {
         />
         <ActionModal
         title='AVISO'
-        text='Tem certeza que deseja excluir o cadastro desse marca?'
+        text='Tem certeza que deseja excluir o cadastro desse fornecedor?'
         bsIcon="bi bi-exclamation-triangle-fill"
         isOpen={modalPergunta}
         setIsOpen={setModalPergunta}
@@ -103,7 +103,7 @@ export default function PageCadastrarMarca() {
         />
         <AlertModal
         title='EXCLUÍDO'
-        text='Marca excluída com sucesso!'
+        text='Fornecedor excluído com sucesso!'
         bsIcon="bi-check2-circle"
         setIsOpen={setModalExcluir}
         isOpen={modalExcluir}
