@@ -1,9 +1,9 @@
 
 
 import styles from "./pedidos.module.css"
-import BorderContainer from "../BorderContainer";
-import InputLabel from "../InputLabel";
-import TextAreaInput from "../TextAreaInput";
+import BorderContainer from "@/components/containers/borderContainer/page";
+import InputLabel from "@/components/inputs/inputLabel/inputLabel";
+import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
 const TotalSummary = ({ subtotal, desconto, total, setSubtotal, setDesconto, setTotal }) => {
   return (

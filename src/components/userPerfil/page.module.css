@@ -20,9 +20,10 @@
 
 
 .editar {
+  border: none;
   background-color: transparent;
   color: white;
-  font-size: 2.3vw;
+  font-size: 2vw;
   cursor: pointer;
   display: flex;
   align-items: center;
