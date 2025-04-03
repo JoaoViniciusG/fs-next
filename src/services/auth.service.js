@@ -4,7 +4,7 @@ export const loginAsync = async (user, password) => {
     password: password
   }
 
-  const response = await fetch("http://localhost:8000/auth", {
+  const response = await fetch("https://api.estotech.dev.vilhena.ifro.edu.br/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -21,7 +21,7 @@ export const verifyAsync = async (user, password) => {
     password: password
   }
 
-  const response = await fetch("http://localhost:8000/auth/verify", {
+  const response = await fetch("https://api.estotech.dev.vilhena.ifro.edu.br/auth/verify", {
     method: "GET",
     mode: 'no-cors',
     credentials:'include',
