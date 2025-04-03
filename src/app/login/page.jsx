@@ -4,7 +4,8 @@ import styles from './page.module.css';
 
 import {
   useEffect,
-  useState
+  useState,
+  useContext
 } from 'react';
 
 import Link from 'next/link';
@@ -15,15 +16,28 @@ import InputLogin from '@/components/inputs/inputLogin/inputLogin';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
 import CheckBox from '@/components/inputs/checkbox/checkbox';
 
+import { AuthContext } from '@/context/auth';
+
 export default function LoginPage() {
+  const authContextInstance = useContext(AuthContext);
   const router = useRouter();
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("");
-  const [stayLoggedValue, setStayLoggedValue] = useState(false);
 
-  const submitFunction = () => router.replace("/interno");
+  const submitFunction = async () => {
+    if(await authContextInstance.login(user, password)) {
+      router.replace("/interno")
+    }
+  };
 
-  useEffect(() => console.log(stayLoggedValue));
+  useEffect(() => {
+    const verifyFunc = async () => {
+      if(await authContextInstance.verify()) {
+        router.replace("/interno")
+      }
+    }
+    verifyFunc();
+  }, []);
 
   return (
     <div className={styles.containerMaster}>
@@ -53,17 +67,6 @@ export default function LoginPage() {
           <div className={styles.inputsContainer}>
             <InputLogin color="var(--white)" label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
             <InputLogin color="var(--white)" label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true} />
-          </div>
-
-          <div className={styles.containerContentOptions}>
-            <Link className={styles.resetPassword} href="/login">Esqueci a senha</Link>
-
-            <CheckBox
-              value={stayLoggedValue}
-              setValue={setStayLoggedValue}
-              text="Lembrar de mim"
-              textInLeft={true}
-              className={styles.stayLoggedCheckbox} />
           </div>
         </div>
 
