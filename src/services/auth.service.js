@@ -1,17 +1,17 @@
+import axios from "axios";
+
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: "https://estotech.dev.vilhena.ifro.edu.br/api"
+})
+
 export const loginAsync = async (user, password) => {
   const payload = {
     user: user,
     password: password
   }
 
-  const response = await fetch("https://estotech.dev.vilhena.ifro.edu.br/api/auth", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": true
-    },
-    body: JSON.stringify(payload)
-  })
+  const response = await instance.post("/auth", payload)
   
   return response;
 };
