@@ -1,7 +1,7 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Poppins } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
+import AuthProvider from '@/context/auth';
 
 const poppinsFont = Poppins({
   variable: "--font-poppins",
@@ -21,8 +21,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body className={poppinsFont.variable}>
-        {children}
-        <SpeedInsights />
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

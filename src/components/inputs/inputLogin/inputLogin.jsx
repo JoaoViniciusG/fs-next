@@ -24,7 +24,7 @@ export default function InputLogin({
         placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        type={(isPassword && showPassword) ? 'password' : 'text'}
+        type={(isPassword && !showPassword) ? 'password' : 'text'}
         style={{ borderColor: color }}
       />
 

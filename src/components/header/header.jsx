@@ -68,7 +68,7 @@ export default function Header() {
                 className={styles.containerModalMaster}>
 
                 <motion.div
-                    onClick={toggleState}
+                    onClick={() => setIsOpen(false)}
                     transition={{
                         duration: .3,
                         repeatDelay: 0,
