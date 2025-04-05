@@ -1,0 +1,161 @@
+.backgroundContainer {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    position: fixed;
+  }
+  
+  .modalContainer {
+    width: 900px;
+    background-color: #00473c;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #00473c;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .searchContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  
+  .divRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .titleInput {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+  
+  .titleLargo {
+    margin-left: 5px;
+    flex: 2;
+  }
+  
+  .inputCampo {
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #2e2e2e;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: #000;
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+  
+  .inputCodProduto {
+    flex: 0.5;
+    min-width: 120px;
+  }
+  
+  .inputNomeProduto {
+    flex: 2.5;
+    min-width: 250px;
+  }
+  
+  .inputMarca {
+    flex: 1.5;
+    min-width: 160px;
+  }
+  
+  .buttonConsultar,
+  .buttonConfirmar {
+    border-radius: 5px;
+    padding: 0.2vw 0.7vw;
+    font-size: 0.8vw;
+    font-family: 'Poppins';
+    cursor: pointer;
+    font-weight: 600;
+    background: #fff;
+    color: rgba(0, 51, 43, 1);
+    border: none;
+    box-shadow: 2px 2px 5px #2e2e2e;
+    transition: 0.5s;
+  }
+  
+  .buttonConsultar:hover {
+    background: rgba(99, 181, 199, 1);
+    color: white;
+  }
+  
+  .buttonConfirmar:hover {
+    background-color: rgba(99, 199, 184, 1);
+    color: white;
+  }
+  
+  .tableContainer {
+    margin: 20px;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .fornecedoresTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .fornecedoresTable th,
+  .fornecedoresTable td {
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  
+  .fornecedoresTable th {
+    background-color: #137264;
+    border-bottom: 10px solid #00473c;
+  }
+  
+  .fornecedoresTable td {
+    background-color: #308378;
+    border-left: 2px solid white;
+  }
+  
+  .pagina {
+    text-align: right;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+  

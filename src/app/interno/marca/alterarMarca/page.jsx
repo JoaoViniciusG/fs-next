@@ -7,10 +7,23 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import AlterarFornecedorModal from "@/components/bigModals/addFornecedorModal/page";
+import ExcluirFornecedor from '@/components/bigModals/excluirFornecedorModal/page';
 import { useState } from 'react';
 
 export default function PageAlterarMarca() {
     const [modalOpen, setModalOpen] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [showAlertModalExcluido, setShowAlertModalExcluido] = useState(false);
+    const [modalAlterarFornecedorOpen, setModalAlterarFornecedorOpen] = useState(false);
+    const [modalExcluirFornecedorOpen, setModalExcluirFornecedorOpen] = useState(false);
+    const handleConfirmarAlterarFornecedor = () => {
+        setShowAlertModal(true)
+      };
+      const handleExcluirFornecedor = () => {
+        setModalExcluirFornecedorOpen(false); 
+        setShowAlertModalExcluido(true); 
+      };
     return (
         <>
         <BasicScreen pageTitle="Alterar marca">
@@ -71,14 +84,14 @@ export default function PageAlterarMarca() {
                 </div>
                 </BorderContainer> 
                 <div className={styles.containerButtons}>
-                    <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)'></StandardButton>
-                    <StandardButton text='ATUALIZAR' hoverColor='var(--cadetblue-ligtht)'></StandardButton>
-                    <StandardButton text='EXCLUIR' hoverColor='var(--darkred)'></StandardButton>
+                    <StandardButton text='ADICIONAR' hoverColor='var(--medium-darkcyan)' callback={() => setModalAlterarFornecedorOpen(true)}></StandardButton>
+                    <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => setModalAlterarFornecedorOpen(true)} ></StandardButton>
+                    <StandardButton text='EXCLUIR' hoverColor='var(--darkred)' callback={() => setModalExcluirFornecedorOpen(true)} ></StandardButton>
                 </div>
                 </div>
             </BorderContainer>
             <div className={styles.containerButtonsAlterar}>
-                <StandardButton text='ALTERAR' hoverColor='var(--cadetblue-ligtht)' callback={() => {setModalOpen(true)}} ></StandardButton>
+                <StandardButton text='ALTERAR MARCA' hoverColor='var(--cadetblue-ligtht)' callback={() => {setModalOpen(true)}} ></StandardButton>
             </div>
         </BasicScreen>
          <AlertModal
@@ -88,6 +101,26 @@ export default function PageAlterarMarca() {
          isOpen={modalOpen}
          setIsOpen={setModalOpen}
          />
+         <AlterarFornecedorModal 
+        isOpen={modalAlterarFornecedorOpen} 
+        setIsOpen={setModalAlterarFornecedorOpen} 
+        callbackConfirmar={handleConfirmarAlterarFornecedor} 
+        title="Alterar o fornecedor"
+        />
+        <AlterarFornecedorModal 
+        isOpen={modalAlterarFornecedorOpen} 
+        setIsOpen={setModalAlterarFornecedorOpen} 
+        callbackConfirmar={handleConfirmarAlterarFornecedor} 
+        title="Buscar pelo fornecedor"
+        />
+        <ExcluirFornecedor
+        isOpen={modalExcluirFornecedorOpen} 
+        setIsOpen={setModalExcluirFornecedorOpen} 
+        callbackConfirmar={handleExcluirFornecedor} 
+        title="AVISO"
+        bsIcon="bi bi-exclamation-triangle"
+        text="Tem certeza de que deseja excluir esse fornecedor?"
+        />
         </>
     )
 }
