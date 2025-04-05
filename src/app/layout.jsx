@@ -1,4 +1,3 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Poppins } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
@@ -25,7 +24,6 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           {children}
         </AuthProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
