@@ -11,7 +11,9 @@ export const loginAsync = async (user, password) => {
     password: password
   }
 
-  const response = await instance.post("/auth", payload)
+  const response = await instance.post("/auth", payload, {
+    withCredentials: true
+  })
   
   return response;
 };
