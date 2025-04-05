@@ -23,7 +23,7 @@ export default function AuthProvider({ children }) {
 
         const response = await verifyAsync();
 
-        if(!response.ok) {
+        if(response == false || response.status != 200) {
             setIsAuth(false);
             setUser({});
             setIsError(false);
@@ -34,25 +34,26 @@ export default function AuthProvider({ children }) {
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setUser((await response.json()).payload);
+        setUser(response.data.payload);
         return true;
     }
 
     const login = async (user, password) => {
         const response = await loginAsync(user, password);
+        console.log(response)
 
-        if(!response.ok) {
+        if(response == false || response.status != 200) {
             setIsAuth(false);
             setUser({});
             setIsError(true);
-            setErrorMessage((await response.json()).error.message);
+            setErrorMessage("");
             return false;
         }
 
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setUser((await response.json()).payload);
+        setUser(response.data.payload);
         return true;
     }
 

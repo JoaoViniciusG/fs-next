@@ -33,7 +33,7 @@ export default function InputLogin({
         onClick={() => setShowPassword(!showPassword)}
         style={{ display: (isPassword) ? 'block' : 'none' }}>
         {
-          showPassword ? 
+          !showPassword ? 
           <Icon.EyeOff
             className={`${styles.iconEye}`}
             style={{ color: eyeColor }}
