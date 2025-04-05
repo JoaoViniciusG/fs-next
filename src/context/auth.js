@@ -18,6 +18,7 @@ export default function AuthProvider({ children }) {
     const [verified, setVerified] = useState(false);
 
     const verify = async () => {
+        console.log("URL_BASE: " + process.env.BASE_URL)
         if(verified) return isAuth;
         setVerified(true);
 
@@ -28,13 +29,15 @@ export default function AuthProvider({ children }) {
             setUser({});
             setIsError(false);
             setErrorMessage("");
+            setPermissionJson({});
             return false;
         };
 
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setUser(response.data.payload);
+        setPermissionJson(response.data.payload.permissions);
+        setUser(response.data.payload.user);
         return true;
     }
 
@@ -47,13 +50,15 @@ export default function AuthProvider({ children }) {
             setUser({});
             setIsError(true);
             setErrorMessage("");
+            setPermissionJson({});
             return false;
         }
 
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setUser(response.data.payload);
+        setPermissionJson(response.data.payload.permissions);
+        setUser(response.data.payload.user);
         return true;
     }
 

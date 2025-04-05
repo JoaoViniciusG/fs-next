@@ -49,9 +49,9 @@ export default function BarraLateralModule({ name, options, opened, setOpened })
                     repeatDelay: 0,
                 }} 
                 className={styles.containerOptions}>
-                {options.map((option, index) => {
+                {options.filter(m => m.isVisible).map((option) => {
                     return (
-                        <BarraLateralOption key={index} optionName={option.name} optionRoute={option.route} />
+                        <BarraLateralOption key={option.id} optionName={option.description} optionRoute={option.path} />
                     )
                 })}
             </motion.div>
