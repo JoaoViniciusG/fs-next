@@ -12,6 +12,7 @@ import ActionModal from "@/components/modals/actionModal/actionModal";
 import BuscarClienteModal from "@/components/bigModals/buscarClienteModal/page";
 import AdicionarProdutoModal from "@/components/bigModals/addProdutoModal/page";
 import ExcluirProduto from "@/components/bigModals/excluirProdutoModal/page";
+import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
 export default function PageAlterarPedidos() {
 
@@ -167,7 +168,7 @@ export default function PageAlterarPedidos() {
         </div>
       </BorderContainer>
 
-        <BorderContainer> 
+        {/* <BorderContainer> 
           <div className={styles.divContentInputTotal}>
             <div className={styles.linha}>
             <InputLabel 
@@ -203,7 +204,8 @@ export default function PageAlterarPedidos() {
                   id="input-total" 
                 />
               </div>
-        </BorderContainer>
+        </BorderContainer> */}
+        <TotalSummary/>
 
         
 

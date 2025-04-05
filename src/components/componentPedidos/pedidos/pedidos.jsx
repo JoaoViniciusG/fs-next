@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import InputLabel from '../inputs/inputLabel/inputLabel';
+import InputLabel from '../../inputs/inputLabel/inputLabel';
 import styles from './pedidos.module.css';
-import ShineButton from '../buttons/shineButton/shineButton';
+import ShineButton from '../../buttons/shineButton/shineButton';
 import Link from 'next/link';
 
 export default function PedidoCard({

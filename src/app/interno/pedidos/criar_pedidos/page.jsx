@@ -12,6 +12,8 @@ import BuscarClienteModal from "@/components/bigModals/buscarClienteModal/page";
 import AdicionarProdutoModal from "@/components/bigModals/addProdutoModal/page";
 import Modal from "@/components/bigModals/excluirProdutoModal/page";
 import ExcluirProduto from "@/components/bigModals/excluirProdutoModal/page";
+import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
+import Footer from "@/components/componentPedidos/footerPedidos/footer";
 
 export default function PageCriarPedidos() {
 
@@ -146,44 +148,8 @@ export default function PageCriarPedidos() {
             </div>
           </div>
         </BorderContainer>
-
-        <BorderContainer>
-          <div className={styles.divContentInputTotal}>
-            <div className={styles.linha}>
-              <InputLabel 
-                label="Subtotal" 
-                value={subtotal} 
-                setValue={setSubtotal} 
-                className={styles.inputDadosPessoais} 
-                readonly={true} 
-                width="90%"
-              />
-              <InputLabel 
-                label="Desconto" 
-                value={desconto} 
-                setValue={setDesconto} 
-                className={styles.inputDadosPessoais} 
-                readonly={true} 
-                width="90%"
-              />
-              <InputLabel 
-                label="Total" 
-                value={total} 
-                setValue={setTotal} 
-                className={styles.inputDadosPessoais} 
-                readonly={true} 
-                width="90%"
-              />
-            </div>
-
-            <TextAreaInput 
-              label="Observação:" 
-              placeholder="Escreva sua descrição..." 
-              id="input-total" 
-            />
-          </div>
-        </BorderContainer>
-
+        
+        <TotalSummary/>
         <div className={styles.baixo}>
           <div className={styles.divTagBottom}>
             <p>Código do pedido:</p>
