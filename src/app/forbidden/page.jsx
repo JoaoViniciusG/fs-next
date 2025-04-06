@@ -10,7 +10,7 @@ export default function Custom404() {
             src="/logo/Logo_Horizontal_black.png"
             width={300}
             height={90}
-            alt='404 image'
+            alt='403 image'
           />
 
           <div className={styles.containerContentText}>
@@ -23,7 +23,7 @@ export default function Custom404() {
           src="/img_status/403.png"
           width={250}
           height={250}
-          alt='404 image'
+          alt='403 image'
         />
       </div>
     </div>

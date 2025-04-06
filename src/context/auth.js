@@ -5,7 +5,7 @@ import {
     useEffect,
     useState
 } from 'react';
-import { loginAsync, logoutAsync, verifyAsync } from '@/services/auth.service';
+import { loginAsync, logoutAsync } from '@/services/auth.service';
 import { redirect } from 'next/navigation';
 
 export const AuthContext = createContext();
@@ -17,29 +17,6 @@ export default function AuthProvider({ children }) {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
     const [verified, setVerified] = useState(false);
-
-    const verify = async () => {
-        if(verified) return isAuth;
-        setVerified(true);
-
-        const response = await verifyAsync();
-
-        if(response == false || response.status != 200) {
-            setIsAuth(false);
-            setUser({});
-            setIsError(false);
-            setErrorMessage("");
-            localStorage.removeItem('sideBarConfig');
-            return false;
-        };
-
-        setIsAuth(true);
-        setIsError(false);
-        setErrorMessage("");
-        setUser(response.data.payload.user);
-        localStorage.setItem('sideBarConfig', JSON.stringify(response.data.payload.permissions));
-        redirect('/interno');
-    }
 
     const login = async (user, password) => {
         const response = await loginAsync(user, password);
@@ -78,7 +55,6 @@ export default function AuthProvider({ children }) {
         isAuth: isAuth,
         user: user,
         login: login,
-        verify: verify,
         logout: logout
     };
 

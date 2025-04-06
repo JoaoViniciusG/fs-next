@@ -3,12 +3,10 @@
 import styles from './page.module.css';
 
 import {
-  useEffect,
   useState,
   useContext
 } from 'react';
 
-import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 
 import ShineButton from '@/components/buttons/shineButton/shineButton';
@@ -17,7 +15,6 @@ import StandardButton from '@/components/buttons/standardButton/standardButton';
 import { AuthContext } from '@/context/auth';
 
 export default function LoginPage() {
-  const searchParams = useSearchParams();
   const authContextInstance = useContext(AuthContext);
   const router = useRouter();
   const [user, setUser] = useState("")
@@ -26,13 +23,6 @@ export default function LoginPage() {
   const submitFunction = async () => {
     await authContextInstance.login(user, password)
   };
-
-  useEffect(() => {
-    const verifyFunc = async () => {
-      await authContextInstance.verify();
-    }
-    verifyFunc();
-  }, []);
 
   return (
     <div className={styles.containerMaster}>

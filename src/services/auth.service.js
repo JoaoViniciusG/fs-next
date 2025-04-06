@@ -22,16 +22,6 @@ export const loginAsync = async (user, password) => {
   }
 };
 
-export const verifyAsync = async () => {
-  try {  
-    return await instance.get("/auth/verify", {withCredentials: true});
-  }
-  catch (error) {
-    if (error.response) console.log(error);
-    return false
-  }
-};
-
 export const logoutAsync = async () => {
   try {  
     return await instance.post("/auth/logout", null, {withCredentials: true});
