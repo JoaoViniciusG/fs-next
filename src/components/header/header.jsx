@@ -12,11 +12,13 @@ import * as Icon from 'react-feather';
 import styles from './header.module.css';
 import Image from "next/image";
 import Link from 'next/link';
-import SmallButton from '../buttons/smallButton/smallButton';
+import { AuthContext } from '@/context/auth';
 
+import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
+    const context = useContext(AuthContext);
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenUser, setIsOpenUser] = useState(false);
@@ -32,6 +34,10 @@ export default function Header() {
 
     const toggleStateUser = () => {
         setIsOpenUser(!isOpenUser)
+    };
+
+    const onLogout = () => {
+        context.logout();
     };
 
     return (
@@ -97,102 +103,32 @@ export default function Header() {
                     </motion.h2>
 
                     <div className={styles.containerTextContent}>
-                        <PTest 
+                        <AnimateOption 
                             text="Perfil" 
                             index={0} 
                             isOpen={isOpen} 
-                            callback={() => router.push("/interno/conta/dados_conta")} />
+                            callback={() => router.push("/interno/conta/dados-conta")} />
                         
-                        <PTest 
+                        <AnimateOption 
                             text="Dados da empresa" 
                             index={1} 
                             isOpen={isOpen} 
-                            callback={() => router.push("/interno/conta/dados_empresa")} />
+                            callback={() => router.push("/interno/conta/dados-empresa")} />
 
-                        <PTest 
-                            text="Trocar usuário" 
+                        <AnimateOption 
+                            text="Sair" 
                             index={2} 
                             isOpen={isOpen}
-                            callback={() => { setIsOpen(false); setIsOpenUser(true); }} />
+                            callback={onLogout}
+                            redHover={true} />
                     </div>
-                </motion.div>
-            </motion.div>
-
-            <motion.div
-                transition={{
-                    duration: .55,
-                    repeatDelay: 0,
-                }}
-                animate={{ display: (isOpenUser) ? "block" : "none" }}
-                className={styles.containerModalMaster}>
-
-                <motion.div
-                    onClick={toggleStateUser}
-                    transition={{
-                        duration: .3,
-                        repeatDelay: 0,
-                    }}
-                    animate={{ opacity: (isOpenUser) ? .5 : 0 }}
-                    className={styles.containerBackground} />
-
-                <motion.div
-                    transition={{
-                        duration: .5,
-                        repeatDelay: 0,
-                        ease: 'easeInOut'
-                    }}
-                    animate={{ right: (isOpenUser) ? 0 : -250, opacity: (isOpenUser) ? 1 : 0 }}
-                    className={styles.containerContent}>
-                    <motion.h2
-                        transition={{
-                            duration: .3,
-                            delay: (isOpenUser) ? .1 : 0,
-                            repeatDelay: 0,
-                            ease: 'easeInOut'
-                        }}
-                        animate={{ translateX: (isOpenUser) ? 0 : 150, opacity: (isOpenUser) ? 1 : 0 }}
-                        className={styles.titleContent}>
-                        Trocar de usuário
-                    </motion.h2>
-
-                    <div className={styles.containerTextContent}>
-                        <div className={styles.containerContentUser}>
-                            <div className={styles.userIconContainer}>
-                                <Icon.User className={styles.iconImage} />
-                            </div>
-                            <p className={styles.userName}>Fernanda</p>
-                        </div>
-
-                        <div className={styles.containerContentUser}>
-                            <div className={styles.userIconContainer}>
-                                <Icon.User className={styles.iconImage} />
-                            </div>
-                            <p className={styles.userName}>Beatriz</p>
-                        </div>
-
-                        <div className={styles.containerContentUser}>
-                            <div className={styles.userIconContainer}>
-                                <Icon.User className={styles.iconImage} />
-                            </div>
-                            <p className={styles.userName}>Vinícius</p>
-                        </div>
-
-                        <div className={styles.containerContentUser}>
-                            <div className={styles.userIconContainer}>
-                                <Icon.User className={styles.iconImage} />
-                            </div>
-                            <p className={styles.userName}>Inglez</p>
-                        </div>
-                    </div>
-
-                    <SmallButton text="SAIR" style={{alignSelf: "flex-end"}} callback={() => router.replace("/login")}/>
                 </motion.div>
             </motion.div>
         </>
     );
 }
 
-function PTest({ text, callback = () => { }, index, isOpen }) {
+function AnimateOption({ text, callback = () => { }, index, isOpen, redHover = false }) {
     const [hover, setHover] = useState(false);
 
     return (
@@ -204,12 +140,13 @@ function PTest({ text, callback = () => { }, index, isOpen }) {
             <motion.p
                 transition={{
                     duration: .3,
-                    delay: (isOpen) ? (.12 + index * .15) : (.1 + index * .05),
+                    //delay: (isOpen) ? (.12 + index * .15) : (.1 + index * .05),
+                    delay: 0,
                     repeatDelay: 0,
                     ease: 'easeInOut'
                 }}
                 onClick={callback}
-                animate={{ translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0 }}>
+                animate={{ translateX: (isOpen) ? 0 : 150, opacity: (isOpen) ? 1 : 0, color: (hover && redHover) ? "var(--valuered)" : "var(--white)" }}>
                 {text}
             </motion.p>
 
@@ -220,7 +157,7 @@ function PTest({ text, callback = () => { }, index, isOpen }) {
                     repeatDelay: 0,
                     ease: 'easeOut'
                 }}
-                animate={{ width: (hover) ? "100%" : 0 }} />
+                animate={{ width: (hover) ? "100%" : 0, backgroundColor: (hover && redHover) ? "var(--valuered)" : "var(--white)" }} />
         </motion.div>
     );
 }

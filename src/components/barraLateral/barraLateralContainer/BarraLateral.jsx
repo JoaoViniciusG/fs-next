@@ -3,24 +3,30 @@
 import BarraLateralModule from '../barraLateralModule/BarraLateralModule';
 import styles from './barraLateral.module.css'
 import {
-    useState,
-    useContext
+    useEffect,
+    useState
 } from 'react';
-
-import { AuthContext } from '@/context/auth';
 
 
 export default function BarraLateral() {
-    const context = useContext(AuthContext);
     const [currentOpened, setCurrentOpened] = useState('');
+    const [permissions, setPermissions] = useState(null);
+
+    useEffect(() => {
+        let storageConfig = localStorage.getItem('sideBarConfig');
+
+        if(storageConfig != null) {
+            setPermissions(JSON.parse(storageConfig));
+        }
+    }, [])
 
     return (
         <div className={styles.containerMaster}>
-            {context.permissionJson.filter(m => m.isVisible).map((module)=> {
+            {(permissions != null && permissions.length > 0) ? permissions.filter(m => m.isVisible).map((module)=> {
                 return (
                     <BarraLateralModule key={module.id} name={module.description} options={module.permissions} opened={currentOpened} setOpened={setCurrentOpened}/>
                 );
-            })}
+            }) : null}
         </div>
     );
 }

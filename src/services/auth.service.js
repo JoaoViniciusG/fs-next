@@ -31,3 +31,13 @@ export const verifyAsync = async () => {
     return false
   }
 };
+
+export const logoutAsync = async () => {
+  try {  
+    return await instance.post("/auth/logout", null, {withCredentials: true});
+  }
+  catch (error) {
+    if (error.response) console.log(error);
+    return false
+  }
+};

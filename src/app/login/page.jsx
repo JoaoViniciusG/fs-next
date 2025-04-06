@@ -8,33 +8,28 @@ import {
   useContext
 } from 'react';
 
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 
 import ShineButton from '@/components/buttons/shineButton/shineButton';
 import InputLogin from '@/components/inputs/inputLogin/inputLogin';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
-import CheckBox from '@/components/inputs/checkbox/checkbox';
-
 import { AuthContext } from '@/context/auth';
 
 export default function LoginPage() {
+  const searchParams = useSearchParams();
   const authContextInstance = useContext(AuthContext);
   const router = useRouter();
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("");
 
   const submitFunction = async () => {
-    if(await authContextInstance.login(user, password)) {
-      router.replace("/interno")
-    }
+    await authContextInstance.login(user, password)
   };
 
   useEffect(() => {
     const verifyFunc = async () => {
-      if(await authContextInstance.verify()) {
-        router.replace("/interno")
-      }
+      await authContextInstance.verify();
     }
     verifyFunc();
   }, []);

@@ -36,7 +36,7 @@ export default function PageDadosEmpresa() {
         </BorderContainer>
 
         <div className={styles.baixo}>
-          <Link href='/interno/conta/dados_empresa_confirmar'>
+          <Link href='/interno/conta/dados-empresa-confirmar'>
             <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)"></StandardButton>
           </Link>
 

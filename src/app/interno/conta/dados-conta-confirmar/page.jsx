@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
 import InputLabel from '@/components/inputs/inputLabel/inputLabel'; 
 import Image from 'next/image'; 
-import styles from './page.module.css'; 
+import styles from './page.module.css'
 import BorderContainer from '@/components/containers/borderContainer/page';
-import StandardButton from "@/components/buttons/standardButton/standardButton";
+import StandardButton from '@/components/buttons/standardButton/standardButton';
 import AddressOption from '@/components/containers/endereco/addressOption';
 import Link from 'next/link';
 import ActionModal from '@/components/modals/actionModal/actionModal';
+import AlertModal from '@/components/modals/alertModal/alertModal';
+import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 
 export default function pageDadosConta(){
   const [nome, setNome] = useState('Nome');
@@ -20,16 +22,21 @@ export default function pageDadosConta(){
   const [telefone, setTelefone] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
 
-   const[modalOpen, setModalOpen] = useState(false)
+  const[modalOpenSair, setModalOpenSair] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+      
+        const handleConfirmClick = () => {
+          setModalOpen(true)
+        }
+
+        const handleConfirmClickSair=()=>{
+          setModalOpenSair(true);
+        }
     
-      const handleConfirmClick = () => {
-        setModalOpen(true);
-      }
-  
   
   return (
-      <>
-        <BasicScreen>
+        <>
+          <BasicScreen>
             <BorderContainer title="Dados da conta">
                 <div className={styles.containerr}>
                         <div className={styles.perfil}>
@@ -49,7 +56,6 @@ export default function pageDadosConta(){
                         value={nome} 
                         setValue={setNome} 
                         className={styles.inputDadosPessoais} 
-                        readonly={true} 
                     />
                     <InputLabel 
                         label="Senha" 
@@ -64,8 +70,13 @@ export default function pageDadosConta(){
                         setValue={setEmail} 
                         type="email" 
                         className={styles.inputDadosPessoais} 
-                        readonly={true} 
                     />
+                    <div className={styles.alterarSenha}>
+                      <Link href= "/interno/conta/trocar-senha">
+                          <p>Alterar senha</p>
+                      </Link>
+                        
+                    </div>
                 </div>
           </div>
             </BorderContainer>
@@ -77,14 +88,14 @@ export default function pageDadosConta(){
                 value={cpf} 
                 setValue={setCpf} 
                 className={styles.inputDadosPessoais} 
-                readonly={true}
+                 
               />
               <InputLabel 
                 label="Telefone" 
                 value={telefone} 
                 setValue={setTelefone} 
                 className={styles.inputDadosPessoais} 
-                readonly={true}
+                 
               />
               <InputLabel 
                 label="Data de Nascimento" 
@@ -92,7 +103,7 @@ export default function pageDadosConta(){
                 setValue={setDataNascimento} 
                 type="date" 
                 className={styles.inputDadosPessoais} 
-                readonly={true} 
+                
               />
 
               <div className={styles.sexo}>
@@ -120,42 +131,50 @@ export default function pageDadosConta(){
             </BorderContainer>
 
             <BorderContainer title="Endereço">
+                    <div className={styles.divEnderecos}>
                       
-              <div className={styles.enderocos}>
-                <AddressOption
-                      logradouro="Av.Beira Rio" 
-                      bairro="Centro" 
-                      cidade="Vilhena" 
-                      UF="Ro"
-                      >  
-                    </AddressOption>
+                      <AddAddressButton />
+                      <AddressOption 
+                          logradouro="Av.beira Rio"
+                          bairro="Centro" 
+                          cidade="Vilhena"
+                          UF="Ro">
+                      </AddressOption>
+                    </div>
                     
-              </div>
-                  
             </BorderContainer>
           
-            <div className={styles.baixo}>
-              <Link href='/interno/conta/dados_conta_confirmar'>
-                    <StandardButton text="ALTERAR" hoverColor="var(--ligth-aquamarine)" />
-                </Link>
-                <span className={styles.sair} onClick={handleConfirmClick}>Sair</span>
-            </div>
+          <div className={styles.baixo}>
+            <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick}></StandardButton>
+            <div className={styles.sair}>
+              <span onClick={handleConfirmClickSair}>Sair</span>
+            </div> 
+          </div>
+          
         </BasicScreen>
         <ActionModal
-                title="Aviso"
-                text="Tem certeza que deseja sair da conta? "
-                bsIcon="bi bi-exclamation-triangle"
-                isOpen={modalOpen}
-                setIsOpen={setModalOpen}
-                textBtn1="CANCELAR"
-                textBtn2="CONFIRMAR"
-                callbackB1={()=>console.log("CANCELOU")}
-                callbackB2={()=> console.log("CONFIRMOU")}
-                
-             />
+             title="Aviso"
+              text="Tem certeza que deseja sair da conta? "
+              bsIcon="bi bi-exclamation-triangle"
+              isOpen={modalOpenSair}
+             setIsOpen={setModalOpenSair}
+              textBtn1="CANCELAR"
+              textBtn2="CONFIRMAR"
+              callbackB1={()=>console.log("CANCELOU")}
+             callbackB2={()=> console.log("CONFIRMOU")}
+                        
+         />
+
+         <AlertModal
+            title="Atualizado"
+            text="Atualização realizada com sucesso! "
+            bsIcon="bi-check2-circle"
+            isOpen={modalOpen}
+            setIsOpen={setModalOpen}
+         />
+
+        
+        
       </>
   );
 };
-
-
-

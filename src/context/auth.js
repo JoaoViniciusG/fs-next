@@ -5,7 +5,8 @@ import {
     useEffect,
     useState
 } from 'react';
-import { loginAsync, verifyAsync } from '@/services/auth.service';
+import { loginAsync, logoutAsync, verifyAsync } from '@/services/auth.service';
+import { redirect } from 'next/navigation';
 
 export const AuthContext = createContext();
 
@@ -18,7 +19,6 @@ export default function AuthProvider({ children }) {
     const [verified, setVerified] = useState(false);
 
     const verify = async () => {
-        console.log("URL_BASE: " + process.env.BASE_URL)
         if(verified) return isAuth;
         setVerified(true);
 
@@ -29,16 +29,16 @@ export default function AuthProvider({ children }) {
             setUser({});
             setIsError(false);
             setErrorMessage("");
-            setPermissionJson({});
+            localStorage.removeItem('sideBarConfig');
             return false;
         };
 
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setPermissionJson(response.data.payload.permissions);
         setUser(response.data.payload.user);
-        return true;
+        localStorage.setItem('sideBarConfig', JSON.stringify(response.data.payload.permissions));
+        redirect('/interno');
     }
 
     const login = async (user, password) => {
@@ -50,16 +50,27 @@ export default function AuthProvider({ children }) {
             setUser({});
             setIsError(true);
             setErrorMessage("");
-            setPermissionJson({});
+            localStorage.removeItem('sideBarConfig');
             return false;
         }
 
         setIsAuth(true);
         setIsError(false);
         setErrorMessage("");
-        setPermissionJson(response.data.payload.permissions);
+        localStorage.setItem('sideBarConfig', JSON.stringify(response.data.payload.permissions));
         setUser(response.data.payload.user);
-        return true;
+        redirect('/interno');
+    }
+
+    const logout = async () => {
+        const response = await logoutAsync();
+
+        setIsAuth(false);
+        setUser({});
+        setIsError(true);
+        setErrorMessage("");
+        localStorage.removeItem('sideBarConfig');
+        redirect('/login');
     }
 
     const values = {
@@ -67,7 +78,8 @@ export default function AuthProvider({ children }) {
         isAuth: isAuth,
         user: user,
         login: login,
-        verify: verify
+        verify: verify,
+        logout: logout
     };
 
     return (
