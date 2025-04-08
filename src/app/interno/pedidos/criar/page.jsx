@@ -150,13 +150,11 @@ export default function PageCriarPedidos() {
         </BorderContainer>
         
         <TotalSummary/>
-        <div className={styles.baixo}>
-          <div className={styles.divTagBottom}>
-            <p>Código do pedido:</p>
-            <span>N° 000</span>
-          </div>
-          <StandardButton text="CRIAR PEDIDO" hoverColor="var(--cyan)" callback={handleConfirmClick} />
-        </div>
+        
+        <Footer
+        buttons={[
+          { text: "CRIAR PEDIDO", hoverColor:"var(--cyan)", callback: handleConfirmClick },
+        ]}/>
 
       </BasicScreen>
 

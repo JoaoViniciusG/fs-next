@@ -13,6 +13,7 @@ import BuscarClienteModal from "@/components/bigModals/buscarClienteModal/page";
 import AdicionarProdutoModal from "@/components/bigModals/addProdutoModal/page";
 import ExcluirProduto from "@/components/bigModals/excluirProdutoModal/page";
 import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
+import Footer from "@/components/componentPedidos/footerPedidos/footer";
 
 export default function PageAlterarPedidos() {
 
@@ -83,8 +84,6 @@ export default function PageAlterarPedidos() {
     }
 
     
-  
-
     
     return (
       <>
@@ -206,21 +205,12 @@ export default function PageAlterarPedidos() {
               </div>
         </BorderContainer> */}
         <TotalSummary/>
-
-        
-
-          <div className={styles.baixo}>
-                <div className={styles.divTagBottom}>
-                          <p>Código do pedido:</p>
-
-                          <span>N° 000</span>
-                      </div>
-                <div className={styles.buttons}>
-                    <StandardButton callback={handleCancel} text="CANCELAR" hoverColor="var(--darkred)"></StandardButton>
-                    <StandardButton callback={handleAlterar } text="CONFIRMAR" hoverColor="var(--cyan)"></StandardButton>
-                </div>
-                
-            </div>
+          <Footer
+          buttons={[
+            { callback: handleCancel, text: "CANCELAR", hoverColor: "var(--darkred)" },
+            { callback: handleAlterar, text: "CONFIRMAR", hoverColor: "var(--cyan)" }
+          ]}
+        />
 
       </BasicScreen>
 
