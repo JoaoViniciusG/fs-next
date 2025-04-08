@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify, importSPKI } from 'jose';
 
 export async function middleware(request: NextRequest) {
-  return NextResponse.next();
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
   let tokenIsValid = null;
