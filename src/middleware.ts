@@ -8,6 +8,7 @@ export async function middleware(request: NextRequest) {
   let tokenIsValid = null;
   let isAdmin: any = false;
   let permissions: any = [];
+  
   for(let cookie of request.cookies.getAll()) {
     console.log(cookie);
   }
