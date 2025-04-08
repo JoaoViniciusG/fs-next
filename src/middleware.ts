@@ -34,6 +34,8 @@ export async function middleware(request: NextRequest) {
     tokenIsValid = false;
   }
 
+  console.log(isAdmin, isAuthPage, tokenIsValid, isProtectedRoute)
+
   if (!tokenIsValid && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
