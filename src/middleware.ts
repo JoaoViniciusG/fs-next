@@ -37,19 +37,22 @@ export async function middleware(request: NextRequest) {
   console.log(isAdmin, isAuthPage, tokenIsValid, isProtectedRoute)
 
   if (!tokenIsValid && isProtectedRoute) {
+    console.log("Redirect to login")
     return NextResponse.redirect(new URL('/login', request.url));
   }
-
+  
   if (tokenIsValid && isAuthPage) {
+    console.log("Redirect to interno")
     return NextResponse.redirect(new URL('/interno', request.url));
   }
-
+  
   const cleanPath = pathname.replace('/interno', '');
 
   if (!isAdmin &&
       !pathname.includes("/interno/conta/") &&
       isProtectedRoute && 
       !permissions.includes(cleanPath)) {
+    console.log("Acesso negado")
     return NextResponse.redirect(new URL('/forbidden', request.url));
   }
 
