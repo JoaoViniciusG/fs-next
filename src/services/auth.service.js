@@ -24,6 +24,7 @@ export const loginAsync = async (user, password) => {
 
 export const logoutAsync = async () => {
   try {  
+    console.log("Logout!");
     return await instance.post("/auth/logout", null, {withCredentials: true});
   }
   catch (error) {
