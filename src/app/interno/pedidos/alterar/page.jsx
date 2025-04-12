@@ -211,7 +211,6 @@ export default function PageAlterarPedidos() {
             { callback: handleAlterar, text: "CONFIRMAR", hoverColor: "var(--cyan)" }
           ]}
         />
-
       </BasicScreen>
 
       
