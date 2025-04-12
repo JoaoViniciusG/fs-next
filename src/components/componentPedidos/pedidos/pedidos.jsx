@@ -71,7 +71,7 @@ export default function PedidoCard({
 
       <div className={styles.buttons}>
         {botoes.includes("ALTERAR") && (
-          <Link href={`/interno/pedidos/alterar_pedido`} passHref>
+          <Link href={`/interno/pedidos/alterar`} passHref>
             <ShineButton text="ALTERAR" />
           </Link>
         )}
@@ -81,7 +81,7 @@ export default function PedidoCard({
         )
         }
         {botoes.includes("VER MAIS") && (
-          <Link href={`/interno/pedidos/infos_pedido`} passHref>
+          <Link href={`/interno/pedidos/vizualizar`} passHref>
             <ShineButton text="VER MAIS" />
           </Link>
         )}
