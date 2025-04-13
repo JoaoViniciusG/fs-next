@@ -9,16 +9,17 @@ export async function middleware(request: NextRequest) {
   let permissions: any = [];
 
   const isAuthPage = pathname === '/login';
-  const isProtectedRoute = pathname.startsWith('/interno/');
+  const isProtectedRoute = pathname.startsWith('/interno');
 
+  console.log(pathname);
   try {
     const publicKeyPEM = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n');
 
     if (!publicKeyPEM) throw new Error('PUBLIC_KEY não definida');
-
+    console.log("KEY: " + publicKeyPEM)
     // Converte para um CryptoKey
     const publicKey = await importSPKI(publicKeyPEM, 'RS256');
-
+    console.log("KEY convertida: " + publicKey);
     const { payload } = await jwtVerify(token!, publicKey, {
       algorithms: ['RS256'],
     });
@@ -27,12 +28,8 @@ export async function middleware(request: NextRequest) {
     permissions = payload.permissions || [];
     isAdmin = payload.isAdmin
   } catch (ex) {
-    console.error("Error: " + ex);
     tokenIsValid = false;
   }
-
-  console.log(tokenIsValid, isAuthPage, pathname)
-  console.log(token);
 
   if (!tokenIsValid && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url));
