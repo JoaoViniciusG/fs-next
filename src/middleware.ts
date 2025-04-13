@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 
   console.log(pathname);
   try {
-    const publicKeyPEM = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n');
+    const publicKeyPEM = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n').replace(/^"|"$/g, '');
 
     if (!publicKeyPEM) throw new Error('PUBLIC_KEY não definida');
     console.log("KEY: " + publicKeyPEM)
@@ -28,6 +28,7 @@ export async function middleware(request: NextRequest) {
     permissions = payload.permissions || [];
     isAdmin = payload.isAdmin
   } catch (ex) {
+    console.error("Error: " + ex);
     tokenIsValid = false;
   }
 
