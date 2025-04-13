@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
   console.log(pathname);
   try {
     console.log("KEY: " + process.env.PUBLIC_KEY)
-    const publicKeyPEM = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n').replace('\\', '');
+    const publicKeyPEM = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n').replace(/\\\\/g, '\\');
 
     if (!publicKeyPEM) throw new Error('PUBLIC_KEY não definida');
     console.log("KEY: " + publicKeyPEM)
