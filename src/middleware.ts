@@ -27,11 +27,11 @@ export async function middleware(request: NextRequest) {
     permissions = payload.permissions || [];
     isAdmin = payload.isAdmin
   } catch (ex) {
-    console.error(ex);
+    console.error("Error: " + ex);
     tokenIsValid = false;
   }
 
-  console.log(tokenIsValid, pathname)
+  console.log(tokenIsValid, isAuthPage, pathname)
   console.log(token);
 
   if (!tokenIsValid && isProtectedRoute) {
