@@ -7,10 +7,6 @@ export async function middleware(request: NextRequest) {
   let tokenIsValid = null;
   let isAdmin: any = false;
   let permissions: any = [];
-  
-  for(let cookie of request.cookies.getAll()) {
-    console.log(cookie);
-  }
 
   const isAuthPage = pathname === '/login';
   const isProtectedRoute = pathname.startsWith('/interno/');
@@ -30,19 +26,19 @@ export async function middleware(request: NextRequest) {
     tokenIsValid = true;
     permissions = payload.permissions || [];
     isAdmin = payload.isAdmin
-  } catch {
+  } catch (ex) {
+    console.error(ex);
     tokenIsValid = false;
   }
 
-  console.log(isAdmin, isAuthPage, tokenIsValid, isProtectedRoute)
+  console.log(tokenIsValid, pathname)
+  console.log(token);
 
   if (!tokenIsValid && isProtectedRoute) {
-    console.log("Redirect to login")
     return NextResponse.redirect(new URL('/login', request.url));
   }
   
   if (tokenIsValid && isAuthPage) {
-    console.log("Redirect to interno")
     return NextResponse.redirect(new URL('/interno', request.url));
   }
   
