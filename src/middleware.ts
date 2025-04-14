@@ -55,10 +55,10 @@ export async function middleware(request: NextRequest) {
   const cleanPath = pathname.replace('/interno', '');
 
   if (!isAdmin &&
+      pathname != "/interno" &&
       !pathname.includes("/interno/conta/") &&
       isProtectedRoute && 
       !permissions.includes(cleanPath)) {
-    console.log("Acesso negado")
     return NextResponse.redirect(new URL('/forbidden', request.url));
   }
 
