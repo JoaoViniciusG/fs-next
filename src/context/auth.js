@@ -2,7 +2,6 @@
 
 import {
     createContext,
-    useEffect,
     useState
 } from 'react';
 import { loginAsync, logoutAsync } from '@/services/auth.service';
@@ -20,7 +19,6 @@ export default function AuthProvider({ children }) {
 
     const login = async (user, password) => {
         const response = await loginAsync(user, password);
-        console.log(response)
 
         if(response == false || response.status != 200) {
             setIsAuth(false);

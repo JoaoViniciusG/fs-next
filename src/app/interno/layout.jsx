@@ -2,17 +2,20 @@ import styles from "./layout.module.css";
 
 import Header from "@/components/header/header";
 import BarraLateral from "@/components/barraLateral/barraLateralContainer/BarraLateral";
+import PedidosProvider from "@/context/pedidos";
 
 export default function InternoLayout({ children }) {
   return (
-    <div className={styles.containerMaster}>
-      <Header />
+    <PedidosProvider>
+      <div className={styles.containerMaster}>
+        <Header />
 
-      <BarraLateral />
+        <BarraLateral />
 
-      <main className={styles.containerPagesMain}>
-        {children}
-      </main>
-    </div>
+        <main className={styles.containerPagesMain}>
+          {children}
+        </main>
+      </div>
+    </PedidosProvider>
   )
 }
