@@ -28,14 +28,9 @@ export async function middleware(request: NextRequest) {
 
   console.log(pathname);
   try {
-    //console.log("KEY: " + process.env.PUBLIC_KEY)
-    //const publicKeyPEM = Buffer.from(process.env.PUBLIC_KEY_BASE64!, 'base64').toString('utf-8');
-
-    if (!publicKeyPEM) throw new Error('PUBLIC_KEY não definida');
-    console.log("KEY: " + publicKeyPEM)
     // Converte para um CryptoKey
     const publicKey = await importSPKI(publicKeyPEM, 'RS256');
-    console.log("KEY convertida: " + publicKey);
+    
     const { payload } = await jwtVerify(token!, publicKey, {
       algorithms: ['RS256'],
     });
@@ -48,6 +43,7 @@ export async function middleware(request: NextRequest) {
     tokenIsValid = false;
   }
 
+  console.log(token, tokenIsValid, isAdmin);
   if (!tokenIsValid && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
