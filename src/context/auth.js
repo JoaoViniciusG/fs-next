@@ -20,7 +20,6 @@ export default function AuthProvider({ children }) {
 
     const login = async (user, password) => {
         const response = await loginAsync(user, password);
-        console.log(response)
 
         if(response == false || response.status != 200) {
             setIsAuth(false);
@@ -40,7 +39,6 @@ export default function AuthProvider({ children }) {
     }
 
     const logout = async () => {
-        console.log("Logout!");
         await logoutAsync();
 
         setIsAuth(false);

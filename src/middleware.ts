@@ -26,7 +26,6 @@ export async function middleware(request: NextRequest) {
   const isAuthPage = pathname === '/login';
   const isProtectedRoute = pathname.startsWith('/interno');
 
-  console.log(pathname);
   try {
     // Converte para um CryptoKey
     const publicKey = await importSPKI(publicKeyPEM, 'RS256');
@@ -42,8 +41,7 @@ export async function middleware(request: NextRequest) {
     console.error("Error: " + ex);
     tokenIsValid = false;
   }
-
-  console.log(token, tokenIsValid, isAdmin);
+  
   if (!tokenIsValid && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
