@@ -1,19 +1,32 @@
+"use client"
+
+import { getPedidos } from '@/services/pedidos.service';
 import {
-    useState,
-    useEffect,
-    createContext
+    createContext,
+    useState
 } from 'react';
 
 export const PedidosContext = createContext();
 
 export default function PedidosProvider({ children }) {
-    const [listaPedidos, setListaPedidos] = useState([]);
+    const [pedidos, setPedidos] = useState([]);
 
+    const receberPedidos = async () => {
+        const response = await getPedidos();
+
+        if(response == false || response.status != 200) {
+            console.log("Deu erro, corrija essa merda!");
+            return;
+        }
+
+        setPedidos(response.data.payload);
+    };
 
     const values = {
-        listaPedidos: listaPedidos
-    }
-    
+        pedidos: pedidos,
+        receberPedidos: receberPedidos
+    };
+
     return (
         <PedidosContext.Provider value={values}>
             { children }
