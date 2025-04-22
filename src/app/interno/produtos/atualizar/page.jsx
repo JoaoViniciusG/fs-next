@@ -10,6 +10,7 @@ import AlertModal from '@/components/modals/alertModal/alertModal';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import MarcaSelection from '@/components/popSelection/marcaSelection/marcaSelection';
 
 export default function PageAtualizarProduto() {
     const router = useRouter();
@@ -17,6 +18,7 @@ export default function PageAtualizarProduto() {
     const [modalPerguntaCancelar, setModalPerguntaCancelar] = useState(false);
     const [modalCancelar, setModalCancelar] = useState(false);
     const [modalConfimar, setModalConfimar] = useState(false);
+    const [modalAbrirMarca, setModalAbrirMarca] = useState(false);
 
     const [valueNome, setValueNome] = useState("Monitor 15”");
     const [valueMarca, setValueMarca] = useState("HP");
@@ -31,7 +33,7 @@ export default function PageAtualizarProduto() {
                         <div className={styles.container_content_dados}>
                             <div className={styles.contaner_box}>
                                 <InputLabel label="Nome do produto" type="text" value={valueNome} setValue={setValueNome} placeholder="Nome do produto" required={true} readonly={false} width='60vh' />
-                                <InputLabel label="Marca" type="text" value={valueMarca} setValue={setValueMarca} placeholder="Selecione a marca" required={true} readonly={false} width='60vh' />
+                                <StandardButton text="TEST" hoverColor="var(--darkred)" callback={() => {setModalAbrirMarca(true)}}/>
                             </div>
                             <div className={styles.contaner_box}>
                                 <InputLabel label="Valor unitário" type="number" value={valuePreco} setValue={setValuePreco} placeholder="R$ XXX,XX" required={true} readonly={false} width='60vh' />
@@ -71,6 +73,20 @@ export default function PageAtualizarProduto() {
                 isOpen={modalConfimar}
                 setIsOpen={setModalConfimar}
                 callback={() => router.replace("/interno/produtos/consultar")} />
+
+            <MarcaSelection 
+                title="Consultar produtos:"
+                textInput="Buscar a marca:"
+                textPlaceholder="Pesquise as marcas e suas informações."
+                textBtnBuscar="Buscar"
+                titleTable="Marcas:"
+                colun1="ID Marca"
+                colun2="Fornecedor"
+                colun3="Marca"
+                colun4="CNPJ"
+                isOpen={modalAbrirMarca}
+                setIsOpen={setModalAbrirMarca}
+                rota={router.replace("/interno/produtos/consultar")} />
         </>
     );
 }

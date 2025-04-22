@@ -41,3 +41,70 @@
 .contener_close_pop:hover > .icon_fechar {
     color: var(--ligth-aquamarine);
 }
+
+.content-table {
+    overflow-x: auto;
+}
+
+.table_marca {
+    position: relative;
+    background-color:(--light-teal);
+    width: 100%;
+    padding-bottom: 50px;
+    border-radius: 5px  5px 15px 15px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th, td {
+    text-align: center;
+    color: var(--white);
+}
+
+.table_header {
+    background-color: var(--light-teal);
+}
+
+.table_header > tr > th {
+    font-size: 19px;
+    font-weight: 500;
+    padding: 5px;
+}
+
+th:nth-child(1), td:nth-child(1) {
+    width: 130px;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 90px;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 300px;
+}
+
+.content-dados-get > tr {
+    background-color: var(--ligth-turquoise);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.content-dados-get td{
+    font-size: 17px;
+    font-weight: 400;
+    padding: 12px;
+    border-left: 1px solid var(--white);
+    transition: 0.3s;
+}
+
+.content-dados-get td:first-child {
+    border-left: none;
+}
+
+.content-dados-get > tr:hover {
+    background-color: var(--darkgreen);
+}
+
+.content-dados-get > tr:hover > td {
+    border-left: none;
+}
