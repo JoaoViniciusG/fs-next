@@ -7,10 +7,11 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
-
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import MarcaSelection from '@/components/popSelection/marcaSelection/marcaSelection';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 export default function PageAtualizarProduto() {
     const router = useRouter();
@@ -33,7 +34,7 @@ export default function PageAtualizarProduto() {
                         <div className={styles.container_content_dados}>
                             <div className={styles.contaner_box}>
                                 <InputLabel label="Nome do produto" type="text" value={valueNome} setValue={setValueNome} placeholder="Nome do produto" required={true} readonly={false} width='60vh' />
-                                <StandardButton text="TEST" hoverColor="var(--darkred)" callback={() => {setModalAbrirMarca(true)}}/>
+                                <InputLabel label="Marca" type="text" placeholder="Selecione a marca" required={true} readonly={true} width='60vh' onClick={() => {setModalAbrirMarca(true)}}/>
                             </div>
                             <div className={styles.contaner_box}>
                                 <InputLabel label="Valor unitário" type="number" value={valuePreco} setValue={setValuePreco} placeholder="R$ XXX,XX" required={true} readonly={false} width='60vh' />
@@ -78,15 +79,14 @@ export default function PageAtualizarProduto() {
                 title="Consultar produtos:"
                 textInput="Buscar a marca:"
                 textPlaceholder="Pesquise as marcas e suas informações."
-                textBtnBuscar="Buscar"
+                textBtnBuscar="BUSCAR"
                 titleTable="Marcas:"
                 colun1="ID Marca"
                 colun2="Fornecedor"
                 colun3="Marca"
                 colun4="CNPJ"
                 isOpen={modalAbrirMarca}
-                setIsOpen={setModalAbrirMarca}
-                rota={router.replace("/interno/produtos/consultar")} />
+                setIsOpen={setModalAbrirMarca}/>
         </>
     );
 }

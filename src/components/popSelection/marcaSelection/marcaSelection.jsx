@@ -19,14 +19,13 @@ export default function MarcaSelection({
     colun4,
     isOpen = true, 
     width = "max-content",
-    rota,
     setIsOpen = () => {}, 
     }) {
     return (
         <div style={{display: (isOpen) ? "flex" : "none" }} className={styles.backgroundContainer}>
             <div style={{width: width}} className={styles.content_pop_consultar}>
                 <div className={styles.contener_close_pop}>
-                    <Icon.Closer style={{display: (isOpen) ? "flex" : "none" }} className={styles.icon_fechar}/>
+                    <Icon.X onClick = { () => {setIsOpen(false)}} className={styles.icon_fechar}/>
                 </div>
                 <BorderContainer title={title}>
                     <div className={styles.div_contener_main}>
@@ -37,7 +36,7 @@ export default function MarcaSelection({
                             </div>
                         </div>
                         <div className={styles.div_content_busca}>
-                            <InputLabel label={textInputTitle} type="search" placeholder={textPlaceholder} required={false} readonly={false} width='100vh' />
+                            <InputLabel label={textInputTitle} type="search" placeholder={textPlaceholder} required={false} readonly={false} width='70vh' />
                             <StandardButton text={textBtnBuscar} hoverColor="var(--cyan)" />
                         </div>
                     </div>
@@ -54,7 +53,7 @@ export default function MarcaSelection({
                                 </tr>
                             </thead>
                             <tbody className={styles.table_body}>
-                                <tr onClick={()=>{rota}}>
+                                <tr onClick={()=>{setIsOpen(false);}}>
                                     <td>00001</td>
                                     <td>Fornecedor 1</td>
                                     <td>HP</td>
