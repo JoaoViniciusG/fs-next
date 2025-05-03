@@ -40,7 +40,6 @@ export default function AuthProvider({ children }) {
     }
 
     const logout = async () => {
-        console.log("Logout!");
         await logoutAsync();
 
         setIsAuth(false);

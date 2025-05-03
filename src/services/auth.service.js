@@ -17,18 +17,17 @@ export const loginAsync = async (email, senha) => {
     return response;
   }
   catch (error) {
-    if (error.response) console.log(error);
+    if (error.response) console.error(error);
     return false
   }
 };
 
 export const logoutAsync = async () => {
-  try {  
-    console.log("Logout!");
+  try {
     return await instance.post("/auth/logout", null, {withCredentials: true});
   }
   catch (error) {
-    if (error.response) console.log(error);
+    if (error.response) console.error(error);
     return false
   }
 };
