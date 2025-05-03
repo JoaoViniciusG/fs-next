@@ -17,11 +17,11 @@ import { AuthContext } from '@/context/auth';
 export default function LoginPage() {
   const authContextInstance = useContext(AuthContext);
   const router = useRouter();
-  const [user, setUser] = useState("")
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [senha, setSenha] = useState("");
 
   const submitFunction = async () => {
-    await authContextInstance.login(user, password)
+    await authContextInstance.login(email, senha)
   };
 
   return (
@@ -50,8 +50,8 @@ export default function LoginPage() {
 
         <div className={styles.containerContent}>
           <div className={styles.inputsContainer}>
-            <InputLogin color="var(--white)" label="Usuário:" placeholder="example@gmail.com" value={user} setValue={setUser} />
-            <InputLogin color="var(--white)" label="Senha:" placeholder="senha aqui..." value={password} setValue={setPassword} isPassword={true} />
+            <InputLogin color="var(--white)" label="Usuário:" placeholder="example@gmail.com" value={email} setValue={setEmail} />
+            <InputLogin color="var(--white)" label="Senha:" placeholder="senha aqui..." value={senha} setValue={setSenha} isPassword={true} />
           </div>
         </div>
 

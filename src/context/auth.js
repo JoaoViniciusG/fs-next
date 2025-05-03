@@ -15,16 +15,16 @@ export default function AuthProvider({ children }) {
     const [isError, setIsError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isAuth, setIsAuth] = useState(false);
-    const [user, setUser] = useState({});
+    const [email, setEmail] = useState({});
     const [verified, setVerified] = useState(false);
 
-    const login = async (user, password) => {
-        const response = await loginAsync(user, password);
+    const login = async (email, senha) => {
+        const response = await loginAsync(email, senha);
         console.log(response)
 
         if(response == false || response.status != 200) {
             setIsAuth(false);
-            setUser({});
+            setEmail({});
             setIsError(true);
             setErrorMessage("");
             localStorage.removeItem('sideBarConfig');
@@ -35,7 +35,7 @@ export default function AuthProvider({ children }) {
         setIsError(false);
         setErrorMessage("");
         localStorage.setItem('sideBarConfig', JSON.stringify(response.data.payload.permissions));
-        setUser(response.data.payload.user);
+        setEmail(response.data.payload.email);
         redirect('/interno');
     }
 
@@ -44,7 +44,7 @@ export default function AuthProvider({ children }) {
         await logoutAsync();
 
         setIsAuth(false);
-        setUser({});
+        setEmail({});
         setIsError(true);
         setErrorMessage("");
         localStorage.removeItem('sideBarConfig');
@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
     const values = {
         permissionJson: permissionJson,
         isAuth: isAuth,
-        user: user,
+        email: email,
         login: login,
         logout: logout
     };

@@ -5,11 +5,11 @@ const instance = axios.create({
   baseURL: process.env.BASE_URL
 })
 
-export const loginAsync = async (user, password) => {
+export const loginAsync = async (email, senha) => {
   try {
     const payload = {
-      user: user,
-      password: password
+      email: email,
+      senha: senha
     }
   
     const response = await instance.post("/auth", payload, {withCredentials: true})
