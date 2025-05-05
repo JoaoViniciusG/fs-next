@@ -9,6 +9,7 @@
 
   --black: #000000;
   --medium-black: #171717;
+  --black-transpart: #0000004d;
   --darckgray: #0B221F;
   --dark-medium-grey: #222222;
   --dark-medium-gray:#202020;
@@ -40,6 +41,7 @@
   --ligth-aquamarine: #83FEEC;
   --ultralight-aquamarine: #A1F1E5;
   --mediumturquoise: #63c7b886;
+  --ligth-turquoise: #63c7b8ad;
 
   --cyan: #63C7B8;
   --light-medium-seagreen:#23bda6;

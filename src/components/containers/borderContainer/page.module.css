@@ -1,5 +1,5 @@
 .containerMaster {
-    border: 4px solid #ddd;
+    border: 4px solid var(--white);
     width: 100%;
     border-radius: 15px;
     position: relative;

@@ -21,8 +21,8 @@ export default function Custom404() {
 
         <Image
           src="/img_status/403.png"
-          width={250}
-          height={250}
+          width={500}
+          height={500}
           alt='403 image'
         />
       </div>
