@@ -23,14 +23,14 @@
 
 .containerContent {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
   gap: 3vh
 }
 
 .containerContentText {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 1vw;
   flex-direction: column;
   font-family: "Poppins";

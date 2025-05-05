@@ -5,16 +5,23 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
 import styles from "./page.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import PedidoCard from "@/components/componentPedidos/pedidos/pedidos";
 import ExcluirPedido from "@/components/bigModals/excluirPedido/page";
 import AlertModal from "@/components/modals/alertModal/alertModal";
+import { PedidosContext } from "@/context/pedidos";
 
 
 export default function pageConsultarpedido() {
+    const context = useContext(PedidosContext);
+
     const [busca, setBusca] = useState('')
     const [modalExcluirPedidoOpen, setModalExcluirPedidoOpen] = useState(false);
     const [showAlertModal, setShowAlertModal] = useState(false);
+
+    useEffect(() => {
+        context.receberPedidos();
+    }, []);
 
     const handleExcluirPedido = () => {
         setModalExcluirPedidoOpen(false);  // Fecha o modal de exclusão
@@ -23,6 +30,9 @@ export default function pageConsultarpedido() {
     return (
         <>
             <BasicScreen pageTitle="Consultar pedidos">
+                <p>
+                    {JSON.stringify(context.pedidos)}
+                </p>
                 <BorderContainer title="Consultar pedidos">
                     <div className={styles.container}>
                         <InputLabel

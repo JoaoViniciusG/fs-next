@@ -2,7 +2,6 @@
 
 import {
     createContext,
-    useEffect,
     useState
 } from 'react';
 import { loginAsync, logoutAsync } from '@/services/auth.service';
