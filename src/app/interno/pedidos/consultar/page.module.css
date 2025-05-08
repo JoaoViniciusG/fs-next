@@ -12,3 +12,44 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
+
+.filter_dados {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+
+.button_filter {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button_filter > .filter_text {
+  font-size: 18px;
+  font-weight: 500px;
+  color: var(--white);
+}
+
+.button_filter > .icon_filter {
+  color: var(--white);
+  height: 27px;
+  width: 27px;
+  transition: 0.3s;
+}
+
+.button_filter:hover > .icon_filter{
+  color: var(--ligth-aquamarine);
+}
+
+.div_contener_main {
+  /* margin: 10px 30px 30px; */
+  width: 100%;
+
+}

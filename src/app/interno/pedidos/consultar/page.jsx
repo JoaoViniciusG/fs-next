@@ -10,6 +10,7 @@ import PedidoCard from "@/components/componentPedidos/pedidos/pedidos";
 import ExcluirPedido from "@/components/bigModals/excluirPedido/page";
 import AlertModal from "@/components/modals/alertModal/alertModal";
 import { PedidosContext } from "@/context/pedidos";
+import * as Icon from 'react-feather';
 
 
 export default function pageConsultarpedido() {
@@ -33,18 +34,28 @@ export default function pageConsultarpedido() {
                 <p>
                     {JSON.stringify(context.pedidos)}
                 </p>
+                
                 <BorderContainer title="Consultar pedidos">
-                    <div className={styles.container}>
-                        <InputLabel
-                            label="Buscar o pedido"
-                            value={busca}
-                            setValue={setBusca}
-                            width="80%"
-                            style={{ flex: 1 }}
-                        />
-                        <StandardButton text="BUSCAR PEDIDO" hoverColor="var(--cyan)" />
-                    </div>
+                    <div className={styles.div_container_main}>
+                        <div className={styles.filter_dados}>
+                                <div className={styles.button_filter}>
+                                    <p className={styles.filter_text}>Filtro: </p>
+                                    <Icon.Filter className={styles.icon_filter} />
+                                </div>
+                            </div>
 
+                        <div className={styles.container}>
+                            <InputLabel
+                                label="Buscar o pedido"
+                                value={busca}
+                                setValue={setBusca}
+                                width="80%"
+                                style={{ flex: 1 }}
+                            />
+                            <StandardButton text="BUSCAR PEDIDO" hoverColor="var(--cyan)" />
+                        </div>
+                    </div>
+                    
                 </BorderContainer>
 
                 <BorderContainer title="Pedidos:">
