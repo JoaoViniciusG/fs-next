@@ -81,7 +81,7 @@ export default function PedidoCard({
         )
         }
         {botoes.includes("VER MAIS") && (
-          <Link href={`/interno/pedidos/vizualizar`} passHref>
+          <Link href={`/interno/pedidos/visualizar`} passHref>
             <ShineButton text="VER MAIS" />
           </Link>
         )}

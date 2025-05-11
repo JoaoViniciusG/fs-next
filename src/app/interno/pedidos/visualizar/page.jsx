@@ -8,6 +8,7 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 import Link from "next/link";
+import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
 export default function PageAlterarPedidos() {
 
@@ -88,7 +89,8 @@ export default function PageAlterarPedidos() {
         </div>
       </BorderContainer>
 
-        <BorderContainer> 
+        <TotalSummary/>
+        {/* <BorderContainer> 
           <div className={styles.divContentInputTotal}>
             <div className={styles.linha}>
             <InputLabel 
@@ -123,10 +125,10 @@ export default function PageAlterarPedidos() {
                   id="input-total" 
                 />
               </div>
-        </BorderContainer>
+        </BorderContainer> */}
 
           <div className={styles.baixo}>
-                <div className={styles.divTagBottom}>
+            <div className={styles.divTagBottom}>
                           <p>Código do pedido:</p>
 
                           <span>N° 000</span>

@@ -204,6 +204,7 @@ export default function PageAlterarPedidos() {
                 />
               </div>
         </BorderContainer> */}
+        
         <TotalSummary/>
           <Footer
           buttons={[
