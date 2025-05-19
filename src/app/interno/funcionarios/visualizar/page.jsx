@@ -54,7 +54,7 @@ export default function PageInformacoesFuncionario() {
         <StandardButton text="EXCLUIR FUNCIONÁRIO" hoverColor="var(--darkred)" style={{alignSelf:"start", marginTop:30}}callback={() => {setModalPergunta(true)}} />
         <StandardButton text="PERMISSÕES" hoverColor="#63C7B8" style={{alignSelf:"start", marginTop:30, marginBottom: 20}} callback={() => router.push('/interno/permissao')} />
         </div>
-        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}} callback={() => router.push('/interno/funcionario/informacoesEditar')} />
+        <StandardButton text="ATUALIZAR" hoverColor="#63C7B8" style={{alignSelf:"end", marginTop:30}} callback={() => router.push('/interno/funcionarios/alterar')} />
       </div>
     </BasicScreen>
     <ActionModal

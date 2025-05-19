@@ -19,7 +19,7 @@ export default function PageCriarProduto() {
 
     return (
         <>
-            <BasicScreen pageTitle="Cadastrar produto">
+            <BasicScreen pageTitle="Cadastrar produto" isLoading={true}>
                 <BorderContainer title="Dados do Produto:">
                     <div className={styles.div_content_main}>
                         <div className={styles.container_content_dados}>

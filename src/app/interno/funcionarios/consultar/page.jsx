@@ -40,7 +40,7 @@ export default function PageConsultarFuncionarios() {
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr onClick={() => router.push('/interno/funcionario/informacoesFuncionario')}> 
+                            <tr onClick={() => router.push('/interno/funcionarios/visualizar')}> 
                                 <td>Beatriz Alves</td>
                                 <td>091.846.297-98</td>
                                 <td>09/10/2004</td>
