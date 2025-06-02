@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InputLabel from '../../inputs/inputLabel/inputLabel';
 import styles from './pedidos.module.css';
 import ShineButton from '../../buttons/shineButton/shineButton';
@@ -14,9 +14,7 @@ export default function PedidoCard({
   valor,
   observacao,
   statusPedido,
-  corStatus,
-  onExcluir,
-  botoes = ["ALTERAR", "VER MAIS", "EXCLUIR"], // Aqui, o padrão é exibir todos os botões
+  onExcluir
 }) {
   // Usando useState para tornar os campos editáveis
   const [nome, setNome] = useState(nomeCliente);
@@ -25,13 +23,17 @@ export default function PedidoCard({
   const [valorPedido, setValorPedido] = useState(valor);
   const [observacaoPedido, setObservacaoPedido] = useState(observacao);
 
+  const coresStatus = ["rgba(99, 181, 199, 1)", "var(--orange)", "var(--cyan)", "var(--darkbrown)", "var(--darkred)"];
+  const textosStatus = ["Pedido Criado", "Aguardando Pagamento", "Pagamento Confirmado", "Enviado", "Pedido Cancelado"];
+  const botoesStatus = [[true, true, true], [true, true, true], [false, true, false], [false, true, false], [false, false, true]]
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.title}>PEDIDO:</div>
         <div className={styles['order-number']}>Nº: {numeroPedido}</div>
-        <div className={`${styles.status} ${styles[statusPedido]}`} style={{ backgroundColor: corStatus }}>
-          {statusPedido}
+        <div className={`${styles.status}`} style={{ backgroundColor: coresStatus[statusPedido] }}>
+          {textosStatus[statusPedido]}
         </div>
       </div>
 
@@ -70,23 +72,20 @@ export default function PedidoCard({
       </div>
 
       <div className={styles.buttons}>
-        {botoes.includes("ALTERAR") && (
+        {botoesStatus[statusPedido][0] ? (
           <Link href={`/interno/pedidos/alterar`} passHref>
             <ShineButton text="ALTERAR" />
           </Link>
-        )}
+        ) : null}
         
-        {botoes.includes("EXCLUIR") && (
+        {botoesStatus[statusPedido][2] ? (
           <ShineButton text="EXCLUIR" callback={onExcluir} />
-        )
-        }
-        {botoes.includes("VER MAIS") && (
+        ) : null}
+        {botoesStatus[statusPedido][1] ? (
           <Link href={`/interno/pedidos/visualizar`} passHref>
             <ShineButton text="VER MAIS" />
           </Link>
-        )}
-
-        
+        ) : null}
       </div>
     </div>
   );

@@ -67,7 +67,7 @@ export default function pageConsultarpedido() {
                             dataEmissao="29/08/2024"
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
-                            statusPedido="Pedido Criado"
+                            statusPedido={0}
                             corStatus="rgba(99, 181, 199, 1)"
                             botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
                             onExcluir={() => setModalExcluirPedidoOpen(true)}
@@ -79,7 +79,7 @@ export default function pageConsultarpedido() {
                             dataEmissao="29/08/2024"
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
-                            statusPedido="Aguardando pagemnto"
+                            statusPedido={1}
                             corStatus="var(--orange)"
                             botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
                         />
@@ -90,7 +90,7 @@ export default function pageConsultarpedido() {
                             dataEmissao="29/08/2024"
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
-                            statusPedido="Enviado"
+                            statusPedido={3}
                             corStatus="var(--darkbrown)"
                             botoes={["VER MAIS"]}
                         />
@@ -102,7 +102,7 @@ export default function pageConsultarpedido() {
                             dataEmissao="29/08/2024"
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
-                            statusPedido="Pagamento confirmado"
+                            statusPedido={2}
                             corStatus="var(--cyan)"
                             botoes={["VER MAIS"]}
                         />
@@ -113,7 +113,7 @@ export default function pageConsultarpedido() {
                             dataEmissao="29/08/2024"
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
-                            statusPedido="Pedido cancelado"
+                            statusPedido={4}
                             corStatus="var(--darkred)"
                             botoes={["EXCLUIR"]}
 

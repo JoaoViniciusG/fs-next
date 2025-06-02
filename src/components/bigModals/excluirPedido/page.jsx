@@ -40,7 +40,7 @@ export default function ExcluirPedido({
                 dataEmissao="29/08/2024"
                 valor="R$ 667,49"
                 observacao="Requisição: N° 000153."
-                statusPedido="Pedido Criado"
+                statusPedido={0}
                 corStatus="rgba(99, 181, 199, 1)"
                 botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
               />

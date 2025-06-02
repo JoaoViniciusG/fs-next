@@ -48,8 +48,7 @@
   color: var(--ligth-aquamarine);
 }
 
-.div_contener_main {
-  /* margin: 10px 30px 30px; */
+.div_container_main {
+   margin: 10px 30px 30px; 
   width: 100%;
-
 }
