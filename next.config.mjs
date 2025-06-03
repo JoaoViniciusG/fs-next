@@ -14,7 +14,7 @@ const nextConfig = {
         destination: "/interno/endereco"
       },
       {
-        source: "/interno/endereco/visualizar",
+        source: "/interno/endereco/visualizar/[id]",
         destination: "/interno/endereco"
       }
     ]

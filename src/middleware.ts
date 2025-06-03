@@ -56,7 +56,7 @@ export async function middleware(request: NextRequest) {
       pathname != "/interno" &&
       !pathname.includes("/interno/conta/") &&
       isProtectedRoute && 
-      !permissions.includes(cleanPath)) {
+      !permissions.includes(cleanPath.split("/").slice(0,3).join("/"))) {
     return NextResponse.redirect(new URL('/forbidden', request.url));
   }
 

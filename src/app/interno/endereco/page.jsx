@@ -7,21 +7,20 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from '@/components/containers/borderContainer/page';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 
 export default function PageEnderecoCadastrar() {
+    const pathname = usePathname();
+    const params = useParams();
     const router = useRouter();
 
     const [modalQuestionDelete, setModalQuestionDelete] = useState(false);
     const [modalConfirmDelete, setModalConfirmDelete] = useState(false);
     const [modalConfirmChange, setModalConfirmChange] = useState(false);
     const [modalConfirmCreate, setModalConfirmCreate] = useState(false);
-
-
-    const pathname = usePathname();
 
     const [isReadonly, setIsReadonly] = useState("");
     const [pageTitle, setPageTitle] = useState("");
@@ -102,6 +101,8 @@ export default function PageEnderecoCadastrar() {
                 setPageTitle("Cadastrar Endereço")
                 break;
         }
+
+        console.log(params);
     }, [pathname])
 
     return (
