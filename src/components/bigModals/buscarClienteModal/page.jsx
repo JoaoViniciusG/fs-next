@@ -28,11 +28,6 @@ export default function BuscarClienteModal({
           <div className={styles.buttonGroup}>
             <SmallButton text="CONSULTAR" callback={() => callbackConsultar()} />
             
-
-            <SmallButton text="CONFIRMAR" callback={() => {
-              callbackConfirmar();
-              setIsOpen(false);
-            }} />
           </div>
         </div>
 

@@ -11,16 +11,11 @@
 }
 
 .dvInputs{
-
-    
-    margin-top: 30px;
+    margin: 25px;
     width: 100%;
 }
 
 
-
-
-/* Estilos para o campo de dados do pedido */
 .fieldMasterComponent {
     border: 5px solid #FFF;
     border-radius: 20px;
@@ -190,4 +185,11 @@
 
 .divContentInputTotal{
     width: 100%;
+}
+
+.divEnderecos {
+    margin: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

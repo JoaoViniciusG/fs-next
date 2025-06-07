@@ -134,9 +134,7 @@ export default function PageAlterarPedidos() {
                           <span>N° 000</span>
                       </div>
 
-                  <Link href='/interno/pedidos/alterar'>
-                        <StandardButton  text="ALTERAR PEDIDO" hoverColor="var(--cadetblue-ligtht)"></StandardButton>    
-                  </Link>
+                  
               </div>
       </BasicScreen>
     );

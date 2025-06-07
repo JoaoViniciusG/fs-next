@@ -14,15 +14,15 @@ import * as Icon from 'react-feather';
 
 
 export default function pageConsultarpedido() {
-    const context = useContext(PedidosContext);
+    // const context = useContext(PedidosContext);
 
     const [busca, setBusca] = useState('')
     const [modalExcluirPedidoOpen, setModalExcluirPedidoOpen] = useState(false);
     const [showAlertModal, setShowAlertModal] = useState(false);
 
-    useEffect(() => {
-        context.receberPedidos();
-    }, []);
+    // useEffect(() => {
+    //     context.receberPedidos();
+    // }, []);
 
     const handleExcluirPedido = () => {
         setModalExcluirPedidoOpen(false);  // Fecha o modal de exclusão
@@ -31,9 +31,9 @@ export default function pageConsultarpedido() {
     return (
         <>
             <BasicScreen pageTitle="Consultar pedidos">
-                <p>
+                {/* <p>
                     {JSON.stringify(context.pedidos)}
-                </p>
+                </p> */}
                 
                 <BorderContainer title="Consultar pedidos">
                     <div className={styles.div_container_main}>
@@ -68,8 +68,6 @@ export default function pageConsultarpedido() {
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
                             statusPedido={0}
-                            corStatus="rgba(99, 181, 199, 1)"
-                            botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
                             onExcluir={() => setModalExcluirPedidoOpen(true)}
                         />
                         <PedidoCard
@@ -80,8 +78,6 @@ export default function pageConsultarpedido() {
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
                             statusPedido={1}
-                            corStatus="var(--orange)"
-                            botoes={["VER MAIS", "ALTERAR", "EXCLUIR"]}
                         />
                         <PedidoCard
                             numeroPedido="001"
@@ -91,8 +87,7 @@ export default function pageConsultarpedido() {
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
                             statusPedido={3}
-                            corStatus="var(--darkbrown)"
-                            botoes={["VER MAIS"]}
+
                         />
 
                         <PedidoCard
@@ -103,8 +98,7 @@ export default function pageConsultarpedido() {
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
                             statusPedido={2}
-                            corStatus="var(--cyan)"
-                            botoes={["VER MAIS"]}
+                           
                         />
                         <PedidoCard
                             numeroPedido="001"
@@ -114,8 +108,6 @@ export default function pageConsultarpedido() {
                             valor="R$ 667,49"
                             observacao="Requisição: N° 000153."
                             statusPedido={4}
-                            corStatus="var(--darkred)"
-                            botoes={["EXCLUIR"]}
 
                         />
 
