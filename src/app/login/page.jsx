@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import ShineButton from '@/components/buttons/shineButton/shineButton';
 import InputLogin from '@/components/inputs/inputLogin/inputLogin';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
-import { AuthContext } from '@/context/auth';
+import { AuthContext } from '@/context/auth.context';
 
 export default function LoginPage() {
   const authContextInstance = useContext(AuthContext);

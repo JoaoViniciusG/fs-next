@@ -12,7 +12,7 @@ import * as Icon from 'react-feather';
 import styles from './header.module.css';
 import Image from "next/image";
 import Link from 'next/link';
-import { AuthContext } from '@/context/auth';
+import { AuthContext } from '@/context/auth.context';
 
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';

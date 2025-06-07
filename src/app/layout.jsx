@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
-import AuthProvider from '@/context/auth';
+import AuthProvider from '@/context/auth.context';
 
 const poppinsFont = Poppins({
   variable: "--font-poppins",

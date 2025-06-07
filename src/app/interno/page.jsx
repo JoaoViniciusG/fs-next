@@ -5,8 +5,16 @@ import styles from './page.module.css';
 import RankingContainer from '@/components/internoInicio/rankingContainer/rankingContainer';
 import AlertContainer from '@/components/internoInicio/alertContainer/alertContainer';
 import DataControler from '@/components/internoInicio/dataControler/dataControler';
+import { RelatorioContext } from '@/context/relatorios.context';
+import { useContext, useEffect } from 'react';
 
 export default function PageInternoInicio() {
+  const context = useContext(RelatorioContext);
+
+  useEffect(() => {
+    context.getInfos();
+  }, []);
+
   return (
     <div className={styles.containerMaster}>
       <div className={styles.containerTitle}>
@@ -17,11 +25,11 @@ export default function PageInternoInicio() {
 
       <div className={styles.containerContentMain}>
         <DataControler />
-        <SmallContainer title="Valor Total" prefix="R$" value={455894.90} variance={15549.79}/>
-        <SmallContainer title="Ticket Médio" prefix="R$" value={795.90} variance={-145.30}/>
-        <SmallContainer title="Dia do período" value="14/10/2024" />
-        <SmallContainer title="Novos Cliente" value={21} variance={2} decimalPlaces={0}/>
-        <SmallContainer title="Quantidade Total" value={59} suffix="un." variance={-5} decimalPlaces={0}/>
+        <SmallContainer title="Valor Total" prefix="R$" value={context.relatorios.valorTotal ?? ""} variance={context.relatorios.valorVariacao ?? ""}/>
+        <SmallContainer title="Ticket Médio" prefix="R$" value={context.relatorios.ticketMedio ?? ""} variance={context.relatorios.ticketMedioVariacao ?? ""}/>
+        <SmallContainer title="Dia do período" value={context.relatorios.diaPeriodo ?? ""} />
+        <SmallContainer title="Novos Cliente" value={context.relatorios.novosClientes ?? ""} variance={context.relatorios.novosClientesVariacao ?? ""} decimalPlaces={0}/>
+        <SmallContainer title="Quantidade Total" value={context.relatorios.quantidadeTotal ?? ""} suffix="un." variance={context.relatorios.quantidadeTotalVariacao ?? ""} decimalPlaces={0}/>
         <AlertContainer title="Baixo Estoque" value={5} label="produtos"/>
       </div>
 
