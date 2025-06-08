@@ -63,7 +63,6 @@ export const excluirPedidoAsync = async (idPedido) => {
   }
 };
 
-// Atualizar o status de um pedido (ex: "Em andamento", "Concluído", etc.)
 export const atualizarStatusPedidoAsync = async (idPedido, status) => {
   try {
     const response = await instance.patch(

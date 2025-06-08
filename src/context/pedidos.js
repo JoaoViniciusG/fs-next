@@ -35,8 +35,7 @@
 // }
 
 "use client";
-
-import { createContext, useState } from "react";
+import { createContext, useState, useContext} from "react";
 import {
   criarPedidoAsync,
   consultarPedidosAsync,
@@ -109,7 +108,6 @@ export default function PedidoProvider({ children }) {
     setIsLoading(false);
     return true;
   };
-
   const values = {
     pedidos,
     isLoading,

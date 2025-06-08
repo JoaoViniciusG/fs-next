@@ -100,6 +100,8 @@ import ShineButton from '../../buttons/shineButton/shineButton';
 import StatusPopup from '@/components/modals/alterarStatus/page';
 import Link from 'next/link';
 import styles from './pedidos.module.css';
+import { PedidoContext } from '@/context/pedidos';
+import { useContext } from 'react';
 
 export default function PedidoCard({
   numeroPedido,
@@ -109,8 +111,10 @@ export default function PedidoCard({
   valor,
   observacao,
   statusPedido,
-  onExcluir
+  onExcluir, 
+  idPedido
 }) {
+  const { atualizarStatusPedido } = useContext(PedidoContext);
   const [nome, setNome] = useState(nomeCliente);
   const [cpf, setCpf] = useState(cpfCnpj);
   const [data, setData] = useState(dataEmissao);
@@ -118,15 +122,25 @@ export default function PedidoCard({
   const [observacaoPedido, setObservacaoPedido] = useState(observacao);
 
   const [mostrarPopup, setMostrarPopup] = useState(false);
+  const [status, setStatus] = useState(statusPedido);
+  
 
   const coresStatus = ["rgba(99, 181, 199, 1)", "var(--orange)", "var(--cyan)", "var(--darkbrown)", "var(--darkred)"];
   const textosStatus = ["Pedido Criado", "Aguardando Pagamento", "Pagamento Confirmado", "Enviado", "Pedido Cancelado"];
   const botoesStatus = [[true, true, true], [true, true, true], [true, true, false], [true, true, false], [true, false, true]];
 
-  function handleStatusSelecionado(index) {
-    console.log('Novo status escolhido:', index);
+  // function handleStatusSelecionado(index) {
+  //   console.log('Novo status escolhido:', index);
+  //   setMostrarPopup(false);
+  //   // Aqui você pode atualizar o status no backend ou localmente, se quiser
+  // }
+
+  async function handleStatusSelecionado(index) {
     setMostrarPopup(false);
-    // Aqui você pode atualizar o status no backend ou localmente, se quiser
+    const sucesso = await atualizarStatusPedido(idPedido, index); // 👈 CHAMA A FUNÇÃO PRA ATUALIZAR
+    if (sucesso) {
+      setStatus(index); // 👈 ATUALIZA LOCALMENTE O STATUS EXIBIDO
+    }
   }
 
   return (
@@ -179,3 +193,97 @@ export default function PedidoCard({
     </div>
   );
 }
+
+
+// "use client";
+
+// import { useEffect, useState, useContext } from 'react'; // <--- IMPORTAR useContext aqui
+// import InputLabel from '../../inputs/inputLabel/inputLabel';
+// import ShineButton from '../../buttons/shineButton/shineButton';
+// import StatusPopup from '@/components/modals/alterarStatus/page';
+// import Link from 'next/link';
+// import styles from './pedidos.module.css';
+// import { PedidoContext } from '@/context/pedidos';
+
+// export default function PedidoCard({
+//   numeroPedido,
+//   nomeCliente,
+//   cpfCnpj,
+//   dataEmissao,
+//   valor,
+//   observacao,
+//   statusPedido,
+//   onExcluir, 
+//   idPedido
+// }) {
+//   const { atualizarStatusPedido } = useContext(PedidoContext);
+//   const [nome, setNome] = useState(nomeCliente);
+//   const [cpf, setCpf] = useState(cpfCnpj);
+//   const [data, setData] = useState(dataEmissao);
+//   const [valorPedido, setValorPedido] = useState(valor);
+//   const [observacaoPedido, setObservacaoPedido] = useState(observacao);
+
+//   const [mostrarPopup, setMostrarPopup] = useState(false);
+//   const [status, setStatus] = useState(statusPedido);
+
+//   const coresStatus = ["rgba(99, 181, 199, 1)", "var(--orange)", "var(--cyan)", "var(--darkbrown)", "var(--darkred)"];
+//   const textosStatus = ["Pedido Criado", "Aguardando Pagamento", "Pagamento Confirmado", "Enviado", "Pedido Cancelado"];
+//   const botoesStatus = [[true, true, true], [true, true, true], [true, true, false], [true, true, false], [true, false, true]];
+
+//   async function handleStatusSelecionado(index) {
+//     setMostrarPopup(false);
+//     const sucesso = await atualizarStatusPedido(idPedido, index);
+//     if (sucesso) {
+//       setStatus(index);
+//     }
+//   }
+
+//   return (
+//     <div className={styles.container}>
+//       <div className={styles.header}>
+//         <div className={styles.title}>PEDIDO:</div>
+//         <div className={styles['order-number']}>Nº: {numeroPedido}</div>
+//         <div className={styles.status} style={{ backgroundColor: coresStatus[status] }}>
+//           {textosStatus[status]}
+//         </div>
+//       </div>
+
+//       <div className={styles['form-group-row']}>
+//         <InputLabel label="Nome do cliente" value={nome} onChange={(e) => setNome(e.target.value)} />
+//         <InputLabel label="CPF/CNPJ" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+//       </div>
+
+//       <div className={styles['form-group-row']}>
+//         <InputLabel label="Data de emissão" value={data} onChange={(e) => setData(e.target.value)} />
+//         <InputLabel label="Valor" value={valorPedido} onChange={(e) => setValorPedido(e.target.value)} />
+//       </div>
+
+//       <div className={styles['form-group']}>
+//         <InputLabel label="Observação" value={observacaoPedido} onChange={(e) => setObservacaoPedido(e.target.value)} />
+//       </div>
+
+//       <div className={styles.buttons}>
+//         {botoesStatus[status][0] && (
+//           <ShineButton text="ALTERAR STATUS" callback={() => setMostrarPopup(true)} />
+//         )}
+
+//         {botoesStatus[status][2] && (
+//           <ShineButton text="EXCLUIR" callback={onExcluir} />
+//         )}
+
+//         {botoesStatus[status][1] && (
+//           <Link href={`/interno/pedidos/visualizar`} passHref>
+//             <ShineButton text="VER MAIS" />
+//           </Link>
+//         )}
+//       </div>
+
+//       {mostrarPopup && (
+//         <StatusPopup
+//           onClose={() => setMostrarPopup(false)}
+//           onSelectStatus={handleStatusSelecionado}
+//         />
+//       )}
+//     </div>
+//   );
+// }

@@ -84,39 +84,17 @@ export default function PageCriarPedidos() {
               style={{ flex: 1 }}
               onClick={() => setModalOpenn(true)}
             />
-            {/* <div className={styles.linha}>
-              <InputLabel label="Nome:" value={nome} setValue={setNome} width="80%" style={{ flex: 1 }} />
-              <InputLabel label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj} width="80%" style={{ flex: 1 }} />
-            </div>
 
-            <div className={styles.linha}>
-              <InputLabel label="Endereço:" value={endereco} setValue={setEndereco} width="90%" style={{ flex: 1 }} />
-              <InputLabel label="Bairro:" value={bairro} setValue={setBairro} width="80%" style={{ flex: 1 }} />
-              <InputLabel label="CEP:" value={cep} setValue={setCep} width="70%" style={{ flex: 1 }} />
-            </div>
-
-            <div className={styles.linha}>
-              <InputLabel label="Cidade:" value={cidade} setValue={setCidade} width="90%" style={{ flex: 1 }} />
-              <InputLabel label="Estado:" value={estado} setValue={setEstado} width="90%" style={{ flex: 1 }} />
-              <InputLabel label="Telefone:" value={telefone} setValue={setTelefone} width="90%" style={{ flex: 1 }} />
-            </div> */}
-
-                  
           </div>
         </BorderContainer>
          <BorderContainer title="Endereço">
-                    <div className={styles.divEnderecos}>
+                <div className={styles.divEnderecos}>
                       
-                      <AddAddressButton />
-                      <AddressOption 
-                          logradouro="Av.beira Rio"
-                          bairro="Centro" 
-                          cidade="Vilhena"
-                          UF="Ro">
-                      </AddressOption>
-                    </div>
-                    
-            </BorderContainer>  
+                  <AddAddressButton />
+                  <AddressOption/>
+                      
+              </div>         
+       </BorderContainer>  
 
         <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
           <div className={styles.containerDataMaster}>
