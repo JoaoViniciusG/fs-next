@@ -30,7 +30,9 @@ export default function AdicionarProdutoModal({
     if (marca) params.append('marca', marca);
     if (quantidade) params.append('quantidade', quantidade);
 
-    fetch(`http://localhost:3001/produto?${params.toString()}`)
+        fetch(`http://localhost:3001/produto?${params.toString()}`, {
+      credentials: 'include',
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data.payload)) {
