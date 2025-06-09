@@ -63,7 +63,7 @@
 
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react'; // 👈 não esquece de importar o useEffect
 import SmallButton from '@/components/buttons/smallButton/smallButton';
 import AddressOption from '@/components/containers/endereco/addressOption';
 import styles from './page.module.css';
@@ -78,6 +78,15 @@ export default function BuscarClienteModal({
   const [nomeBusca, setNomeBusca] = useState('');
   const [cpfBusca, setCpfBusca] = useState('');
   const [enderecoSelecionado, setEnderecoSelecionado] = useState(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setClientes([]);
+      setCpfBusca('');
+      setEnderecoSelecionado(null);
+      setNomeBusca('')
+    }
+  }, [isOpen]);
 
   const buscarClientes = async () => {
     try {
@@ -101,20 +110,33 @@ export default function BuscarClienteModal({
   };
 
   const buscarEnderecoDoCliente = async (idCliente) => {
-    try {
-      const response = await fetch(`http://localhost:3001/components/containers/endereco`);
-      const data = await response.json();
+    console.log("ID do cliente para buscar endereço:", idCliente);
+  try {
+    const response = await fetch(`http://localhost:3001/endereco?idCliente=${idCliente}`, {
+      credentials: 'include'
+    });
 
-      if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
-        setEnderecoSelecionado(data.payload[0]); // primeiro endereço
-      } else {
-        setEnderecoSelecionado(null);
-        console.error('Nenhum endereço encontrado.');
-      }
-    } catch (error) {
-      console.error('Erro ao buscar endereço:', error);
+    if (!response.ok) {
+      console.error('Erro na requisição do endereço:', response.status);
+      setEnderecoSelecionado(null);
+      return;
     }
-  };
+
+    const data = await response.json();
+
+    if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
+      setEnderecoSelecionado(data.payload[0]);
+    } else {
+      setEnderecoSelecionado(null);
+      // Só um aviso no console, sem ser erro
+      console.log('Nenhum endereço encontrado para esse cliente.');
+    }
+  } catch (error) {
+    console.error('Erro ao buscar endereço:', error);
+    setEnderecoSelecionado(null);
+  }
+};
+
 
   return (
     <div className={styles.backgroundContainer} style={{ display: isOpen ? 'flex' : 'none' }}>
