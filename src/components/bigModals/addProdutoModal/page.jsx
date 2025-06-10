@@ -12,44 +12,91 @@ export default function AdicionarProdutoModal({
   const [nome, setNome] = useState('');
   const [marca, setMarca] = useState('');
   const [quantidade, setQuantidade] = useState('');
+  const [valor, setValor] = useState('');
   const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+  const [marcas, setMarcas] = useState([]); // 🆕
   const debounceTimeout = useRef(null);
 
+  // 🆕 Buscar marcas quando o modal abrir
   useEffect(() => {
-  if (!isOpen) {
-    setProdutosFiltrados([]);
-    return;
-  }
+    if (isOpen) {
+      fetch('http://localhost:3001/marca', {
+        credentials: 'include',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data.payload)) {
+            setMarcas(data.payload);
+          }
+        })
+        .catch(() => {
+          setMarcas([]);
+        });
+    }
+  }, [isOpen]);
 
-  if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+  // 🧠 Função que adiciona nomeMarca aos produtos
+  const adicionarNomeMarca = (produtos) => {
+    return produtos.map((produto) => {
+      const marcaObj = marcas.find((m) => m.id === produto.idMarca);
+      return { ...produto, nomeMarca: marcaObj?.nome || 'Desconhecida' };
+    });
+  };
 
-  debounceTimeout.current = setTimeout(() => {
-    const params = new URLSearchParams();
-    if (codigo) params.append('codigo', codigo);
-    if (nome) params.append('nome', nome);
-    if (marca) params.append('marca', marca);
-    if (quantidade) params.append('quantidade', quantidade);
+  // Buscar produtos
+  useEffect(() => {
+    if (!isOpen) {
+      setProdutosFiltrados([]);
+      return;
+    }
+    
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
 
-        fetch(`http://localhost:3001/produto?${params.toString()}`, {
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data.payload)) {
-          setProdutosFiltrados(data.payload);
-        } else if (data.payload) {
-          setProdutosFiltrados([data.payload]);
-        } else {
+    debounceTimeout.current = setTimeout(() => {
+      const buscarProdutos = async () => {
+        try {
+          let produtos = [];
+
+          if (codigo) {
+            const res = await fetch(`http://localhost:3001/produto/${codigo}`, {
+              credentials: 'include',
+            });
+            const data = await res.json();
+            produtos = Array.isArray(data.payload) ? data.payload : data.payload ? [data.payload] : [];
+          } else {
+            const params = new URLSearchParams();
+            if (nome) params.append('nome', nome);
+            if (quantidade) params.append('quantidade', quantidade);
+
+            const res = await fetch(`http://localhost:3001/produto?${params.toString()}`, {
+              credentials: 'include',
+            });
+            const data = await res.json();
+            produtos = Array.isArray(data.payload) ? data.payload : data.payload ? [data.payload] : [];
+          }
+
+          // Adiciona nomeMarca
+          let produtosComMarca = adicionarNomeMarca(produtos);
+
+          // Filtro por texto da marca (caso o usuário digite)
+          if (marca) {
+            const marcaLower = marca.toLowerCase();
+            produtosComMarca = produtosComMarca.filter((p) =>
+              p.nomeMarca?.toLowerCase().includes(marcaLower)
+            );
+          }
+
+          setProdutosFiltrados(produtosComMarca);
+        } catch {
           setProdutosFiltrados([]);
         }
-      })
-      .catch(() => {
-        setProdutosFiltrados([]);
-      });
-  }, 300);
+      };
 
-  return () => clearTimeout(debounceTimeout.current);
-}, [codigo, nome, marca, quantidade, isOpen]);
+      buscarProdutos();
+    }, 300);
+
+    return () => clearTimeout(debounceTimeout.current);
+  }, [codigo, nome, marca, quantidade, isOpen, marcas]); // inclui marcas como dependência
 
   return (
     <div className={styles.backgroundContainer} style={{ display: isOpen ? 'flex' : 'none' }}>
@@ -132,9 +179,9 @@ export default function AdicionarProdutoModal({
                 <tr key={index}>
                   <td>{produto.codigo || produto.codProduto || produto.id}</td>
                   <td>{produto.nome || produto.nomeProduto}</td>
-                  <td>{produto.marca}</td>
+                  <td>{produto.nomeMarca}</td>
                   <td>{produto.quantidade || produto.qtdEstoque}</td>
-                  <td>{produto.valor || produto.preco}</td>
+                  <td>{produto.valorUnitario ?? produto.valor ?? produto.preco ?? '-'}</td>
                 </tr>
               ))}
             </tbody>
