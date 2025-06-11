@@ -3,57 +3,93 @@
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
 import BorderContainer from "@/components/containers/borderContainer/page";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
-import Link from "next/link";
+import AddressOption from "@/components/containers/endereco/addressOption";
+import { useSearchParams } from "next/navigation";
 import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
-export default function PageAlterarPedidos() {
+// Esta página é para VISUALIZAR, não alterar
+export default function PageVisualizarPedido() {
+  const searchParams = useSearchParams();
 
+  // Campos do cliente
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cep, setCep] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [telefone, setTelefone] = useState("");
 
-    const[busca, setBusca]= useState('');
-    const [subtotal, setSubtotal] = useState("");
-    const [desconto, setDesconto] = useState("");
-    const [total, setTotal] = useState("");
-    const [observacao, setObservacao] = useState("");
-    
-    return (
-      <BasicScreen pageTitle="Informações do pedido">
-        <BorderContainer title="Dados do cliente">
-          <div className={styles.dvInputs}>
-            <div className={styles.linha}>
-                <InputLabel readonly={true}  label="Nome:" value={nome} setValue={setNome}  width= "80%" style={{flex:1}}/>
-                <InputLabel readonly={true}  label="CPF/CNPJ:" value={cpfCnpj} setValue={setCpfCnpj}  width= "80%" style={{flex:1}} />
-            </div>
+  // Dados do pedido
+  const [subtotal, setSubtotal] = useState("");
+  const [desconto, setDesconto] = useState("");
+  const [total, setTotal] = useState("");
+  const [observacao, setObservacao] = useState("");
+  const [idPedido, setIdPedido] = useState("");
 
-            <div className={styles.linha}>
-                <InputLabel readonly={true}  label="Endereço:" value={endereco} setValue={setEndereco}  width="90%" style={{flex:1}} />
-                <InputLabel readonly={true}  label="Bairro:" value={bairro} setValue={setBairro}  width="80%" style={{flex:1}} />
-                <InputLabel readonly={true}  label="CEP:" value={cep} setValue={setCep}  width="70%" style={{flex:1}} />
-            </div>
+  // Produtos do pedido
+  const [produtos, setProdutos] = useState([]);
 
-            <div className={styles.linha}>
-                <InputLabel readonly={true}  label="Cidade:" value={cidade} setValue={setCidade}  width="90%" style={{flex:1}} />
-                <InputLabel readonly={true}  label="Estado:" value={estado} setValue={setEstado} width="90%" style={{flex:1}}/>
-                <InputLabel readonly={true}  label="Telefone:" value={telefone} setValue={setTelefone}  width="90%" style={{flex:1}} />
-            </div>
+  useEffect(() => {
+    setNome(searchParams.get("nomeCliente") || "");
+    setCpfCnpj(searchParams.get("cpfCnpj") || "");
+    setSubtotal(searchParams.get("subtotal") || "");
+    setDesconto(searchParams.get("desconto") || "");
+    setTotal(searchParams.get("total") || "");
+    setObservacao(searchParams.get("observacao") || "");
+    const pedidoId = searchParams.get("idPedido") || "";
+    setIdPedido(pedidoId);
+
+    // Buscar produtos via API usando o id do pedido
+    if (pedidoId) {
+      fetch(`/${pedidoId}/produtos`)  // Ajuste a URL conforme sua API real
+        .then((res) => {
+          if (!res.ok) throw new Error("Erro ao buscar produtos");
+          return res.json();
+        })
+        .then((data) => {
+          setProdutos(data);
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar produtos:", error);
+          setProdutos([]);
+        });
+    }
+  }, [searchParams]);
+
+  return (
+    <BasicScreen pageTitle="Informações do pedido">
+      <BorderContainer title="Dados do cliente">
+        <div className={styles.dvInputs}>
+          <div className={styles.linha}>
+            <InputLabel
+              readonly={true}
+              label="Nome:"
+              value={nome || ""}
+              setValue={setNome}
+              width="80%"
+              style={{ flex: 1 }}
+            />
+
+            <InputLabel
+              readonly={true}
+              label="CPF/CNPJ:"
+              value={cpfCnpj || ""}
+              setValue={setCpfCnpj}
+              width="80%"
+              style={{ flex: 1 }}
+            />
+          </div>
         </div>
       </BorderContainer>
 
+      <BorderContainer title="Endereço">
+        <div className={styles.divEnderecos}>
+          <AddressOption />
+        </div>
+      </BorderContainer>
 
-      <BorderContainer title={"Dados do pedido:"} className={styles.borderContainer}>
+      <BorderContainer title="Dados do pedido:" className={styles.borderContainer}>
         <div className={styles.containerDataMaster}>
-        
           <div className={styles.tableProducts}>
             <div className={styles.headerListProducts}>
               <p className={styles.listHeaderTitle}>Cód. do Produto</p>
@@ -66,82 +102,61 @@ export default function PageAlterarPedidos() {
 
             <div className={styles.divTableContainerContent}>
               <div>
-                <hr className={styles.hrBorder} style={{ left: '15%' }} />
-                <hr className={styles.hrBorder} style={{ left: '45%' }} />
-                <hr className={styles.hrBorder} style={{ left: '55%' }} />
-                <hr className={styles.hrBorder} style={{ left: '75%' }} />
-                <hr className={styles.hrBorder} style={{ left: '87%' }} />
+                <hr className={styles.hrBorder} style={{ left: "15%" }} />
+                <hr className={styles.hrBorder} style={{ left: "45%" }} />
+                <hr className={styles.hrBorder} style={{ left: "55%" }} />
+                <hr className={styles.hrBorder} style={{ left: "75%" }} />
+                <hr className={styles.hrBorder} style={{ left: "87%" }} />
               </div>
               <table className={styles.tableContainerContent}>
                 <thead>
                   <tr>
-                    <th style={{ width: '15%' }}></th>
-                    <th style={{ width: '30%' }}></th>
-                    <th style={{ width: '10%' }}></th>
-                    <th style={{ width: '20%' }}></th>
-                    <th style={{ width: '12%' }}></th>
-                    <th style={{ width: '13%' }}></th>
+                    <th style={{ width: "15%" }}></th>
+                    <th style={{ width: "30%" }}></th>
+                    <th style={{ width: "10%" }}></th>
+                    <th style={{ width: "20%" }}></th>
+                    <th style={{ width: "12%" }}></th>
+                    <th style={{ width: "13%" }}></th>
                   </tr>
                 </thead>
+                <tbody>
+                  {produtos.length === 0 && (
+                    <tr>
+                      <td colSpan={6} style={{ textAlign: "center" }}>
+                        Nenhum produto encontrado
+                      </td>
+                    </tr>
+                  )}
+                  {produtos.map((produto, index) => (
+                    <tr key={index}>
+                      <td>{produto.idProduto || ""}</td>
+                      <td>{produto.nome || ""} / {produto.modelo || ""}</td>
+                      <td>{produto.marca || ""}</td>
+                      <td>{produto.quantidade}</td>
+                      <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
+                      <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </BorderContainer>
 
-        <TotalSummary/>
-        {/* <BorderContainer> 
-          <div className={styles.divContentInputTotal}>
-            <div className={styles.linha}>
-            <InputLabel 
-            label="Subtotal" 
-            value={subtotal} 
-            setValue={setSubtotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-          <InputLabel 
-            label="Desconto" 
-            value={desconto} 
-            setValue={setDesconto} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-          <InputLabel 
-            label="Total" 
-            value={total} 
-            setValue={setTotal} 
-            className={styles.inputDadosPessoais} 
-            readonly={true} 
-            width= "80%"
-          />
-            </div>
+      <TotalSummary
+        subtotal={subtotal}
+        desconto={desconto}
+        total={total}
+        observacao={observacao}
+      />
 
-            <TextAreaInput 
-                  label="Observação:" 
-                  placeholder="Escreva sua descrição..." 
-                  id="input-total" 
-                />
-              </div>
-        </BorderContainer> */}
-
-          <div className={styles.baixo}>
-            <div className={styles.divTagBottom}>
-                          <p>Código do pedido:</p>
-
-                          <span>N° 000</span>
-                      </div>
-
-                  
-              </div>
-      </BasicScreen>
-    );
-  }
-  
-
-
-
-
-
+      <div className={styles.baixo}>
+        <div className={styles.divTagBottom}>
+          <p>Código do pedido:</p>
+          <span>N° {idPedido || "000"}</span>
+        </div>
+      </div>
+    </BasicScreen>
+  );
+}

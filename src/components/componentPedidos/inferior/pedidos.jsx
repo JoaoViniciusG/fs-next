@@ -1,5 +1,3 @@
-
-
 import styles from "./pedidos.module.css"
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from "@/components/inputs/inputLabel/inputLabel";
@@ -23,7 +21,7 @@ const TotalSummary = ({ subtotal, desconto, total, setSubtotal, setDesconto, set
             value={desconto} 
             setValue={setDesconto} 
             className={styles.inputDadosPessoais} 
-            readonly={true} 
+            readonly={false}  // ← aqui o campo será editável
             width="90%"
           />
           <InputLabel 

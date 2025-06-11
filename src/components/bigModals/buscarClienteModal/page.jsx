@@ -63,7 +63,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'; // 👈 não esquece de importar o useEffect
+import { useState, useEffect } from 'react'; 
 import SmallButton from '@/components/buttons/smallButton/smallButton';
 import AddressOption from '@/components/containers/endereco/addressOption';
 import styles from './page.module.css';
@@ -78,13 +78,15 @@ export default function BuscarClienteModal({
   const [nomeBusca, setNomeBusca] = useState('');
   const [cpfBusca, setCpfBusca] = useState('');
   const [enderecoSelecionado, setEnderecoSelecionado] = useState(null);
+  const [clienteSelecionado, setClienteSelecionado] = useState(null); // Estado para cliente selecionado no modal
 
   useEffect(() => {
     if (isOpen) {
       setClientes([]);
       setCpfBusca('');
       setEnderecoSelecionado(null);
-      setNomeBusca('')
+      setNomeBusca('');
+      setClienteSelecionado(null);
     }
   }, [isOpen]);
 
@@ -109,34 +111,33 @@ export default function BuscarClienteModal({
     }
   };
 
-  const buscarEnderecoDoCliente = async (idCliente) => {
-    console.log("ID do cliente para buscar endereço:", idCliente);
-  try {
-    const response = await fetch(`http://localhost:3001/endereco?idCliente=${idCliente}`, {
-      credentials: 'include'
-    });
+  const buscarEnderecoDoCliente = async (cliente) => {
+    setClienteSelecionado(cliente); // Guarda cliente selecionado ao clicar
+    console.log("ID do cliente para buscar endereço:", cliente.id);
+    try {
+      const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
+        credentials: 'include'
+      });
 
-    if (!response.ok) {
-      console.error('Erro na requisição do endereço:', response.status);
+      if (!response.ok) {
+        console.error('Erro na requisição do endereço:', response.status);
+        setEnderecoSelecionado(null);
+        return;
+      }
+
+      const data = await response.json();
+
+      if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
+        setEnderecoSelecionado(data.payload[0]);
+      } else {
+        setEnderecoSelecionado(null);
+        console.log('Nenhum endereço encontrado para esse cliente.');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar endereço:', error);
       setEnderecoSelecionado(null);
-      return;
     }
-
-    const data = await response.json();
-
-    if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
-      setEnderecoSelecionado(data.payload[0]);
-    } else {
-      setEnderecoSelecionado(null);
-      // Só um aviso no console, sem ser erro
-      console.log('Nenhum endereço encontrado para esse cliente.');
-    }
-  } catch (error) {
-    console.error('Erro ao buscar endereço:', error);
-    setEnderecoSelecionado(null);
-  }
-};
-
+  };
 
   return (
     <div className={styles.backgroundContainer} style={{ display: isOpen ? 'flex' : 'none' }}>
@@ -183,8 +184,11 @@ export default function BuscarClienteModal({
               {clientes.map((cliente) => (
                 <tr 
                   key={cliente.id} 
-                  onClick={() => buscarEnderecoDoCliente(cliente.id)} 
-                  style={{ cursor: 'pointer' }}
+                  onClick={() => buscarEnderecoDoCliente(cliente)} 
+                  style={{ 
+                    cursor: 'pointer',
+                    backgroundColor: clienteSelecionado?.id === cliente.id ? '#d3eaff' : 'transparent'
+                  }}
                 >
                   <td>{cliente.nome}</td>
                   <td>{cliente.cpf}</td>
@@ -206,6 +210,20 @@ export default function BuscarClienteModal({
             />
           </div>
         )}
+
+        <div className={styles.buttonGroup} style={{ marginTop: '20px', justifyContent: 'flex-end' }}>
+          <SmallButton 
+            text="CONFIRMAR" 
+            callback={() => {
+              if (clienteSelecionado) {
+                callbackConfirmar(clienteSelecionado);
+                setIsOpen(false);
+              } else {
+                alert('Selecione um cliente antes de confirmar');
+              }
+            }} 
+          />
+        </div>
 
         <div className={styles.pagina}>
           <span>Pág. 1</span>

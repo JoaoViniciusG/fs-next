@@ -26,7 +26,7 @@ const instance = axios.create({
 // Criar um novo pedido
 export const criarPedidoAsync = async (dadosPedido) => {
   try {
-    const response = await instance.post("/pedidos", dadosPedido, {
+    const response = await instance.post("/pedido", dadosPedido, {
       withCredentials: true,
     });
     return response;
@@ -39,8 +39,9 @@ export const criarPedidoAsync = async (dadosPedido) => {
 // Consultar pedidos com filtros (como nome do cliente, ordem, etc.)
 export const consultarPedidosAsync = async (filtros) => {
   try {
-    const response = await instance.get("/pedidos", {
+    const response = await instance.get("/pedido", {
       params: filtros,
+      
       withCredentials: true,
     });
     return response;
@@ -53,7 +54,7 @@ export const consultarPedidosAsync = async (filtros) => {
 // Excluir pedido pelo ID
 export const excluirPedidoAsync = async (idPedido) => {
   try {
-    const response = await instance.delete(`/pedidos/delete/${idPedido}`, {
+    const response = await instance.delete(`/pedido/delete/${idPedido}`, {
       withCredentials: true,
     });
     return response;
@@ -64,17 +65,15 @@ export const excluirPedidoAsync = async (idPedido) => {
 };
 
 export const atualizarStatusPedidoAsync = async (idPedido, status) => {
+  
   try {
     const response = await instance.patch(
-      `/pedidos/status/${idPedido}`,
-      { status },
-      {
-        withCredentials: true,
-      }
-    );
+  `/pedido/status/${idPedido}`,
+  { novoStatus: Number(status) },  
+  { withCredentials: true }
+);
     return response;
   } catch (error) {
-    console.log(error);
-    return false;
-  }
-};
+  console.log('Erro ao atualizar status:', error.response ? error.response.data : error.message);
+  return false;
+}}

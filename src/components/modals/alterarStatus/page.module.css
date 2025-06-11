@@ -143,3 +143,16 @@
 .statusButton:hover {
   filter: brightness(1.2);
 }
+
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
