@@ -11,43 +11,42 @@ import AddressOption from "@/components/containers/endereco/addressOption";
 import { useSearchParams } from "next/navigation";
 import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
-// Esta página é para VISUALIZAR, não alterar
 export default function PageVisualizarPedido() {
   const searchParams = useSearchParams();
 
-  // Campos do cliente
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
 
-  // Dados do pedido
   const [subtotal, setSubtotal] = useState("");
   const [desconto, setDesconto] = useState("");
   const [total, setTotal] = useState("");
   const [observacao, setObservacao] = useState("");
   const [idPedido, setIdPedido] = useState("");
 
-  // Produtos do pedido
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     setNome(searchParams.get("nomeCliente") || "");
     setCpfCnpj(searchParams.get("cpfCnpj") || "");
-    setSubtotal(searchParams.get("subtotal") || "");
-    setDesconto(searchParams.get("desconto") || "");
-    setTotal(searchParams.get("total") || "");
-    setObservacao(searchParams.get("observacao") || "");
-    const pedidoId = searchParams.get("idPedido") || "";
-    setIdPedido(pedidoId);
+    setIdPedido(searchParams.get("idPedido") || "");
 
-    // Buscar produtos via API usando o id do pedido
+    const pedidoId = searchParams.get("idPedido") || "";
+
     if (pedidoId) {
-      fetch(`/${pedidoId}/produtos`)  // Ajuste a URL conforme sua API real
+      fetch(`http://localhost:3001/pedido/${pedidoId}/produtos`, {
+  credentials: 'include' // envia cookies junto
+})
         .then((res) => {
           if (!res.ok) throw new Error("Erro ao buscar produtos");
           return res.json();
         })
         .then((data) => {
-          setProdutos(data);
+          const { produtos, subtotal, valorTotal, desconto, observacao } = data.payload;
+          setProdutos(produtos || []);
+          setSubtotal(subtotal?.toString() || "");
+          setTotal(valorTotal?.toString() || "");
+          setDesconto(desconto?.toString() || "");
+          setObservacao(observacao || "");
         })
         .catch((error) => {
           console.error("Erro ao carregar produtos:", error);
@@ -64,16 +63,15 @@ export default function PageVisualizarPedido() {
             <InputLabel
               readonly={true}
               label="Nome:"
-              value={nome || ""}
+              value={nome}
               setValue={setNome}
               width="80%"
               style={{ flex: 1 }}
             />
-
             <InputLabel
               readonly={true}
               label="CPF/CNPJ:"
-              value={cpfCnpj || ""}
+              value={cpfCnpj}
               setValue={setCpfCnpj}
               width="80%"
               style={{ flex: 1 }}
@@ -93,7 +91,7 @@ export default function PageVisualizarPedido() {
           <div className={styles.tableProducts}>
             <div className={styles.headerListProducts}>
               <p className={styles.listHeaderTitle}>Cód. do Produto</p>
-              <p className={styles.listHeaderTitle}>Nome do Produto / Modelo</p>
+              <p className={styles.listHeaderTitle}>Nome do Produto</p>
               <p className={styles.listHeaderTitle}>Marca</p>
               <p className={styles.listHeaderTitle}>Quantidade</p>
               <p className={styles.listHeaderTitle}>Valor Unit.</p>
@@ -120,23 +118,24 @@ export default function PageVisualizarPedido() {
                   </tr>
                 </thead>
                 <tbody>
-                  {produtos.length === 0 && (
+                  {produtos.length === 0 ? (
                     <tr>
                       <td colSpan={6} style={{ textAlign: "center" }}>
                         Nenhum produto encontrado
                       </td>
                     </tr>
+                  ) : (
+                    produtos.map((produto, index) => (
+                      <tr key={index}>
+                        <td>{produto.idProduto}</td>
+                        <td>{produto.nome}</td>
+                        <td>{produto.nomeMarca}</td>
+                        <td>{produto.quantidade}</td>
+                        <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
+                        <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
+                      </tr>
+                    ))
                   )}
-                  {produtos.map((produto, index) => (
-                    <tr key={index}>
-                      <td>{produto.idProduto || ""}</td>
-                      <td>{produto.nome || ""} / {produto.modelo || ""}</td>
-                      <td>{produto.marca || ""}</td>
-                      <td>{produto.quantidade}</td>
-                      <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
-                      <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
-                    </tr>
-                  ))}
                 </tbody>
               </table>
             </div>
