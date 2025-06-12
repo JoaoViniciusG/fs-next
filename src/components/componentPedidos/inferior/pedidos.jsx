@@ -21,7 +21,7 @@ const TotalSummary = ({ subtotal, desconto, total, setSubtotal, setDesconto, set
             value={desconto} 
             setValue={setDesconto} 
             className={styles.inputDadosPessoais} 
-            readonly={false}  // ← aqui o campo será editável
+            readonly={false}  
             width="90%"
           />
           <InputLabel 

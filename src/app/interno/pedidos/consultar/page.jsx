@@ -207,15 +207,28 @@ export default function pageConsultarpedido() {
   }
 
   // Função de callback depois de excluir pedido
-  const handleExcluirPedido = () => {
+  const handleExcluirPedido = async () => {
+  if (!pedidoSelecionado) return;
+
+  try {
+    const res = await fetch(`http://localhost:3001/pedido/delete/${pedidoSelecionado.id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      console.error("Erro ao excluir pedido:", res.status);
+      return;
+    }
+
+    setPedidos((prev) => prev.filter((p) => p.id !== pedidoSelecionado.id));
+    setPedidoSelecionado(null);
     setModalExcluirPedidoOpen(false);
     setShowAlertModal(true);
-
-    if (pedidoSelecionado) {
-      setPedidos((prev) => prev.filter((p) => p.id !== pedidoSelecionado.id));
-      setPedidoSelecionado(null);
-    }
-  };
+  } catch (error) {
+    console.error("Erro na requisição de exclusão:", error);
+  }
+};
 
   // Formatar data para exibir (ex: 10/06/2025)
   function formatarData(dataISO) {
@@ -297,6 +310,7 @@ export default function pageConsultarpedido() {
         bsIcon="bi bi-exclamation-triangle "
         title="Excluir Pedido"
         text="Tem certeza de que deseja excluir este pedido?"
+        pedido={pedidoSelecionado}
       />
 
       <AlertModal

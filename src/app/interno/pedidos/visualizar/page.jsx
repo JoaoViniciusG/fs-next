@@ -87,60 +87,36 @@ export default function PageVisualizarPedido() {
       </BorderContainer>
 
       <BorderContainer title="Dados do pedido:" className={styles.borderContainer}>
-        <div className={styles.containerDataMaster}>
-          <div className={styles.tableProducts}>
-            <div className={styles.headerListProducts}>
-              <p className={styles.listHeaderTitle}>Cód. do Produto</p>
-              <p className={styles.listHeaderTitle}>Nome do Produto</p>
-              <p className={styles.listHeaderTitle}>Marca</p>
-              <p className={styles.listHeaderTitle}>Quantidade</p>
-              <p className={styles.listHeaderTitle}>Valor Unit.</p>
-              <p className={styles.listHeaderTitle}>Subtotal</p>
-            </div>
-
-            <div className={styles.divTableContainerContent}>
-              <div>
-                <hr className={styles.hrBorder} style={{ left: "15%" }} />
-                <hr className={styles.hrBorder} style={{ left: "45%" }} />
-                <hr className={styles.hrBorder} style={{ left: "55%" }} />
-                <hr className={styles.hrBorder} style={{ left: "75%" }} />
-                <hr className={styles.hrBorder} style={{ left: "87%" }} />
-              </div>
-              <table className={styles.tableContainerContent}>
-                <thead>
-                  <tr>
-                    <th style={{ width: "15%" }}></th>
-                    <th style={{ width: "30%" }}></th>
-                    <th style={{ width: "10%" }}></th>
-                    <th style={{ width: "20%" }}></th>
-                    <th style={{ width: "12%" }}></th>
-                    <th style={{ width: "13%" }}></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {produtos.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} style={{ textAlign: "center" }}>
-                        Nenhum produto encontrado
-                      </td>
-                    </tr>
-                  ) : (
-                    produtos.map((produto, index) => (
-                      <tr key={index}>
-                        <td>{produto.idProduto}</td>
-                        <td>{produto.nome}</td>
-                        <td>{produto.nomeMarca}</td>
-                        <td>{produto.quantidade}</td>
-                        <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
-                        <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+  <table className={styles.fornecedoresTable}>
+    <thead>
+      <tr>
+        <th>Cód. Produto</th>
+        <th>Nome do Produto</th>
+        <th>Marca</th>
+        <th>Quantidade</th>
+        <th>Valor Unit.</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {produtos.length === 0 ? (
+        <tr>
+          <td colSpan={6} style={{ textAlign: "center" }}>Nenhum produto encontrado</td>
+        </tr>
+      ) : (
+        produtos.map((produto, index) => (
+          <tr key={index}>
+            <td>{produto.idProduto}</td>
+            <td>{produto.nome}</td>
+            <td>{produto.nomeMarca}</td>
+            <td>{produto.quantidade}</td>
+            <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
+            <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
+          </tr>
+        ))
+      )}
+    </tbody>
+  </table>
       </BorderContainer>
 
       <TotalSummary
