@@ -51,6 +51,8 @@ export const consultarPedidosAsync = async (filtros) => {
   }
 };
 
+
+
 // Excluir pedido pelo ID
 export const excluirPedidoAsync = async (idPedido) => {
   try {
