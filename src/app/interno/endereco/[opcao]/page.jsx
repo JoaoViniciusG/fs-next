@@ -101,8 +101,6 @@ export default function PageEnderecoCadastrar() {
                 setPageTitle("Cadastrar Endereço")
                 break;
         }
-
-        console.log(params);
     }, [pathname])
 
     return (

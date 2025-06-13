@@ -6,16 +6,16 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/interno/endereco/cadastrar",
-        destination: "/interno/endereco"
+        source: "/interno/endereco/cadastrar/:opcao",
+        destination: "/interno/endereco/:opcao"
       },
       {
-        source: "/interno/endereco/alterar",
-        destination: "/interno/endereco"
+        source: "/interno/endereco/alterar/:opcao",
+        destination: "/interno/endereco/:opcao"
       },
       {
-        source: "/interno/endereco/visualizar/[id]",
-        destination: "/interno/endereco"
+        source: "/interno/endereco/visualizar/:opcao",
+        destination: "/interno/endereco/:opcao"
       }
     ]
   }
