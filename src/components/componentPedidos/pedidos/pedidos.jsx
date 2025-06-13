@@ -101,6 +101,7 @@ import StatusPopup from "@/components/modals/alterarStatus/page";
 import { useRouter } from "next/navigation";
 import styles from "./pedidos.module.css";
 import { PedidoContext } from "@/context/pedidos";
+import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
 export default function PedidoCard({
   numeroPedido,
@@ -189,19 +190,28 @@ export default function PedidoCard({
         </div>
       </div>
 
-      <div className={styles["form-group-row"]}>
-        <InputLabel label="Nome do cliente" value={nome} onChange={(e) => setNome(e.target.value)} />
-        <InputLabel label="CPF/CNPJ" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+      <div className={styles.containerCardInfos}>
+        <div className={styles["form-group-row"]}>
+          <InputLabel label="Nome do cliente" value={nome} onChange={(e) => setNome(e.target.value)} style={{width: '60%'}}/>
+          <InputLabel label="CPF/CNPJ" value={cpf} readonly={true} onChange={(e) => setCpf(e.target.value)} style={{width: '40%'}} />
+        </div>
+
+        <div className={styles["form-group-row"]}>
+          <InputLabel label="Data de emissão" value={data} readonly={true} onChange={(e) => setData(e.target.value)} style={{width: '40%'}}/>
+          <InputLabel label="Valor" value={valorPedido} readonly={true} onChange={(e) => setValorPedido(e.target.value)} style={{width: '40%'}}/>
+        </div>
+
+        <div className={styles["form-group"]}>
+          <TextAreaInput 
+            label="Observação" 
+            readonly={true}
+            className={styles.inputTextAreaLabel}
+            classNameInput={styles.inputTextArea}
+            value={observacaoPedido} 
+            onChange={(e) => setObservacaoPedido(e.target.value)}/>
+        </div>
       </div>
 
-      <div className={styles["form-group-row"]}>
-        <InputLabel label="Data de emissão" value={data} onChange={(e) => setData(e.target.value)} />
-        <InputLabel label="Valor" value={valorPedido} onChange={(e) => setValorPedido(e.target.value)} />
-      </div>
-
-      <div className={styles["form-group"]}>
-        <InputLabel label="Observação" value={observacaoPedido} onChange={(e) => setObservacaoPedido(e.target.value)} />
-      </div>
 
       <div className={styles.buttons}>
         {botoesStatus[status][0] && (

@@ -6,7 +6,6 @@ import InputLabel from "@/components/inputs/inputLabel/inputLabel";
 import styles from "./page.module.css";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import { useState, useEffect } from "react";
-import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 import AddressOption from "@/components/containers/endereco/addressOption";
 import { useSearchParams } from "next/navigation";
 import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
@@ -34,8 +33,8 @@ export default function PageVisualizarPedido() {
 
     if (pedidoId) {
       fetch(`http://localhost:3001/pedido/${pedidoId}/produtos`, {
-  credentials: 'include' // envia cookies junto
-})
+        credentials: 'include' // envia cookies junto
+      })
         .then((res) => {
           if (!res.ok) throw new Error("Erro ao buscar produtos");
           return res.json();
@@ -87,36 +86,36 @@ export default function PageVisualizarPedido() {
       </BorderContainer>
 
       <BorderContainer title="Dados do pedido:" className={styles.borderContainer}>
-  <table className={styles.fornecedoresTable}>
-    <thead>
-      <tr>
-        <th>Cód. Produto</th>
-        <th>Nome do Produto</th>
-        <th>Marca</th>
-        <th>Quantidade</th>
-        <th>Valor Unit.</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      {produtos.length === 0 ? (
-        <tr>
-          <td colSpan={6} style={{ textAlign: "center" }}>Nenhum produto encontrado</td>
-        </tr>
-      ) : (
-        produtos.map((produto, index) => (
-          <tr key={index}>
-            <td>{produto.idProduto}</td>
-            <td>{produto.nome}</td>
-            <td>{produto.nomeMarca}</td>
-            <td>{produto.quantidade}</td>
-            <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
-            <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
-          </tr>
-        ))
-      )}
-    </tbody>
-  </table>
+        <table className={styles.fornecedoresTable}>
+          <thead>
+            <tr>
+              <th>Cód. Produto</th>
+              <th>Nome do Produto</th>
+              <th>Marca</th>
+              <th>Quantidade</th>
+              <th>Valor Unit.</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {produtos.length === 0 ? (
+              <tr>
+                <td colSpan={6} style={{ textAlign: "center" }}>Nenhum produto encontrado</td>
+              </tr>
+            ) : (
+              produtos.map((produto, index) => (
+                <tr key={index}>
+                  <td>{produto.idProduto}</td>
+                  <td>{produto.nome}</td>
+                  <td>{produto.nomeMarca}</td>
+                  <td>{produto.quantidade}</td>
+                  <td>R$ {Number(produto.valorUnitario).toFixed(2)}</td>
+                  <td>R$ {Number(produto.subtotal).toFixed(2)}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </BorderContainer>
 
       <TotalSummary

@@ -1,9 +1,14 @@
 .pedidos {
   margin-top: 10px;
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha */
+  flex-wrap: wrap;
   gap: 20px; 
-  justify-content: space-between; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pedidos:only-child {
+  justify-content: center;
 }
 
 .container{
@@ -13,6 +18,17 @@
   align-items: flex-end;
 }
 
+.containerPedidos {
+  display: flex;
+  flex: 1;
+}
+
+.notFoundLabel {
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: var(--white);
+  font-size: 20px;
+}
 
 .filter_dados {
   display: flex;

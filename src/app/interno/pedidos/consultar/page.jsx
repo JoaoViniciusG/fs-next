@@ -21,25 +21,25 @@ export default function pageConsultarpedido() {
   const [showAlertModal, setShowAlertModal] = useState(false);
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
 
- 
-useEffect(() => {
-  const fetchPedidos = async () => {
-    try {
-      const filtros = termoBusca ? { nomeCliente: termoBusca } : {};
-      const resp = await consultarPedidosAsync(filtros);
 
-      if (resp && resp.data) {
-        setPedidos(resp.data.payload);
-      } else {
+  useEffect(() => {
+    const fetchPedidos = async () => {
+      try {
+        const filtros = termoBusca ? { nomeCliente: termoBusca } : {};
+        const resp = await consultarPedidosAsync(filtros);
+
+        if (resp && resp.data) {
+          setPedidos(resp.data.payload);
+        } else {
+          setPedidos([]);
+        }
+      } catch {
         setPedidos([]);
       }
-    } catch {
-      setPedidos([]);
-    }
-  };
+    };
 
-  fetchPedidos();
-}, [termoBusca]);
+    fetchPedidos();
+  }, [termoBusca]);
 
   // Função para abrir modal de excluir com pedido selecionado
   function abrirExcluirPedido(pedido) {
@@ -49,27 +49,27 @@ useEffect(() => {
 
   // Função de callback depois de excluir pedido
   const handleExcluirPedido = async () => {
-  if (!pedidoSelecionado) return;
+    if (!pedidoSelecionado) return;
 
-  try {
-    const res = await fetch(`http://localhost:3001/pedido/delete/${pedidoSelecionado.id}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
+    try {
+      const res = await fetch(`http://localhost:3001/pedido/delete/${pedidoSelecionado.id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
 
-    if (!res.ok) {
-      console.error("Erro ao excluir pedido:", res.status);
-      return;
+      if (!res.ok) {
+        console.error("Erro ao excluir pedido:", res.status);
+        return;
+      }
+
+      setPedidos((prev) => prev.filter((p) => p.id !== pedidoSelecionado.id));
+      setPedidoSelecionado(null);
+      setModalExcluirPedidoOpen(false);
+      setShowAlertModal(true);
+    } catch (error) {
+      console.error("Erro na requisição de exclusão:", error);
     }
-
-    setPedidos((prev) => prev.filter((p) => p.id !== pedidoSelecionado.id));
-    setPedidoSelecionado(null);
-    setModalExcluirPedidoOpen(false);
-    setShowAlertModal(true);
-  } catch (error) {
-    console.error("Erro na requisição de exclusão:", error);
-  }
-};
+  };
 
   // Formatar data para exibir (ex: 10/06/2025)
   function formatarData(dataISO) {
@@ -119,10 +119,10 @@ useEffect(() => {
           </div>
         </BorderContainer>
 
-        <BorderContainer title="Pedidos:">
+        <BorderContainer title="Pedidos:" className={styles.containerPedidos}>
           <div className={styles.pedidos}>
             {pedidos.length === 0 ? (
-              <p>Nenhum pedido encontrado.</p>
+              <p className={styles.notFoundLabel}>Nenhum pedido encontrado.</p>
             ) : (
               pedidos.map((pedido, index) => (
                 <PedidoCard
