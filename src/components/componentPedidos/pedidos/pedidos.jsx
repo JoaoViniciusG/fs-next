@@ -100,7 +100,7 @@ import ShineButton from "../../buttons/shineButton/shineButton";
 import StatusPopup from "@/components/modals/alterarStatus/page";
 import { useRouter } from "next/navigation";
 import styles from "./pedidos.module.css";
-import { PedidoContext } from "@/context/pedidos";
+import { PedidoContext } from "@/context/pedidos.context";
 import TextAreaInput from "@/components/inputs/inputLabelObs/inputLabel";
 
 export default function PedidoCard({
