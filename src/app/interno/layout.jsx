@@ -4,13 +4,13 @@ import Header from "@/components/header/header";
 import BarraLateral from "@/components/barraLateral/barraLateralContainer/BarraLateral";
 import PedidosProvider from "@/context/pedidos.context";
 import RelatorioProvider from "@/context/relatorios.context";
-import { EnderecoContext } from "@/context/endereco.context";
+import EnderecoProvider, { EnderecoContext } from "@/context/endereco.context";
 
 export default function InternoLayout({ children }) {
   return (
     <PedidosProvider>
       <RelatorioProvider>
-        <EnderecoContext>
+        <EnderecoProvider>
           <div className={styles.containerMaster}>
             <Header />
 
@@ -20,7 +20,7 @@ export default function InternoLayout({ children }) {
               { children }
             </main>
           </div>
-        </EnderecoContext>
+        </EnderecoProvider>
       </RelatorioProvider>
     </PedidosProvider>
   )
