@@ -1,13 +1,10 @@
-
 .container {
   background-color: #00695c;
   color: #fff;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 15px;
-  width: 49%;
 }
-
 
 .header {
   display: flex;

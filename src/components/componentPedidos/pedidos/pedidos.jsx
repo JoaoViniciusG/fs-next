@@ -113,6 +113,8 @@ export default function PedidoCard({
   statusPedido,
   onExcluir,
   idPedido,
+  width = "49%",
+  readonly = false,
   produtos = [], // recebe o array de produtos do pedido
 }) {
   const { atualizarStatusPedido } = useContext(PedidoContext);
@@ -181,7 +183,7 @@ export default function PedidoCard({
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{width: width}}>
       <div className={styles.header}>
         <div className={styles.title}>PEDIDO:</div>
         <div className={styles["order-number"]}>Nº: {numeroPedido}</div>
@@ -213,7 +215,7 @@ export default function PedidoCard({
       </div>
 
 
-      <div className={styles.buttons}>
+      <div className={styles.buttons} style={{display: (!readonly) ? "flex" : "none"}}>
         {botoesStatus[status][0] && (
           <ShineButton text="ALTERAR STATUS" callback={() => setMostrarPopup(true)} />
         )}

@@ -2,11 +2,11 @@ import SmallButton from '@/components/buttons/smallButton/smallButton';
 import styles from './page.module.css';
 import PedidoCard from '@/components/componentPedidos/pedidos/pedidos';
 
-export default function ExcluirPedido({ 
-  isOpen = false, 
-  setIsOpen = () => {}, 
-  callbackCancelar = () => {}, 
-  callbackConfirmar = () => {},
+export default function ExcluirPedido({
+  isOpen = false,
+  setIsOpen = () => { },
+  callbackCancelar = () => { },
+  callbackConfirmar = () => { },
   bsIcon,
   title,
   text,
@@ -21,7 +21,7 @@ export default function ExcluirPedido({
           <i className={`bi ${bsIcon} ${styles.iconTitle}`}></i>
           <p className={styles.titleText}>{title}</p>
         </div>
-        
+
         <div className={styles.textContainer}>
           <p>{text}</p>
         </div>
@@ -37,6 +37,8 @@ export default function ExcluirPedido({
               <tr>
                 <td colSpan="5">
                   <PedidoCard
+                    readonly={true}
+                    width='100%'
                     numeroPedido={String(pedido.numeroPedido || pedido.id).padStart(3, "0")}
                     nomeCliente={pedido.nomeCliente || pedido.nome}
                     cpfCnpj={pedido.cpfCnpj || pedido.cpf}
@@ -46,7 +48,7 @@ export default function ExcluirPedido({
                     statusPedido={pedido.statusPedido || pedido.status}
                     idPedido={pedido.id}
                     produtos={pedido.produtos || []}
-                    onExcluir={() => {}}  // pode deixar vazio aqui
+                    onExcluir={() => { }}  // pode deixar vazio aqui
                   />
                 </td>
               </tr>
