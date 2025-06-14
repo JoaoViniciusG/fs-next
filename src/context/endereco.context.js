@@ -1,6 +1,6 @@
 "use client";
 
-import { DeleteEndereco, GetEnderecoById, PostAddEndereco } from '@/services/endereco.service';
+import { DeleteEndereco, GetEnderecoById, PostAddEndereco, GetEnderecoByIdRef } from '@/services/endereco.service';
 import {
     createContext,
     useState

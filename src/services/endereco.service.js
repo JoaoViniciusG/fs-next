@@ -17,7 +17,7 @@ export async function GetEnderecoById(id) {
   }
 }
 
-export async function GetEnderecoById(id, searchParamName) {
+export async function GetEnderecoByIdRef(id, searchParamName) {
   try {
     const response = await instance.get(`/endereco?${searchParamName}=${id}`);
     return response;
