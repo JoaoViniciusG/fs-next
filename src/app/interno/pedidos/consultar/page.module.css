@@ -1,9 +1,14 @@
 .pedidos {
   margin-top: 10px;
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha */
+  flex-wrap: wrap;
   gap: 20px; 
-  justify-content: space-between; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pedidos:only-child {
+  justify-content: center;
 }
 
 .container{
@@ -11,4 +16,55 @@
   width: 100%;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.containerPedidos {
+  display: flex;
+  flex: 1;
+}
+
+.notFoundLabel {
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: var(--white);
+  font-size: 20px;
+}
+
+.filter_dados {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+
+.button_filter {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button_filter > .filter_text {
+  font-size: 18px;
+  font-weight: 500px;
+  color: var(--white);
+}
+
+.button_filter > .icon_filter {
+  color: var(--white);
+  height: 27px;
+  width: 27px;
+  transition: 0.3s;
+}
+
+.button_filter:hover > .icon_filter{
+  color: var(--ligth-aquamarine);
+}
+
+.div_container_main {
+   margin: 10px 30px 30px; 
+  width: 100%;
 }

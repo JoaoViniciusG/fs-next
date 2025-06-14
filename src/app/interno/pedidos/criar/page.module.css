@@ -11,16 +11,11 @@
 }
 
 .dvInputs{
-
-    
-    margin-top: 30px;
+    margin: 25px;
     width: 100%;
 }
 
 
-
-
-/* Estilos para o campo de dados do pedido */
 .fieldMasterComponent {
     border: 5px solid #FFF;
     border-radius: 20px;
@@ -86,6 +81,7 @@
     width: 100%;
     overflow: scroll;
     position: relative;
+    min-height: 80vh
 }
 
 .tableContainerContent {
@@ -190,4 +186,65 @@
 
 .divContentInputTotal{
     width: 100%;
+}
+
+.divEnderecos {
+    margin: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fornecedoresTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.fornecedoresTable th,
+.fornecedoresTable td {
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.fornecedoresTable th {
+  background-color: #137264;
+  border-bottom: 10px solid #00473c;
+}
+
+.fornecedoresTable td {
+  background-color: #308378;
+  border-left: 2px solid white;
+}
+
+/* linha selecionada */
+.selectedRow {
+  background-color: #d3d3d3 !important; /* ou outra cor para destacar */
+  color: #000 !important;
+  cursor: pointer;
 }
