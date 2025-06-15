@@ -38,6 +38,8 @@ export default function PageCriarPedidos() {
 
   const [produtoEditando, setProdutoEditando] = useState(null);
 
+
+    
   const calcularSubtotalProduto = (produto) => {
     const quantidade = Number(produto.quantidade) || 0;
     const valorUnitario = Number(produto.valorUnitario) || 0;
@@ -225,61 +227,6 @@ export default function PageCriarPedidos() {
               />
             </div>
 
-            {/* <div className={styles.tableProducts}>
-              <div className={styles.headerListProducts}>
-                <p className={styles.listHeaderTitle}>Cód. do Produto</p>
-                <p className={styles.listHeaderTitle}>Nome do Produto / Modelo</p>
-                <p className={styles.listHeaderTitle}>Marca</p>
-                <p className={styles.listHeaderTitle}>Quantidade</p>
-                <p className={styles.listHeaderTitle}>Valor Unit.</p>
-                <p className={styles.listHeaderTitle}>Subtotal</p>
-              </div>
-
-              <div className={styles.divTableContainerContent}>
-                <div>
-                  <hr className={styles.hrBorder} style={{ left: '15%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '45%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '55%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '75%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '87%' }} />
-                </div>
-                <table className={styles.tableContainerContent}>
-                  <tbody>
-                    {produtosSelecionados.length === 0 && (
-                      <tr>
-                        <td colSpan={6} style={{ textAlign: "center" }}>
-                          Nenhum produto adicionado
-                        </td>
-                      </tr>
-                    )}
-                    {produtosSelecionados.map((produto, index) => {
-                      const valorUnitario = Number(produto.valorUnitario) || 0;
-                      const quantidade = Number(produto.quantidade) || 0;
-                      const subtotal = valorUnitario * quantidade;
-
-                      return (
-                        <tr
-                          key={index}
-                          className={produtoSelecionadoIndex === index ? styles.selectedRow : ''}
-                          onClick={() => setProdutoSelecionadoIndex(index)}
-                        >
-                          <td>{produto.id}</td>
-                          <td>{produto.nome}</td>
-                          <td>{produto.marca}</td>
-                          <td>{quantidade}</td>
-                          <td>{valorUnitario.toFixed(2)}</td>
-                          <td>{subtotal.toFixed(2)}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div> */}
-
-
-
-
           <table className={styles.fornecedoresTable}>
             <thead>
               <tr>
@@ -322,10 +269,6 @@ export default function PageCriarPedidos() {
               })}
             </tbody>
           </table>
-
-
-
-
           </div>
         </BorderContainer>
 
