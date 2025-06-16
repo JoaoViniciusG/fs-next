@@ -11,7 +11,7 @@ export const EnderecoContext = createContext();
 export default function EnderecoProvider({ children }) {
     const [hasError, setHasError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [enderecoById, setEnderecoById] = useState({});
+    const [enderecoById, setEnderecoById] = useState(null);
     const [enderecosByRef, setEnderecosByRef] = useState([]);
 
     const getEndereco = async (id) => {
@@ -19,17 +19,17 @@ export default function EnderecoProvider({ children }) {
             if (id == undefined) return "Id não informado!";
             setIsLoading(true);
 
-            const response = await GetEnderecoById(id);
+            const response = await GetEnderecoById(id); 
 
             if (response == false || response.status != 200 ) {
                 setEnderecoById(null);
                 setHasError(true);
             }
             else {
-                setEnderecoById(response);
+                setEnderecoById(response.data.payload);
                 setHasError(false);
             }
-
+          
             setEnderecosByRef([]);
         }
         catch (ex) {

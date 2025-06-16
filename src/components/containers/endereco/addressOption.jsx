@@ -11,7 +11,7 @@ export default function AddressOption({ id, logradouro, numero, bairro, cidade, 
         <div 
             style={{width: width}}
             className={styles.containerMaster} 
-            onClick={() => router.push(`/interno/endereco/visualizar?${id}`)}>
+            onClick={() => router.push(`/interno/endereco/visualizar/${id}`)}>
             
             <i className={`bi bi-geo-alt-fill ${styles.iconLocation}`}></i>
 
