@@ -24,7 +24,7 @@ export default function PageCriarProduto() {
                     <div className={styles.div_content_main}>
                         <div className={styles.container_content_dados}>
                             <div className={styles.contaner_box}>
-                                <InputLabel label="Nome do produto" type="text" placeholder="Nome do produto" required={true} readonly={false} width='60vh' />
+                                <InputLabel label="Nome do produto" type="text" placeholder="Nome do produto" required={true} readonly={false} width='60vh'/>
                                 <InputLabel label="Marca" type="text" placeholder="Selecione a marca" required={true} readonly={true} width='60vh' onClick={() => {setModalAbrirMarca(true)}}/>
                             </div>
                             <div className={styles.contaner_box}>
