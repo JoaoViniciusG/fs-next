@@ -40,6 +40,27 @@ export default function EnderecoProvider({ children }) {
         }
     };
 
+    const alterarEndereco = async (endereco) => {
+        try {
+            if (endereco == undefined) return "Endereço não informado!";
+            setIsLoading(true);
+
+            const response = await GetEnderecoById(id); 
+
+            if (response == false || response.status != 200 ) setHasError(true);
+            else {
+                setEnderecoById(null);
+                setHasError(false);
+            }
+        }
+        catch (ex) {
+            console.error(ex);
+        }
+        finally {
+            setIsLoading(false);
+        }
+    };
+
     const getEnderecos = async (id, tipo) => {
         /*
         1 - IdEmpresa

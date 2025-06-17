@@ -3,12 +3,24 @@ import axios from "axios";
 const instance = axios.create({
   timeout: 5000,
   baseURL: process.env.BASE_URL,
-  withCredentials: true
+  withCredentials: true,
+  validateStatus: () => true
 });
 
 export async function GetEnderecoById(id) {
   try {
     const response = await instance.get(`/endereco/${id}`);
+    return response;
+  }
+  catch (ex) {
+    console.error(ex);
+    return false;
+  }
+}
+
+export async function PostAlterarEndereco(endereco) {
+  try {
+    const response = await instance.post("/endereco/", endereco);
     return response;
   }
   catch (ex) {

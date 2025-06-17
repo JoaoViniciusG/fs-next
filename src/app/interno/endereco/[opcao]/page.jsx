@@ -24,6 +24,7 @@ export default function PageEnderecoCadastrar() {
     const [modalConfirmChange, setModalConfirmChange] = useState(false);
     const [modalConfirmCreate, setModalConfirmCreate] = useState(false);
     
+    const [idRegistro, setIdRegistro] = useState();
     const [contentBairro, setContentBairro] = useState("");
     const [contentNumero, setContentNumero] = useState("");
     const [contentEstado, setContentEstado] = useState("");
@@ -32,15 +33,6 @@ export default function PageEnderecoCadastrar() {
     const [contentRua, setContentRua] = useState("");
     const [isReadonly, setIsReadonly] = useState("");
     const [pageTitle, setPageTitle] = useState("");
-
-    const setMockData = () => {
-        setContentCep("76980-198");
-        setContentRua("Rua Rosilene Araújo de Castro");
-        setContentBairro("São José");
-        setContentNumero("733");
-        setContentEstado("Rondônia");
-        setContentCidade("Vilhena");
-    }
 
     const clearAll = () => {
         setContentCep("");
@@ -84,17 +76,15 @@ export default function PageEnderecoCadastrar() {
     useEffect(() => {
         switch (pathname.split("/")[3]) {
             case "visualizar":
-                setMockData();
                 setIsReadonly(true);
                 setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.confirmButton });
                 setPageTitle("Visualizar Endereço");
                 context.getEndereco(paramOpcao);
                 break;
             case "alterar":
-                setMockData();
                 setIsReadonly(false);
                 setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.changeButton });
-                setPageTitle("Alterar Endereço");
+                context.getEndereco(paramOpcao);
                 break;
             case "cadastrar":
                 clearAll();
@@ -107,9 +97,10 @@ export default function PageEnderecoCadastrar() {
 
     useEffect(() => {
         if(context.enderecoById == {} || context.enderecoById == null || context.enderecoById == undefined) return;
-        
+
         const endereco = context.enderecoById;
 
+        setIdRegistro(endereco.id);
         setContentEstado(endereco.estado);
         setContentNumero(endereco.numero);
         setContentBairro(endereco.bairro);
@@ -117,6 +108,16 @@ export default function PageEnderecoCadastrar() {
         setContentRua(endereco.logradouro);
         setContentCep(endereco.cep);
     }, [context.enderecoById]);
+
+    const deleteEndereco = async () => {
+        await context.deleteEndereco(idRegistro);
+    
+        if(!context.hasError) setModalConfirmDelete(true);
+    }
+
+    const alterarEndereco = async () => {
+        await context.alterarEndereco();
+    };
 
     return (
         <>
@@ -190,7 +191,7 @@ export default function PageEnderecoCadastrar() {
                 setIsOpen={setModalQuestionDelete}
                 textBtn1='CANCELAR'
                 textBtn2='CONFIRMAR'
-                callbackB2={() => setModalConfirmDelete(true)} />
+                callbackB2={deleteEndereco} />
 
             <AlertModal
                 title='EXCLUÍDO'
