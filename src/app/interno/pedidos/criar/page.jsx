@@ -94,6 +94,8 @@ export default function PageCriarPedidos() {
     setProdutoSelecionadoIndex(null);
   };
 
+  
+
   const handleCreatePedido = async () => {
     if (!clienteSelecionado) {
       alert('Por favor, selecione um cliente antes de criar o pedido.');
@@ -182,7 +184,7 @@ export default function PageCriarPedidos() {
 
         <BorderContainer title="Endereço">
           <div className={styles.divEnderecos}>
-            <AddAddressButton />
+            
             {clienteSelecionado?.endereco ? (
       <AddressOption
         id={clienteSelecionado.endereco.id}
@@ -278,15 +280,13 @@ export default function PageCriarPedidos() {
           </div>
         </BorderContainer>
 
-        <TotalSummary
-          subtotal={subtotal.toFixed(2)}
-          desconto={desconto.toFixed(2)}
-          total={total.toFixed(2)}
-          setSubtotal={setSubtotal}
-          setDesconto={setDesconto}
-          setTotal={setTotal}
-        />
-        <Footer
+      <TotalSummary
+  subtotal={subtotal}
+  desconto={desconto}
+  total={total}
+  setSubtotal={setSubtotal}
+  setDesconto={setDesconto}
+/>   <Footer
           buttons={[
             { text: "CRIAR PEDIDO", hoverColor: "var(--cyan)", callback: handleConfirmClick },
           ]}
@@ -330,6 +330,7 @@ export default function PageCriarPedidos() {
         setIsOpen={setModalAdicionarProdutoOpen}
         title="Adicionar produto"
         onSelecionarProduto={adicionarProdutoNaLista}
+        
       />
 
       <AdicionarProdutoModal

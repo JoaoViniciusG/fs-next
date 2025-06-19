@@ -16,14 +16,25 @@ const TotalSummary = ({ subtotal, desconto, total, setSubtotal, setDesconto, set
             readonly={true} 
             width="90%"
           />
-          <InputLabel 
-            label="Desconto" 
-            value={desconto} 
-            setValue={setDesconto} 
-            className={styles.inputDadosPessoais} 
-            readonly={false}  
-            width="90%"
-          />
+         <InputLabel 
+  label="Desconto" 
+  value={desconto} 
+  setValue={(val) => {
+    // Só números e ponto
+    if (/^\d*\.?\d*$/.test(val)) {
+      // converte para número (0 se vazio)
+      const valorNum = parseFloat(val) || 0;
+      const subtotalNum = parseFloat(subtotal) || 0;
+
+      if (valorNum <= subtotalNum) {
+        setDesconto(val);
+      }
+    }
+  }} 
+  className={styles.inputDadosPessoais} 
+  readonly={false}  
+  width="90%"
+/>
           <InputLabel 
             label="Total" 
             value={total} 

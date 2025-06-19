@@ -9,6 +9,7 @@ export default function AdicionarProdutoModal({
   title,
   onSelecionarProduto = () => {},
   produtoEditando = null,
+  
 }) {
   const [codigo, setCodigo] = useState('');
   const [nome, setNome] = useState('');
@@ -171,7 +172,7 @@ useEffect(() => {
     <input
       type="number"
       min={1}
-      max={produtoSelecionado?.quantidade || 1} // Limita pela quantidade em estoque
+      max={produtoSelecionado?.quantidade || 1} 
       value={quantidade}
       onChange={(e) => {
         const valor = Number(e.target.value);
