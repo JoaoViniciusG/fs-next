@@ -91,11 +91,11 @@ export default function EnderecoProvider({ children }) {
             const response = await GetEnderecoByIdRef(id, searchOption);
 
             if (response == false || response.status != 200 ) {
-                setEnderecosByRef(null);
+                setEnderecosByRef([]);
                 setHasError(true);
             }
             else {
-                setEnderecosByRef(response);
+                setEnderecosByRef(response.data.payload);
                 setHasError(false);
             }
 

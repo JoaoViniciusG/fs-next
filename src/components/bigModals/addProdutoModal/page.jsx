@@ -21,7 +21,7 @@ export default function AdicionarProdutoModal({
 
   useEffect(() => {
     if (isOpen) {
-      fetch('http://localhost:3001/marca', {
+      fetch('http://localhost:3001/marcas', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -156,18 +156,39 @@ useEffect(() => {
           </div>
 
           <div className={styles.divRow}>
-            <label className={styles.titleInput}>
-              <span>Marca:</span>
-              <input type="text" value={marca} onChange={(e) => setMarca(e.target.value)} className={`${styles.inputCampo} ${styles.inputMarca}`} />
-            </label>
+  <label className={styles.titleInput}>
+    <span>Marca:</span>
+    <input
+      type="text"
+      value={marca}
+      onChange={(e) => setMarca(e.target.value)}
+      className={`${styles.inputCampo} ${styles.inputMarca}`}
+    />
+  </label>
 
-            <label className={styles.titleInput}>
-              <span>Quantidade Desejada:</span>
-              <input type="number" min="1" value={quantidade} onChange={(e) => setQuantidade(e.target.value)} className={styles.inputCampo} />
-            </label>
+  <label className={styles.titleInput}>
+    <span>Quantidade Desejada:</span>
+    <input
+      type="number"
+      min={1}
+      max={produtoSelecionado?.quantidade || 1} // Limita pela quantidade em estoque
+      value={quantidade}
+      onChange={(e) => {
+        const valor = Number(e.target.value);
 
-            <SmallButton text="CONFIRMAR" callback={confirmarSelecao} />
-          </div>
+        if (valor > (produtoSelecionado?.quantidade || 1)) {
+          setQuantidade((produtoSelecionado?.quantidade || 1).toString());
+        } else {
+          setQuantidade(e.target.value);
+        }
+      }}
+      className={styles.inputCampo}
+    />
+  </label>
+
+  <SmallButton text="CONFIRMAR" callback={confirmarSelecao} />
+</div>
+
         </div>
 
         <div className={styles.tableContainer}>

@@ -18,16 +18,26 @@ export default function BuscarClienteModal({
   const [cpfBusca, setCpfBusca] = useState('');
   const [enderecoSelecionado, setEnderecoSelecionado] = useState(null);
   const [clienteSelecionado, setClienteSelecionado] = useState(null); // Estado para cliente selecionado no modal
-
+  const [enderecos, setEnderecos] = useState([]);
   useEffect(() => {
-    if (isOpen) {
-      setClientes([]);
-      setCpfBusca('');
-      setEnderecoSelecionado(null);
-      setNomeBusca('');
-      setClienteSelecionado(null);
-    }
-  }, [isOpen]);
+  if (isOpen) {
+    setClientes([]);
+    setCpfBusca('');
+    setEnderecos([]);
+    setEnderecoSelecionado(null);
+    setNomeBusca('');
+    setClienteSelecionado(null);
+  }
+}, [isOpen]);
+
+useEffect(() => {
+  if (nomeBusca === '' && cpfBusca === '') {
+    setClientes([]);
+    setEnderecos([]);
+    setEnderecoSelecionado(null);
+    setClienteSelecionado(null);
+  }
+}, [nomeBusca, cpfBusca]);
 
   const buscarClientes = async () => {
     try {
@@ -50,33 +60,63 @@ export default function BuscarClienteModal({
     }
   };
 
+  // const buscarEnderecoDoCliente = async (cliente) => {
+  //   setClienteSelecionado(cliente); // Guarda cliente selecionado ao clicar
+  //   console.log("ID do cliente para buscar endereço:", cliente.id);
+  //   try {
+  //     const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
+  //       credentials: 'include'
+  //     });
+
+  //     if (!response.ok) {
+  //       console.error('Erro na requisição do endereço:', response.status);
+  //       setEnderecoSelecionado(null);
+  //       return;
+  //     }
+
+  //     const data = await response.json();
+
+  //     if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
+  //       setEnderecoSelecionado(data.payload[0]);
+  //     } else {
+  //       setEnderecoSelecionado(null);
+  //       console.log('Nenhum endereço encontrado para esse cliente.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Erro ao buscar endereço:', error);
+  //     setEnderecoSelecionado(null);
+  //   }
+  // };
+
   const buscarEnderecoDoCliente = async (cliente) => {
-    setClienteSelecionado(cliente); // Guarda cliente selecionado ao clicar
-    console.log("ID do cliente para buscar endereço:", cliente.id);
-    try {
-      const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
-        credentials: 'include'
-      });
+  setClienteSelecionado(cliente);
+  try {
+    const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
+      credentials: 'include',
+    });
 
-      if (!response.ok) {
-        console.error('Erro na requisição do endereço:', response.status);
-        setEnderecoSelecionado(null);
-        return;
-      }
+    if (!response.ok) {
+      console.error('Erro na requisição do endereço:', response.status);
+      setEnderecos([]);
+      setEnderecoSelecionado(null);
+      return;
+    }
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
-        setEnderecoSelecionado(data.payload[0]);
-      } else {
-        setEnderecoSelecionado(null);
-        console.log('Nenhum endereço encontrado para esse cliente.');
-      }
-    } catch (error) {
-      console.error('Erro ao buscar endereço:', error);
+    if (data?.payload && Array.isArray(data.payload)) {
+      setEnderecos(data.payload);
+      setEnderecoSelecionado(data.payload[0] || null); // seleciona o primeiro por padrão
+    } else {
+      setEnderecos([]);
       setEnderecoSelecionado(null);
     }
-  };
+  } catch (error) {
+    console.error('Erro ao buscar endereço:', error);
+    setEnderecos([]);
+    setEnderecoSelecionado(null);
+  }
+};
 
   return (
     <div className={styles.backgroundContainer} style={{ display: isOpen ? 'flex' : 'none' }}>
@@ -137,34 +177,50 @@ export default function BuscarClienteModal({
           </table>
         </div>
 
-        {enderecoSelecionado && (
-          <div style={{ marginTop: '20px' }}>
-            <AddressOption
-              id={enderecoSelecionado.id}
-              logradouro={enderecoSelecionado.logradouro}
-              numero={enderecoSelecionado.numero}
-              bairro={enderecoSelecionado.bairro}
-              cidade={enderecoSelecionado.cidade}
-              UF={enderecoSelecionado.uf}
-            />
-          </div>
-        )}
+        {enderecos.length > 0 && (
+  <div style={{ margin: '20px', display: 'flex', gap: '10px' }}>
+    {enderecos.map((endereco) => (
+      <div
+        key={endereco.id}
+        style={{
+        cursor: 'pointer',
+          borderRadius: '8px',
+          backgroundColor: enderecoSelecionado?.id === endereco.id ? '#f0f0f0' : 'transparent',
+          transition: 'background-color 0.2s ease',
+          padding: '4px'
+        }}
+        onClick={() => setEnderecoSelecionado(endereco)}
+      >
+        <AddressOption
+          id={endereco.id}
+          logradouro={endereco.logradouro}
+          numero={endereco.numero}
+          bairro={endereco.bairro}
+          cidade={endereco.cidade}
+          UF={endereco.uf}
+          disableNavigation={true}
+        />
+      </div>
+    ))}
+  </div>
+)}
 
         <div className={styles.buttonGroup} style={{ marginTop: '20px', justifyContent: 'flex-end' }}>
           <SmallButton 
-            text="CONFIRMAR" 
-            callback={() => {
-              if (clienteSelecionado) {
-                callbackConfirmar({
-                  cliente: clienteSelecionado,
-                  endereco: enderecoSelecionado
-                });
-                setIsOpen(false);
-              } else {
-                alert('Selecione um cliente antes de confirmar');
-              }
-            }} 
-          />
+          text="CONFIRMAR" 
+          callback={() => {
+            if (clienteSelecionado) {
+              callbackConfirmar({
+                ...clienteSelecionado,
+                idEndereco: enderecoSelecionado?.id || null,
+                endereco: enderecoSelecionado || null, // <-- Adiciona isso!
+              });
+              setIsOpen(false);
+            } else {
+              alert('Selecione um cliente antes de confirmar');
+            }
+          }} 
+        />
         </div>
 
         <div className={styles.pagina}>

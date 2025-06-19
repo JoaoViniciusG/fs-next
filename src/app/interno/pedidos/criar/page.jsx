@@ -151,10 +151,14 @@ export default function PageCriarPedidos() {
   };
 
   const handleConfirmarBuscarCliente = (cliente) => {
-    setClienteSelecionado(cliente);
-    setBusca('');
-    setModalOpenn(false);
-  };
+  setClienteSelecionado({
+    ...cliente,
+    idEndereco: cliente.idEndereco, // já estava vindo, mantém
+    endereco: cliente.endereco, // <-- adiciona isso pra ter os dados do endereço
+  });
+  setBusca('');
+  setModalOpenn(false);
+};
 
   return (
     <>
@@ -179,16 +183,18 @@ export default function PageCriarPedidos() {
         <BorderContainer title="Endereço">
           <div className={styles.divEnderecos}>
             <AddAddressButton />
-            <AddressOption
-              clienteId={clienteSelecionado ? clienteSelecionado.id : null}
-              onSelectEndereco={(idEndereco) => {
-              setClienteSelecionado((prev) => {
-                const novoCliente = prev ? { ...prev, idEndereco } : prev;
-                console.log("Cliente com endereço selecionado:", novoCliente);
-                return novoCliente;
-              });
-            }}
-            />
+            {clienteSelecionado?.endereco ? (
+      <AddressOption
+        id={clienteSelecionado.endereco.id}
+        logradouro={clienteSelecionado.endereco.logradouro}
+        numero={clienteSelecionado.endereco.numero}
+        bairro={clienteSelecionado.endereco.bairro}
+        cidade={clienteSelecionado.endereco.cidade}
+        UF={clienteSelecionado.endereco.uf}
+      />
+    ) : (
+      <span>Selecione um cliente para carregar o endereço</span>
+    )}
           </div>
         </BorderContainer>
 

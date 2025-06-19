@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  timeout: 5000,
+  timeout: 5000, // de 5 para 15 segundos
   baseURL: process.env.BASE_URL,
   withCredentials: true,
   validateStatus: () => true
