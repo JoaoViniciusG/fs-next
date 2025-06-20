@@ -12,6 +12,7 @@ const TotalSummary = ({
   setDesconto,
   setTotal,
   setObservacao,
+  readOnly = false, // 👈 adicionando o controle
 }) => {
   return (
     <BorderContainer>
@@ -20,7 +21,7 @@ const TotalSummary = ({
           <InputLabel
             label="Subtotal"
             value={Number(subtotal).toFixed(2)}
-            setValue={setSubtotal}
+            setValue={!readOnly ? setSubtotal : undefined}
             className={styles.inputDadosPessoais}
             readonly={true}
             width="90%"
@@ -28,26 +29,30 @@ const TotalSummary = ({
 
           <InputLabel
             label="Desconto"
-            value={desconto}
-            setValue={(val) => {
-              if (/^\d*\.?\d*$/.test(val)) {
-                const valorNum = parseFloat(val) || 0;
-                const subtotalNum = parseFloat(subtotal) || 0;
+            value={Number(desconto).toFixed(2)}
+            setValue={
+              !readOnly
+                ? (val) => {
+                    if (/^\d*\.?\d*$/.test(val)) {
+                      const valorNum = parseFloat(val) || 0;
+                      const subtotalNum = parseFloat(subtotal) || 0;
 
-                if (valorNum <= subtotalNum) {
-                  setDesconto(val);
-                }
-              }
-            }}
+                      if (valorNum <= subtotalNum) {
+                        setDesconto(val);
+                      }
+                    }
+                  }
+                : undefined
+            }
             className={styles.inputDadosPessoais}
-            readonly={false}
+            readonly={readOnly}
             width="90%"
           />
 
           <InputLabel
             label="Total"
             value={Number(total).toFixed(2)}
-            setValue={setTotal}
+            setValue={!readOnly ? setTotal : undefined}
             className={styles.inputDadosPessoais}
             readonly={true}
             width="90%"
@@ -59,7 +64,8 @@ const TotalSummary = ({
           placeholder="Escreva sua descrição..."
           id="input-total"
           value={observacao}
-          setValue={setObservacao}
+          setValue={!readOnly ? setObservacao : undefined}
+          readonly={readOnly}
         />
       </div>
     </BorderContainer>

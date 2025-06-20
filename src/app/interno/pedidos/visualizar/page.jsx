@@ -148,6 +148,7 @@ export default function PageVisualizarPedido() {
         desconto={desconto}
         total={total}
         observacao={observacao}
+         readOnly={true}
       />
 
       <div className={styles.baixo}>

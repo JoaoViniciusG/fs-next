@@ -197,7 +197,9 @@ export default function PageCriarPedidos() {
         UF={clienteSelecionado.endereco.uf}
       />
     ) : (
-      <span>Selecione um cliente para carregar o endereço</span>
+      <span style={{ color: 'white', fontSize:'24px' }}>
+  Selecione um cliente para carregar o endereço
+</span>
     )}
           </div>
         </BorderContainer>
@@ -334,6 +336,7 @@ export default function PageCriarPedidos() {
         setIsOpen={setModalAdicionarProdutoOpen}
         title="Adicionar produto"
         onSelecionarProduto={adicionarProdutoNaLista}
+        produtosAdicionados={produtosSelecionados}
         
       />
 
@@ -343,6 +346,7 @@ export default function PageCriarPedidos() {
         title="Alterar produto"
         produtoEditando={produtoEditando}
         onSelecionarProduto={atualizarProdutoNaLista}
+        
       />
 
       <ExcluirProduto
