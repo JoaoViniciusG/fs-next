@@ -1,34 +1,33 @@
 .labelInputLogin {
-    display: flex;
-    flex-direction: column;
-    font-family: "Poppins";
-    font-size: 1.8vw;
-    color: #FFF;
-    gap: 5px;
-    position: relative;
-    z-index: 1;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .labelInputLogin span {
-    font-weight: 500;
-  }
-  
-  .labelInputLogin textarea {
-    border: none;
-    height: 6vw;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px #2e2e2e;
-    outline: none;
-    font-size: 1.4vw;
-    font-weight: 400;
-    color: #00332B;
-    padding: 0 15px;
-    width: 100%;
-    background-color: #FFF;
-    resize: none;
-  }
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins";
+  font-size: 1.8vw;
+  color: #FFF;
+  gap: 5px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+}
 
-  .labelInputLogin textarea::placeholder {
-    font-family: "Poppins", sans-serif; 
-  }
+.labelInputLogin span {
+  font-weight: 500;
+}
+
+.labelInputLogin textarea {
+  border: none;
+  height: 6vw;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #2e2e2e;
+  outline: none;
+  font-size: 1.4vw;
+  font-weight: 400;
+  color: #00332B;
+  padding: 0 15px;
+  width: 100%;
+  background-color: #FFF;
+  resize: none;
+}
+
+.labelInputLogin textarea::placeholder {
+  font-family: "Poppins", sans-serif;
+}

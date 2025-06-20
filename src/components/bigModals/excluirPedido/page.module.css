@@ -1,98 +1,94 @@
 .backgroundContainer {
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    position: fixed;
-    
-  }
-  
-  .modalContainer {
-    width: 900px;
-    background-color: var(--bold-darkgreen);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  
-  }
-  
-  .titleContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-  }
-  
-  .iconTitle {
-    font-size: 1.7em;
-    color: var(--white);
-  }
-  
-  .titleText {
-    font-family: "Poppins";
-    color: var(--white);
-    font-weight: 400;
-    font-size: 1.4em;
-  }
-  
-  .textContainer {
-    padding: 20px;
-    font-family: "Poppins";
-    color: var(--white);
-    font-weight: 400;
-    font-size: 1.2em;
-  }
-  
-  .tableContainer {
-    margin: 20px;
-    border: 3px solid #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    
-  }
-  
-  .fornecedoresTable {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-  
-  }
-  
-  .fornecedoresTable th, .fornecedoresTable td {
-    padding: 10px;
-    text-align: center;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 400;
-    
-  }
-  
-  .fornecedoresTable th {
-    background-color: var(--valuegreen);
-    border-bottom: 10px solid var(--darkgreen);
-  }
-  
-  .fornecedoresTable td {
-    background-color: var(--light-teal);
-  
-    border-left: 2px solid white;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
-    margin-right: 20px;
-  }
-  
-  .pagina {
-    text-align: right;
-    padding: 10px;
-    font-size: 0.9rem;
-    color: #fff;
-  }
-  
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.modalContainer {
+  background-color: var(--bold-darkgreen);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.iconTitle {
+  font-size: 1.7em;
+  color: var(--white);
+}
+
+.titleText {
+  font-family: "Poppins";
+  color: var(--white);
+  font-weight: 400;
+  font-size: 1.4em;
+}
+
+.textContainer {
+  padding: 20px;
+  font-family: "Poppins";
+  color: var(--white);
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+.tableContainer {
+  margin: 20px;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fornecedoresTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.fornecedoresTable th,
+.fornecedoresTable td {
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 400;
+
+}
+
+.fornecedoresTable th {
+  background-color: var(--valuegreen);
+  border-bottom: 10px solid var(--darkgreen);
+}
+
+.fornecedoresTable td {
+  background-color: var(--light-teal);
+
+  border-left: 2px solid white;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.pagina {
+  text-align: right;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+}

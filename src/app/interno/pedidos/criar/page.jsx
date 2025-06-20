@@ -38,6 +38,8 @@ export default function PageCriarPedidos() {
 
   const [produtoEditando, setProdutoEditando] = useState(null);
 
+
+    
   const calcularSubtotalProduto = (produto) => {
     const quantidade = Number(produto.quantidade) || 0;
     const valorUnitario = Number(produto.valorUnitario) || 0;
@@ -91,6 +93,8 @@ export default function PageCriarPedidos() {
     setShowAlertModalExcluido(true);
     setProdutoSelecionadoIndex(null);
   };
+
+  
 
   const handleCreatePedido = async () => {
     if (!clienteSelecionado) {
@@ -149,10 +153,14 @@ export default function PageCriarPedidos() {
   };
 
   const handleConfirmarBuscarCliente = (cliente) => {
-    setClienteSelecionado(cliente);
-    setBusca('');
-    setModalOpenn(false);
-  };
+  setClienteSelecionado({
+    ...cliente,
+    idEndereco: cliente.idEndereco, // já estava vindo, mantém
+    endereco: cliente.endereco, // <-- adiciona isso pra ter os dados do endereço
+  });
+  setBusca('');
+  setModalOpenn(false);
+};
 
   return (
     <>
@@ -176,17 +184,19 @@ export default function PageCriarPedidos() {
 
         <BorderContainer title="Endereço">
           <div className={styles.divEnderecos}>
-            <AddAddressButton />
-            <AddressOption
-              clienteId={clienteSelecionado ? clienteSelecionado.id : null}
-              onSelectEndereco={(idEndereco) => {
-              setClienteSelecionado((prev) => {
-                const novoCliente = prev ? { ...prev, idEndereco } : prev;
-                console.log("Cliente com endereço selecionado:", novoCliente);
-                return novoCliente;
-              });
-            }}
-            />
+            
+            {clienteSelecionado?.endereco ? (
+      <AddressOption
+        id={clienteSelecionado.endereco.id}
+        logradouro={clienteSelecionado.endereco.logradouro}
+        numero={clienteSelecionado.endereco.numero}
+        bairro={clienteSelecionado.endereco.bairro}
+        cidade={clienteSelecionado.endereco.cidade}
+        UF={clienteSelecionado.endereco.uf}
+      />
+    ) : (
+      <span>Selecione um cliente para carregar o endereço</span>
+    )}
           </div>
         </BorderContainer>
 
@@ -224,61 +234,6 @@ export default function PageCriarPedidos() {
                 }}
               />
             </div>
-
-            {/* <div className={styles.tableProducts}>
-              <div className={styles.headerListProducts}>
-                <p className={styles.listHeaderTitle}>Cód. do Produto</p>
-                <p className={styles.listHeaderTitle}>Nome do Produto / Modelo</p>
-                <p className={styles.listHeaderTitle}>Marca</p>
-                <p className={styles.listHeaderTitle}>Quantidade</p>
-                <p className={styles.listHeaderTitle}>Valor Unit.</p>
-                <p className={styles.listHeaderTitle}>Subtotal</p>
-              </div>
-
-              <div className={styles.divTableContainerContent}>
-                <div>
-                  <hr className={styles.hrBorder} style={{ left: '15%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '45%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '55%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '75%' }} />
-                  <hr className={styles.hrBorder} style={{ left: '87%' }} />
-                </div>
-                <table className={styles.tableContainerContent}>
-                  <tbody>
-                    {produtosSelecionados.length === 0 && (
-                      <tr>
-                        <td colSpan={6} style={{ textAlign: "center" }}>
-                          Nenhum produto adicionado
-                        </td>
-                      </tr>
-                    )}
-                    {produtosSelecionados.map((produto, index) => {
-                      const valorUnitario = Number(produto.valorUnitario) || 0;
-                      const quantidade = Number(produto.quantidade) || 0;
-                      const subtotal = valorUnitario * quantidade;
-
-                      return (
-                        <tr
-                          key={index}
-                          className={produtoSelecionadoIndex === index ? styles.selectedRow : ''}
-                          onClick={() => setProdutoSelecionadoIndex(index)}
-                        >
-                          <td>{produto.id}</td>
-                          <td>{produto.nome}</td>
-                          <td>{produto.marca}</td>
-                          <td>{quantidade}</td>
-                          <td>{valorUnitario.toFixed(2)}</td>
-                          <td>{subtotal.toFixed(2)}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div> */}
-
-
-
 
           <table className={styles.fornecedoresTable}>
             <thead>
@@ -322,22 +277,16 @@ export default function PageCriarPedidos() {
               })}
             </tbody>
           </table>
-
-
-
-
           </div>
         </BorderContainer>
 
-        <TotalSummary
-          subtotal={subtotal.toFixed(2)}
-          desconto={desconto.toFixed(2)}
-          total={total.toFixed(2)}
-          setSubtotal={setSubtotal}
-          setDesconto={setDesconto}
-          setTotal={setTotal}
-        />
-        <Footer
+      <TotalSummary
+  subtotal={subtotal}
+  desconto={desconto}
+  total={total}
+  setSubtotal={setSubtotal}
+  setDesconto={setDesconto}
+/>   <Footer
           buttons={[
             { text: "CRIAR PEDIDO", hoverColor: "var(--cyan)", callback: handleConfirmClick },
           ]}
@@ -381,6 +330,7 @@ export default function PageCriarPedidos() {
         setIsOpen={setModalAdicionarProdutoOpen}
         title="Adicionar produto"
         onSelecionarProduto={adicionarProdutoNaLista}
+        
       />
 
       <AdicionarProdutoModal

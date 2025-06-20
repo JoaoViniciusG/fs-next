@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  timeout: 5000,
+  timeout: 5000, // de 5 para 15 segundos
   baseURL: process.env.BASE_URL,
-  withCredentials: true
+  withCredentials: true,
+  validateStatus: () => true
 });
 
 export async function GetEnderecoById(id) {
@@ -17,7 +18,18 @@ export async function GetEnderecoById(id) {
   }
 }
 
-export async function GetEnderecoById(id, searchParamName) {
+export async function PostAlterarEndereco(endereco) {
+  try {
+    const response = await instance.post("/endereco/", endereco);
+    return response;
+  }
+  catch (ex) {
+    console.error(ex);
+    return false;
+  }
+}
+
+export async function GetEnderecoByIdRef(id, searchParamName) {
   try {
     const response = await instance.get(`/endereco?${searchParamName}=${id}`);
     return response;
