@@ -81,7 +81,8 @@ useEffect(() => {
           }
 
           const produtosComMarca = adicionarNomeMarca(produtos);
-          setProdutosFiltrados(produtosComMarca);
+const produtosDisponiveis = produtosComMarca.filter(p => (p.quantidade ?? 0) > 0);
+setProdutosFiltrados(produtosDisponiveis);
         } catch {
           setProdutosFiltrados([]);
         }
