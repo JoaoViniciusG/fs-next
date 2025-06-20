@@ -60,34 +60,7 @@ useEffect(() => {
     }
   };
 
-  // const buscarEnderecoDoCliente = async (cliente) => {
-  //   setClienteSelecionado(cliente); // Guarda cliente selecionado ao clicar
-  //   console.log("ID do cliente para buscar endereço:", cliente.id);
-  //   try {
-  //     const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
-  //       credentials: 'include'
-  //     });
-
-  //     if (!response.ok) {
-  //       console.error('Erro na requisição do endereço:', response.status);
-  //       setEnderecoSelecionado(null);
-  //       return;
-  //     }
-
-  //     const data = await response.json();
-
-  //     if (data?.payload && Array.isArray(data.payload) && data.payload.length > 0) {
-  //       setEnderecoSelecionado(data.payload[0]);
-  //     } else {
-  //       setEnderecoSelecionado(null);
-  //       console.log('Nenhum endereço encontrado para esse cliente.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Erro ao buscar endereço:', error);
-  //     setEnderecoSelecionado(null);
-  //   }
-  // };
-
+  
   const buscarEnderecoDoCliente = async (cliente) => {
   setClienteSelecionado(cliente);
   try {

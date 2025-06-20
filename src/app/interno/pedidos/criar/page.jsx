@@ -37,6 +37,7 @@ export default function PageCriarPedidos() {
   const [total, setTotal] = useState(0);
 
   const [produtoEditando, setProdutoEditando] = useState(null);
+  const [observacao, setObservacao] = useState('');
 
 
     
@@ -116,7 +117,7 @@ export default function PageCriarPedidos() {
       data: new Date().toISOString(),
       valorTotal: subtotal,
       desconto: Number(desconto),
-      observacao: '',
+      observacao: observacao,
       idFuncionario: 'b36abef5-283f-11f0-817d-0242ac120018',
       status: 1,
       produtos: produtosSelecionados.map(produto => ({
@@ -130,6 +131,7 @@ export default function PageCriarPedidos() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pedido),
+        credentials: 'include'
       });
 
       if (!response.ok) throw new Error('Erro ao criar pedido');
@@ -281,12 +283,14 @@ export default function PageCriarPedidos() {
         </BorderContainer>
 
       <TotalSummary
-  subtotal={subtotal}
-  desconto={desconto}
-  total={total}
-  setSubtotal={setSubtotal}
-  setDesconto={setDesconto}
-/>   <Footer
+        subtotal={subtotal}
+        desconto={desconto}
+        total={total}
+        observacao={observacao}       
+        setSubtotal={setSubtotal}
+        setDesconto={setDesconto}
+        setObservacao={setObservacao}
+      />   <Footer
           buttons={[
             { text: "CRIAR PEDIDO", hoverColor: "var(--cyan)", callback: handleConfirmClick },
           ]}

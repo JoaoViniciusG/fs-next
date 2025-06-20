@@ -15,41 +15,53 @@ export default function PageVisualizarPedido() {
 
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
+  const [idPedido, setIdPedido] = useState("");
+
+  const [endereco, setEndereco] = useState(null);
 
   const [subtotal, setSubtotal] = useState("");
   const [desconto, setDesconto] = useState("");
   const [total, setTotal] = useState("");
   const [observacao, setObservacao] = useState("");
-  const [idPedido, setIdPedido] = useState("");
 
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     setNome(searchParams.get("nomeCliente") || "");
     setCpfCnpj(searchParams.get("cpfCnpj") || "");
-    setIdPedido(searchParams.get("idPedido") || "");
-
     const pedidoId = searchParams.get("idPedido") || "";
+    setIdPedido(pedidoId);
 
     if (pedidoId) {
       fetch(`http://localhost:3001/pedido/${pedidoId}/produtos`, {
-        credentials: 'include' // envia cookies junto
+        credentials: "include",
       })
         .then((res) => {
           if (!res.ok) throw new Error("Erro ao buscar produtos");
           return res.json();
         })
         .then((data) => {
-          const { produtos, subtotal, valorTotal, desconto, observacao } = data.payload;
+          const {
+            produtos,
+            subtotal,
+            valorTotal,
+            desconto,
+            observacao,
+            endereco, // endereço completo vindo na resposta do pedido
+          } = data.payload;
+
           setProdutos(produtos || []);
           setSubtotal(subtotal?.toString() || "");
           setTotal(valorTotal?.toString() || "");
           setDesconto(desconto?.toString() || "");
           setObservacao(observacao || "");
+
+          setEndereco(endereco || null); // direto do payload
         })
         .catch((error) => {
           console.error("Erro ao carregar produtos:", error);
           setProdutos([]);
+          setEndereco(null);
         });
     }
   }, [searchParams]);
@@ -81,7 +93,18 @@ export default function PageVisualizarPedido() {
 
       <BorderContainer title="Endereço">
         <div className={styles.divEnderecos}>
-          <AddressOption />
+          {endereco ? (
+            <AddressOption
+              id={endereco.id}
+              logradouro={endereco.logradouro}
+              numero={endereco.numero}
+              bairro={endereco.bairro}
+              cidade={endereco.cidade}
+              UF={endereco.uf || endereco.estado}
+            />
+          ) : (
+            <span>Endereço não encontrado</span>
+          )}
         </div>
       </BorderContainer>
 
@@ -100,7 +123,9 @@ export default function PageVisualizarPedido() {
           <tbody>
             {produtos.length === 0 ? (
               <tr>
-                <td colSpan={6} style={{ textAlign: "center" }}>Nenhum produto encontrado</td>
+                <td colSpan={6} style={{ textAlign: "center" }}>
+                  Nenhum produto encontrado
+                </td>
               </tr>
             ) : (
               produtos.map((produto, index) => (
