@@ -20,7 +20,14 @@ export default function MarcaSelection({
     isOpen = true, 
     width = "max-content",
     setIsOpen = () => {}, 
+    setMarca = () => {}
     }) {
+
+    const selecionarMarca = (nome) => {
+        setMarca(nome);
+        setIsOpen(false);
+    };
+
     return (
         <div style={{display: (isOpen) ? "flex" : "none" }} className={styles.backgroundContainer}>
             <div style={{width: width}} className={styles.content_pop_consultar}>

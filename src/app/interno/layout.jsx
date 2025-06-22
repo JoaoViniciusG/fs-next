@@ -5,21 +5,24 @@ import BarraLateral from "@/components/barraLateral/barraLateralContainer/BarraL
 import PedidosProvider from "@/context/pedidos.context";
 import RelatorioProvider from "@/context/relatorios.context";
 import EnderecoProvider from "@/context/endereco.context";
+import ProdutoProvider from "@/context/produto.context";
 
 export default function InternoLayout({ children }) {
   return (
     <PedidosProvider>
       <RelatorioProvider>
         <EnderecoProvider>
-          <div className={styles.containerMaster}>
-            <Header />
+          <ProdutoProvider>
+            <div className={styles.containerMaster}>
+              <Header />
 
-            <BarraLateral />
+              <BarraLateral />
 
-            <main className={styles.containerPagesMain}>
-              { children }
-            </main>
-          </div>
+              <main className={styles.containerPagesMain}>
+                { children }
+              </main>
+            </div>
+          </ProdutoProvider>
         </EnderecoProvider>
       </RelatorioProvider>
     </PedidosProvider>
