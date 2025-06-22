@@ -26,7 +26,7 @@ export default function PageCriarProduto() {
     const [valueQuantidade, setValueQuantidade] = useState(0);
 
     const cadastrarProduto = async () => {
-        if (!valueNome || !valueMarca || valueValorUnitario <= 0 || valueQuantidade < 0) { 
+        if (!valueNome || !valueMarca || valueValorUnitario <= 0 || valueQuantidade < 0) {
             alert("Preencha todos os campos corretamente!");
             return;
         };
@@ -47,10 +47,10 @@ export default function PageCriarProduto() {
             alert("Error ao cadastrar o produto!");
         }
     }
-    
+
     return (
         <>
-            <BasicScreen pageTitle="Cadastrar produto" isLoading={true}>
+            <BasicScreen pageTitle="Cadastrar produto">
                 <BorderContainer title="Dados do Produto:">
                     <div className={styles.div_content_main}>
                         <div className={styles.container_content_dados}>

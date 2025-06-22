@@ -6,6 +6,7 @@ import PedidosProvider from "@/context/pedidos.context";
 import RelatorioProvider from "@/context/relatorios.context";
 import EnderecoProvider from "@/context/endereco.context";
 import ProdutoProvider from "@/context/produto.context";
+import MarcaProvider from "@/context/marca.context";
 
 export default function InternoLayout({ children }) {
   return (
@@ -13,15 +14,17 @@ export default function InternoLayout({ children }) {
       <RelatorioProvider>
         <EnderecoProvider>
           <ProdutoProvider>
-            <div className={styles.containerMaster}>
-              <Header />
+            <MarcaProvider>
+              <div className={styles.containerMaster}>
+                <Header />
 
-              <BarraLateral />
+                <BarraLateral />
 
-              <main className={styles.containerPagesMain}>
-                { children }
-              </main>
-            </div>
+                <main className={styles.containerPagesMain}>
+                  {children}
+                </main>
+              </div>
+            </MarcaProvider>
           </ProdutoProvider>
         </EnderecoProvider>
       </RelatorioProvider>

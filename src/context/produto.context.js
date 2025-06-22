@@ -1,6 +1,6 @@
 "use client";
 
-import { GetProdutoById, GetProdutoByName, GetProdutoByQuantidade, GetProdutoByValorUnitario, GetProdutoByMarca, GetProdutoByIdEmpresa, PostAddProduto, PutAlterarProduto, PatchAtualizarProduto, DeleteProduto, PostMovimentarEstoque } from "@/services/produto.service";
+import { GetProdutoById, GetProdutosByParametros, PostAddProduto, PutAlterarProduto, PatchAtualizarProduto, DeleteProduto, PostMovimentarEstoque } from "@/services/produto.service";
 import { createContext, useState } from "react";
 
 export const ProdutoContext = createContext();
@@ -10,6 +10,7 @@ export default function ProdutoProvider({ children }) {
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [produtoSelect, setProdutoSelect] = useState(null);
+    const [produtos, setProdutos] = useState([]);
     
 
     const produtoById = async (id) => {
@@ -33,6 +34,47 @@ export default function ProdutoProvider({ children }) {
         catch (ex){
             console.error(ex);
         }
+        finally {
+            setIsLoading(false);
+        }
+    };
+
+    const consultarProdutos = async (filtro = {}) => {
+        try {
+            setIsLoading(true);
+            const response = await GetProdutosByParametros(filtro);
+
+            if (!response || response.status !== 200) {
+                setErrorMessage("Erro ao buscar os produtos!");
+                setHasError(true);
+                setProdutos([]);
+                return false;
+            }
+
+            const data = response.data;
+
+            if (Array.isArray(data)) {
+                setProdutos(data);
+            }
+            else if (data.payload && Array.isArray(data.payload)) {
+                setProdutos(data.payload);
+            }
+            else {
+                setProdutos([]);
+            }
+
+            setHasError(false);
+            return true;
+
+        } 
+        catch (ex) {
+            console.error(ex);
+            setErrorMessage("Erro ao buscar os produtos!");
+            setHasError(true);
+            setProdutos([]);
+            return false;
+
+        } 
         finally {
             setIsLoading(false);
         }
@@ -148,7 +190,9 @@ export default function ProdutoProvider({ children }) {
         hasError : hasError,
         isLoading : isLoading,
         produtoSelect : produtoSelect,
+        produtos : produtos,
         produtoById : produtoById,
+        consultarProdutos : consultarProdutos,
         cadastrarProdutoPost : cadastrarProdutoPost,
         atualizarProdutoCompleto : atualizarProdutoCompleto,
         atualizarProdutoParcial : atualizarProdutoParcial,

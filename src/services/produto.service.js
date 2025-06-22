@@ -17,7 +17,18 @@ export async function GetProdutoById (id) {
     }
 }
 
-export async function GetProdutoByName(nome) {
+export async function GetProdutosByParametros(params) {
+    try {
+        const response = await instance.get("/produto", { params });
+        return response;
+    }
+    catch (ex) {
+        console.error(ex);
+        return false;
+    }
+}
+
+/* export async function GetProdutoByName(nome) {
     try {
         const response = await instance.get(`/produto?nome=${nome}`);
         return response;
@@ -71,6 +82,8 @@ export async function GetProdutoByIdEmpresa(idEmpresa) {
         return false;
     }
 }
+ */
+
 
 export async function PostAddProduto(produto) {
     try {
