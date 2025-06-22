@@ -38,6 +38,31 @@ export default function ProdutoProvider({ children }) {
         }
     }
 
+    const cadastrarProdutoPost = async (produto) => {
+        try {
+            setIsLoading(true);
+            const response = await PostAddProduto(produto);
+
+            if (!response || response.status !== 201) {
+                setErrorMessage("Erro ao cadastrar o produto!");
+                setHasError(true);
+                return false;
+            }
+
+            setHasError(false);
+            return true;
+        }
+        catch (ex) {
+            console.error(ex);
+            setErrorMessage("Erro ao cadastrar o produto!");
+            setHasError(true);
+            return false;
+        }
+        finally {
+            setIsLoading(false);
+        }
+    }
+
     const atualizarProdutoCompleto = async (id, produto) => {
         try {
             setIsLoading(true);
@@ -124,6 +149,7 @@ export default function ProdutoProvider({ children }) {
         isLoading : isLoading,
         produtoSelect : produtoSelect,
         produtoById : produtoById,
+        cadastrarProdutoPost : cadastrarProdutoPost,
         atualizarProdutoCompleto : atualizarProdutoCompleto,
         atualizarProdutoParcial : atualizarProdutoParcial,
         deleteProduto : deleteProduto

@@ -34,6 +34,10 @@ export default function PageAtualizarProduto() {
     const [valueOriginalValorUnitario, setValueOriginalValorUnitario] = useState(0);
     const [valueOriginalQuantidade, setValueOriginalQuantidade] = useState(0);
 
+    useEffect(() => {
+        if (!id) return;
+        context.produtoById(id);
+    }, [id]);
 
     useEffect(() => {
         if (!context.produtoSelect) return;
@@ -51,6 +55,15 @@ export default function PageAtualizarProduto() {
         setValueOriginalQuantidade(produto.quantidade);
 
     }, [context.produtoSelect]);
+
+    const camposPreenchidos = (produto) => {
+        return (
+            produto.nome !== "" &&
+            produto.marca !== "" &&
+            produto.valorUnitario !== null &&
+            produto.quantidade !== null
+        );
+    }
 
     const atualizarProduto = async () => {
         const produto = {
@@ -82,10 +95,10 @@ export default function PageAtualizarProduto() {
 
         let response = false;
 
-        if (camposAlterados === 1) {
-            response = await context.atualizarProdutoParcial(id, produto);
-        } else {
+        if (camposAlterados === 4 && camposPreenchidos(produto)) {
             response = await context.atualizarProdutoCompleto(id, produto);
+        } else {
+            response = await context.atualizarProdutoParcial(id, produto);
         }
 
         if (response) {

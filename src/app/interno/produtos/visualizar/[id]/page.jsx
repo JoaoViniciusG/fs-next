@@ -27,7 +27,7 @@ export default function PageVisualizarProduto() {
 
 
     useEffect(() => {
-        context.ProdutoById(id);
+        context.produtoById(id);
     }, [id]);
 
 
