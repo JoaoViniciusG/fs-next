@@ -18,9 +18,9 @@ export async function GetEnderecoById(id) {
   }
 }
 
-export async function PostAlterarEndereco(endereco) {
+export async function PutAlterarEndereco(endereco) {
   try {
-    const response = await instance.post("/endereco/", endereco);
+    const response = await instance.put("/endereco/", endereco);
     return response;
   }
   catch (ex) {

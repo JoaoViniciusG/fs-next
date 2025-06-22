@@ -20,26 +20,15 @@ export default function RankingContainer({ title, suffix, infos = [] }) {
           infos.map((item, index) => (
             <div key={index} className={styles.listItem}>
               <div className={styles.itemImageContainer}>
-                {
-                  (typeof item.image == "string" && item.image.length > 0) ?
-                  <Image 
-                    src={item.image}
-                    alt={`Imagem ${item.name}`}
-                    width={45}
-                    height={45}/>
-                  :
-                  <div className={styles.undefinedImage}>
-                    <Icon.User className={styles.iconImage}/>
-                  </div>
-                }
+                {JSON.stringify(index + 1)}
               </div>
 
               <div className={styles.temNameContainer}>
-                <p className={styles.itemName}>{item.name}</p>
+                <p className={styles.itemName}>{item.nome}</p>
               </div>
 
               <div className={styles.containerItemValue}>
-                <h4>{item.value}</h4>
+                <h4>{item.quantidade}</h4>
                 <p>{suffix}</p>
               </div>
             </div>

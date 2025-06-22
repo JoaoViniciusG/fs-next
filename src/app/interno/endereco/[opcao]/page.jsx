@@ -8,7 +8,7 @@ import BorderContainer from '@/components/containers/borderContainer/page';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { EnderecoContext } from '@/context/endereco.context';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
@@ -23,7 +23,9 @@ export default function PageEnderecoCadastrar() {
     const [modalConfirmDelete, setModalConfirmDelete] = useState(false);
     const [modalConfirmChange, setModalConfirmChange] = useState(false);
     const [modalConfirmCreate, setModalConfirmCreate] = useState(false);
-    
+
+    const [enderecoInfos, setEnderecoInfos] = useState();
+
     const [idRegistro, setIdRegistro] = useState();
     const [contentBairro, setContentBairro] = useState("");
     const [contentNumero, setContentNumero] = useState("");
@@ -34,6 +36,7 @@ export default function PageEnderecoCadastrar() {
     const [isReadonly, setIsReadonly] = useState("");
     const [pageTitle, setPageTitle] = useState("");
 
+
     const clearAll = () => {
         setContentCep("");
         setContentRua("");
@@ -42,6 +45,28 @@ export default function PageEnderecoCadastrar() {
         setContentEstado("");
         setContentCidade("");
     }
+
+    const deleteEndereco = async () => {
+        await context.deleteEndereco(idRegistro);
+
+        if (!context.hasError) setModalConfirmDelete(true);
+    }
+
+    const alterarEndereco = async () => {
+        if (!enderecoInfos || Object.keys(enderecoInfos).length === 0) return;
+
+        let end = { ...enderecoInfos };
+        end.id = idRegistro;
+        end.estado = contentEstado;
+        end.numero = contentNumero;
+        end.bairro = contentBairro;
+        end.cidade = contentCidade;
+        end.logradouro = contentRua;
+        end.cep = contentCep;
+
+        const res = await context.alterarEndereco(end);
+        if (res) setModalConfirmChange(true);
+    };
 
     const buttonProperties = {
         cancelButton: {
@@ -57,12 +82,12 @@ export default function PageEnderecoCadastrar() {
         changeButton: {
             text: "ALTERAR",
             hoverColor: "var(--cadetblue-ligtht)",
-            callback: () => { setModalConfirmChange(true) }
+            callback: () => { router.push(`/interno/endereco/alterar/${paramOpcao}`) }
         },
         confirmButton: {
             text: "CONFIRMAR",
             hoverColor: "var(--cyan)",
-            callback: () => { router.back() }
+            callback: alterarEndereco
         },
         deleteButton: {
             text: "EXCLUIR ENDEREÇO",
@@ -73,17 +98,70 @@ export default function PageEnderecoCadastrar() {
 
     const [buttonsConfig, setButtonsConfig] = useState({ button1: buttonProperties.deleteButton, button2: buttonProperties.changeButton })
 
+        useEffect(() => {
+        switch (pathname.split("/")[3]) {
+            case "visualizar":
+                setButtonsConfig({
+                    button1: {
+                        text: "EXCLUIR ENDEREÇO",
+                        hoverColor: "var(--darkred)",
+                        callback: () => setModalQuestionDelete(true)
+                    },
+                    button2: {
+                        text: "ALTERAR",
+                        hoverColor: "var(--cadetblue-ligtht)",
+                        callback: () => router.push(`/interno/endereco/alterar/${paramOpcao}`)
+                    }
+                });
+                break;
+            case "alterar":
+                if (enderecoInfos) {
+                    setButtonsConfig({
+                        button1: {
+                            text: "EXCLUIR ENDEREÇO",
+                            hoverColor: "var(--darkred)",
+                            callback: () => setModalQuestionDelete(true)
+                        },
+                        button2: {
+                            text: "CONFIRMAR",
+                            hoverColor: "var(--cyan)",
+                            callback: alterarEndereco // <- usa função separada corretamente
+                        }
+                    });
+                }
+                break;
+
+            case "cadastrar":
+                setButtonsConfig({
+                    button1: {
+                        text: "CANCELAR",
+                        hoverColor: "var(--darkred)",
+                        callback: () => router.back()
+                    },
+                    button2: {
+                        text: "CADASTRAR",
+                        hoverColor: "var(--cadetblue-ligtht)",
+                        callback: () => setModalConfirmCreate(true)
+                    }
+                });
+                break;
+        }
+    }, [pathname, enderecoInfos, contentEstado, contentNumero, contentBairro, contentCidade, contentRua, contentCep, idRegistro]);
+
     useEffect(() => {
         switch (pathname.split("/")[3]) {
             case "visualizar":
+                clearAll();
                 setIsReadonly(true);
-                setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.confirmButton });
+                setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.changeButton });
                 setPageTitle("Visualizar Endereço");
                 context.getEndereco(paramOpcao);
                 break;
             case "alterar":
+                clearAll();
                 setIsReadonly(false);
-                setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.changeButton });
+                setButtonsConfig({ button1: buttonProperties.deleteButton, button2: buttonProperties.confirmButton });
+                setPageTitle("Alterar Endereço");
                 context.getEndereco(paramOpcao);
                 break;
             case "cadastrar":
@@ -96,28 +174,18 @@ export default function PageEnderecoCadastrar() {
     }, [pathname])
 
     useEffect(() => {
-        if(context.enderecoById == {} || context.enderecoById == null || context.enderecoById == undefined) return;
+        if (!context.enderecoById || Object.keys(context.enderecoById).length === 0) return;
 
-        const endereco = context.enderecoById;
+        setEnderecoInfos(context.enderecoById);
 
-        setIdRegistro(endereco.id);
-        setContentEstado(endereco.estado);
-        setContentNumero(endereco.numero);
-        setContentBairro(endereco.bairro);
-        setContentCidade(endereco.cidade);
-        setContentRua(endereco.logradouro);
-        setContentCep(endereco.cep);
+        setIdRegistro(context.enderecoById.id);
+        setContentEstado(context.enderecoById.estado);
+        setContentNumero(context.enderecoById.numero);
+        setContentBairro(context.enderecoById.bairro);
+        setContentCidade(context.enderecoById.cidade);
+        setContentRua(context.enderecoById.logradouro);
+        setContentCep(context.enderecoById.cep);
     }, [context.enderecoById]);
-
-    const deleteEndereco = async () => {
-        await context.deleteEndereco(idRegistro);
-    
-        if(!context.hasError) setModalConfirmDelete(true);
-    }
-
-    const alterarEndereco = async () => {
-        await context.alterarEndereco();
-    };
 
     return (
         <>
@@ -207,7 +275,7 @@ export default function PageEnderecoCadastrar() {
                 bsIcon="bi-check2-circle"
                 setIsOpen={setModalConfirmChange}
                 isOpen={modalConfirmChange}
-                callback={router.back}/>
+                callback={router.back} />
 
             <AlertModal
                 title='CRIADO'
@@ -215,7 +283,7 @@ export default function PageEnderecoCadastrar() {
                 bsIcon="bi-check2-circle"
                 setIsOpen={setModalConfirmCreate}
                 isOpen={modalConfirmCreate}
-                callback={router.back}/>
+                callback={router.back} />
         </>
     );
 };

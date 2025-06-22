@@ -1,6 +1,6 @@
 "use client";
 
-import { DeleteEndereco, GetEnderecoById, PostAddEndereco, GetEnderecoByIdRef } from '@/services/endereco.service';
+import { DeleteEndereco, GetEnderecoById, PostAddEndereco, GetEnderecoByIdRef, PutAlterarEndereco } from '@/services/endereco.service';
 import {
     createContext,
     useState
@@ -16,6 +16,7 @@ export default function EnderecoProvider({ children }) {
 
     const getEndereco = async (id) => {
         try {
+            let success = null;
             if (id == undefined) return "Id não informado!";
             setIsLoading(true);
 
@@ -24,13 +25,16 @@ export default function EnderecoProvider({ children }) {
             if (response == false || response.status != 200 ) {
                 setEnderecoById(null);
                 setHasError(true);
+                success = false;
             }
             else {
                 setEnderecoById(response.data.payload);
                 setHasError(false);
+                success = true;
             }
           
             setEnderecosByRef([]);
+            return success
         }
         catch (ex) {
             console.error(ex);
@@ -42,16 +46,23 @@ export default function EnderecoProvider({ children }) {
 
     const alterarEndereco = async (endereco) => {
         try {
+            let success = null;
             if (endereco == undefined) return "Endereço não informado!";
             setIsLoading(true);
 
-            const response = await GetEnderecoById(id); 
+            const response = await PutAlterarEndereco(endereco); 
 
-            if (response == false || response.status != 200 ) setHasError(true);
+            if (response == false || response.status != 200 ) {
+                setHasError(true)
+                success = false;
+            }
             else {
                 setEnderecoById(null);
                 setHasError(false);
+                success = true;
             }
+
+            return success;
         }
         catch (ex) {
             console.error(ex);
@@ -151,9 +162,10 @@ export default function EnderecoProvider({ children }) {
         enderecoById: enderecoById,
         enderecosByRef: enderecosByRef,
         getEndereco: getEndereco,
-        getEnderecos: getEnderecos,
         addEndereco: addEndereco,
-        deleteEndereco: deleteEndereco
+        getEnderecos: getEnderecos,
+        deleteEndereco: deleteEndereco,
+        alterarEndereco: alterarEndereco
     }
 
     return (
