@@ -17,9 +17,20 @@ export async function GetProdutoById (id) {
     }
 }
 
-export async function GetProdutoByName(nome) {
+export async function GetProdutosByParametros(params) {
     try {
-        const response = await instance.get(`/produto?${nome}`);
+        const response = await instance.get("/produto", { params });
+        return response;
+    }
+    catch (ex) {
+        console.error(ex);
+        return false;
+    }
+}
+
+/* export async function GetProdutoByName(nome) {
+    try {
+        const response = await instance.get(`/produto?nome=${nome}`);
         return response;
     }
     catch (ex){
@@ -30,7 +41,8 @@ export async function GetProdutoByName(nome) {
 
 export async function GetProdutoByQuantidade(quantidade) {
     try {
-        const response = await instance.get(`/produto?{${quantidade}}`);
+        const response = await instance.get(`/produto?quantidade=${quantidade}`);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -40,7 +52,8 @@ export async function GetProdutoByQuantidade(quantidade) {
 
 export async function GetProdutoByValorUnitario(valorUnitario) {
     try {
-        const response = await instance.get(`/produto?{${valorUnitario}}`);
+        const response = await instance.get(`/produto?valorUnitario=${valorUnitario}`);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -50,7 +63,8 @@ export async function GetProdutoByValorUnitario(valorUnitario) {
 
 export async function GetProdutoByMarca(marca) {
     try {
-        const response = await instance.get(`/produto?{${marca}}`);
+        const response = await instance.get(`/produto?marca=${marca}`);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -60,17 +74,21 @@ export async function GetProdutoByMarca(marca) {
 
 export async function GetProdutoByIdEmpresa(idEmpresa) {
     try {
-        const response = await instance.get(`/produto?{${idEmpresa}}`);
+        const response = await instance.get(`/produto?idEmpresa=${idEmpresa}`);
+        return response;
     }
     catch (ex){
         console.error(ex);
         return false;
     }
 }
+ */
+
 
 export async function PostAddProduto(produto) {
     try {
         const response = await instance.post(`/produto/add`, produto);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -78,9 +96,10 @@ export async function PostAddProduto(produto) {
     }
 }
 
-export async function PutAlterarProduto(id) {
+export async function PutAlterarProduto(id, produto) {
     try {
-        const response = await instance.put(`/produto/change/{${id}}`);
+        const response = await instance.put(`/produto/change/${id}`, produto);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -88,9 +107,10 @@ export async function PutAlterarProduto(id) {
     }
 }
 
-export async function PatchAtualizarProduto(id) {
+export async function PatchAtualizarProduto(id, produto) {
     try {
-        const response = await instance.patch(`/produto/edit/{${id}}`);
+        const response = await instance.patch(`/produto/edit/${id}`, produto);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -100,7 +120,8 @@ export async function PatchAtualizarProduto(id) {
 
 export async function DeleteProduto(id) {
     try {
-        const response = await instance.delete(`/produto/{${id}}`);
+        const response = await instance.delete(`/produto/${id}`);
+        return response;
     }
     catch (ex){
         console.error(ex);
@@ -111,6 +132,7 @@ export async function DeleteProduto(id) {
 export async function PostMovimentarEstoque(movimentar) {
     try {
         const response = await instance.post(`/movimentar`, movimentar);
+        return response;
     }
     catch (ex){
         console.error(ex);

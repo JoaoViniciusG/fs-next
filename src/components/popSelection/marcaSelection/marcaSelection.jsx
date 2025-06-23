@@ -7,25 +7,48 @@ import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
-export default function MarcaSelection({ 
-    title, 
+import { useContext, useEffect, useState } from "react";
+import { MarcaContext } from "@/context/marca.context";
+
+export default function MarcaSelection({
+    title,
     textInputTitle,
-    textPlaceholder, 
+    textPlaceholder,
     textBtnBuscar,
     titleTable,
     colun1,
     colun2,
     colun3,
     colun4,
-    isOpen = true, 
+    isOpen = true,
     width = "max-content",
-    setIsOpen = () => {}, 
-    }) {
+    setIsOpen = () => { },
+    setMarca = () => { }
+}) {
+
+    const context = useContext(MarcaContext);
+    const [filtro, setFiltro] = useState("");
+
+    useEffect(() => {
+        if (isOpen) {
+            context.consultarMarcas();
+        }
+    }, [isOpen]);
+
+    const buscarMarcas = () => {
+        context.consultarMarcas();
+    }
+
+    const selecionarMarca = (nome) => {
+        setMarca(nome);
+        setIsOpen(false);
+    };
+
     return (
-        <div style={{display: (isOpen) ? "flex" : "none" }} className={styles.backgroundContainer}>
-            <div style={{width: width}} className={styles.content_pop_consultar}>
+        <div style={{ display: (isOpen) ? "flex" : "none" }} className={styles.backgroundContainer}>
+            <div style={{ width: width }} className={styles.content_pop_consultar}>
                 <div className={styles.contener_close_pop}>
-                    <Icon.X onClick = { () => {setIsOpen(false)}} className={styles.icon_fechar}/>
+                    <Icon.X onClick={() => { setIsOpen(false) }} className={styles.icon_fechar} />
                 </div>
                 <BorderContainer title={title}>
                     <div className={styles.div_contener_main}>
@@ -36,8 +59,8 @@ export default function MarcaSelection({
                             </div>
                         </div>
                         <div className={styles.div_content_busca}>
-                            <InputLabel label={textInputTitle} type="search" placeholder={textPlaceholder} required={false} readonly={false} width='70vh' />
-                            <StandardButton text={textBtnBuscar} hoverColor="var(--cyan)" />
+                            <InputLabel label={textInputTitle} type="search" value={filtro} setValue={setFiltro} placeholder={textPlaceholder} required={false} readonly={false} width='70vh' />
+                            <StandardButton text={textBtnBuscar} hoverColor="var(--cyan)" callback={buscarMarcas} />
                         </div>
                     </div>
                 </BorderContainer>
@@ -53,30 +76,24 @@ export default function MarcaSelection({
                                 </tr>
                             </thead>
                             <tbody className={styles.table_body}>
-                                <tr onClick={()=>{setIsOpen(false);}}>
-                                    <td>00001</td>
-                                    <td>Fornecedor 1</td>
-                                    <td>HP</td>
-                                    <td>61.797.924/0003-17</td>
-                                </tr>
-                                <tr>
-                                    <td>00002</td>
-                                    <td>Fornecedor 2</td>
-                                    <td>Asus</td>
-                                    <td>84.498.328/0001-70</td>
-                                </tr>
-                                <tr>
-                                    <td>00003</td>
-                                    <td>Fornecedor 3</td>
-                                    <td>Dell</td>
-                                    <td>72.381.189/0001-10</td>
-                                </tr>
-                                <tr>
-                                    <td>00004</td>
-                                    <td>Fornecedor 4</td>
-                                    <td>Vaio</td>
-                                    <td>12.880.757/0001-04</td>
-                                </tr>
+                                {context.isLoading ? (
+                                    <tr>
+                                        <td colSpan="4">Carregando...</td>
+                                    </tr>
+                                ) : context.marcas && context.marcas.length > 0 ? (
+                                    context.marcas.map((marca) => (
+                                        <tr key={marca.id} onClick={() => selecionarMarca(marca.nome)}>
+                                            <td>{marca.id}</td>
+                                            <td>{marca.fornecedor}</td>
+                                            <td>{marca.nome}</td>
+                                            <td>{marca.cnpj}</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="4">Nenhuma marca encontrada.</td>
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                     </div>

@@ -7,40 +7,48 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 import { useEffect, useState, useContext } from 'react';
-import { useRouter } from 'next/navigation';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import { ProdutoContext } from '@/context/produto.context';
-import { useParams } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
 export default function PageVisualizarProduto() {
     const context = useContext(ProdutoContext);
     const id = useParams()["id"];
-
     const router = useRouter();
+
     const [modalPergunta, setModalPergunta] = useState(false);
     const [modalExcluir, setModalExcluir] = useState(false);
 
-    const [valueNome, setValueNome] = useState();
-    const [valueValorUnitario, setValueValorUnitario] = useState();
-    const [valueQuantidade, setValueQuantidade] = useState();
-    const [valueMarca, setValueMarca] = useState();
+    const [valueNome, setValueNome] = useState("");
+    const [valueValorUnitario, setValueValorUnitario] = useState(0);
+    const [valueQuantidade, setValueQuantidade] = useState(0);
+    const [valueMarca, setValueMarca] = useState("");
 
 
     useEffect(() => {
-        context.getProdutoId(id);
-    }, []);
+        context.produtoById(id);
+    }, [id]);
 
 
     useEffect(() => {
-        if (context.produtoById == undefined || context.produtoById == null) return;
-        const produto = context.produtoById
+        if (!context.produtoSelect) return;
+        const produto = context.produtoSelect;
+
         setValueNome(produto.nome);
         setValueValorUnitario(produto.valorUnitario);
         setValueQuantidade(produto.quantidade);
         setValueMarca(produto.marca);
 
-    }, [context.produtoById])
+    }, [context.produtoSelect]);
+
+
+    const excluirProduto = async () => {
+        const success = await context.deleteProduto(id);
+        if (success) {
+            setModalExcluir(true);
+        }
+    }
 
     return (
         <>
@@ -61,7 +69,7 @@ export default function PageVisualizarProduto() {
                 </BorderContainer>
                 <div className={styles.contaner_footer_button}>
                     <StandardButton text="EXCLUIR" hoverColor="var(--darkred)" callback={() => { setModalPergunta(true) }} />
-                    <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)" callback={() => { router.push("/interno/produtos/atualizar") }} />
+                    <StandardButton text="ALTERAR" hoverColor="var(--cadetblue-ligtht)" callback={() => { router.push(`/interno/produtos/atualizar/${id}`) }} />
                 </div>
             </BasicScreen>
 
@@ -73,7 +81,7 @@ export default function PageVisualizarProduto() {
                 setIsOpen={setModalPergunta}
                 textBtn1="CANCELAR"
                 textBtn2="CONFIRMAR"
-                callbackB2={() => setModalExcluir(true)} />
+                callbackB2={excluirProduto} />
 
             <AlertModal
                 title="EXCLUÍDO"
