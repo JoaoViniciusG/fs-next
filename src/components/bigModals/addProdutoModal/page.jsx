@@ -9,6 +9,7 @@ export default function AdicionarProdutoModal({
   title,
   onSelecionarProduto = () => {},
   produtoEditando = null,
+  produtosAdicionados = [],
   
 }) {
   const [codigo, setCodigo] = useState('');
@@ -38,7 +39,7 @@ export default function AdicionarProdutoModal({
     const marcaObj = marcas.find(m => m.id === produto.idMarca);
     return {
       ...produto,
-      marca: marcaObj?.marca || produto.marca || 'Desconhecida',  // Usando 'marca'
+      marca: marcaObj?.marca || produto.marca || 'Desconhecida',  
       valorUnitario: parseFloat(produto.valorUnitario || produto.valor || produto.preco || 0)
     };
   });
@@ -81,11 +82,14 @@ useEffect(() => {
           }
 
           const produtosComMarca = adicionarNomeMarca(produtos);
-          setProdutosFiltrados(produtosComMarca);
+const produtosDisponiveis = produtosComMarca.filter(p => (p.quantidade ?? 0) > 0);
+setProdutosFiltrados(produtosDisponiveis);
         } catch {
           setProdutosFiltrados([]);
         }
       };
+
+      
 
       buscarProdutos();
     }, 300);
