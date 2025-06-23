@@ -1,16 +1,18 @@
 "use client";
 
-import StandardButton from "@/components/buttons/standardButton/standardButton";
-import BasicScreen from "@/components/screens/basicScreen/basicScreen";
-import InputLabel from "@/components/inputs/inputLabel/inputLabel";
-import styles from "./page.module.css";
-import BorderContainer from "@/components/containers/borderContainer/page";
-import { useState, useEffect } from "react";
-import AddressOption from "@/components/containers/endereco/addressOption";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+
+import BasicScreen from "@/components/screens/basicScreen/basicScreen";
+import StandardButton from "@/components/buttons/standardButton/standardButton";
+import InputLabel from "@/components/inputs/inputLabel/inputLabel";
+import BorderContainer from "@/components/containers/borderContainer/page";
+import AddressOption from "@/components/containers/endereco/addressOption";
 import TotalSummary from "@/components/componentPedidos/inferior/pedidos";
 
-export default function PageVisualizarPedido() {
+import styles from "./page.module.css";
+
+function PedidoContent() {
   const searchParams = useSearchParams();
 
   const [nome, setNome] = useState("");
@@ -47,7 +49,7 @@ export default function PageVisualizarPedido() {
             valorTotal,
             desconto,
             observacao,
-            endereco, // endereço completo vindo na resposta do pedido
+            endereco,
           } = data.payload;
 
           setProdutos(produtos || []);
@@ -55,8 +57,7 @@ export default function PageVisualizarPedido() {
           setTotal(valorTotal?.toString() || "");
           setDesconto(desconto?.toString() || "");
           setObservacao(observacao || "");
-
-          setEndereco(endereco || null); // direto do payload
+          setEndereco(endereco || null);
         })
         .catch((error) => {
           console.error("Erro ao carregar produtos:", error);
@@ -148,7 +149,7 @@ export default function PageVisualizarPedido() {
         desconto={desconto}
         total={total}
         observacao={observacao}
-         readOnly={true}
+        readOnly={true}
       />
 
       <div className={styles.baixo}>
@@ -158,5 +159,13 @@ export default function PageVisualizarPedido() {
         </div>
       </div>
     </BasicScreen>
+  );
+}
+
+export default function PageVisualizarPedido() {
+  return (
+    <Suspense fallback={<div>Carregando pedido...</div>}>
+      <PedidoContent />
+    </Suspense>
   );
 }
