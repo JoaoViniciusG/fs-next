@@ -34,9 +34,9 @@ export default function PageInternoInicio() {
       </div>
 
       <section className={styles.containerContentRanking}>
-        <RankingContainer title="Vendedores do mês" suffix="vendas" infos={context.relatorios.rankingFuncionarios} />
-        <RankingContainer title="Produtos do mês" suffix="vendas" infos={context.relatorios.rankingClientes} />
-        <RankingContainer title="Clientes do mês" suffix="compras" infos={context.relatorios.rankingProdutos} />
+        <RankingContainer title="Vendedores do período" suffix="vendas" infos={context.relatorios.rankingFuncionarios} />
+        <RankingContainer title="Produtos do período" suffix="vendas" infos={context.relatorios.rankingProdutos} />
+        <RankingContainer title="Clientes do período" suffix="compras" infos={context.relatorios.rankingClientes} />
       </section>
     </div>
   );

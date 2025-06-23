@@ -2,12 +2,6 @@ import styles from './rankingContainer.module.css';
 import * as Icon from 'react-feather';
 import Image from 'next/image';
 
-// [
-//   name: "",
-//   image: "",
-//   value: ""
-// ]
-
 export default function RankingContainer({ title, suffix, infos = [] }) {
   return (
     <div className={styles.containerMaster}>
