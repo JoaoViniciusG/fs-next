@@ -44,3 +44,24 @@ export const consultarMarcasAsync = async () => {
     return false;
   }
 };
+
+
+export const consultarMarcaPorIdAsync = async (idMarca) => {
+  try {
+    const response = await instance.get(`/marcas/${idMarca}`, { withCredentials: true });
+    return response;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const editarMarcaParcialAsync = async (idMarca, dadosParciais) => {
+  try {
+    const response = await instance.patch(`/marcas/${idMarca}`, dadosParciais, { withCredentials: true });
+    return response;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
