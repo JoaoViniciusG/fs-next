@@ -45,8 +45,6 @@ export default function PageDadosEmpresa() {
           </div>
         </div>
 
-
-
       </BasicScreen>
       <ActionModal
         title="Aviso"

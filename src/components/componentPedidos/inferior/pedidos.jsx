@@ -12,7 +12,7 @@ const TotalSummary = ({
   setDesconto,
   setTotal,
   setObservacao,
-  readOnly = false, // 👈 adicionando o controle
+  readOnly = false, 
 }) => {
   return (
     <BorderContainer>
@@ -27,27 +27,29 @@ const TotalSummary = ({
             width="90%"
           />
 
-          <InputLabel
-            label="Desconto"
-            value={Number(desconto).toFixed(2)}
-            setValue={
-              !readOnly
-                ? (val) => {
-                    if (/^\d*\.?\d*$/.test(val)) {
-                      const valorNum = parseFloat(val) || 0;
-                      const subtotalNum = parseFloat(subtotal) || 0;
+      <InputLabel
+        label="Desconto "
+        value={desconto.toString()}
+        setValue={
+          !readOnly
+            ? (val) => {
 
-                      if (valorNum <= subtotalNum) {
-                        setDesconto(val);
-                      }
-                    }
-                  }
-                : undefined
-            }
-            className={styles.inputDadosPessoais}
-            readonly={readOnly}
-            width="90%"
-          />
+                const onlyNumbers = val.replace(/\D/g, '');
+                let valorNum = parseInt(onlyNumbers || '0', 10);
+                if (valorNum > 100) {
+                  valorNum = 100;
+                }
+
+                setDesconto(valorNum.toString());
+              }
+            : undefined
+        }
+        className={styles.inputDadosPessoais}
+        readonly={readOnly}
+        width="90%"
+      />
+
+
 
           <InputLabel
             label="Total"
