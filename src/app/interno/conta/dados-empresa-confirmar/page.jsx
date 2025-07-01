@@ -11,17 +11,126 @@ import AddAddressButton from '@/components/buttons/addAddressButton/addAddressBu
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import ActionModal from '@/components/modals/actionModal/actionModal'; 
 
+// export default function PageDadosEmpresaConfirmar() {
+//   const [modalOpenSair, setModalOpenSair] = useState(false);
+//   const [modalOpen, setModalOpen] = useState(false);
+//   const[empresaData, setEmpresaData]=useState(false)
+
+//   const [endereco, setEndereco] = useState(null);
+
+//   useEffect(() => {
+//     fetch('http://localhost:3001/dadosEmpresa', {
+//       credentials: 'include',
+//     })
+//       .then((res) => {
+//         if (!res.ok) throw new Error('Erro ao buscar dados da empresa');
+//         return res.json();
+//       })
+//       .then((data) => {
+//         const empresa = data.payload;
+//         setEmpresaData(empresa);
+//         setEndereco(empresa.endereco || null);
+//       })
+//       .catch((error) => {
+//         console.error('Erro ao carregar dados da empresa:', error);
+//         setEmpresaData(null);
+//         setEndereco(null);
+//       });
+//   }, []);
+
+//   const handleConfirmClick = () => {
+//     setModalOpen(true);
+//   };
+
+//   const handleConfirmClickSair = () => {
+//     setModalOpenSair(true);
+//   };
+
+//   return (
+//     <>
+//       <BasicScreen>
+//         <BorderContainer title="Dados da empresa: ">
+//         <PerfilEdicao
+//             nome={empresaData?.nomeFantasia || ''}
+//             email={empresaData?.email || ''}
+//             cnpj={empresaData?.cnpj || ''}
+//             razaoSocial={empresaData?.razaoSocial || ''}
+//             telefone={empresaData?.telefone || ''}
+//             dataCadastro={empresaData?.dataCadastro ? new Date(empresaData.dataCadastro).toLocaleDateString() : ''}
+//           />
+//         </BorderContainer>
+
+      
+//         <BorderContainer title="Endereço:">
+//           <div className={styles.divEnderecos}>
+//             {endereco ? (
+//               <AddressOption
+//                 id={endereco.id}
+//                 logradouro={endereco.logradouro}
+//                 numero={endereco.numero}
+//                 bairro={endereco.bairro}
+//                 cidade={endereco.cidade}
+//                 UF={endereco.uf || endereco.estado}
+//               />
+//             ) : (
+//               <span>Endereço não encontrado</span>
+//             )}
+//           </div>
+//         </BorderContainer>
+
+//         <div className={styles.baixo}>
+//           <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick} />
+
+//           <div className={styles.sair}>
+//             <span onClick={handleConfirmClickSair}>Sair</span> {/* Correção aqui */}
+//           </div> 
+//         </div>
+//       </BasicScreen>
+
+//       <ActionModal
+//         title="Aviso"
+//         text="Tem certeza que deseja sair da conta?"
+//         bsIcon="bi bi-exclamation-triangle"
+//         isOpen={modalOpenSair}
+//         setIsOpen={setModalOpenSair}
+//         textBtn1="CANCELAR"
+//         textBtn2="CONFIRMAR"
+//         callbackB1={() => console.log("CANCELOU")}
+//         callbackB2={() => console.log("CONFIRMOU")}
+//       />
+
+//       <AlertModal
+//         title="Atualizado"
+//         text="Atualização realizada com sucesso!"
+//         bsIcon="bi-check2-circle"
+//         isOpen={modalOpen}
+//         setIsOpen={setModalOpen}
+//       />
+//     </>
+//   );
+// }
+
+
+
 export default function PageDadosEmpresaConfirmar() {
   const [modalOpenSair, setModalOpenSair] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const[empresaData, setEmpresaData]=useState(false)
 
+  const [empresaData, setEmpresaData] = useState(null);
   const [endereco, setEndereco] = useState(null);
 
+  const [formEmpresa, setFormEmpresa] = useState({
+    nomeFantasia: '',
+    email: '',
+    cnpj: '',
+    razaoSocial: '',
+    telefone: '',
+    dataCadastro: '',
+  });
+
   useEffect(() => {
-    fetch('http://localhost:3001/dadosEmpresa', {
-      credentials: 'include',
-    })
+    fetch('http://localhost:3001/dadosEmpresa', 
+      { credentials: 'include' })
       .then((res) => {
         if (!res.ok) throw new Error('Erro ao buscar dados da empresa');
         return res.json();
@@ -30,6 +139,15 @@ export default function PageDadosEmpresaConfirmar() {
         const empresa = data.payload;
         setEmpresaData(empresa);
         setEndereco(empresa.endereco || null);
+
+        setFormEmpresa({
+          nomeFantasia: empresa.nomeFantasia || '',
+          email: empresa.email || '',
+          cnpj: empresa.cnpj || '',
+          razaoSocial: empresa.razaoSocial || '',
+          telefone: empresa.telefone || '',
+          dataCadastro: empresa.dataCadastro || '', // Mantém no formato ISO do backend
+        });
       })
       .catch((error) => {
         console.error('Erro ao carregar dados da empresa:', error);
@@ -38,31 +156,78 @@ export default function PageDadosEmpresaConfirmar() {
       });
   }, []);
 
-  const handleConfirmClick = () => {
-    setModalOpen(true);
-  };
+ async function handleConfirmClick() {
+  try {
+    const empresaId = empresaData?.empresaId;
 
+    function toMySQLDateTime(date) {
+      const d = new Date(date);
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mi = String(d.getMinutes()).padStart(2, '0');
+      const ss = String(d.getSeconds()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
+    }
+
+    const dataCadastroMySQL = formEmpresa.dataCadastro
+      ? toMySQLDateTime(formEmpresa.dataCadastro)
+      : null;
+
+    const response = await fetch(`http://localhost:3001/dadosEmpresa/${empresaId}`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...formEmpresa, dataCadastro: dataCadastroMySQL }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Status ${response.status}: ${errorText}`);
+    }
+
+    setModalOpen(true);
+  } catch (error) {
+    alert('Erro ao atualizar dados: ' + error.message);
+  }
+}
   const handleConfirmClickSair = () => {
     setModalOpenSair(true);
   };
+
+
+  const setNomeFantasia = (v) => setFormEmpresa((f) => ({ ...f, nomeFantasia: v }));
+  const setEmail = (v) => setFormEmpresa((f) => ({ ...f, email: v }));
+  const setCnpj = (v) => setFormEmpresa((f) => ({ ...f, cnpj: v }));
+  const setRazaoSocial = (v) => setFormEmpresa((f) => ({ ...f, razaoSocial: v }));
+  const setTelefone = (v) => setFormEmpresa((f) => ({ ...f, telefone: v }));
+  const setDataCadastro = (v) => setFormEmpresa((f) => ({ ...f, dataCadastro: v }));
 
   return (
     <>
       <BasicScreen>
         <BorderContainer title="Dados da empresa: ">
-        <PerfilEdicao
-            nome={empresaData?.nomeFantasia || ''}
-            email={empresaData?.email || ''}
-            cnpj={empresaData?.cnpj || ''}
-            razaoSocial={empresaData?.razaoSocial || ''}
-            telefone={empresaData?.telefone || ''}
-            dataCadastro={empresaData?.dataCadastro ? new Date(empresaData.dataCadastro).toLocaleDateString() : ''}
+          <PerfilEdicao
+            nome={formEmpresa.nomeFantasia}
+            setNome={setNomeFantasia}
+            email={formEmpresa.email}
+            setEmail={setEmail}
+            cnpj={formEmpresa.cnpj}
+            setCnpj={setCnpj}
+            razaoSocial={formEmpresa.razaoSocial}
+            setRazaoSocial={setRazaoSocial}
+            telefone={formEmpresa.telefone}
+            setTelefone={setTelefone}
+            dataCadastro={formEmpresa.dataCadastro}
+            setDataCadastro={setDataCadastro}
+            readonly={false}
           />
         </BorderContainer>
 
-      
         <BorderContainer title="Endereço:">
           <div className={styles.divEnderecos}>
+            <AddAddressButton/>
             {endereco ? (
               <AddressOption
                 id={endereco.id}
@@ -82,8 +247,8 @@ export default function PageDadosEmpresaConfirmar() {
           <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={handleConfirmClick} />
 
           <div className={styles.sair}>
-            <span onClick={handleConfirmClickSair}>Sair</span> {/* Correção aqui */}
-          </div> 
+            <span onClick={handleConfirmClickSair}>Sair</span>
+          </div>
         </div>
       </BasicScreen>
 
@@ -95,8 +260,8 @@ export default function PageDadosEmpresaConfirmar() {
         setIsOpen={setModalOpenSair}
         textBtn1="CANCELAR"
         textBtn2="CONFIRMAR"
-        callbackB1={() => console.log("CANCELOU")}
-        callbackB2={() => console.log("CONFIRMOU")}
+        callbackB1={() => console.log('CANCELOU')}
+        callbackB2={() => console.log('CONFIRMOU')}
       />
 
       <AlertModal

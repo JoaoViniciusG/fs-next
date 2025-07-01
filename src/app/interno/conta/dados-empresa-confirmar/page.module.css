@@ -16,6 +16,7 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
+    padding:20px;
 }
 .sair:hover {
     color: red;

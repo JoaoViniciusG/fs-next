@@ -4,7 +4,12 @@ import InputLabel from '../inputs/inputLabel/inputLabel';
 import styles from './page.module.css';
 import Image from 'next/image';
 
-export default function PerfilEdicao({ nome, email, cnpj, razaoSocial, telefone, dataCadastro, imagemUrl, onEditar, readonly = false }) {
+export default function PerfilEdicao({
+  nome, email, cnpj, razaoSocial, telefone, dataCadastro, 
+  imagemUrl, onEditar, readonly = false, 
+  setNome = () => {}, setEmail = () => {}, setCnpj = () => {},
+  setRazaoSocial = () => {}, setTelefone = () => {}, setDataCadastro = () => {}
+}) {
   return (
     <div className={styles.containerr}>
       <div className={styles.perfil}>
@@ -12,12 +17,12 @@ export default function PerfilEdicao({ nome, email, cnpj, razaoSocial, telefone,
         <button className={styles.editar} onClick={onEditar}>Editar</button>
       </div>
       <div className={styles.campos}>
-        <InputLabel label="Nome:" value={nome} readonly={readonly} />
-        <InputLabel label="E-mail:" value={email} type="email" readonly={readonly} />
-        <InputLabel label="CNPJ:" value={cnpj} readonly={readonly} />
-        <InputLabel label="Razão social:" value={razaoSocial} readonly={readonly} />
-        <InputLabel label="Telefone:" value={telefone} type="tel" readonly={readonly} />
-        <InputLabel label="Data de cadastro:" value={dataCadastro} readonly={readonly} />
+        <InputLabel label="Nome:" value={nome} readonly={readonly} setValue={setNome} />
+        <InputLabel label="E-mail:" value={email} type="email" readonly={readonly} setValue={setEmail} />
+        <InputLabel label="CNPJ:" value={cnpj} readonly={readonly} setValue={setCnpj} />
+        <InputLabel label="Razão social:" value={razaoSocial} readonly={readonly} setValue={setRazaoSocial} />
+        <InputLabel label="Telefone:" value={telefone} type="tel" readonly={readonly} setValue={setTelefone} />
+        <InputLabel label="Data de cadastro:"value={dataCadastro ? new Date(dataCadastro).toLocaleDateString() : ''} readonly={readonly} setValue={setDataCadastro} />
       </div>
     </div>
   );
