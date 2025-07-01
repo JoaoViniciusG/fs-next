@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BasicScreen from '@/components/screens/basicScreen/basicScreen';
 import BorderContainer from '@/components/containers/borderContainer/page';
 import PerfilEdicao from '@/components/userPerfil/page';
@@ -14,6 +14,29 @@ import ActionModal from '@/components/modals/actionModal/actionModal';
 export default function PageDadosEmpresaConfirmar() {
   const [modalOpenSair, setModalOpenSair] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const[empresaData, setEmpresaData]=useState(false)
+
+  const [endereco, setEndereco] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/dadosEmpresa', {
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Erro ao buscar dados da empresa');
+        return res.json();
+      })
+      .then((data) => {
+        const empresa = data.payload;
+        setEmpresaData(empresa);
+        setEndereco(empresa.endereco || null);
+      })
+      .catch((error) => {
+        console.error('Erro ao carregar dados da empresa:', error);
+        setEmpresaData(null);
+        setEndereco(null);
+      });
+  }, []);
 
   const handleConfirmClick = () => {
     setModalOpen(true);
@@ -27,18 +50,31 @@ export default function PageDadosEmpresaConfirmar() {
     <>
       <BasicScreen>
         <BorderContainer title="Dados da empresa: ">
-          <PerfilEdicao />
+        <PerfilEdicao
+            nome={empresaData?.nomeFantasia || ''}
+            email={empresaData?.email || ''}
+            cnpj={empresaData?.cnpj || ''}
+            razaoSocial={empresaData?.razaoSocial || ''}
+            telefone={empresaData?.telefone || ''}
+            dataCadastro={empresaData?.dataCadastro ? new Date(empresaData.dataCadastro).toLocaleDateString() : ''}
+          />
         </BorderContainer>
 
-        <BorderContainer title="Endereço: ">
+      
+        <BorderContainer title="Endereço:">
           <div className={styles.divEnderecos}>
-            <AddAddressButton />
-            <AddressOption 
-              logradouro="Av.beira Rio"
-              bairro="Centro" 
-              cidade="Vilhena"
-              UF="RO"
-            />
+            {endereco ? (
+              <AddressOption
+                id={endereco.id}
+                logradouro={endereco.logradouro}
+                numero={endereco.numero}
+                bairro={endereco.bairro}
+                cidade={endereco.cidade}
+                UF={endereco.uf || endereco.estado}
+              />
+            ) : (
+              <span>Endereço não encontrado</span>
+            )}
           </div>
         </BorderContainer>
 
