@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -15,7 +14,17 @@ export default function PageDadosEmpresa() {
   const [modalOpenSair, setModalOpenSair] = useState(false);
 
   const [empresaData, setEmpresaData] = useState(null);
-  const [endereco, setEndereco] = useState(null);
+  const [enderecos, setEnderecos] = useState([]);
+
+  function formatDateToInput(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '';
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
 
   useEffect(() => {
     fetch('http://localhost:3001/dadosEmpresa', {
@@ -28,12 +37,12 @@ export default function PageDadosEmpresa() {
       .then((data) => {
         const empresa = data.payload;
         setEmpresaData(empresa);
-        setEndereco(empresa.endereco || null);
+        setEnderecos(empresa.enderecos || []);
       })
       .catch((error) => {
         console.error('Erro ao carregar dados da empresa:', error);
         setEmpresaData(null);
-        setEndereco(null);
+        setEnderecos([]);
       });
   }, []);
 
@@ -51,22 +60,25 @@ export default function PageDadosEmpresa() {
             cnpj={empresaData?.cnpj || ''}
             razaoSocial={empresaData?.razaoSocial || ''}
             telefone={empresaData?.telefone || ''}
-            dataCadastro={empresaData?.dataCadastro ? new Date(empresaData.dataCadastro).toLocaleDateString() : ''}
+            dataCadastro={formatDateToInput(empresaData?.dataCadastro)}
             readonly={true}
           />
         </BorderContainer>
 
-        <BorderContainer title="Endereço:">
+        <BorderContainer title="Endereços:">
           <div className={styles.divEnderecos}>
-            {endereco ? (
-              <AddressOption
-                id={endereco.id}
-                logradouro={endereco.logradouro}
-                numero={endereco.numero}
-                bairro={endereco.bairro}
-                cidade={endereco.cidade}
-                UF={endereco.uf || endereco.estado}
-              />
+            {enderecos.length > 0 ? (
+              enderecos.map((endereco) => (
+                <AddressOption
+                  key={endereco.id}
+                  id={endereco.id}
+                  logradouro={endereco.logradouro}
+                  numero={endereco.numero}
+                  bairro={endereco.bairro}
+                  cidade={endereco.cidade}
+                  UF={endereco.uf || endereco.estado}
+                />
+              ))
             ) : (
               <span>Endereço não encontrado</span>
             )}
