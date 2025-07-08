@@ -8,6 +8,7 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import { useState } from 'react';
+import RadioButton from '@/components/inputs/radioButton/radioButton';
 
 export default function PageCadastrarFuncionario() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,12 +29,10 @@ export default function PageCadastrarFuncionario() {
                             <InputLabel placeholder="email@gmail.com" label="E-mail:" required={true}  readonly={false} width='50vh' />
                           <div className={styles.sexoContainer}>
                               <label>Sexo:</label> <br></br>
-                              <label className={styles.radiolabel}>
-                                  <input type="radio" name="sexo" value="feminino" />
-                                  <span className={styles.customradio}></span> Feminino
-                                  <input type="radio" name="sexo" value="masculino" />
-                                  <span className={styles.customradio}></span> Masculino
-                              </label>
+                              <div className={styles.containerGender}>
+                                <RadioButton radioGroup="GenderGroup" text="Feminino" textInLeft={false} />
+                                <RadioButton radioGroup="GenderGroup" text="Masculino" textInLeft={false} />
+                              </div>
                           </div>
                           </div>   
                         </div>

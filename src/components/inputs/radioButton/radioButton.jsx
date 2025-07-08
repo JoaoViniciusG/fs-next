@@ -1,6 +1,6 @@
 import styles from './radioButton.module.css';
 
-export default function RadioButton({ text, valueName, selectedOption, handleOptionChange = () => {}, disabled = false, radioGroup, textInLeft = true }) {
+export default function RadioButton({ text, valueName, selectedOption, handleOptionChange = () => {}, disabled = false, radioGroup, textInLeft = true, fontSize=25 }) {
   return (
     <label
       style={{flexDirection: (textInLeft) ? 'row-reverse' : 'row'}}
@@ -14,7 +14,7 @@ export default function RadioButton({ text, valueName, selectedOption, handleOpt
         onChange={handleOptionChange}/>
       <span></span>
 
-      <p className={styles.text}>{text}</p>
+      <p className={styles.text} style={{fontSize: fontSize}}>{text}</p>
     </label>
   )
 }

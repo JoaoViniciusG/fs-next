@@ -1,6 +1,6 @@
 .labelRadioButton {
   display: flex;
-  gap: .5vw;
+  gap: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +9,6 @@
 
 .text {
   font-family: "Poppins";
-  font-size: 1.2em;
   color: var(--white);
 }
 
