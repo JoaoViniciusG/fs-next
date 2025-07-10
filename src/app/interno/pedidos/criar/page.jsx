@@ -157,8 +157,8 @@ export default function PageCriarPedidos() {
   const handleConfirmarBuscarCliente = (cliente) => {
   setClienteSelecionado({
     ...cliente,
-    idEndereco: cliente.idEndereco, // já estava vindo, mantém
-    endereco: cliente.endereco, // <-- adiciona isso pra ter os dados do endereço
+    idEndereco: cliente.idEndereco, 
+    endereco: cliente.endereco,
   });
   setBusca('');
   setModalOpenn(false);

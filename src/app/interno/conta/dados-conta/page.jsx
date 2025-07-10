@@ -40,7 +40,7 @@ export default function pageDadosConta(){
                                 height={240} 
                                 className={styles.imagemUsuario} 
                             />
-                        <button className={styles.editar}>Editar</button>
+                        {/* <button className={styles.editar}>Editar</button> */}
                         </div>
 
                 <div className={styles.campos}>
