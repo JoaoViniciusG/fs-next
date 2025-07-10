@@ -7,7 +7,7 @@ const instance = axios.create({
 
 export const cadastrarMarcaAsync = async (dadosMarca) => {
   try {
-    const response = await instance.post("/marcas", dadosMarca, { withCredentials: true });
+    const response = await instance.post("/marcas", dadosMarca/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ export const cadastrarMarcaAsync = async (dadosMarca) => {
 
 export const editarMarcaAsync = async (idMarca, dadosMarca) => {
   try {
-    const response = await instance.put(`/marcas/${idMarca}`, dadosMarca, { withCredentials: true });
+    const response = await instance.put(`/marcas/${idMarca}`, dadosMarca/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ export const editarMarcaAsync = async (idMarca, dadosMarca) => {
 
 export const excluirMarcaAsync = async (idMarca) => {
   try {
-    const response = await instance.delete(`/marcas/${idMarca}`, { withCredentials: true });
+    const response = await instance.delete(`/marcas/${idMarca}`/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -35,7 +35,7 @@ export const excluirMarcaAsync = async (idMarca) => {
   }
 };
 
-export const consultarMarcasAsync = async () => {
+/*export const consultarMarcasAsync = async () => {
   try {
     const response = await instance.get("/marcas", { withCredentials: true });
     return response;
@@ -43,12 +43,22 @@ export const consultarMarcasAsync = async () => {
     console.log(error);
     return false;
   }
-};
+};*/
 
 
 export const consultarMarcaPorIdAsync = async (idMarca) => {
   try {
-    const response = await instance.get(`/marcas/${idMarca}`, { withCredentials: true });
+    const response = await instance.get(`/marcas/${idMarca}`/*, { withCredentials: true }*/);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const consultarMarcaPorParamsAsync = async (param) => {
+  try {
+    const response = await instance.get(`/marcas`, { param }/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -58,7 +68,7 @@ export const consultarMarcaPorIdAsync = async (idMarca) => {
 
 export const editarMarcaParcialAsync = async (idMarca, dadosParciais) => {
   try {
-    const response = await instance.patch(`/marcas/${idMarca}`, dadosParciais, { withCredentials: true });
+    const response = await instance.patch(`/marcas/${idMarca}`, dadosParciais/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);

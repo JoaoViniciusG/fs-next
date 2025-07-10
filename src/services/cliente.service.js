@@ -7,40 +7,40 @@ const instance = axios.create({
 
 export const cadastrarclienteAsync = async (dadoscliente) => {
   try {
-    const response = await instance.post("/clientes", dadoscliente, { withCredentials: true });
+    const response = await instance.post("/clientes", dadoscliente/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };
 
 export const editarclienteAsync = async (idcliente, dadoscliente) => {
   try {
-    const response = await instance.put(`/clientes/${idcliente}`, dadoscliente, { withCredentials: true });
+    const response = await instance.put(`/clientes/${idcliente}`, dadoscliente/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };
 
 export const excluirclienteAsync = async (idcliente) => {
   try {
-    const response = await instance.delete(`/clientes/${idcliente}`, { withCredentials: true });
+    const response = await instance.delete(`/clientes/${idcliente}`/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };
 
 export const consultarclientesAsync = async () => {
   try {
-    const response = await instance.get("/clientes", { withCredentials: true });
+    const response = await instance.get("/clientes"/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };

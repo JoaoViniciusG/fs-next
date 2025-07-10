@@ -7,7 +7,7 @@ const instance = axios.create({
 
 export const cadastrarFuncionarioAsync = async (dadosFuncionario) => {
   try {
-    const response = await instance.post("/funcionarios", dadosFuncionario, { withCredentials: true });
+    const response = await instance.post("/funcionarios", dadosFuncionario/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ export const cadastrarFuncionarioAsync = async (dadosFuncionario) => {
 
 export const editarFuncionarioAsync = async (idFuncionario, dadosFuncionario) => {
   try {
-    const response = await instance.put(`/funcionarios/${idFuncionario}`, dadosFuncionario, { withCredentials: true });
+    const response = await instance.put(`/funcionarios/${idFuncionario}`, dadosFuncionario/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ export const editarFuncionarioAsync = async (idFuncionario, dadosFuncionario) =>
 
 export const excluirFuncionarioAsync = async (idFuncionario) => {
   try {
-    const response = await instance.delete(`/funcionarios/${idFuncionario}`, { withCredentials: true });
+    const response = await instance.delete(`/funcionarios/${idFuncionario}`/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
@@ -37,7 +37,7 @@ export const excluirFuncionarioAsync = async (idFuncionario) => {
 
 export const consultarFuncionariosAsync = async () => {
   try {
-    const response = await instance.get("/funcionarios", { withCredentials: true });
+    const response = await instance.get("/funcionarios"/*, { withCredentials: true }*/);
     return response;
   } catch (error) {
     console.log(error);
