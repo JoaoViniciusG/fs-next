@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useState, useEffect } from 'react';
-import { 
+import {
   cadastrarClienteAsync,
   editarClienteAsync,
   excluirClienteAsync,
@@ -61,9 +61,10 @@ export default function ClienteProvider({ children }) {
     return true;
   }
 
-  const consultarClientes = async () => {
+  const consultarClientes = async (filtro = {}) => {
     setIsLoading(true);
-    const response = await consultarClientesAsync();
+
+    const response = await consultarClientesAsync(filtro);
 
     if (response === false || response.status !== 200) {
       setIsError(true);
@@ -72,9 +73,10 @@ export default function ClienteProvider({ children }) {
       return false;
     }
 
-    setClientes(response.data);
+    setClientes(response.data.payload);
     setIsLoading(false);
-  }
+  };
+
 
   const values = {
     clientes,

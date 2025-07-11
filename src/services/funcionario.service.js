@@ -36,9 +36,21 @@ export const excluirFuncionarioAsync = async (idFuncionario) => {
   }
 };
 
-export const consultarFuncionariosAsync = async () => {
-  try {
-    const response = await instance.get("/funcionarios");
+export const consultarFuncionariosAsync = async (param) => {
+try {
+    let response;
+
+    const isEmpty =
+      param == null ||
+      param === "" ||
+      (typeof param === "object" && Object.keys(param).length === 0);
+
+    if (isEmpty) {
+      response = await instance.get(`/funcionarios`);
+    } else {
+      response = await instance.get(`/funcionarios?nome=${encodeURIComponent(param)}`);
+    }
+
     return response;
   } catch (error) {
     console.log(error);

@@ -6,9 +6,9 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const cadastrarclienteAsync = async (dadoscliente) => {
+export const cadastrarClienteAsync = async (dadoscliente) => {
   try {
-    const response = await instance.post("/clientes", dadoscliente/*, { withCredentials: true }*/);
+    const response = await instance.post("/clientes", dadoscliente);
     return response;
   } catch (error) {
     console.error(error);
@@ -16,9 +16,9 @@ export const cadastrarclienteAsync = async (dadoscliente) => {
   }
 };
 
-export const editarclienteAsync = async (idcliente, dadoscliente) => {
+export const editarClienteAsync = async (idcliente, dadoscliente) => {
   try {
-    const response = await instance.put(`/clientes/${idcliente}`, dadoscliente/*, { withCredentials: true }*/);
+    const response = await instance.put(`/clientes/${idcliente}`, dadoscliente);
     return response;
   } catch (error) {
     console.error(error);
@@ -26,9 +26,9 @@ export const editarclienteAsync = async (idcliente, dadoscliente) => {
   }
 };
 
-export const excluirclienteAsync = async (idcliente) => {
+export const excluirClienteAsync = async (idcliente) => {
   try {
-    const response = await instance.delete(`/clientes/${idcliente}`/*, { withCredentials: true }*/);
+    const response = await instance.delete(`/clientes/${idcliente}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -36,12 +36,24 @@ export const excluirclienteAsync = async (idcliente) => {
   }
 };
 
-export const consultarclientesAsync = async () => {
-  try {
-    const response = await instance.get("/clientes"/*, { withCredentials: true }*/);
+export const consultarClientesAsync = async (param) => {
+try {
+    let response;
+
+    const isEmpty =
+      param == null ||
+      param === "" ||
+      (typeof param === "object" && Object.keys(param).length === 0);
+
+    if (isEmpty) {
+      response = await instance.get(`/clientes`);
+    } else {
+      response = await instance.get(`/clientes?nome=${encodeURIComponent(param)}`);
+    }
+
     return response;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return false;
   }
 };

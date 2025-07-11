@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useState, useEffect } from 'react';
-import { 
+import {
   cadastrarFuncionarioAsync,
   editarFuncionarioAsync,
   excluirFuncionarioAsync,
@@ -61,9 +61,10 @@ export default function FuncionarioProvider({ children }) {
     return true;
   }
 
-  const consultarFuncionarios = async () => {
+  const consultarFuncionarios = async (filtro = {}) => {
     setIsLoading(true);
-    const response = await consultarFuncionariosAsync();
+
+    const response = await consultarFuncionariosAsync(filtro);
 
     if (response === false || response.status !== 200) {
       setIsError(true);
@@ -72,9 +73,9 @@ export default function FuncionarioProvider({ children }) {
       return false;
     }
 
-    setFuncionarios(response.data);
+    setFuncionarios(response.data.payload);
     setIsLoading(false);
-  }
+  };
 
   const values = {
     funcionarios,
