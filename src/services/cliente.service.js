@@ -2,7 +2,8 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 5000,
-  baseURL: process.env.BASE_URL
+  baseURL: process.env.BASE_URL,
+  withCredentials: true,
 });
 
 export const cadastrarclienteAsync = async (dadoscliente) => {

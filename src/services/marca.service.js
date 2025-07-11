@@ -2,12 +2,13 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 5000,
-  baseURL: process.env.BASE_URL
+  baseURL: process.env.BASE_URL,
+  withCredentials: true,
 });
 
 export const cadastrarMarcaAsync = async (dadosMarca) => {
   try {
-    const response = await instance.post("/marcas", dadosMarca/*, { withCredentials: true }*/);
+    const response = await instance.post("/marcas", dadosMarca);
     return response;
   } catch (error) {
     console.log(error);
@@ -17,7 +18,7 @@ export const cadastrarMarcaAsync = async (dadosMarca) => {
 
 export const editarMarcaAsync = async (idMarca, dadosMarca) => {
   try {
-    const response = await instance.put(`/marcas/${idMarca}`, dadosMarca/*, { withCredentials: true }*/);
+    const response = await instance.put(`/marcas/${idMarca}`, dadosMarca);
     return response;
   } catch (error) {
     console.log(error);
@@ -27,7 +28,7 @@ export const editarMarcaAsync = async (idMarca, dadosMarca) => {
 
 export const excluirMarcaAsync = async (idMarca) => {
   try {
-    const response = await instance.delete(`/marcas/${idMarca}`/*, { withCredentials: true }*/);
+    const response = await instance.delete(`/marcas/${idMarca}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -48,7 +49,7 @@ export const excluirMarcaAsync = async (idMarca) => {
 
 export const consultarMarcaPorIdAsync = async (idMarca) => {
   try {
-    const response = await instance.get(`/marcas/${idMarca}`/*, { withCredentials: true }*/);
+    const response = await instance.get(`/marcas/${idMarca}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -58,7 +59,19 @@ export const consultarMarcaPorIdAsync = async (idMarca) => {
 
 export const consultarMarcaPorParamsAsync = async (param) => {
   try {
-    const response = await instance.get(`/marcas`, { param }/*, { withCredentials: true }*/);
+    let response;
+
+    const isEmpty =
+      param == null ||
+      param === "" ||
+      (typeof param === "object" && Object.keys(param).length === 0);
+
+    if (isEmpty) {
+      response = await instance.get(`/marcas`);
+    } else {
+      response = await instance.get(`/marcas?nome=${encodeURIComponent(param)}`);
+    }
+
     return response;
   } catch (error) {
     console.log(error);
@@ -66,9 +79,10 @@ export const consultarMarcaPorParamsAsync = async (param) => {
   }
 };
 
+
 export const editarMarcaParcialAsync = async (idMarca, dadosParciais) => {
   try {
-    const response = await instance.patch(`/marcas/${idMarca}`, dadosParciais/*, { withCredentials: true }*/);
+    const response = await instance.patch(`/marcas/${idMarca}`, dadosParciais);
     return response;
   } catch (error) {
     console.log(error);

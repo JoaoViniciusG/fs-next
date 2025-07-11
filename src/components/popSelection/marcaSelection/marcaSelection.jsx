@@ -36,7 +36,7 @@ export default function MarcaSelection({
     }, [isOpen]);
 
     const buscarMarcas = () => {
-        context.consultarMarcas();
+        context.consultarMarcas(filtro);
     }
 
     const selecionarMarca = (nome) => {

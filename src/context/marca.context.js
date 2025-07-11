@@ -74,7 +74,7 @@ export default function MarcaProvider({ children }) {
       return false;
     }
 
-    setMarcas(response.data);
+    setMarcas(response.data.payload);
     setIsLoading(false);
   };
 

@@ -2,12 +2,13 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 5000,
-  baseURL: process.env.BASE_URL
+  baseURL: process.env.BASE_URL,
+  withCredentials: true,
 });
 
 export const cadastrarFuncionarioAsync = async (dadosFuncionario) => {
   try {
-    const response = await instance.post("/funcionarios", dadosFuncionario/*, { withCredentials: true }*/);
+    const response = await instance.post("/funcionarios", dadosFuncionario);
     return response;
   } catch (error) {
     console.log(error);
@@ -17,7 +18,7 @@ export const cadastrarFuncionarioAsync = async (dadosFuncionario) => {
 
 export const editarFuncionarioAsync = async (idFuncionario, dadosFuncionario) => {
   try {
-    const response = await instance.put(`/funcionarios/${idFuncionario}`, dadosFuncionario/*, { withCredentials: true }*/);
+    const response = await instance.put(`/funcionarios/${idFuncionario}`, dadosFuncionario);
     return response;
   } catch (error) {
     console.log(error);
@@ -27,7 +28,7 @@ export const editarFuncionarioAsync = async (idFuncionario, dadosFuncionario) =>
 
 export const excluirFuncionarioAsync = async (idFuncionario) => {
   try {
-    const response = await instance.delete(`/funcionarios/${idFuncionario}`/*, { withCredentials: true }*/);
+    const response = await instance.delete(`/funcionarios/${idFuncionario}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -37,7 +38,7 @@ export const excluirFuncionarioAsync = async (idFuncionario) => {
 
 export const consultarFuncionariosAsync = async () => {
   try {
-    const response = await instance.get("/funcionarios"/*, { withCredentials: true }*/);
+    const response = await instance.get("/funcionarios");
     return response;
   } catch (error) {
     console.log(error);
