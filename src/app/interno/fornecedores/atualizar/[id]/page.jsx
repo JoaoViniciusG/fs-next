@@ -8,20 +8,91 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, useContext } from 'react';
+import { FornecedorContext } from '@/context/fornecedor.context';
+import { useParams, useRouter } from 'next/navigation';
 
 
 export default function PageAtualizarFornecedor() {
+    const context = useContext(FornecedorContext);
     const router = useRouter();
+    const id = useParams()["id"];
 
     const [modalPerguntaCancelar, setModalPerguntaCancelar] = useState(false);
     const [modalCancelar, setModalCancelar] = useState(false);
     const [modalConfimar, setModalConfimar] = useState(false);
 
-    const [valueNome, setValueNome] = useState("Fornecedor 1");
-    const [valueCNPJ, setValueCNPJ] = useState("XX.XXX.XXX/0001-XX");
-    const [valueEmail, setValueEmail] = useState("example@gmail.com");
+    const [valueRazaoSocial, setValueRazaoSocial] = useState("");
+    const [valueCNPJ, setValueCNPJ] = useState("");
+    const [valueEmail, setValueEmail] = useState("");
+
+    const [valueOriginalRazaoSocial, setValueOrginalRazaoSocial] = useState("");
+    const [valueOriginalCNPJ, setValueOriginalCNPJ] = useState("");
+    const [valueOriginalEmail, setValueOriginalEmail] = useState("");
+
+    useEffect( () => {
+        if(!id) return;
+        context.fornecedorById(id);
+    }, [id]);
+
+    useEffect( () => {
+        if(!context.fornecedorSelect) return;
+
+        const fornecedor = context.fornecedorSelect;
+
+        setValueRazaoSocial(fornecedor.razaoSocial);
+        setValueCNPJ(fornecedor.cnpj);
+        setValueEmail(fornecedor.email);
+
+        setValueOrginalRazaoSocial(fornecedor.razaoSocial);
+        setValueOriginalCNPJ(fornecedor.cnpj);
+        setValueOriginalEmail(fornecedor.email);
+    }, [context.fornecedorSelect]);
+
+    const camposPreenchidos = (fornecedor) => {
+        return (
+            fornecedor.razaoSocial !== "" &&
+            fornecedor.cnpj !== "" &&
+            fornecedor.email !== ""
+        );
+    }
+
+    const atualizarFornecedor = async () => {
+        const fornecedor = {
+            razaoSocial: valueRazaoSocial,
+            cnpj: valueCNPJ,
+            email: valueEmail
+        };
+
+        let camposAlterados = 0;
+
+         if (valueRazaoSocial !== valueOriginalRazaoSocial) {
+            camposAlterados++;
+        }
+        if (valueCNPJ !== valueOriginalCNPJ) {
+            camposAlterados++;
+        }
+        if (valueEmail !== valueOriginalEmail) {
+            camposAlterados++;
+        }
+
+        if (camposAlterados === 0) {
+            alert("Nenhum campo foi alterado!");
+            return;
+        }
+
+        let response = false;
+
+        if (camposAlterados === 4 && camposPreenchidos(fornecedor)) {
+            response = await context.atualizarFornecedorCompleto(id, fornecedor);
+        } else {
+            response = await context.atualizarFornecedorParcial(id, fornecedor);
+        }
+
+        if (response) {
+            setModalConfimar(true);
+        }
+    }
 
     return (
         <>
@@ -30,7 +101,7 @@ export default function PageAtualizarFornecedor() {
                     <div className={styles.div_content_main}>
                         <div className={styles.container_content_dados}>
                             <div className={styles.contaner_box}>
-                                <InputLabel label="Nome da empresa" type="text" value={valueNome} setValue={setValueNome} placeholder="Nome Empresa LTDA" required={true} readonly={false} width='100vh' />
+                                <InputLabel label="Nome da empresa" type="text" value={valueRazaoSocial} setValue={setValueRazaoSocial} placeholder="Nome Empresa LTDA" required={true} readonly={false} width='100vh' />
                                 <InputLabel label="CNPJ" type="text" value={valueCNPJ} setValue={setValueCNPJ} placeholder="XX.XXX.XXX/0001-XX" pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" required={true} readonly={false} width='100vh' />
                                 <InputLabel label="E-mail" type="email" value={valueEmail} setValue={setValueEmail} placeholder="example@gmail.com" required={true} readonly={false} width='100vh' />
                             </div>
@@ -39,7 +110,7 @@ export default function PageAtualizarFornecedor() {
                 </BorderContainer>
                 <div className={styles.contaner_footer_button}>
                     <StandardButton text="CANCELAR" hoverColor="var(--darkred)" callback={() => {setModalPerguntaCancelar(true)}} />
-                    <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={() => {setModalConfimar(true)}} />
+                    <StandardButton text="CONFIRMAR" hoverColor="var(--cyan)" callback={() => {atualizarFornecedor()}} />
                 </div>
             </BasicScreen>
 

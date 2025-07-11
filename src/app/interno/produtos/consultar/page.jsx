@@ -41,7 +41,7 @@ export default function PageConsultarProdutos() {
                     </div>
                     <div className={styles.div_content_busca}>
                         <InputLabel label="Buscar o produto" type="search" value={filtro} setValue={setFiltro} placeholder="Pesquise as informações do produto" required={false} readonly={false} width='100vh' />
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" onClick={buscarProdutosFiltro} />
+                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" callback={buscarProdutosFiltro} />
                     </div>
                 </div>
             </BorderContainer>
