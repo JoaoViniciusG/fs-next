@@ -8,6 +8,23 @@
     justify-content: space-between;
 }
 
+.containerErrorModal {
+    position: absolute;
+    display: none;
+    background-color: red;
+    bottom: 4vh;
+    right: 3vw;
+    border-radius: 8px;
+}
+
+.containerContentErrorModal {
+    display: "flex";
+    flex-direction: row;
+    width: 200px;
+    gap: 10px;
+    background-color: green;
+}
+
 .containerContentMaster {
     height: 77px;
     width: 100%;

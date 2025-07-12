@@ -11,10 +11,12 @@ import {
 export const FuncionarioContext = createContext();
 
 export default function FuncionarioProvider({ children }) {
+  const [permissoesFuncionarioCadastrar, setPermissoesFuncionarioCadastrar] = useState();
+  const [funcionarioCadastrar, setFuncionarioCadastrar] = useState();
   const [funcionarios, setFuncionarios] = useState([]);
-  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const cadastrarFuncionario = async (dadosFuncionario) => {
     setIsLoading(true);
@@ -85,7 +87,11 @@ export default function FuncionarioProvider({ children }) {
     cadastrarFuncionario,
     editarFuncionario,
     excluirFuncionario,
-    consultarFuncionarios
+    consultarFuncionarios,
+    permissoesFuncionarioCadastrar,
+    setPermissoesFuncionarioCadastrar,
+    funcionarioCadastrar,
+    setFuncionarioCadastrar
   };
 
   return (

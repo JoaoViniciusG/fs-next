@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 import AuthProvider from '@/context/auth.context';
+import ApplicationProvider from '@/context/application.context';
 
 const poppinsFont = Poppins({
   variable: "--font-poppins",
@@ -21,9 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body className={poppinsFont.variable}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <ApplicationProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ApplicationProvider>
       </body>
     </html>
   );
