@@ -5,6 +5,7 @@ import {
   cadastrarMarcaAsync,
   editarMarcaAsync,
   excluirMarcaAsync,
+  consultarMarcaPorParamsAsync,
   consultarMarcasAsync
 } from '@/services/marca.service.js';
 
@@ -61,9 +62,10 @@ export default function MarcaProvider({ children }) {
     return true;
   };
 
-  const consultarMarcas = async () => {
+  const consultarMarcas = async (filtro = {}) => {
     setIsLoading(true);
-    const response = await consultarMarcasAsync();
+
+    const response = await consultarMarcaPorParamsAsync(filtro);
 
     if (response === false || response.status !== 200) {
       setIsError(true);
@@ -72,7 +74,7 @@ export default function MarcaProvider({ children }) {
       return false;
     }
 
-    setMarcas(response.data);
+    setMarcas(response.data.payload);
     setIsLoading(false);
   };
 
