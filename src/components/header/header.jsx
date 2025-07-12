@@ -22,6 +22,7 @@ export default function Header() {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenUser, setIsOpenUser] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const toggleModals = () => {
         if (isOpenUser) setIsOpenUser(false);
@@ -43,27 +44,31 @@ export default function Header() {
     return (
         <>
             <header className={styles.containerMaster}>
-                <div className={styles.logoContainer}>
-                    <Link href='/interno'>
-                        <Image
-                            className={styles.logo}
-                            src='/logo/Logo_Horizontal.png'
-                            layout="fill"
-                            objectFit="contain"
-                            alt='Logo horizontal EstoTech'
-                        />
-                    </Link>
-                </div>
+                <div className={styles.containerContentMaster}>
+                    <div className={styles.logoContainer}>
+                        <Link href='/interno'>
+                            <Image
+                                className={styles.logo}
+                                src='/logo/Logo_Horizontal.png'
+                                layout="fill"
+                                objectFit="contain"
+                                alt='Logo horizontal EstoTech'
+                            />
+                        </Link>
+                    </div>
 
-                <nav className={styles.headerButtonsContainer}>
-                    <div className={styles.iconBellContainer}>
-                        <i className={styles.notificationIcon} />
-                        <Icon.Bell className={styles.icon} />
-                    </div>
-                    <div className={styles.iconAccountContainer} onClick={toggleModals}>
-                        <Icon.User className={styles.icon} />
-                    </div>
-                </nav>
+                    <nav className={styles.headerButtonsContainer}>
+                        <div className={styles.iconBellContainer}>
+                            <i className={styles.notificationIcon} />
+                            <Icon.Bell className={styles.icon} />
+                        </div>
+                        <div className={styles.iconAccountContainer} onClick={toggleModals}>
+                            <Icon.User className={styles.icon} />
+                        </div>
+                    </nav>
+                </div>
+                
+                <div className={`${styles.headerBottomLine} ${isLoading && styles.headerBottomLineAnimation}`}></div>
             </header>
             <motion.div
                 transition={{

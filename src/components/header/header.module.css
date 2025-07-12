@@ -1,15 +1,49 @@
 .containerMaster {
     background-color: var(--darkgreen);
     color: white;
-    height: 80px;
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.containerContentMaster {
+    height: 77px;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 2px solid var(--white);
     padding: 0 20px;
+}
+
+.headerBottomLine {
+    padding: 0;
+    margin: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #e6e6e6;
+    animation: none;
+}
+
+.headerBottomLineAnimation {
+    background: linear-gradient(90deg,
+            #00c9aa 0%,
+            #147566 50%,
+            #00c9aa 100%);
+    background-size: 200% 100%;
+    animation: waveMove 3s linear infinite;
+}
+
+@keyframes waveMove {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .logoContainer {
@@ -130,7 +164,7 @@
     cursor: pointer;
 }
 
-.containerText div{
+.containerText div {
     height: 2px;
     background-color: var(--white);
     width: 100%;
