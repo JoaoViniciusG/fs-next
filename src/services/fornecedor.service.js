@@ -9,7 +9,8 @@ const instance = axios.create({
 export async function GetFornecedorById (id) {
     try {
         const response = await instance.get(`/fornecedor/${id}`);
-        return respose;
+            
+        return response;
     }
     catch (ex) {
         console.error(ex);
