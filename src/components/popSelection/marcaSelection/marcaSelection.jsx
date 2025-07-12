@@ -82,10 +82,10 @@ export default function MarcaSelection({
                                     </tr>
                                 ) : context.marcas && context.marcas.length > 0 ? (
                                     context.marcas.map((marca) => (
-                                        <tr key={marca.id} onClick={() => selecionarMarca(marca.nome)}>
-                                            <td>{marca.id}</td>
-                                            <td>{marca.fornecedor}</td>
-                                            <td>{marca.nome}</td>
+                                        <tr key={marca.idMarca+"_"+marca.idFornecedor} onClick={() => selecionarMarca(marca.nomeMarca)}>
+                                            <td>{marca.idMarca}</td>
+                                            <td>{marca.razaoSocial}</td>
+                                            <td>{marca.nomeMarca}</td>
                                             <td>{marca.cnpj}</td>
                                         </tr>
                                     ))

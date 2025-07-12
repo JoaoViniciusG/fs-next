@@ -13,12 +13,14 @@ import styles from './header.module.css';
 import Image from "next/image";
 import Link from 'next/link';
 import { AuthContext } from '@/context/auth.context';
+import { ApplicationContext } from '@/context/application.context';
 
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
-    const context = useContext(AuthContext);
+    const applicationContext = useContext(ApplicationContext);
+    const authContext = useContext(AuthContext);
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenUser, setIsOpenUser] = useState(false);
@@ -38,7 +40,8 @@ export default function Header() {
     };
 
     const onLogout = () => {
-        context.logout();
+        //authContext.logout();
+        applicationContext.callError("Teste");
     };
 
     return (
@@ -67,7 +70,7 @@ export default function Header() {
                         </div>
                     </nav>
                 </div>
-                
+
                 <div className={`${styles.headerBottomLine} ${isLoading && styles.headerBottomLineAnimation}`}></div>
             </header>
             <motion.div
@@ -108,26 +111,39 @@ export default function Header() {
                     </motion.h2>
 
                     <div className={styles.containerTextContent}>
-                        <AnimateOption 
-                            text="Perfil" 
-                            index={0} 
-                            isOpen={isOpen} 
+                        <AnimateOption
+                            text="Perfil"
+                            index={0}
+                            isOpen={isOpen}
                             callback={() => router.push("/interno/conta/dados-conta")} />
-                        
-                        <AnimateOption 
-                            text="Dados da empresa" 
-                            index={1} 
-                            isOpen={isOpen} 
+
+                        <AnimateOption
+                            text="Dados da empresa"
+                            index={1}
+                            isOpen={isOpen}
                             callback={() => router.push("/interno/conta/dados-empresa")} />
 
-                        <AnimateOption 
-                            text="Sair" 
-                            index={2} 
+                        <AnimateOption
+                            text="Sair"
+                            index={2}
                             isOpen={isOpen}
                             callback={onLogout}
                             redHover={true} />
                     </div>
                 </motion.div>
+            </motion.div>
+
+            <motion.div
+                transition={{
+                    duration: .55,
+                    repeatDelay: 0,
+                }}
+                animate={{ display: (applicationContext.isErrorModalOpen) ? "flex" : "none" }}
+                className={styles.containerErrorModal}>
+                <div className={styles.containerContentErrorModal}>
+                    <p style={{backgroundColor: "red"}}>{applicationContext.errorModalMessage}</p>
+                    <p style={{backgroundColor: "red"}}>{applicationContext.errorModalMessage}</p>
+                </div>
             </motion.div>
         </>
     );
