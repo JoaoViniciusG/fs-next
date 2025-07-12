@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     position: absolute;
-  }
+}
 
 .content_pop_consultar {
     display: flex;
@@ -22,6 +22,7 @@
     border-radius: 20px;
     background-color: var(--darkgreen);
     z-index: 1;
+    overflow: hidden;
 }
 
 .contener_close_pop {
@@ -29,22 +30,22 @@
     align-items: center;
     justify-content: flex-end;
     text-align: right;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
-.contener_close_pop > .icon_fechar {
+.contener_close_pop >.icon_fechar {
     color: var(--white);
     height: 27px;
     width: 27px;
     transition: 0.3s;
 }
 
-.contener_close_pop:hover > .icon_fechar {
+.contener_close_pop > .icon_fechar:hover {
     color: var(--ligth-aquamarine);
 }
 
 .div_contener_main {
-    margin: 10px 30px 20px;
+    margin: 10px 30px;
     width: 100%;
 }
 
@@ -64,20 +65,20 @@
     transition: 0.3s;
 }
 
-.button_filter > .filter_text {
+.button_filter>.filter_text {
     font-size: 18px;
     font-weight: 500px;
     color: var(--white);
 }
 
-.button_filter > .icon_filter {
+.button_filter>.icon_filter {
     color: var(--white);
     height: 27px;
     width: 27px;
     transition: 0.3s;
 }
 
-.button_filter:hover > .icon_filter{
+.button_filter:hover>.icon_filter {
     color: var(--ligth-aquamarine);
 }
 
@@ -94,16 +95,38 @@
 
 .content_table {
     overflow-x: auto;
+    max-height: 300px;
     margin-top: 15px;
     width: 100%;
+    border-radius: 10px;
+    background-color: var(--light-teal);
+}
+
+.content_table::-webkit-scrollbar {
+    width: 9px;
+    height: 8px;
+}
+
+.content_table::-webkit-scrollbar-thumb {
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+.content_table::-webkit-scrollbar-track {
+    background-color: var(--light-teal);
+    border-radius: 10px;
+}
+
+.content_table::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ligth-aquamarine);
 }
 
 .table_fornecedores {
     position: relative;
     background-color: var(--light-teal);
     width: 100%;
-    padding-bottom: 90px;
-    border-radius: 5px  5px 15px 15px;
+    padding-bottom: 30px;
+    border-radius: 5px 5px 15px 15px;
     border-collapse: separate;
     border-spacing: 0 20px;
 }
@@ -113,28 +136,32 @@
 }
 
 .table_header > tr > th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--light-teal);
     font-size: 19px;
     font-weight: 500;
     text-align: center;
     color: var(--white);
-    padding: 5px;
+    padding: 15px;
 }
 
-.table_body > tr {
+.table_body>tr {
     background-color: var(--medium-darkcyan);
     cursor: pointer;
     transition: 0.3s;
 }
 
-.table_body td{
+.table_body td {
     font-size: 17px;
     font-weight: 400;
     text-align: center;
     color: var(--white);
-    padding: 14px;
+    padding: 12px;
     transition: 0.3s;
 }
 
-.table_body > tr:hover {
+.table_body>tr:hover {
     background-color: var(--darkgreen);
 }

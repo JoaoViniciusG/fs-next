@@ -59,7 +59,7 @@ export default function MarcaSelection({
                             </div>
                         </div>
                         <div className={styles.div_content_busca}>
-                            <InputLabel label={textInputTitle} type="search" value={filtro} setValue={setFiltro} placeholder={textPlaceholder} required={false} readonly={false} width='70vh' />
+                            <InputLabel label={textInputTitle} type="search" value={filtro} setValue={setFiltro} placeholder={textPlaceholder} required={false} readonly={false} width='60vh' />
                             <StandardButton text={textBtnBuscar} hoverColor="var(--cyan)" callback={buscarMarcas} />
                         </div>
                     </div>
