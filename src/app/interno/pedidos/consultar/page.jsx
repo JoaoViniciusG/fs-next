@@ -30,6 +30,7 @@ export default function pageConsultarpedido() {
 
         if (resp && resp.data) {
           setPedidos(resp.data.payload);
+          console.log("Pedidos recebidos:", resp.data.payload);
         } else {
           setPedidos([]);
         }
@@ -66,6 +67,7 @@ export default function pageConsultarpedido() {
       setPedidoSelecionado(null);
       setModalExcluirPedidoOpen(false);
       setShowAlertModal(true);
+      
     } catch (error) {
       console.error("Erro na requisição de exclusão:", error);
     }
@@ -97,8 +99,7 @@ export default function pageConsultarpedido() {
           <div className={styles.div_container_main}>
             <div className={styles.filter_dados}>
               <div className={styles.button_filter}>
-                <p className={styles.filter_text}>Filtro: </p>
-                <Icon.Filter className={styles.icon_filter} />
+                
               </div>
             </div>
 
@@ -120,27 +121,31 @@ export default function pageConsultarpedido() {
         </BorderContainer>
 
         <BorderContainer title="Pedidos:" className={styles.containerPedidos}>
-          <div className={styles.pedidos}>
-            {pedidos.length === 0 ? (
-              <p className={styles.notFoundLabel}>Nenhum pedido encontrado.</p>
-            ) : (
-              pedidos.map((pedido, index) => (
-                <PedidoCard
-                  key={pedido.id || index}
-                  numeroPedido={String(index + 1).padStart(3, "0")}
-                  nomeCliente={pedido.nome}
-                  cpfCnpj={pedido.cpf}
-                  dataEmissao={formatarData(pedido.data)}
-                  valor={formatarValor(pedido.valorTotal)}
-                  observacao={pedido.observacao || ""}
-                  statusPedido={pedido.statusPedido}
-                  onExcluir={() => abrirExcluirPedido(pedido)}
-                  idPedido={pedido.id}
-                />
-              ))
-            )}
-          </div>
-        </BorderContainer>
+  <div className={styles.pedidos}>
+    {pedidos.length === 0 ? (
+      <p className={styles.notFoundLabel}>Nenhum pedido encontrado.</p>
+    ) : (
+      pedidos.map((pedido, index) => {
+        console.log("Renderizando pedido:", pedido); // <-- aqui
+        return (
+          <PedidoCard
+            key={pedido.id || index}
+            numeroPedido={String(index + 1).padStart(3, "0")}
+            nomeCliente={pedido.nome}
+            cpfCnpj={pedido.cpf}
+            dataEmissao={formatarData(pedido.data)}
+            valor={formatarValor(pedido.valorTotal)}
+            observacao={pedido.observacao || ""}
+            statusPedido={pedido.statusPedido}
+            onExcluir={() => abrirExcluirPedido(pedido)}
+            idPedido={pedido.id}
+          />
+        );
+      })
+    )}
+  </div>
+</BorderContainer>
+
       </BasicScreen>
 
       <ExcluirPedido
