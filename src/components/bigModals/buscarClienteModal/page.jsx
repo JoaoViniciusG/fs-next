@@ -17,7 +17,7 @@ export default function BuscarClienteModal({
   const [nomeBusca, setNomeBusca] = useState('');
   const [cpfBusca, setCpfBusca] = useState('');
   const [enderecoSelecionado, setEnderecoSelecionado] = useState(null);
-  const [clienteSelecionado, setClienteSelecionado] = useState(null); // Estado para cliente selecionado no modal
+  const [clienteSelecionado, setClienteSelecionado] = useState(null); 
   const [enderecos, setEnderecos] = useState([]);
   useEffect(() => {
   if (isOpen) {
