@@ -39,8 +39,7 @@ export default function Header() {
     };
 
     const onLogout = () => {
-        // authContext.logout();
-        applicationContext.callFail("Testeeee");
+        authContext.logout();
     };
 
     return (

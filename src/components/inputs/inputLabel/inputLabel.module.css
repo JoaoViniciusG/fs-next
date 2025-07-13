@@ -21,6 +21,10 @@
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
 }
 
+.input:disabled {
+  background-color: rgba(255,255,255,.5);
+}
+
 .input:focus-visible {
   outline: 2px solid var(--green-turquoise);
 }

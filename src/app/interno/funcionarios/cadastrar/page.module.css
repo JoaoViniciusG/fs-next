@@ -44,7 +44,6 @@
   font-size: 25px;
   font-family: "Poppins";
   color: var(--white);
-
 }
 
 .radiolabel {
@@ -72,4 +71,11 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+}
+
+.bottomElements {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
 }

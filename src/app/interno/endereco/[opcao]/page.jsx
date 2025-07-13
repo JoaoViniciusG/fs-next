@@ -52,6 +52,14 @@ export default function PageEnderecoCadastrar() {
         if (!context.hasError) setModalConfirmDelete(true);
     }
 
+    function formatarCEP(valor) {
+        valor = valor.replace(/\D/g, '');
+        valor = valor.slice(0, 8);
+
+        if (valor.length <= 5) return valor;
+        return valor.replace(/(\d{5})(\d{1,3})/, '$1-$2');
+    }
+
     const alterarEndereco = async () => {
         if (!enderecoInfos || Object.keys(enderecoInfos).length === 0) return;
 
@@ -68,6 +76,26 @@ export default function PageEnderecoCadastrar() {
         if (res) setModalConfirmChange(true);
     };
 
+    const criarEndereco = async () => {
+        if (!enderecoInfos || Object.keys(enderecoInfos).length === 0) return;
+
+        let end = {};
+        end.estado = contentEstado;
+        end.numero = contentNumero;
+        end.bairro = contentBairro;
+        end.cidade = contentCidade;
+        end.logradouro = contentRua;
+        end.cep = contentCep;
+
+        const res = await context.alterarEndereco(end);
+        if (res) setModalConfirmCreate(true);
+    };
+
+    const handleCepChange = (value) => {
+        const valorFormatado = formatarCEP(value);
+        setContentCep(valorFormatado);
+    };
+
     const buttonProperties = {
         cancelButton: {
             text: "CANCELAR",
@@ -77,7 +105,7 @@ export default function PageEnderecoCadastrar() {
         registerButton: {
             text: "CADASTRAR",
             hoverColor: "var(--cadetblue-ligtht)",
-            callback: () => { setModalConfirmCreate(true) }
+            callback: criarEndereco
         },
         changeButton: {
             text: "ALTERAR",
@@ -98,7 +126,7 @@ export default function PageEnderecoCadastrar() {
 
     const [buttonsConfig, setButtonsConfig] = useState({ button1: buttonProperties.deleteButton, button2: buttonProperties.changeButton })
 
-        useEffect(() => {
+    useEffect(() => {
         switch (pathname.split("/")[3]) {
             case "visualizar":
                 setButtonsConfig({
@@ -197,7 +225,7 @@ export default function PageEnderecoCadastrar() {
                             width='25vw'
                             readonly={isReadonly}
                             value={contentCep}
-                            setValue={setContentCep} />
+                            setValue={handleCepChange} />
                         <InputLabel
                             label="Rua:"
                             width='54vw'

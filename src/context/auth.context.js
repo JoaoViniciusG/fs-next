@@ -2,37 +2,35 @@
 
 import {
     createContext,
-    useState
+    useState,
+    useContext
 } from 'react';
 import { loginAsync, logoutAsync } from '@/services/auth.service';
+import { ApplicationContext } from './application.context';
 import { redirect } from 'next/navigation';
 
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
+    const applicationContext = useContext(ApplicationContext);
+
     const [permissionJson, setPermissionJson] = useState({});
-    const [isError, setIsError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
     const [isAuth, setIsAuth] = useState(false);
     const [email, setEmail] = useState({});
     const [verified, setVerified] = useState(false);
 
     const login = async (email, senha) => {
         const response = await loginAsync(email, senha);
-        console.log(response)
 
         if(response == false || response.status != 200) {
             setIsAuth(false);
             setEmail({});
-            setIsError(true);
-            setErrorMessage("");
+            callError("Falha ao realizar login!")
             localStorage.removeItem('sideBarConfig');
             return false;
         }
 
         setIsAuth(true);
-        setIsError(false);
-        setErrorMessage("");
         localStorage.setItem('sideBarConfig', JSON.stringify(response.data.payload.permissions));
         setEmail(response.data.payload.email);
         redirect('/interno');
@@ -43,8 +41,6 @@ export default function AuthProvider({ children }) {
 
         setIsAuth(false);
         setEmail({});
-        setIsError(true);
-        setErrorMessage("");
         localStorage.removeItem('sideBarConfig');
         redirect('/login');
     }

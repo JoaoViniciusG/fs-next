@@ -7,11 +7,12 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AddAddressButton from '@/components/buttons/addAddressButton/addAddressButton';
 import AlertModal from '@/components/modals/alertModal/alertModal';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useDebugValue } from 'react';
 import { FuncionarioContext } from '@/context/funcionario.context';
 import RadioButton from '@/components/inputs/radioButton/radioButton';
 import { useRouter } from 'next/navigation';
 import { ApplicationContext } from '@/context/application.context';
+import CheckBox from '@/components/inputs/checkbox/checkbox';
 
 export default function PageCadastrarFuncionario() {
   const router = useRouter();
@@ -26,9 +27,15 @@ export default function PageCadastrarFuncionario() {
   const [valueSexo, setValueSexo] = useState("");
   const [valueCPF, setValueCPF] = useState("");
 
+  const [createLogin, setCreateLogin] = useState(false);
+
   useEffect(() => {
     context.novoIdFuncionarioCadastrar();
   }, [])
+
+  useEffect(() => {
+    setValueEmail(createLogin ? "" : null)
+  }, [createLogin])
 
   const submitForm = () => {
     let funcionario = {
@@ -70,6 +77,17 @@ export default function PageCadastrarFuncionario() {
       .replace(/(\d{4})(\d+)/, '$1');
   }
 
+  function formatarTelefone(valor) {
+    valor = valor.replace(/\D/g, '');
+    valor = valor.slice(0, 11);
+
+    if (valor.length === 0) return '';
+    if (valor.length < 3) return `(${valor}`;
+    if (valor.length < 7) return `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+    if (valor.length < 11) return `(${valor.slice(0, 2)}) ${valor.slice(2, 6)}-${valor.slice(6)}`;
+    return `(${valor.slice(0, 2)}) ${valor.slice(2, 3)} ${valor.slice(3, 7)}-${valor.slice(7)}`;
+  }
+
   const handleDateChange = (value) => {
     const valorFormatado = formatarData(value);
     setValueDataNascimento(valorFormatado);
@@ -80,12 +98,16 @@ export default function PageCadastrarFuncionario() {
     setValueCPF(valorFormatado);
   };
 
+  const handleTelefoneChange = (value) => {
+    const valorFormatado = formatarTelefone(value);
+    setValueTelefone(valorFormatado);
+  };
+
   function validarCPF() {
-    let cpf = valueCPF.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let cpf = valueCPF.replace(/\D/g, '');
 
     if (cpf.length !== 11) return false;
 
-    // Rejeita CPFs com todos os dígitos iguais (ex: 000.000.000-00, 111...)
     if (/^(\d)\1+$/.test(cpf)) return false;
 
     const calcularDigito = (base, pesoInicial) => {
@@ -145,7 +167,7 @@ export default function PageCadastrarFuncionario() {
                     placeholder="(DDD) 0 0000-0000"
                     label="Telefone:"
                     value={valueTelefone}
-                    setValue={setValueTelefone}
+                    setValue={handleTelefoneChange}
                     required={true}
                     readonly={false}
                     width='50vh' />
@@ -153,10 +175,11 @@ export default function PageCadastrarFuncionario() {
                   <InputLabel
                     placeholder="email@gmail.com"
                     label="E-mail:"
-                    value={valueEmail}
+                    value={valueEmail == null ? "" : valueEmail}
                     setValue={setValueEmail}
                     required={true}
                     readonly={false}
+                    disabled={!createLogin}
                     width='50vh' />
                   <div className={styles.sexoContainer}>
                     <label>Sexo:</label> <br></br>
@@ -186,7 +209,14 @@ export default function PageCadastrarFuncionario() {
         <BorderContainer title='Endereço'>
           <AddAddressButton />
         </BorderContainer>
-        <StandardButton text="CONFIGURAR PERMISSÕES" hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={submitForm} />
+        <div className={styles.bottomElements}>
+          <CheckBox
+            text="Permitir Login"
+            value={createLogin}
+            setValue={setCreateLogin}
+          />
+          <StandardButton text={(createLogin) ? "CONFIGURAR PERMISSÕES" : "CADASTRAR"} hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={submitForm} />
+        </div>
       </BasicScreen>
       <AlertModal
         title='CADASTRADO'
