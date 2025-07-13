@@ -21,12 +21,30 @@ export default function PageConsultarFornecedores() {
         context.consultarFornecedor();
     }, []);
 
-    const buscarFornecedoresFiltro = () => {
-        const params = {};
-        if (filtro.trim() !== "") {
-            params.razaoSocial = filtro;
+    const buscarFornecedoresFiltro = async () => {
+        const busca = filtro.trim();
+
+        let parms = {};
+
+        if (!busca) {
+            parms = {};
         }
-        context.consultarFornecedor(params);
+        else if (/^\d+$/.test(busca) && busca.length < 14) {
+            await context.fornecedorById(busca);
+            return;
+        }
+        else if (!isNaN(Number(busca.replace(/\D/g, ""))) && busca.replace(/\D/g, "").length === 14) {
+            parms.cnpj = busca.replace(/\D/g, "");
+        }
+        else if (busca.includes("@")) {
+            parms.email = busca;
+        }
+        else {
+            parms.razaoSocial = busca;
+        }
+
+        await context.consultarFornecedor(parms);
+
     }
 
     return (
