@@ -29,22 +29,20 @@ export default function PageConsultarFornecedores() {
         if (!busca) {
             parms = {};
         }
-        else if (/^\d+$/.test(busca) && busca.length < 14) {
-            await context.fornecedorById(busca);
-            return;
+        else if (/\S+@\S+\.\S+/.test(busca)) {
+            parms.email = busca;
         }
         else if (!isNaN(Number(busca.replace(/\D/g, ""))) && busca.replace(/\D/g, "").length === 14) {
             parms.cnpj = busca.replace(/\D/g, "");
         }
-        else if (busca.includes("@")) {
-            parms.email = busca;
+        else if (/^\d+$/.test(busca) && !busca.length <= 0) {
+            await context.fornecedorById(busca);
+            return;
         }
         else {
             parms.razaoSocial = busca;
         }
-
         await context.consultarFornecedor(parms);
-
     }
 
     return (
