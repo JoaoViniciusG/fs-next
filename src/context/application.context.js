@@ -9,26 +9,73 @@ import {
 export const ApplicationContext = createContext();
 
 export default function ApplicationProvider({ children }) {
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isFailModalOpen, setIsFailModalOpen] = useState(false);
+  const [errorModalMessage, setErrorModalMessage] = useState("");
+  const [errorFailMessage, setErrorFailMessage] = useState("");
+  const [modalErrorTimeout, setModalErrorTimeout] = useState(null);
+  const [modalFailTimeout, setModalFailTimeout] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isErrorModalOpen, setIsErrorModalOpen] = useState(true);
-  const [errorModalMessage, setErrorModalMessage] = useState("Tes");
+  const [isLoadingPage, setIsLoadingPage] = useState(false);
 
-  const callError = (message) => {
-    setErrorModalMessage(message);
-    setIsErrorModalOpen(true);
+  const [lateralBarIsOpen, setLateralBarIsOpen] = useState(true);
 
-    setTimeout(() => {
+  const loadingPageDefine = (value) => {
+    setIsLoadingPage(value);
+    setIsLoading(value);
+  }
+
+  const loadingDefine = (value) => {
+    setIsLoading(value);
+    !value && setIsLoadingPage(value);
+  }
+
+  const timeoutErrorModal = () => {
+    return setTimeout(() => {
       setIsErrorModalOpen(false);
       setErrorModalMessage("");
     }, 5000);
   };
+  const timeoutFailModal = () => {
+    return setTimeout(() => {
+      setIsFailModalOpen(false);
+      setErrorFailMessage("");
+    }, 5000);
+  };
+
+  const callError = (message) => {
+    clearTimeout(modalErrorTimeout);    
+    setErrorModalMessage(message);
+    setIsErrorModalOpen(true);
+    
+    setModalErrorTimeout(timeoutErrorModal());
+  };
+
+  const callFail = (message) => {
+    clearTimeout(modalFailTimeout);    
+    setErrorFailMessage(message);
+    setIsFailModalOpen(true);
+    
+    setModalFailTimeout(timeoutFailModal());
+  };
+
+  const toggleLateralBar = () => {
+    setLateralBarIsOpen(!lateralBarIsOpen);
+  }
 
   const values = {
-    setIsLoading,
+    loadingDefine,
     isLoading,
+    errorFailMessage,
+    isFailModalOpen,
     callError,
+    callFail,
+    loadingPageDefine,
+    isLoadingPage,
     isErrorModalOpen,
-    errorModalMessage
+    errorModalMessage,
+    lateralBarIsOpen,
+    toggleLateralBar
   };
 
   return (

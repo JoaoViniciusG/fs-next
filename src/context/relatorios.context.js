@@ -1,8 +1,10 @@
 "use client";
 
 import { getRelatorios } from '@/services/relatorio.service';
+import { ApplicationContext } from './application.context';
 import {
     createContext,
+    useContext,
     useEffect,
     useState
 } from 'react';
@@ -12,9 +14,10 @@ import moment from 'moment';
 export const RelatorioContext = createContext();
 
 export default function RelatorioProvider({ children }) {
+    const applicationContext = useContext(ApplicationContext);
+    
     const [relatorios, setRelatorios] = useState({});
     const [hasError, setHasError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const [displayPeriod, setDisplayPeriod] = useState("");
     const [startDate, setStartDate] = useState("");
@@ -24,7 +27,7 @@ export default function RelatorioProvider({ children }) {
     const normalizeDate = (date) => moment(date).format("YYYY-MM-DD");
 
     const getInfos = async (start, end, startRef, endRef) => {
-        setIsLoading(true);
+        applicationContext.loadingDefine(true);
 
         const response = await getRelatorios(normalizeDate(start), normalizeDate(end), normalizeDate(startRef), normalizeDate(endRef));
 
@@ -37,8 +40,7 @@ export default function RelatorioProvider({ children }) {
             setHasError(true);
         }
         
-
-        setIsLoading(false);
+        applicationContext.loadingDefine(false);
     };
 
     const getDate = (direction) => {
@@ -88,7 +90,6 @@ export default function RelatorioProvider({ children }) {
     const value = {
         displayPeriod,
         relatorios,
-        isLoading,
         startDate,
         hasError,
         endDate,

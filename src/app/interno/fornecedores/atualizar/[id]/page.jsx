@@ -94,6 +94,11 @@ export default function PageAtualizarFornecedor() {
         }
     }
 
+    const handleCNPJChange = (numeros) => {
+        const formatado = context.formatarCNPJ(numeros);
+        setValueCNPJ(formatado);
+    };
+
     return (
         <>
             <BasicScreen pageTitle="Atualizar fornecedor">
@@ -101,8 +106,8 @@ export default function PageAtualizarFornecedor() {
                     <div className={styles.div_content_main}>
                         <div className={styles.container_content_dados}>
                             <div className={styles.contaner_box}>
-                                <InputLabel label="Nome da empresa" type="text" value={valueRazaoSocial} setValue={setValueRazaoSocial} placeholder="Nome Empresa LTDA" required={true} readonly={false} width='100vh' />
-                                <InputLabel label="CNPJ" type="text" value={valueCNPJ} setValue={setValueCNPJ} placeholder="XX.XXX.XXX/0001-XX" pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" required={true} readonly={false} width='100vh' />
+                                <InputLabel label="Nome da empresa" type="text" value={valueRazaoSocial} setValue={setValueRazaoSocial} placeholder="Nome Empresa LTDA" pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" required={true} readonly={false} width='100vh' />
+                                <InputLabel label="CNPJ" type="text" value={context.formatarCNPJ(valueCNPJ)} setValue={handleCNPJChange} placeholder="XX.XXX.XXX/0001-XX" pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" required={true} readonly={false} width='100vh' />
                                 <InputLabel label="E-mail" type="email" value={valueEmail} setValue={setValueEmail} placeholder="example@gmail.com" required={true} readonly={false} width='100vh' />
                             </div>
                         </div>

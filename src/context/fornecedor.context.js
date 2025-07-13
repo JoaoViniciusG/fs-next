@@ -50,18 +50,8 @@ export default function FornecedorProvider ({ children }) {
                 setFornecedor([]);
                 return false;
             }
-    
-            const data = response.data;
-    
-            if (Array.isArray(data)) {
-                setFornecedor(data);
-            }
-            else if (data.payload && Array.isArray(data.payload)) {
-                setFornecedor(data.payload);
-            }
-            else {
-                setFornecedor([]);
-            }
+
+            setFornecedor(Array.isArray(response.data.payload) ? response.data.payload : [response.data.payload]);
     
             setHasError(false);
             return true;
@@ -85,7 +75,7 @@ export default function FornecedorProvider ({ children }) {
             setIsLoading(true);
             const response = await PostAddFornecedor(fornecedor);
 
-            if (!response || response.status !== 201) {
+            if (!response || response.status !== 201 && response.status !== 200) {
                 setErrorMessage("Erro ao cadastrar o fornecedor!");
                 setHasError(true);
                 return false;
@@ -186,6 +176,16 @@ export default function FornecedorProvider ({ children }) {
         }
     }    
 
+    const formatarCNPJ = (cnpj) => {
+        const numeros = cnpj.replace(/\D/g, '').slice(0, 14);
+
+        return numeros
+            .replace(/^(\d{2})(\d)/, '$1.$2')
+            .replace(/^(\d{2}).(\d{3})(\d)/, '$1.$2.$3')
+            .replace(/.(\d{3})(\d)/, '.$1/$2') 
+            .replace(/(\d{4})(\d{1,2})$/, '$1-$2')
+    }
+
     const values = {
         hasError : hasError,
         isLoading : isLoading,
@@ -196,7 +196,8 @@ export default function FornecedorProvider ({ children }) {
         cadastrarFornecedorPost : cadastrarFornecedorPost,
         atualizarFornecedorCompleto : atualizarFornecedorCompleto,
         atualizarFornecedorParcial : atualizarFornecedorParcial,
-        deleteFornecedor : deleteFornecedor
+        deleteFornecedor : deleteFornecedor,
+        formatarCNPJ : formatarCNPJ
     }
     
     return (

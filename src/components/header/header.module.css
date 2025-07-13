@@ -8,21 +8,97 @@
     justify-content: space-between;
 }
 
+.containerMasterFailModal {
+    z-index: 1000;
+    position: absolute;
+    padding-bottom: 4vh;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.containerFailModal {
+    position: relative;
+    display: none;
+    flex-direction: row;
+    gap: 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--valuered);
+    padding: .2vw 60px;
+    min-width: 15vw;
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--white);
+    font-size: 1.2em;
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.2);
+}
+
+.alertFailIcon {
+    position: absolute;
+    left: 5%;
+}
+
 .containerErrorModal {
     position: absolute;
     display: none;
-    background-color: red;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--darkgreen);
     bottom: 4vh;
     right: 3vw;
     border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.6);
 }
 
 .containerContentErrorModal {
-    display: "flex";
+    display: flex;
     flex-direction: row;
-    width: 200px;
-    gap: 10px;
-    background-color: green;
+    align-items: center;
+    gap: 1vw;
+    padding: .5vw 15px;
+    min-width: 15vw;
+    min-height: 6vh;
+}
+
+.errorModalLoadingBar {
+    height: 4px;
+    align-self: flex-start;
+    width: 100%;
+    background-color: rgba(0,0,0,0.15);
+}
+
+.errorModalLoadingBar::after {
+    content: "";
+    display: flex;
+    width: 100%;
+    background-color: var(--white);
+    animation: loadingAnimation 5s infinite linear;
+    height: 4px;
+}
+
+.bugIcon {
+    font-size: 1.5em;
+    color: var(--white);
+}
+
+.errorModalMessage {
+    font-family: "Poppins";
+    color: var(--white);
+    font-size: 1.2em;
+}
+
+@keyframes loadingAnimation {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 .containerContentMaster {
@@ -216,4 +292,21 @@
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.pageMasterContainerLoading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+  object-fit: contain;
+  height: 100% !important;
+  position: relative !important;
+  width: unset !important;
 }

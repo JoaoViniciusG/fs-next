@@ -24,7 +24,6 @@ export default function Header() {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenUser, setIsOpenUser] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const toggleModals = () => {
         if (isOpenUser) setIsOpenUser(false);
@@ -40,8 +39,8 @@ export default function Header() {
     };
 
     const onLogout = () => {
-        //authContext.logout();
-        applicationContext.callError("Teste");
+        // authContext.logout();
+        applicationContext.callFail("Testeeee");
     };
 
     return (
@@ -71,8 +70,9 @@ export default function Header() {
                     </nav>
                 </div>
 
-                <div className={`${styles.headerBottomLine} ${isLoading && styles.headerBottomLineAnimation}`}></div>
+                <div className={`${styles.headerBottomLine} ${applicationContext.isLoading && styles.headerBottomLineAnimation}`}></div>
             </header>
+
             <motion.div
                 transition={{
                     duration: .55,
@@ -135,16 +135,45 @@ export default function Header() {
 
             <motion.div
                 transition={{
-                    duration: .55,
+                    duration: .5,
                     repeatDelay: 0,
                 }}
-                animate={{ display: (applicationContext.isErrorModalOpen) ? "flex" : "none" }}
+                animate={{ display: applicationContext.isErrorModalOpen ? "flex" : "none", translateX: applicationContext.isErrorModalOpen ? 0 : "30vw" }}
                 className={styles.containerErrorModal}>
                 <div className={styles.containerContentErrorModal}>
-                    <p style={{backgroundColor: "red"}}>{applicationContext.errorModalMessage}</p>
-                    <p style={{backgroundColor: "red"}}>{applicationContext.errorModalMessage}</p>
+                    <i className={`bi bi-bug ${styles.bugIcon}`}></i>
+                    <p className={styles.errorModalMessage}>{applicationContext.errorModalMessage}</p>
                 </div>
+                <div className={styles.errorModalLoadingBar}></div>
             </motion.div>
+
+            <div className={styles.containerMasterFailModal}>
+                <motion.div
+                    transition={{
+                        duration: .5,
+                        repeatDelay: 0,
+                    }}
+                    animate={{ display: applicationContext.isFailModalOpen ? "flex" : "none", translateY: applicationContext.isFailModalOpen ? 0 : "10vh" }}
+                    className={styles.containerFailModal}>
+
+                    <i className={`bi bi-exclamation-circle ${styles.alertFailIcon}`}></i>
+                    <p className={styles.failModalMessage}>{applicationContext.errorFailMessage}</p>
+                </motion.div>
+            </div>
+
+            <section
+                style={{display: (applicationContext.isLoadingPage) ? "flex" : "none"}}
+                className={styles.pageMasterContainerLoading}
+            >
+                <div>
+                    <Image
+                        className={styles.logo}
+                        src='/Loading-EstoTech.gif'
+                        layout="fill"
+                        objectFit="contain"
+                        alt='Logo horizontal EstoTech' />
+                </div>
+            </section>
         </>
     );
 }

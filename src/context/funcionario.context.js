@@ -1,6 +1,8 @@
 "use client"
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
+import { ApplicationContext } from './application.context';
+import {v4 as uuidv4} from 'uuid';
 import {
   cadastrarFuncionarioAsync,
   editarFuncionarioAsync,
@@ -11,79 +13,79 @@ import {
 export const FuncionarioContext = createContext();
 
 export default function FuncionarioProvider({ children }) {
-  const [permissoesFuncionarioCadastrar, setPermissoesFuncionarioCadastrar] = useState();
-  const [funcionarioCadastrar, setFuncionarioCadastrar] = useState();
+  const applicationContext = useContext(ApplicationContext);
+
+  const [permissoesFuncionarioCadastrar, setPermissoesFuncionarioCadastrar] = useState(null);
+  const [funcionarioCadastroId, setFuncionarioCadastroId] = useState(null);
+  const [funcionarioCadastrar, setFuncionarioCadastrar] = useState(null);
   const [funcionarios, setFuncionarios] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+
+  const novoIdFuncionarioCadastrar = () => {
+    setFuncionarioCadastroId(uuidv4());
+    setFuncionarioCadastrar(null);
+  }
 
   const cadastrarFuncionario = async (dadosFuncionario) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await cadastrarFuncionarioAsync(dadosFuncionario);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao cadastrar funcionário.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao cadastrar funcionário.")
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   }
 
   const editarFuncionario = async (idFuncionario, dadosFuncionario) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await editarFuncionarioAsync(idFuncionario, dadosFuncionario);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao editar funcionário.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao editar funcionário.")
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   }
 
   const excluirFuncionario = async (idFuncionario) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await excluirFuncionarioAsync(idFuncionario);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao excluir funcionário.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao excluir funcionário.")
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   }
 
   const consultarFuncionarios = async (filtro = {}) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
 
     const response = await consultarFuncionariosAsync(filtro);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao buscar funcionários.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao buscar funcionário.")
+      applicationContext.loadingDefine(false);
       return false;
     }
 
     setFuncionarios(response.data.payload);
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
   };
 
   const values = {
+    funcionarioCadastroId,
     funcionarios,
-    isError,
-    errorMessage,
-    isLoading,
+    novoIdFuncionarioCadastrar,
     cadastrarFuncionario,
     editarFuncionario,
     excluirFuncionario,
