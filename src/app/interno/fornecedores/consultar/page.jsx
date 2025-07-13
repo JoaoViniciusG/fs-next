@@ -11,39 +11,18 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import { useRouter } from 'next/navigation';
 import { FornecedorContext } from '@/context/fornecedor.context';
 import { useContext, useEffect, useState } from 'react';
+import { useDebounce } from '@/app/hooks/useDebounce';
 
 export default function PageConsultarFornecedores() {
     const router = useRouter();
     const context = useContext(FornecedorContext);
     const [filtro, setFiltro] = useState("");
 
+    const filtroDebounce = useDebounce(filtro);
+
     useEffect(() => {
-        context.consultarFornecedor();
-    }, []);
-
-    const buscarFornecedoresFiltro = async () => {
-        const busca = filtro.trim();
-
-        let parms = {};
-
-        if (!busca) {
-            parms = {};
-        }
-        else if (/\S+@\S+\.\S+/.test(busca)) {
-            parms.email = busca;
-        }
-        else if (!isNaN(Number(busca.replace(/\D/g, ""))) && busca.replace(/\D/g, "").length === 14) {
-            parms.cnpj = busca.replace(/\D/g, "");
-        }
-        else if (/^\d+$/.test(busca) && !busca.length <= 0) {
-            await context.fornecedorById(busca);
-            return;
-        }
-        else {
-            parms.razaoSocial = busca;
-        }
-        await context.consultarFornecedor(parms);
-    }
+        context.consultarFornecedor(filtroDebounce);
+    }, [filtroDebounce]);
 
     return (
         <BasicScreen pageTitle="Consultar fornecedores">
@@ -57,7 +36,6 @@ export default function PageConsultarFornecedores() {
                     </div>
                     <div className={styles.div_content_busca}>
                         <InputLabel value={filtro} setValue={setFiltro} label="Buscar a fornecedor" type="search" placeholder="Pesquise as informações da fornecedor." required={false} readonly={false} width='100vh'/>
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" callback={buscarFornecedoresFiltro}/>
                     </div>
                 </div>
             </BorderContainer>

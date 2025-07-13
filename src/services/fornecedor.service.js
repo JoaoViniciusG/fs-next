@@ -20,7 +20,7 @@ export async function GetFornecedorById (id) {
 
 export async function GetFornecedorByParametros (params) {
     try {
-        const response = await instance.get("/fornecedor", { params });
+        const response = await instance.get(`/fornecedor?filtro=${params}`);
         return response;
     }
     catch (ex) {

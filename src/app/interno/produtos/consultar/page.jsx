@@ -11,23 +11,18 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import { useRouter } from 'next/navigation';
 import { ProdutoContext } from '@/context/produto.context';
 import { useContext, useEffect, useState } from 'react';
+import { useDebounce } from '@/app/hooks/useDebounce';
 
 export default function PageConsultarProdutos() {
     const router = useRouter();
     const context = useContext(ProdutoContext);
     const [filtro, setFiltro] = useState("");
 
-    useEffect(() => {
-        context.consultarProdutos();
-    }, []);
+    const filtroDebounce = useDebounce(filtro.replace("R$", ""));
 
-    const buscarProdutosFiltro = () => {
-        const parans = {};
-        if (filtro.trim() !== "") {
-            parans.nome = filtro;
-        }
-        context.consultarProdutos(parans);
-    }
+    useEffect(() => {
+        context.consultarProdutos(filtroDebounce.trim());
+    }, [filtroDebounce]);
 
     return (
         <BasicScreen pageTitle="Consultar produtos">
@@ -40,8 +35,7 @@ export default function PageConsultarProdutos() {
                         </div>
                     </div>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Buscar o produto" type="search" value={filtro} setValue={setFiltro} placeholder="Pesquise as informações do produto" required={false} readonly={false} width='100vh' />
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" callback={buscarProdutosFiltro} />
+                        <InputLabel label="Buscar o produto" type="search" value={filtro} setValue={setFiltro} placeholder="Pesquise as informações do produto" required={false} readonly={false} width='75%' />
                     </div>
                 </div>
             </BorderContainer>

@@ -39,7 +39,7 @@ export default function ProdutoProvider({ children }) {
         }
     };
 
-    const consultarProdutos = async (filtro = {}) => {
+    const consultarProdutos = async (filtro = "") => {
         try {
             setIsLoading(true);
             const response = await GetProdutosByParametros(filtro);
@@ -51,17 +51,9 @@ export default function ProdutoProvider({ children }) {
                 return false;
             }
 
-            const data = response.data;
-
-            if (Array.isArray(data)) {
-                setProdutos(data);
-            }
-            else if (data.payload && Array.isArray(data.payload)) {
-                setProdutos(data.payload);
-            }
-            else {
-                setProdutos([]);
-            }
+            const data = response.data.payload;
+            setProdutos(Array.isArray(data) ? data : [data])
+            console.log(data)
 
             setHasError(false);
             return true;
