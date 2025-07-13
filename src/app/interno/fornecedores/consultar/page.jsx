@@ -9,9 +9,25 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 
 import { useRouter } from 'next/navigation';
+import { FornecedorContext } from '@/context/fornecedor.context';
+import { useContext, useEffect, useState } from 'react';
 
 export default function PageConsultarFornecedores() {
     const router = useRouter();
+    const context = useContext(FornecedorContext);
+    const [filtro, setFiltro] = useState("");
+
+    useEffect(() => {
+        context.consultarFornecedor();
+    }, []);
+
+    const buscarFornecedoresFiltro = () => {
+        const params = {};
+        if (filtro.trim() !== "") {
+            params.razaoSocial = filtro;
+        }
+        context.consultarFornecedor(params);
+    }
 
     return (
         <BasicScreen pageTitle="Consultar fornecedores">
@@ -24,8 +40,8 @@ export default function PageConsultarFornecedores() {
                         </div>
                     </div>
                     <div className={styles.div_content_busca}>
-                        <InputLabel label="Buscar a fornecedor" type="search" placeholder="Pesquise as informações da fornecedor." required={false} readonly={false} width='100vh'/>
-                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)"/>
+                        <InputLabel value={filtro} setValue={setFiltro} label="Buscar a fornecedor" type="search" placeholder="Pesquise as informações da fornecedor." required={false} readonly={false} width='100vh'/>
+                        <StandardButton text="BUSCAR" hoverColor="var(--cyan)" callback={buscarFornecedoresFiltro}/>
                     </div>
                 </div>
             </BorderContainer>
@@ -34,55 +50,27 @@ export default function PageConsultarFornecedores() {
                     <table className={styles.table_fornecedores}>
                         <thead className={styles.table_header}>
                             <tr>
-                                <th scope="col">ID Fornecedor</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nome da Empresa</th>
                                 <th scope="col">CNPJ</th>
                                 <th scope="col">E-mail</th>
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr onClick={() => router.push("/interno/fornecedores/visualizar")}>
-                                <td>00001</td>
-                                <td>Fornecedor 1</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00002</td>
-                                <td>Fornecedor 2</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00003</td>
-                                <td>Fornecedor 3</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00004</td>
-                                <td>Fornecedor 4</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00005</td>
-                                <td>Fornecedor 5</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00006</td>
-                                <td>Fornecedor 6</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>00007</td>
-                                <td>Fornecedor 7</td>
-                                <td>XX.XXX.XXX/0001.XX</td>
-                                <td>example@gmail.com</td>
-                            </tr>
+                            {context.fornecedor.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} style={{ textAlign: "center" }}>Nenhum fornecedor encontrado</td>
+                                </tr>
+                            ) : (
+                                context.fornecedor.map((fornecedor) => (
+                                    <tr key={fornecedor.id} onClick={() => router.push(`/interno/fornecedores/visualizar/${fornecedor.id}`)}>
+                                        <td>{fornecedor.id}</td>
+                                        <td>{fornecedor.razaoSocial}</td>
+                                        <td>{context.formatarCNPJ(fornecedor.cnpj)}</td>
+                                        <td>{fornecedor.email}</td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
