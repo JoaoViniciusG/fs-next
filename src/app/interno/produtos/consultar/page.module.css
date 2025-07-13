@@ -101,5 +101,5 @@
 }
 
 .table_body > tr:hover > td {
-    border-left: none;
+    border-left-color: transparent;
 }

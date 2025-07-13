@@ -11,7 +11,7 @@ export default function RadioButton({ text, valueName, selectedOption, handleOpt
         value={valueName}
         name={radioGroup} 
         checked={selectedOption === valueName}
-        onChange={handleOptionChange}/>
+        onChange={(e) => handleOptionChange(e.target.value)} />
       <span></span>
 
       <p className={styles.text} style={{fontSize: fontSize}}>{text}</p>

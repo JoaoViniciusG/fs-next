@@ -8,6 +8,7 @@ import EnderecoProvider from "@/context/endereco.context";
 import ProdutoProvider from "@/context/produto.context";
 import FornecedorProvider from "@/context/fornecedor.context";
 import MarcaProvider from "@/context/marca.context";
+import FuncionarioProvider from "@/context/funcionario.context";
 
 export default function InternoLayout({ children }) {
   return (
@@ -16,17 +17,19 @@ export default function InternoLayout({ children }) {
         <EnderecoProvider>
           <ProdutoProvider>
             <FornecedorProvider>
-              <MarcaProvider>
-                <div className={styles.containerMaster}>
-                  <Header />
+              <FuncionarioProvider>
+                <MarcaProvider>
+                  <div className={styles.containerMaster}>
+                    <Header />
 
-                  <BarraLateral />
+                    <BarraLateral />
 
-                  <main className={styles.containerPagesMain}>
-                    {children}
-                  </main>
-                </div>
-              </MarcaProvider>
+                    <main className={styles.containerPagesMain}>
+                      {children}
+                    </main>
+                  </div>
+                </MarcaProvider>
+              </FuncionarioProvider>
             </FornecedorProvider>
           </ProdutoProvider>
         </EnderecoProvider>

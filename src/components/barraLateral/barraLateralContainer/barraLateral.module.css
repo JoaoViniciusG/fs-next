@@ -1,9 +1,29 @@
 .containerMaster {
     display: flex;
-    flex-direction: column;
     background-color: var(--darkgreen);
-    padding: 2vw 2vw 1vw 2vw;
     width: min-content;
     height: calc(100% - 80px);
-    gap: 15px;
+}
+
+.containerContent {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    height: 100%;
+}
+
+.containerOptions {
+    margin: 0;
+    padding: 2vw 2vw 1vw 2vw;
+}
+
+.closeBarDiv {
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    color: var(--white);
+    padding: 0 5px;
+    cursor: pointer;
 }
