@@ -39,7 +39,7 @@ export default function FornecedorProvider ({ children }) {
         }
     }
 
-    const consultarFornecedor = async (filtro = {}) => {
+    const consultarFornecedor = async (filtro = "") => {
         try {
             setIsLoading(true);
             const response = await GetFornecedorByParametros(filtro);

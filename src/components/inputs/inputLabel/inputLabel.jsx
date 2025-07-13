@@ -2,13 +2,12 @@
 
 import styles from './inputLabel.module.css';
 
-export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style, required=false, readonly=false, disabled=false, type="text", width="100%", showLupa = false, onClick = () => {}}) {
+export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style = {}, required=false, readonly=false, disabled=false, type="text", width="100%", showLupa = false, onClick = () => {}}) {
     return (
-        <div className={styles.container} style={style}>
+        <div className={styles.container} style={{...style, width}}>
             <p className={styles.label}>{label}</p>
             <div 
-                className={styles.inputWrapper}
-                style={{width:width}}>
+                className={styles.inputWrapper}>
                 <input
                     required={required}
                     type={type}

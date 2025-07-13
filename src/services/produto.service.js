@@ -17,9 +17,9 @@ export async function GetProdutoById (id) {
     }
 }
 
-export async function GetProdutosByParametros(params) {
+export async function GetProdutosByParametros(filtro) {
     try {
-        const response = await instance.get("/produto", { params });
+        const response = await instance.get(`/produto?filtro=${filtro}`);
         return response;
     }
     catch (ex) {
