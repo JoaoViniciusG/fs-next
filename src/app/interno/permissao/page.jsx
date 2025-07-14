@@ -10,23 +10,33 @@ import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import RadioButton from '@/components/inputs/radioButton/radioButton';
 import PermissionOption from '@/components/containers/permissionOption/permissionOption';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+
+import { FuncionarioContext } from '@/context/funcionario.context';
+import { ApplicationContext } from '@/context/application.context';
 
 export default function PermissoesPage() {
+  const applicationContext = useContext(ApplicationContext);
+  const context = useContext(FuncionarioContext);
+
   const router = useRouter();
-  const [userId, setUserId] = useState(1457);
-  const [userName, setUserName] = useState("João Vinícius")
+  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("")
 
   const [data, setData] = useState(null);
   const [selectedOption, setSelectedOption] = useState("Admin");
   const [modalQuestionOpen, setModalQuestionOpen] = useState(false);
 
-  const handleOptionChange = (event) => {
-    const value = event.target.value;
+  useEffect(() => {
+    setUserId(context.funcionarioCadastroId)
+    setUserName(context.funcionarioCadastrar.nome)
+  }, [context.funcionarioCadastrar]);
+
+  const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
 
@@ -57,6 +67,15 @@ export default function PermissoesPage() {
     setData(test);
   }
 
+  const submit = () => {
+    applicationContext.loadingDefine(true);
+    context.novoIdFuncionarioCadastrar(true);
+    
+    setTimeout(() => {
+      applicationContext.loadingDefine(false);
+      setModalQuestionOpen(true)
+    }, 1500)
+  };
 
   return (
     <>
@@ -104,7 +123,7 @@ export default function PermissoesPage() {
           text="CONFIRMAR"
           hoverColor="var(--ligth-darkcyan)"
           style={{ alignSelf: "flex-end", marginTop: 25 }}
-          callback={() => setModalQuestionOpen(true)} />
+          callback={submit} />
 
       </BasicScreen>
 
@@ -114,7 +133,7 @@ export default function PermissoesPage() {
         bsIcon="bi-check2-circle"
         isOpen={modalQuestionOpen}
         setIsOpen={setModalQuestionOpen}
-        callback={() => router.back()}/>
+        callback={() => router.replace("/interno")}/>
     </>
   );
 }

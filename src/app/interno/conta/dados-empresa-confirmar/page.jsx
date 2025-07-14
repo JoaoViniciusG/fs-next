@@ -17,6 +17,7 @@ export default function PageDadosEmpresaConfirmar() {
 
   const [empresaData, setEmpresaData] = useState(null);
   const [enderecos, setEnderecos] = useState([]);
+  const apiUrl = process.env.BASE_URL;
 
   const [formEmpresa, setFormEmpresa] = useState({
     nomeFantasia: '',
@@ -28,8 +29,9 @@ export default function PageDadosEmpresaConfirmar() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3001/dadosEmpresa', { credentials: 'include' })
+    fetch(`${apiUrl}dadosEmpresa/`, { credentials: 'include' })
       .then((res) => {
+        console.log(res)
         if (!res.ok) throw new Error('Erro ao buscar dados da empresa');
         return res.json();
       })
@@ -73,7 +75,7 @@ export default function PageDadosEmpresaConfirmar() {
         ? toMySQLDateTime(formEmpresa.dataCadastro)
         : null;
 
-      const response = await fetch(`http://localhost:3001/dadosEmpresa/${empresaId}`, {
+      const response = await fetch(`${apiUrl}dadosEmpresa/${empresaId}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -125,7 +127,7 @@ export default function PageDadosEmpresaConfirmar() {
 
         <BorderContainer title="Endereços:">
           <div className={styles.divEnderecos}>
-            <AddAddressButton />
+            <AddAddressButton option={`2--${empresaData ? empresaData.empresaId : ""}`}/>
             {enderecos.length > 0 ? (
               enderecos.map((endereco) => (
                 <AddressOption

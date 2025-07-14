@@ -288,7 +288,7 @@ export default function PageCadastrarFuncionario() {
         title='CADASTRADO'
         text='Funcionário cadastrado com sucesso! '
         bsIcon="bi-check2-circle"
-        callback={router.back}
+        callback={() => createLogin ? router.push("/interno/permissao/") : router.push("/interno/funcionarios/consultar")}
         isOpen={modalOpen}
         setIsOpen={setModalOpen}
       />
