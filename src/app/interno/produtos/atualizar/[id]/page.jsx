@@ -7,6 +7,7 @@ import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import { ApplicationContext } from '@/context/application.context';
 import MarcaSelection from '@/components/popSelection/marcaSelection/marcaSelection';
 
 import { useEffect, useState, useContext } from 'react';
@@ -16,6 +17,7 @@ import { useRouter, useParams } from 'next/navigation';
 
 export default function PageAtualizarProduto() {
     const context = useContext(ProdutoContext);
+    const applicationContext = useContext(ApplicationContext);
     const router = useRouter();
     const id = useParams()["id"];
 
@@ -89,7 +91,7 @@ export default function PageAtualizarProduto() {
         }
 
         if (camposAlterados === 0) {
-            alert("Nenhum campo foi alterado!");
+            applicationContext.callFail("Nenhum campo foi alterado!");
             return;
         }
 

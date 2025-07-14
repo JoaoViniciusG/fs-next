@@ -6,15 +6,16 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import { ApplicationContext } from '@/context/application.context';
 import MarcaSelection from '@/components/popSelection/marcaSelection/marcaSelection';
 
 import { useState, useContext } from 'react';
 import { ProdutoContext } from '@/context/produto.context';
 import { useRouter, useParams } from 'next/navigation';
 
-
 export default function PageCriarProduto() {
     const context = useContext(ProdutoContext);
+    const applicationContext = useContext(ApplicationContext);
     const router = useRouter();
 
     const [modalCadastrar, setModalCadastrar] = useState(false);
@@ -27,7 +28,7 @@ export default function PageCriarProduto() {
 
     const cadastrarProduto = async () => {
         if (!valueNome || !valueMarca || valueValorUnitario <= 0 || valueQuantidade < 0) {
-            alert("Preencha todos os campos corretamente!");
+            applicationContext.callFail("Preencha todos os campos corretamente!");
             return;
         };
 
@@ -44,7 +45,7 @@ export default function PageCriarProduto() {
             setModalCadastrar(true);
         }
         else {
-            alert("Error ao cadastrar o produto!");
+            applicationContext.callError("Error ao cadastrar o produto!");
         }
     }
 

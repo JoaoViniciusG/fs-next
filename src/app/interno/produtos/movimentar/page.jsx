@@ -6,6 +6,7 @@ import Image from 'next/image';
 import StandardButton from "@/components/buttons/standardButton/standardButton";
 import BuscarProdutoModal from "@/components/bigModals/buscarProduto/page";
 import AlertModal from "@/components/modals/alertModal/alertModal";
+import { ApplicationContext } from '@/context/application.context';
 
 import { useContext, useState, useEffect } from 'react';
 import { ProdutoContext } from "@/context/produto.context";
@@ -14,6 +15,7 @@ export default function MovimentarEstoque() {
     const [modalOpenBusca, setModalOpenBusca] = useState(false);
     const [showAlertModal, setShowAlertModal] = useState(false);
     const context = useContext(ProdutoContext);
+    const applicationContext = useContext(ApplicationContext);
     const [produtos, setProdutos] = useState([]);
 
     const handleBuscarProduto = () => {
@@ -61,7 +63,7 @@ export default function MovimentarEstoque() {
             }));
 
         if (movimentarProdutos.length === 0) {
-            alert("Nenhuma movimentação a realizar!");
+            applicationContext.callFail("Nenhuma movimentação a realizar!");
             return;
         }
 
@@ -70,7 +72,7 @@ export default function MovimentarEstoque() {
         if (response) {
             handleMostrarPop();
         } else {
-            alert("Erro ao movimentar estoque!");
+            applicationContext.callError("Erro ao movimentar estoque!");
         }
     };
 

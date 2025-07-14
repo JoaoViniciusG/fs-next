@@ -6,6 +6,7 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import AlertModal from '@/components/modals/alertModal/alertModal';
+import { ApplicationContext } from '@/context/application.context';
 
 import { useState, useContext } from 'react';
 import { useRouter, useParams } from 'next/navigation';
@@ -13,6 +14,7 @@ import { FornecedorContext } from '@/context/fornecedor.context';
 
 export default function PageCriarFornecedor() {
     const context = useContext(FornecedorContext);
+    const applicationContext = useContext(ApplicationContext);
     const router = useRouter();
 
     const [modalCadastrar, setModalCadastrar] = useState(false);
@@ -23,7 +25,7 @@ export default function PageCriarFornecedor() {
 
     const cadastrarFornecedor = async () => {
         if (!valueRazaoSocial || !valueCNPJ || !valueEmail) {
-            alert("Preencha todos os campos corretamente!");
+            applicationContext.callFail("Preencha todos os campos corretamente!");
             return;
         }
 
@@ -38,7 +40,7 @@ export default function PageCriarFornecedor() {
         if (response) {
             setModalCadastrar(true);
         } else {
-            alert("Erro ao cadastrar o fornecedor!");
+            applicationContext.callError("Erro ao cadastrar o fornecedor!");
         }
     }
 

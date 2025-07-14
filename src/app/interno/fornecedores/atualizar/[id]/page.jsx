@@ -6,7 +6,8 @@ import BasicScreen from "@/components/screens/basicScreen/basicScreen";
 import BorderContainer from "@/components/containers/borderContainer/page";
 import InputLabel from '@/components/inputs/inputLabel/inputLabel';
 import ActionModal from '@/components/modals/actionModal/actionModal';
-import AlertModal from '@/components/modals/alertModal/alertModal';
+import AlertModal from '@/components/modals/alertModal/alertModal'
+import { ApplicationContext } from '@/context/application.context';
 
 import { useEffect, useState, useContext } from 'react';
 import { FornecedorContext } from '@/context/fornecedor.context';
@@ -15,6 +16,7 @@ import { useParams, useRouter } from 'next/navigation';
 
 export default function PageAtualizarFornecedor() {
     const context = useContext(FornecedorContext);
+    const applicationContext = useContext(ApplicationContext);
     const router = useRouter();
     const id = useParams()["id"];
 
@@ -77,7 +79,7 @@ export default function PageAtualizarFornecedor() {
         }
 
         if (camposAlterados === 0) {
-            alert("Nenhum campo foi alterado!");
+            applicationContext.callFail("Nenhum campo foi alterado!");
             return;
         }
 
