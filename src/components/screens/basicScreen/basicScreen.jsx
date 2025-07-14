@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import * as Icon from 'react-feather';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ApplicationContext } from '@/context/application.context';
 
 export default function BasicScreen({
@@ -18,18 +18,23 @@ export default function BasicScreen({
   const router = useRouter();
   const applicationContext = useContext(ApplicationContext);
 
-  if (false) {
+  useEffect(() => {
+    applicationContext.loadingPageDefine(false);
+  }, [])
+
+  if (applicationContext.isLoadingPage) {
     return (
-      <section
-        className={styles.pageMasterContainerLoading}
-        style={{ backgroundColor }}
-      >
-        <Image
-          className={styles.logo}
-          src='/Loading-EstoTech.gif'
-          layout="fill"
-          objectFit="contain"
-          alt='Logo horizontal EstoTech' />
+      <section className={styles.pageMasterContainerLoading}>
+        <div className={styles.containerGif}>
+          <video
+            src="/Loading EstoTech.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
       </section>
     );
   }

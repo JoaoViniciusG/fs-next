@@ -30,7 +30,6 @@ export default function pageConsultarpedido() {
 
         if (resp && resp.data) {
           setPedidos(resp.data.payload);
-          console.log("Pedidos recebidos:", resp.data.payload);
         } else {
           setPedidos([]);
         }
@@ -126,7 +125,6 @@ export default function pageConsultarpedido() {
       <p className={styles.notFoundLabel}>Nenhum pedido encontrado.</p>
     ) : (
       pedidos.map((pedido, index) => {
-        console.log("Renderizando pedido:", pedido); // <-- aqui
         return (
           <PedidoCard
             key={pedido.id || index}

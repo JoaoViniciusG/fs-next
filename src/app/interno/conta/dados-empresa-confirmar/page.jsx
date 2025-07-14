@@ -161,8 +161,6 @@ export default function PageDadosEmpresaConfirmar() {
         setIsOpen={setModalOpenSair}
         textBtn1="CANCELAR"
         textBtn2="CONFIRMAR"
-        callbackB1={() => console.log('CANCELOU')}
-        callbackB2={() => console.log('CONFIRMOU')}
       />
 
       <AlertModal

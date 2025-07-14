@@ -1,39 +1,3 @@
-// "use client"
-
-// import { getPedidos } from '@/services/pedidos.service';
-// import {
-//     createContext,
-//     useState
-// } from 'react';
-
-// export const PedidosContext = createContext();
-
-// export default function PedidosProvider({ children }) {
-//     const [pedidos, setPedidos] = useState([]);
-
-//     const receberPedidos = async () => {
-//         const response = await getPedidos();
-
-//         if(response == false || response.status != 200) {
-//             console.log("Deu erro, corrija essa merda!");
-//             return;
-//         }
-
-//         setPedidos(response.data.payload);
-//     };
-
-//     const values = {
-//         pedidos: pedidos,
-//         receberPedidos: receberPedidos
-//     };
-
-//     return (
-//         <PedidosContext.Provider value={values}>
-//             { children }
-//         </PedidosContext.Provider>
-//     );
-// }
-
 "use client";
 import { createContext, useState, useContext} from "react";
 import {
@@ -41,78 +5,72 @@ import {
   consultarPedidosAsync,
   excluirPedidoAsync,
   atualizarStatusPedidoAsync} from "@/services/pedidos.service"
+import { ApplicationContext } from "./application.context";
+
 export const PedidoContext = createContext();
 
 export default function PedidoProvider({ children }) {
+  const applicationContext = useContext(ApplicationContext);
   const [pedidos, setPedidos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const criarPedido = async (dadosPedido) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await criarPedidoAsync(dadosPedido);
 
     if (!response || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao criar pedido.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao criar pedido.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
 
   const consultarPedidos = async (filtros) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await consultarPedidosAsync(filtros);
 
     if (!response || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao buscar pedidos.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao buscar pedidos.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
     setPedidos(response.data);
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
   };
 
   const excluirPedido = async (idPedido) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await excluirPedidoAsync(idPedido);
 
     if (!response || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao excluir pedido.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao excluir pedido.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
 
   const atualizarStatusPedido = async (idPedido, status) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await atualizarStatusPedidoAsync(idPedido, status);
 
     if (!response || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao atualizar status do pedido.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao atualizar status do pedido.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
+
   const values = {
     pedidos,
-    isLoading,
-    isError,
-    errorMessage,
     criarPedido,
     consultarPedidos,
     excluirPedido,

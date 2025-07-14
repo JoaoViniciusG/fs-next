@@ -1,14 +1,13 @@
 "use client";
 
 import { GetFornecedorById, GetFornecedorByParametros, PostAddFornecedor, PutAlterarFornecedor, PatchAtualizarFornecedor, DeleteFornecedor } from "@/services/fornecedor.service";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { ApplicationContext } from "./application.context";
 
 export const FornecedorContext = createContext();
 
 export default function FornecedorProvider ({ children }) {
-    const [hasError, setHasError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const applicationContext = useContext(ApplicationContext);
     const [fornecedorSelect, setFornecedorSelect] = useState(null);
     const [fornecedor, setFornecedor] = useState([]);
 
@@ -17,162 +16,141 @@ export default function FornecedorProvider ({ children }) {
             if (id == undefined) {
                 return `Id não informado!`;
             }
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
 
             const response = await GetFornecedorById(id);
 
             if (!response || response.status !== 200) {
                 setFornecedorSelect(null);
-                setErrorMessage("Error ao buscar o fornecedor!")
-                setHasError(true);
+                applicationContext.callError("Error ao buscar o fornecedor!")
             } else {
                 setFornecedorSelect(response.data.payload);
-                setHasError(false)
             }
-
         }
         catch (ex) {
             console.error(ex);
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const consultarFornecedor = async (filtro = "") => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await GetFornecedorByParametros(filtro);
     
             if (!response || response.status !== 200) {
-                setErrorMessage("Erro ao buscar os fornecedores!");
-                setHasError(true);
+                applicationContext.callError("Erro ao buscar os fornecedores!");
                 setFornecedor([]);
                 return false;
             }
 
             setFornecedor(Array.isArray(response.data.payload) ? response.data.payload : [response.data.payload]);
-    
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
-    
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Erro ao buscar os fornecedores!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Erro ao buscar os fornecedores!");
             setFornecedor([]);
             return false;
 
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const cadastrarFornecedorPost = async (fornecedor) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PostAddFornecedor(fornecedor);
 
             if (!response || response.status !== 201 && response.status !== 200) {
-                setErrorMessage("Erro ao cadastrar o fornecedor!");
-                setHasError(true);
+                applicationContext.callError("Erro ao cadastrar o fornecedor!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
         }
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Erro ao cadastrar o fornecedor!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Erro ao cadastrar o fornecedor!");
             return false;
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const atualizarFornecedorCompleto = async (id, fornecedor) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PutAlterarFornecedor(id, fornecedor);
 
             if(!response || response.status !== 200) {
-                setErrorMessage("Error ao alterar o fornecedor!");
-                setHasError(true);
+                applicationContext.callError("Error ao alterar o fornecedor!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
 
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao alterar o fornecedor!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Error ao alterar o fornecedor!");
             return false;
 
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const atualizarFornecedorParcial = async (id, fornecedor) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PatchAtualizarFornecedor(id, fornecedor);
 
             if(!response || response.status !== 200) {
-                setErrorMessage("Error ao atualizar o fornecedor!");
-                setHasError(true);
+                applicationContext.callError("Error ao atualizar o fornecedor!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
 
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao atualizar o fornecedor!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Error ao atualizar o fornecedor!");
             return false;
 
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const deleteFornecedor = async (id) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await DeleteFornecedor(id);
 
             if (!response || response.status !== 200) {
-                setErrorMessage("Erro ao excluir o fornecedor!");
-                setHasError(true);
+                applicationContext.callError("Erro ao excluir o fornecedor!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
-
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao excluir o fornecedor!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Error ao excluir o fornecedor!");
             return false;
 
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }    
 
@@ -187,8 +165,6 @@ export default function FornecedorProvider ({ children }) {
     }
 
     const values = {
-        hasError : hasError,
-        isLoading : isLoading,
         fornecedorSelect : fornecedorSelect,
         fornecedor : fornecedor,
         fornecedorById : fornecedorById,

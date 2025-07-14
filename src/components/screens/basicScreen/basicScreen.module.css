@@ -9,7 +9,7 @@
 }
 
 .pageMasterContainerLoading {
-  background-color: var(--darkgreen);
+  background-color: var(--loadinggreen);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,6 +40,10 @@
   height: 100% !important;
   position: relative !important;
   width: unset !important;
+}
+
+.containerGif {
+  height: 40vh;
 }
 
 .titleContainer {

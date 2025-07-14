@@ -65,7 +65,6 @@ export default function RelatorioProvider({ children }) {
 
         let nome, inicio, fim;
 
-        console.log(newIndex);
         if (newIndex < 5) {
             nome = periodos[newIndex][0];
             const startMes = periodos[newIndex][3] !== undefined ? periodos[newIndex][3] : mes;

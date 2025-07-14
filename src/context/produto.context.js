@@ -1,14 +1,13 @@
 "use client";
 
 import { GetProdutoById, GetProdutosByParametros, PostAddProduto, PutAlterarProduto, PatchAtualizarProduto, DeleteProduto, PostMovimentarEstoque } from "@/services/produto.service";
-import { createContext, useState } from "react";
+import { ApplicationContext } from "./application.context";
+import { createContext, useContext, useState } from "react";
 
 export const ProdutoContext = createContext();
 
 export default function ProdutoProvider({ children }) {
-    const [hasError, setHasError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const applicationContext = useContext(ApplicationContext);
     const [produtoSelect, setProdutoSelect] = useState(null);
     const [produtos, setProdutos] = useState([]);
     
@@ -18,169 +17,168 @@ export default function ProdutoProvider({ children }) {
             if (id == undefined) {
                 return `Id não informado!`;
             }
-            setIsLoading(true);
+            applicationContext.loadingPageDefine(true);
 
             const response = await GetProdutoById(id);
 
             if (!response || response.status !== 200) {
                 setProdutoSelect(null);
-                setErrorMessage("Error ao buscar o produto!")
-                setHasError(true);
+                applicationContext.callError("Error ao buscar o produto!")
             } else {
                 setProdutoSelect(response.data.payload);
-                setHasError(false)
             }
+
+            applicationContext.loadingDefine(false);
         }
         catch (ex){
             console.error(ex);
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingPageDefine(false);
         }
     };
 
     const consultarProdutos = async (filtro = "") => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await GetProdutosByParametros(filtro);
 
             if (!response || response.status !== 200) {
-                setErrorMessage("Erro ao buscar os produtos!");
-                setHasError(true);
+                applicationContext.callError("Erro ao buscar os produtos!");
                 setProdutos([]);
                 return false;
             }
 
             const data = response.data.payload;
             setProdutos(Array.isArray(data) ? data : [data])
-            console.log(data)
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
-
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Erro ao buscar os produtos!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Erro ao buscar os produtos!");
             setProdutos([]);
             return false;
-
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const cadastrarProdutoPost = async (produto) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PostAddProduto(produto);
 
             if (!response || response.status !== 201) {
-                setErrorMessage("Erro ao cadastrar o produto!");
-                setHasError(true);
+                applicationContext.callError("Erro ao cadastrar o produto!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
         }
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Erro ao cadastrar o produto!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Erro ao cadastrar o produto!");
             return false;
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const atualizarProdutoCompleto = async (id, produto) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PutAlterarProduto(id, produto);
 
             if(!response || response.status !== 200) {
-                setErrorMessage("Error ao alterar o produto!");
-                setHasError(true);
+                applicationContext.callError("Error ao alterar o produto!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
-
         } 
         catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao alterar o produto!");
-            setHasError(true);
+            applicationContext.callError("Error ao alterar o produto!");
             return false;
-
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const atualizarProdutoParcial = async (id, produto) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await PatchAtualizarProduto(id, produto);
 
             if(!response || response.status !== 200) {
-                setErrorMessage("Error ao atualizar o produto!");
-                setHasError(true);
+                applicationContext.callError("Error ao atualizar o produto!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
-
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao atualizar o produto!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Error ao atualizar o produto!");
             return false;
-
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     }
 
     const deleteProduto = async (id) => {
         try {
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
             const response = await DeleteProduto(id);
 
             if (!response || response.status !== 200) {
-                setErrorMessage("Erro ao excluir o produto!");
-                setHasError(true);
+                applicationContext.callError("Erro ao excluir o produto!");
                 return false;
             }
 
-            setHasError(false);
+            applicationContext.loadingDefine(false);
             return true;
 
         } 
-        catch (ex) {
-            console.error(ex);
-            setErrorMessage("Error ao excluir o produto!");
-            setHasError(true);
+        catch {
+            applicationContext.callError("Error ao excluir o produto!");
             return false;
 
         } 
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
+        }
+    }
+
+    const movimentarEstoque = async (movimentarProdutos) => {
+        try {
+            applicationContext.loadingDefine(true);
+            const response = await PostMovimentarEstoque(movimentarProdutos);
+
+            if (!response || response.status !== 200) {
+                applicationContext.callError("Erro ao movimentar o estoque!");
+                return false;
+            }
+
+            applicationContext.loadingDefine(false);
+            return response.data;
+        } 
+        catch {
+            applicationContext.callError("Erro ao movimentar o estoque!");
+            return false;
+
+        } 
+        finally {
+            applicationContext.loadingDefine(false);
         }
     }
 
     const values = {
-        hasError : hasError,
-        isLoading : isLoading,
         produtoSelect : produtoSelect,
         produtos : produtos,
         produtoById : produtoById,
@@ -188,7 +186,8 @@ export default function ProdutoProvider({ children }) {
         cadastrarProdutoPost : cadastrarProdutoPost,
         atualizarProdutoCompleto : atualizarProdutoCompleto,
         atualizarProdutoParcial : atualizarProdutoParcial,
-        deleteProduto : deleteProduto
+        deleteProduto : deleteProduto,
+        movimentarEstoque : movimentarEstoque
     }
 
     return (

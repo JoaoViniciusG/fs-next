@@ -114,7 +114,6 @@ export default function PageCadastrarFuncionario() {
     if (data.length < 10) return "";
     const [dia, mes, ano] = data.split('/');
     let formatado = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
-    console.log(formatado);
     return formatado;
   }
 
