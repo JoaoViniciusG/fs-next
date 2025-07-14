@@ -40,7 +40,7 @@ export default function PageConsultarClientes() {
                             </tr>
                         </thead>
                         <tbody className={styles.table_body}>
-                            <tr onClick={() => router.push('/interno/cliente/informacoesCliente')}>
+                            <tr onClick={() => router.push('/interno/clientes/visualizar')}>
                                 <td>Beatriz Alves</td>
                                 <td>091.846.297-98</td>
                                 <td>09/10/2004</td>

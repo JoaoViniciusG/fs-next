@@ -12,10 +12,9 @@ const TotalSummary = ({
   setObservacao,
   readOnly = false,
 }) => {
-  // Garantir que desconto seja número
+
   const descontoNumero = Number(desconto) || 0;
 
-  // Calcular valor do desconto e total
   const valorDesconto = subtotal * (descontoNumero / 100);
   const totalCalculado = subtotal - valorDesconto;
 
