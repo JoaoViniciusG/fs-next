@@ -19,7 +19,9 @@ export default function BasicScreen({
   const applicationContext = useContext(ApplicationContext);
 
   useEffect(() => {
-    applicationContext.loadingPageDefine(false);
+    setTimeout(() => {
+      applicationContext.loadingPageDefine(false);
+    }, 1500);
   }, [])
 
   if (applicationContext.isLoadingPage) {
