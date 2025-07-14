@@ -52,7 +52,7 @@ export default function pageConsultarpedido() {
     if (!pedidoSelecionado) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/pedido/delete/${pedidoSelecionado.id}`, {
+      const res = await fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/pedido/delete/${pedidoSelecionado.id}`, {
         method: "DELETE",
         credentials: "include",
       });

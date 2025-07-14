@@ -35,7 +35,7 @@ function PedidoContent() {
     setIdPedido(pedidoId);
 
     if (pedidoId) {
-      fetch(`http://localhost:3001/pedido/${pedidoId}/produtos`, {
+      fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/pedido/${pedidoId}/produtos`, {
         credentials: "include",
       })
         .then((res) => {

@@ -41,7 +41,7 @@ useEffect(() => {
 
   const buscarClientes = async () => {
     try {
-      const response = await fetch('http://localhost:3001/clientes');
+      const response = await fetch('https://estotech.dev.vilhena.ifro.edu.br/api/clientes');
       const data = await response.json();
 
       if (data && Array.isArray(data.payload)) {
@@ -64,7 +64,7 @@ useEffect(() => {
   const buscarEnderecoDoCliente = async (cliente) => {
   setClienteSelecionado(cliente);
   try {
-    const response = await fetch(`http://localhost:3001/endereco?idCliente=${cliente.id}`, {
+    const response = await fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/endereco?idCliente=${cliente.id}`, {
       credentials: 'include',
     });
 

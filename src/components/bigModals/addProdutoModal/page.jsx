@@ -23,7 +23,7 @@ export default function AdicionarProdutoModal({
 
   useEffect(() => {
     if (isOpen) {
-      fetch('http://localhost:3001/marcas', {
+      fetch('https://estotech.dev.vilhena.ifro.edu.br/api/marcas', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -68,7 +68,7 @@ useEffect(() => {
           let produtos = [];
 
           if (codigo) {
-            const res = await fetch(`http://localhost:3001/produto/${codigo}`, { credentials: 'include' });
+            const res = await fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/produto/${codigo}`, { credentials: 'include' });
             const data = await res.json();
             produtos = Array.isArray(data.payload) ? data.payload : data.payload ? [data.payload] : [];
           } else {
@@ -76,7 +76,7 @@ useEffect(() => {
             if (nome) params.append('nome', nome);
             if (marca) params.append('marca', marca);
 
-            const res = await fetch(`http://localhost:3001/produto?${params.toString()}`, { credentials: 'include' });
+            const res = await fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/produto?${params.toString()}`, { credentials: 'include' });
             const data = await res.json();
             produtos = Array.isArray(data.payload) ? data.payload : data.payload ? [data.payload] : [];
           }

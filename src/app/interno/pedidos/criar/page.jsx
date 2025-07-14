@@ -127,7 +127,7 @@ export default function PageCriarPedidos() {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/pedido', {
+      const response = await fetch('https://estotech.dev.vilhena.ifro.edu.br/api/pedido', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pedido),
