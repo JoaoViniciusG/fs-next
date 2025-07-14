@@ -1,88 +1,79 @@
 "use client";
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { 
   cadastrarMarcaAsync,
   editarMarcaAsync,
   excluirMarcaAsync,
-  consultarMarcaPorParamsAsync,
-  consultarMarcasAsync
+  consultarMarcaPorParamsAsync
 } from '@/services/marca.service.js';
+import { ApplicationContext } from './application.context';
 
 export const MarcaContext = createContext();
 
 export default function MarcaProvider({ children }) {
+  const applicationContext = useContext(ApplicationContext);
   const [marcas, setMarcas] = useState([]);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const cadastrarMarca = async (dadosMarca) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await cadastrarMarcaAsync(dadosMarca);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao cadastrar marca.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao cadastrar marca.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
 
   const editarMarca = async (idMarca, dadosMarca) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await editarMarcaAsync(idMarca, dadosMarca);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao editar marca.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao editar marca.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
 
   const excluirMarca = async (idMarca) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
     const response = await excluirMarcaAsync(idMarca);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao excluir marca.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao excluir marca.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
     return true;
   };
 
   const consultarMarcas = async (filtro = {}) => {
-    setIsLoading(true);
+    applicationContext.loadingDefine(true);
 
     const response = await consultarMarcaPorParamsAsync(filtro);
 
     if (response === false || response.status !== 200) {
-      setIsError(true);
-      setErrorMessage("Erro ao buscar marcas.");
-      setIsLoading(false);
+      applicationContext.callError("Erro ao buscar marcas.");
+      applicationContext.loadingDefine(false);
       return false;
     }
 
     setMarcas(response.data.payload);
-    setIsLoading(false);
+    applicationContext.loadingDefine(false);
   };
 
   const values = {
     marcas,
-    isError,
-    errorMessage,
-    isLoading,
     cadastrarMarca,
     editarMarca,
     excluirMarca,

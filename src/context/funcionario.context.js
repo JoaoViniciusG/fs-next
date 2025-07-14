@@ -45,7 +45,6 @@ export default function FuncionarioProvider({ children }) {
       return false;
     }
 
-    console.log("EMAIL: ", funcionarioCadastrar.email == null)
     if(funcionarioCadastrar.email == null) novoIdFuncionarioCadastrar(true);
 
     applicationContext.loadingDefine(false);

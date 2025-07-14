@@ -41,7 +41,7 @@ export const consultarPedidosAsync = async (filtros) => {
   try {
     const response = await instance.get("/pedido", {
       params: filtros,
-      
+
       withCredentials: true,
     });
     return response;
@@ -67,15 +67,15 @@ export const excluirPedidoAsync = async (idPedido) => {
 };
 
 export const atualizarStatusPedidoAsync = async (idPedido, status) => {
-  
   try {
     const response = await instance.patch(
-  `/pedido/status/${idPedido}`,
-  { novoStatus: Number(status) },  
-  { withCredentials: true }
-);
+      `/pedido/status/${idPedido}`,
+      { novoStatus: Number(status) },
+      { withCredentials: true }
+    );
     return response;
   } catch (error) {
-  console.log('Erro ao atualizar status:', error.response ? error.response.data : error.message);
-  return false;
-}}
+    console.error(error)
+    return false;
+  }
+}

@@ -149,20 +149,6 @@ export default function Header() {
                     <p className={styles.failModalMessage}>{applicationContext.errorFailMessage}</p>
                 </motion.div>
             </div>
-
-            <section
-                style={{display: (applicationContext.isLoadingPage) ? "flex" : "none"}}
-                className={styles.pageMasterContainerLoading}
-            >
-                <div>
-                    <Image
-                        className={styles.logo}
-                        src='/Loading-EstoTech.gif'
-                        layout="fill"
-                        objectFit="contain"
-                        alt='Logo horizontal EstoTech' />
-                </div>
-            </section>
         </>
     );
 }

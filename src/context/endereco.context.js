@@ -37,6 +37,7 @@ export default function EnderecoProvider({ children }) {
             }
           
             setEnderecosByRef([]);
+            applicationContext.loadingDefine(false);
             return success
         }
         catch (ex) {
@@ -64,6 +65,7 @@ export default function EnderecoProvider({ children }) {
                 success = true;
             }
 
+            applicationContext.loadingDefine(false);
             return success;
         }
         catch (ex) {
@@ -112,6 +114,7 @@ export default function EnderecoProvider({ children }) {
             }
 
             setEnderecoById([]);
+            applicationContext.loadingDefine(false);
         }
         catch (ex) {
             console.error(ex);
@@ -133,6 +136,7 @@ export default function EnderecoProvider({ children }) {
                 return false;
             }
 
+            applicationContext.loadingDefine(false);
             return true;
         }
         catch (ex) {
@@ -152,6 +156,8 @@ export default function EnderecoProvider({ children }) {
             const response = await DeleteEndereco(id);
 
             if (response == false || response.status != 200 ) applicationContext.callError("Falha ao excluir endereço!");
+
+            applicationContext.loadingDefine(false);
         }
         catch (ex) {
             console.error(ex);
@@ -173,6 +179,7 @@ export default function EnderecoProvider({ children }) {
             }
 
             setCepProperties(response.data);
+            applicationContext.loadingDefine(false);
         }
         catch (ex) {
             console.error(ex);
