@@ -27,10 +27,9 @@ export default function PageInternoInicio() {
         <DataControler />
         <SmallContainer title="Valor Total" prefix="R$" value={context.relatorios.valorTotal ?? 0} variance={context.relatorios.valorVariacao ?? 0} />
         <SmallContainer title="Ticket Médio" prefix="R$" value={context.relatorios.ticketMedio ?? 0} variance={context.relatorios.ticketMedioVariacao ?? 0} />
-        <SmallContainer title="Dia do período" value={context.relatorios.diaPeriodo ?? "--/--/----"} />
-        <SmallContainer title="Novos Cliente" value={context.relatorios.novosClientes ?? 0} variance={context.relatorios.novosClientesVariacao ?? 0} decimalPlaces={0} />
-        <SmallContainer title="Quantidade Total" value={context.relatorios.quantidadeTotal ?? 0} suffix="un." variance={context.relatorios.quantidadeTotalVariacao ?? 0} decimalPlaces={0} />
-        <AlertContainer title="Baixo Estoque" value={0} label="produtos" />
+        <SmallContainer title="Dia do período" value={context.relatorios.diaPeriodo ?? "--/--/----"} width='30%' />
+        <SmallContainer title="Novos Cliente" value={context.relatorios.novosClientes ?? 0} variance={context.relatorios.novosClientesVariacao ?? 0} decimalPlaces={0} width='30%' />
+        <SmallContainer title="Quantidade Total" value={context.relatorios.quantidadeTotal ?? 0} suffix="un." variance={context.relatorios.quantidadeTotalVariacao ?? 0} decimalPlaces={0} width='30%' />
       </div>
 
       <section className={styles.containerContentRanking}>

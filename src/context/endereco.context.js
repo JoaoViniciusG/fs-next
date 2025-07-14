@@ -1,35 +1,38 @@
 "use client";
 
-import { DeleteEndereco, GetEnderecoById, PostAddEndereco, GetEnderecoByIdRef, PutAlterarEndereco } from '@/services/endereco.service';
+import { DeleteEndereco, GetEnderecoById, PostAddEndereco, GetEnderecoByIdRef, PutAlterarEndereco, BuscarCEP } from '@/services/endereco.service';
 import {
     createContext,
+    useContext,
     useState
 } from 'react';
+import { ApplicationContext } from './application.context';
 
 export const EnderecoContext = createContext();
 
 export default function EnderecoProvider({ children }) {
-    const [hasError, setHasError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const applicationContext = useContext(ApplicationContext);
+
     const [enderecoById, setEnderecoById] = useState(null);
     const [enderecosByRef, setEnderecosByRef] = useState([]);
+
+    const [cepProperties, setCepProperties] = useState([]);
 
     const getEndereco = async (id) => {
         try {
             let success = null;
             if (id == undefined) return "Id não informado!";
-            setIsLoading(true);
+            applicationContext.loadingPageDefine(true);
 
             const response = await GetEnderecoById(id); 
 
             if (response == false || response.status != 200 ) {
                 setEnderecoById(null);
-                setHasError(true);
+                applicationContext.callError("Falha ao buscar endereço!");
                 success = false;
             }
             else {
                 setEnderecoById(response.data.payload);
-                setHasError(false);
                 success = true;
             }
           
@@ -40,7 +43,7 @@ export default function EnderecoProvider({ children }) {
             console.error(ex);
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingPageDefine(false);
         }
     };
 
@@ -48,27 +51,26 @@ export default function EnderecoProvider({ children }) {
         try {
             let success = null;
             if (endereco == undefined) return "Endereço não informado!";
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
 
             const response = await PutAlterarEndereco(endereco); 
 
             if (response == false || response.status != 200 ) {
-                setHasError(true)
+                applicationContext.callError("Falha ao alterar endereço!")
                 success = false;
             }
             else {
                 setEnderecoById(null);
-                setHasError(false);
                 success = true;
             }
 
             return success;
         }
         catch (ex) {
-            console.error(ex);
+            applicationContext.callError("Falha ao alterar endereço!")
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     };
 
@@ -81,7 +83,7 @@ export default function EnderecoProvider({ children }) {
 
         try {
             if (id == undefined || tipo == undefined || isNaN(parseInt(tipo.toString()))) return "Dados informados inválidos!";
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
 
             let searchOption = "";
 
@@ -100,14 +102,13 @@ export default function EnderecoProvider({ children }) {
             }
 
             const response = await GetEnderecoByIdRef(id, searchOption);
-
+            console.log(response.data);
             if (response == false || response.status != 200 ) {
                 setEnderecosByRef([]);
-                setHasError(true);
+                applicationContext.callError("Falha ao alterar endereços!")
             }
             else {
                 setEnderecosByRef(response.data.payload);
-                setHasError(false);
             }
 
             setEnderecoById([]);
@@ -116,56 +117,81 @@ export default function EnderecoProvider({ children }) {
             console.error(ex);
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     };
 
     const addEndereco = async (endereco) => {
         try {
             if (endereco == undefined) return "Endereço não informado!";
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
 
             const response = await PostAddEndereco(endereco);
 
-            if (response == false || response.status != 200 ) setHasError(true);
-            else setHasError(false);
+            if (response == false || response.status != 200 ) {
+                applicationContext.callError("Falha ao adicionar endereço!");
+                return false;
+            }
+
+            return true;
         }
         catch (ex) {
             console.error(ex);
+            return false;
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
         }
     };
 
     const deleteEndereco = async (id) => {
         try {
             if (id == undefined) return "Id não informado!";
-            setIsLoading(true);
+            applicationContext.loadingDefine(true);
 
             const response = await DeleteEndereco(id);
 
-            if (response == false || response.status != 200 ) setHasError(true);
-            else setHasError(false);
+            if (response == false || response.status != 200 ) applicationContext.callError("Falha ao excluir endereço!");
         }
         catch (ex) {
             console.error(ex);
         }
         finally {
-            setIsLoading(false);
+            applicationContext.loadingDefine(false);
+        }
+    };
+
+    const getCep = async (cep) => {
+        try {
+            if (cep == undefined) return "CEP não informado!";
+            applicationContext.loadingDefine(true);
+            const response = await BuscarCEP(cep);
+            
+            if (response == false || response.status != 200 ) {
+                applicationContext.callError("Falha ao buscar CEP!");
+                return;
+            }
+
+            setCepProperties(response.data);
+        }
+        catch (ex) {
+            console.error(ex);
+        }
+        finally {
+            applicationContext.loadingDefine(false);
         }
     };
 
     const values = {
-        hasError: hasError,
-        isLoading: isLoading,
-        enderecoById: enderecoById,
-        enderecosByRef: enderecosByRef,
-        getEndereco: getEndereco,
-        addEndereco: addEndereco,
-        getEnderecos: getEnderecos,
-        deleteEndereco: deleteEndereco,
-        alterarEndereco: alterarEndereco
+        enderecoById,
+        enderecosByRef,
+        cepProperties,
+        getEndereco,
+        addEndereco,
+        getEnderecos,
+        deleteEndereco,
+        alterarEndereco,
+        getCep
     }
 
     return (

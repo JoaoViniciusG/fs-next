@@ -1,0 +1,21 @@
+.section {
+  height: calc(100vh - 80px);
+  width: 0;
+  background-color: var(--darkgreen);
+  display: flex;
+  flex-direction: row;
+}
+
+.closeBarDiv {
+  cursor: pointer;
+  color: var(--white);
+  padding: 0 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.contentContainer {
+  width: max-content;
+  z-index: 100;
+}

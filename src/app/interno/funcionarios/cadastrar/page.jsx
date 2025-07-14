@@ -13,11 +13,15 @@ import RadioButton from '@/components/inputs/radioButton/radioButton';
 import { useRouter } from 'next/navigation';
 import { ApplicationContext } from '@/context/application.context';
 import CheckBox from '@/components/inputs/checkbox/checkbox';
+import { EnderecoContext } from '@/context/endereco.context';
+import AddressOption from '@/components/containers/endereco/addressOption';
 
 export default function PageCadastrarFuncionario() {
   const router = useRouter();
   const applicationContext = useContext(ApplicationContext);
   const context = useContext(FuncionarioContext);
+  const contextEndereco = useContext(EnderecoContext);
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const [valueDataNascimento, setValueDataNascimento] = useState("");
@@ -30,22 +34,34 @@ export default function PageCadastrarFuncionario() {
   const [createLogin, setCreateLogin] = useState(false);
 
   useEffect(() => {
-    context.novoIdFuncionarioCadastrar();
+    if (context.funcionarioCadastroId == null) {
+      context.novoIdFuncionarioCadastrar();
+    }
+
+    contextEndereco.getEnderecos(context.funcionarioCadastroId, 3);
   }, [])
+
+  useEffect(() => {
+    if(context.funcionarioCadastroId != null) {
+      updateInputs();
+    }
+  }, [context.funcionarioCadastroId]);
+
+  const updateInputs = () => {
+    setValueName(context.funcionarioCadastrar.nome ?? "");
+    handleCpfChange(context.funcionarioCadastrar.cpf ?? "");
+    handleDateChange(context.funcionarioCadastrar.nascimento != "" ? formatarISOParaNumeros(context.funcionarioCadastrar.nascimento) : "");
+    handleEmailChange(context.funcionarioCadastrar.email ?? null);
+    handleSexoChange(context.funcionarioCadastrar.sexo ?? "");
+    handleTelefoneChange(context.funcionarioCadastrar.telefone ?? "");
+  }
 
   useEffect(() => {
     setValueEmail(createLogin ? "" : null)
   }, [createLogin])
 
-  const submitForm = () => {
-    let funcionario = {
-      cpf: valueCPF,
-      sexo: valueSexo,
-      nome: valueName,
-      email: valueEmail,
-      telefone: valueTelefone,
-      nascimento: valueDataNascimento
-    };
+  const submitForm = async () => {
+    let funcionario = context.funcionarioCadastrar;
 
     if (Object.values(funcionario).includes("")) {
       applicationContext.callFail("Preencha todos os campos!");
@@ -57,8 +73,9 @@ export default function PageCadastrarFuncionario() {
       return;
     }
 
-    context.setFuncionarioCadastrar(funcionario);
-    router.push("/interno/permissao");
+    let res = await context.cadastrarFuncionario();
+
+    if (res) setModalOpen(true);
   };
 
   function formatarCPF(cpf) {
@@ -88,19 +105,50 @@ export default function PageCadastrarFuncionario() {
     return `(${valor.slice(0, 2)}) ${valor.slice(2, 3)} ${valor.slice(3, 7)}-${valor.slice(7)}`;
   }
 
+  function formatarISOParaNumeros(data) {
+    const [ano, mes, dia] = data.split('-');
+    return `${dia}${mes}${ano}`;
+  }
+
+  function formatarDataParaISO(data) {
+    if (data.length < 10) return "";
+    const [dia, mes, ano] = data.split('/');
+    let formatado = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+    console.log(formatado);
+    return formatado;
+  }
+
   const handleDateChange = (value) => {
     const valorFormatado = formatarData(value);
     setValueDataNascimento(valorFormatado);
+    context.funcionarioCadastrar.nascimento = formatarDataParaISO(valorFormatado);
   };
 
   const handleCpfChange = (value) => {
     const valorFormatado = formatarCPF(value);
     setValueCPF(valorFormatado);
+    context.funcionarioCadastrar.cpf = valorFormatado.replace(/\D/g, '');
   };
 
   const handleTelefoneChange = (value) => {
     const valorFormatado = formatarTelefone(value);
     setValueTelefone(valorFormatado);
+    context.funcionarioCadastrar.telefone = valorFormatado.replace(/\D/g, '');
+  };
+
+  const handleNomeChange = (value) => {
+    setValueName(value);
+    context.funcionarioCadastrar.nome = value;
+  };
+
+  const handleEmailChange = (value) => {
+    setValueEmail(value);
+    context.funcionarioCadastrar.email = value;
+  };
+
+  const handleSexoChange = (value) => {
+    setValueSexo(value);
+    context.funcionarioCadastrar.sexo = value;
   };
 
   function validarCPF() {
@@ -138,7 +186,7 @@ export default function PageCadastrarFuncionario() {
                     placeholder="Nome"
                     label="Nome:"
                     value={valueName}
-                    setValue={setValueName}
+                    setValue={handleNomeChange}
                     required={true}
                     readonly={false}
                     width='50vh' />
@@ -176,7 +224,7 @@ export default function PageCadastrarFuncionario() {
                     placeholder="email@gmail.com"
                     label="E-mail:"
                     value={valueEmail == null ? "" : valueEmail}
-                    setValue={setValueEmail}
+                    setValue={handleEmailChange}
                     required={true}
                     readonly={false}
                     disabled={!createLogin}
@@ -188,7 +236,7 @@ export default function PageCadastrarFuncionario() {
                         radioGroup="GenderGroup"
                         valueName="F"
                         selectedOption={valueSexo}
-                        handleOptionChange={setValueSexo}
+                        handleOptionChange={handleSexoChange}
                         text="Feminino"
                         textInLeft={false} />
 
@@ -196,7 +244,7 @@ export default function PageCadastrarFuncionario() {
                         radioGroup="GenderGroup"
                         valueName="M"
                         selectedOption={valueSexo}
-                        handleOptionChange={setValueSexo}
+                        handleOptionChange={handleSexoChange}
                         text="Masculino"
                         textInLeft={false} />
                     </div>
@@ -207,7 +255,21 @@ export default function PageCadastrarFuncionario() {
           </div>
         </BorderContainer>
         <BorderContainer title='Endereço'>
-          <AddAddressButton />
+          <div className={styles.containerEnderecos}>
+            <AddAddressButton option={`3--${context.funcionarioCadastroId}`} />
+
+            {(contextEndereco.enderecosByRef.length > 0) ? contextEndereco.enderecosByRef.map((item) => (
+              <AddressOption
+                key={item.id}
+                id={item.id}
+                logradouro={item.logradouro}
+                numero={item.numero}
+                bairro={item.bairro}
+                cidade={item.cidade}
+                UF={item.estado}
+              />
+            )) : null}
+          </div>
         </BorderContainer>
         <div className={styles.bottomElements}>
           <CheckBox
@@ -215,13 +277,19 @@ export default function PageCadastrarFuncionario() {
             value={createLogin}
             setValue={setCreateLogin}
           />
-          <StandardButton text={(createLogin) ? "CONFIGURAR PERMISSÕES" : "CADASTRAR"} hoverColor="#63C7B8" style={{ alignSelf: "end", marginTop: 30 }} callback={submitForm} />
+
+          <StandardButton
+            text={(createLogin) ? "CONFIGURAR PERMISSÕES" : "CADASTRAR"}
+            hoverColor="#63C7B8"
+            style={{ alignSelf: "end", marginTop: 30 }}
+            callback={submitForm} />
         </div>
       </BasicScreen>
       <AlertModal
         title='CADASTRADO'
         text='Funcionário cadastrado com sucesso! '
         bsIcon="bi-check2-circle"
+        callback={router.back}
         isOpen={modalOpen}
         setIsOpen={setModalOpen}
       />

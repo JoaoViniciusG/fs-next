@@ -59,10 +59,6 @@ export default function Header() {
                     </div>
 
                     <nav className={styles.headerButtonsContainer}>
-                        <div className={styles.iconBellContainer}>
-                            <i className={styles.notificationIcon} />
-                            <Icon.Bell className={styles.icon} />
-                        </div>
                         <div className={styles.iconAccountContainer} onClick={toggleModals}>
                             <Icon.User className={styles.icon} />
                         </div>
@@ -110,12 +106,6 @@ export default function Header() {
                     </motion.h2>
 
                     <div className={styles.containerTextContent}>
-                        <AnimateOption
-                            text="Perfil"
-                            index={0}
-                            isOpen={isOpen}
-                            callback={() => router.push("/interno/conta/dados-conta")} />
-
                         <AnimateOption
                             text="Dados da empresa"
                             index={1}

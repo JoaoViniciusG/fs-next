@@ -61,3 +61,12 @@ export async function DeleteEndereco(id) {
     return false;
   }
 }
+
+export async function BuscarCEP(cep) {
+  try {
+    const response = await axios.create().get(`https://viacep.com.br/ws/${cep}/json/`);
+    return response;
+  } catch {
+    return false;
+  }
+}

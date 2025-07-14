@@ -35,6 +35,7 @@ export default function BarraLateral() {
                 transition={{
                     duration: .55,
                     repeatDelay: 0,
+                    ease: "circOut"
                 }}
                 animate={{
                     width: (applicationContext.lateralBarIsOpen) ? "min-content" : 0

@@ -2,7 +2,7 @@
 
 import styles from './inputLabel.module.css';
 
-export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style = {}, required=false, readonly=false, disabled=false, type="text", width="100%", showLupa = false, onClick = () => {}}) {
+export default function InputLabel({label, placeholder, maxLength, value, setValue = () => {}, style = {}, required=false, readonly=false, disabled=false, type="text", width="100%", showLupa = false, onClick = () => {}, searchCallBack = () => {}}) {
     return (
         <div className={styles.container} style={{...style, width}}>
             <p className={styles.label}>{label}</p>
@@ -22,7 +22,10 @@ export default function InputLabel({label, placeholder, maxLength, value, setVal
                     />
 
                 {showLupa && (
-                    <button type="button" className={styles.botaoLupa}>
+                    <button
+                        onClick={searchCallBack} 
+                        type="button" 
+                        className={styles.botaoLupa}>
                         <i className={`bi bi-search ${styles.iconLupa}`}></i>
                     </button>
                 )}

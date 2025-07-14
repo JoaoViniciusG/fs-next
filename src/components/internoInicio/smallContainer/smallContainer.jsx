@@ -6,7 +6,7 @@ import {
 import styles from './smallContainer.module.css';
 
 
-export default function SmallContainer({ title, value, variance, prefix, suffix, hoverColor, decimalPlaces = 2, callback = () => {}, backgroundColor = "#FFF", titleColor = "var(--darkgreen)", contentColor = "var(--valuegreen)" }) {
+export default function SmallContainer({ title, value, variance, prefix, suffix, hoverColor, decimalPlaces = 2, callback = () => {}, backgroundColor = "#FFF", titleColor = "var(--darkgreen)", contentColor = "var(--valuegreen)", width="23%" }) {
     const [varianceColor, setVarianceColor] = useState(null);
     const [varianceText, setVarianceText] = useState(null);
     const [varianceIcon, setVarianceIcon] = useState(null);
@@ -35,7 +35,7 @@ export default function SmallContainer({ title, value, variance, prefix, suffix,
     return (
         <div 
             className={styles.containerMaster}
-            style={{backgroundColor: backgroundColor}}>
+            style={{backgroundColor, width}}>
 
             <h2 className={styles.titleContainer} style={{color: titleColor}}>{title}</h2>
                 

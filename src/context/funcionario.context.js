@@ -17,23 +17,36 @@ export default function FuncionarioProvider({ children }) {
 
   const [permissoesFuncionarioCadastrar, setPermissoesFuncionarioCadastrar] = useState(null);
   const [funcionarioCadastroId, setFuncionarioCadastroId] = useState(null);
-  const [funcionarioCadastrar, setFuncionarioCadastrar] = useState(null);
+  const [funcionarioCadastrar, setFuncionarioCadastrar] = useState({});
   const [funcionarios, setFuncionarios] = useState([]);
 
-  const novoIdFuncionarioCadastrar = () => {
+  const novoIdFuncionarioCadastrar = (force = false) => {
+    if(funcionarioCadastroId != null && !force) return;
+
     setFuncionarioCadastroId(uuidv4());
-    setFuncionarioCadastrar(null);
+    setFuncionarioCadastrar({
+      nome: "",
+      cpf: "",
+      nascimento: "",
+      telefone: "",
+      email: null,
+      sexo: ""
+    });
   }
 
-  const cadastrarFuncionario = async (dadosFuncionario) => {
+  const cadastrarFuncionario = async () => {
     applicationContext.loadingDefine(true);
-    const response = await cadastrarFuncionarioAsync(dadosFuncionario);
+
+    const response = await cadastrarFuncionarioAsync(funcionarioCadastrar);
 
     if (response === false || response.status !== 200) {
       applicationContext.callError("Erro ao cadastrar funcionário.")
       applicationContext.loadingDefine(false);
       return false;
     }
+
+    console.log("EMAIL: ", funcionarioCadastrar.email == null)
+    if(funcionarioCadastrar.email == null) novoIdFuncionarioCadastrar(true);
 
     applicationContext.loadingDefine(false);
     return true;

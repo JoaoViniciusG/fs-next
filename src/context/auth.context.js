@@ -25,7 +25,7 @@ export default function AuthProvider({ children }) {
         if(response == false || response.status != 200) {
             setIsAuth(false);
             setEmail({});
-            callError("Falha ao realizar login!")
+            applicationContext.callError("Falha ao realizar login!")
             localStorage.removeItem('sideBarConfig');
             return false;
         }

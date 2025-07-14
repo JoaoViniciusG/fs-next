@@ -9,11 +9,13 @@ import StandardButton from '@/components/buttons/standardButton/standardButton';
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState, useContext, useCallback } from 'react';
+import { ApplicationContext } from '@/context/application.context';
 import { EnderecoContext } from '@/context/endereco.context';
 import ActionModal from '@/components/modals/actionModal/actionModal';
 import AlertModal from '@/components/modals/alertModal/alertModal';
 
 export default function PageEnderecoCadastrar() {
+    const applicationContext = useContext(ApplicationContext);
     const context = useContext(EnderecoContext);
     const paramOpcao = useParams()["opcao"];
     const pathname = usePathname();
@@ -52,6 +54,17 @@ export default function PageEnderecoCadastrar() {
         if (!context.hasError) setModalConfirmDelete(true);
     }
 
+    useEffect(() => {
+        let properties = context.cepProperties;
+
+        if(properties == null || properties == "") return;
+        
+        setContentRua(properties.logradouro ?? "");
+        setContentBairro(properties.bairro) ?? "";
+        setContentCidade(properties.localidade ?? "");
+        setContentEstado(properties.estado ?? "");
+    }, [context.cepProperties]);
+
     function formatarCEP(valor) {
         valor = valor.replace(/\D/g, '');
         valor = valor.slice(0, 8);
@@ -76,18 +89,24 @@ export default function PageEnderecoCadastrar() {
         if (res) setModalConfirmChange(true);
     };
 
-    const criarEndereco = async () => {
-        if (!enderecoInfos || Object.keys(enderecoInfos).length === 0) return;
-
+    const cadastrarEndereco = async () => {
         let end = {};
+
         end.estado = contentEstado;
         end.numero = contentNumero;
         end.bairro = contentBairro;
         end.cidade = contentCidade;
         end.logradouro = contentRua;
-        end.cep = contentCep;
+        end.cep = contentCep.replace("-", "");
+        end.identificador = paramOpcao.split("--")[1];
+        end.tipoIdentificador = paramOpcao.split("--")[0];
+        
+        if(Object.values(end).includes(null) || Object.values(end).includes("")) {
+            applicationContext.callFail("Preencha todos os campos!");
+            return;
+        }
 
-        const res = await context.alterarEndereco(end);
+        const res = await context.addEndereco(end);
         if (res) setModalConfirmCreate(true);
     };
 
@@ -105,7 +124,7 @@ export default function PageEnderecoCadastrar() {
         registerButton: {
             text: "CADASTRAR",
             hoverColor: "var(--cadetblue-ligtht)",
-            callback: criarEndereco
+            callback: cadastrarEndereco
         },
         changeButton: {
             text: "ALTERAR",
@@ -153,7 +172,7 @@ export default function PageEnderecoCadastrar() {
                         button2: {
                             text: "CONFIRMAR",
                             hoverColor: "var(--cyan)",
-                            callback: alterarEndereco // <- usa função separada corretamente
+                            callback: alterarEndereco
                         }
                     });
                 }
@@ -169,7 +188,7 @@ export default function PageEnderecoCadastrar() {
                     button2: {
                         text: "CADASTRAR",
                         hoverColor: "var(--cadetblue-ligtht)",
-                        callback: () => setModalConfirmCreate(true)
+                        callback: cadastrarEndereco
                     }
                 });
                 break;
@@ -215,6 +234,10 @@ export default function PageEnderecoCadastrar() {
         setContentCep(context.enderecoById.cep);
     }, [context.enderecoById]);
 
+    const handleSearchCep = () => {
+        context.getCep(contentCep.replace("-",""));
+    }
+
     return (
         <>
             <BasicScreen pageTitle={pageTitle} contentContainerStyle={{ padding: 55, paddingTop: 0, gap: 50 }}>
@@ -225,6 +248,8 @@ export default function PageEnderecoCadastrar() {
                             width='25vw'
                             readonly={isReadonly}
                             value={contentCep}
+                            showLupa={true}
+                            searchCallBack={handleSearchCep}
                             setValue={handleCepChange} />
                         <InputLabel
                             label="Rua:"

@@ -9,6 +9,7 @@ import ProdutoProvider from "@/context/produto.context";
 import FornecedorProvider from "@/context/fornecedor.context";
 import MarcaProvider from "@/context/marca.context";
 import FuncionarioProvider from "@/context/funcionario.context";
+import GlobalFilter from "@/components/filter/globalFilter/globalFilter";
 
 export default function InternoLayout({ children }) {
   return (
@@ -27,6 +28,8 @@ export default function InternoLayout({ children }) {
                     <main className={styles.containerPagesMain}>
                       {children}
                     </main>
+
+                    <GlobalFilter />
                   </div>
                 </MarcaProvider>
               </FuncionarioProvider>

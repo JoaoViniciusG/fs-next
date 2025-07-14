@@ -19,6 +19,10 @@ export default function ApplicationProvider({ children }) {
   const [isLoadingPage, setIsLoadingPage] = useState(false);
 
   const [lateralBarIsOpen, setLateralBarIsOpen] = useState(true);
+  const [globalFilterIsOpen, setGlobalFilterIsOpen] = useState(false);
+
+  const [globalFilterChildren, setGlobalFilterChildren] = useState(<></>);
+  const [globalFilterProperty, setGlobalFilterProperty] = useState("");
 
   const loadingPageDefine = (value) => {
     setIsLoadingPage(value);
@@ -61,6 +65,12 @@ export default function ApplicationProvider({ children }) {
 
   const toggleLateralBar = () => {
     setLateralBarIsOpen(!lateralBarIsOpen);
+    if(globalFilterIsOpen) setGlobalFilterIsOpen(false);
+  }
+
+  const toggleFilterBar = () => {
+    setGlobalFilterIsOpen(!globalFilterIsOpen);
+    if(lateralBarIsOpen) setLateralBarIsOpen(false);
   }
 
   const values = {
@@ -75,7 +85,13 @@ export default function ApplicationProvider({ children }) {
     isErrorModalOpen,
     errorModalMessage,
     lateralBarIsOpen,
-    toggleLateralBar
+    toggleLateralBar,
+    globalFilterIsOpen,
+    toggleFilterBar,
+    setGlobalFilterChildren,
+    globalFilterChildren,
+    setGlobalFilterProperty,
+    globalFilterProperty
   };
 
   return (

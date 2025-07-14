@@ -43,6 +43,7 @@
 }
 
 .containerErrorModal {
+    z-index: 1001;
     position: absolute;
     display: none;
     flex-direction: column;
