@@ -131,7 +131,7 @@ export async function DeleteProduto(id) {
 
 export async function PostMovimentarEstoque(movimentar) {
     try {
-        const response = await instance.post(`/movimentar`, movimentar);
+        const response = await instance.post(`/produto/movimentar/`, movimentar);
         return response;
     }
     catch (ex){
