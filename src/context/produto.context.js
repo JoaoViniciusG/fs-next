@@ -178,6 +178,33 @@ export default function ProdutoProvider({ children }) {
         }
     }
 
+    const movimentarEstoque = async (movimentarProdutos) => {
+        try {
+            setIsLoading(true);
+            const response = await PostMovimentarEstoque(movimentarProdutos);
+
+            if (!response || response.status !== 200) {
+                setErrorMessage("Erro ao movimentar o estoque!");
+                setHasError(true);
+                return false;
+            }
+
+            setHasError(false);
+            return response.data;
+
+        } 
+        catch (ex) {
+            console.error(ex);
+            setErrorMessage("Erro ao movimentar o estoque!");
+            setHasError(true);
+            return false;
+
+        } 
+        finally {
+            setIsLoading(false);
+        }
+    }
+
     const values = {
         hasError : hasError,
         isLoading : isLoading,
@@ -188,7 +215,8 @@ export default function ProdutoProvider({ children }) {
         cadastrarProdutoPost : cadastrarProdutoPost,
         atualizarProdutoCompleto : atualizarProdutoCompleto,
         atualizarProdutoParcial : atualizarProdutoParcial,
-        deleteProduto : deleteProduto
+        deleteProduto : deleteProduto,
+        movimentarEstoque : movimentarEstoque
     }
 
     return (
