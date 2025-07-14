@@ -1,5 +1,5 @@
 import styles from './shineButton.module.css';
-import { motion } from 'framer-motion';
+import { hover, motion } from 'framer-motion';
 
 export default function ShineButton({text, backgroundColor, fontColor, callback = () => {}}) {
   return (
