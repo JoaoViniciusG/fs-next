@@ -27,7 +27,7 @@ export default function PageDadosEmpresa() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3001/dadosEmpresa', {
+    fetch('https://estotech.dev.vilhena.ifro.edu.br/api/dadosEmpresa', {
       credentials: 'include',
     })
       .then((res) => {

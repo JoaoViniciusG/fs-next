@@ -17,8 +17,6 @@ export default function PageDadosEmpresaConfirmar() {
 
   const [empresaData, setEmpresaData] = useState(null);
   const [enderecos, setEnderecos] = useState([]);
-  const apiUrl = process.env.BASE_URL;
-
   const [formEmpresa, setFormEmpresa] = useState({
     nomeFantasia: '',
     email: '',
@@ -29,7 +27,7 @@ export default function PageDadosEmpresaConfirmar() {
   });
 
   useEffect(() => {
-    fetch(`${apiUrl}dadosEmpresa/`, { credentials: 'include' })
+    fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/dadosEmpresa/`, { credentials: 'include' })
       .then((res) => {
         console.log(res)
         if (!res.ok) throw new Error('Erro ao buscar dados da empresa');
@@ -75,7 +73,7 @@ export default function PageDadosEmpresaConfirmar() {
         ? toMySQLDateTime(formEmpresa.dataCadastro)
         : null;
 
-      const response = await fetch(`${apiUrl}dadosEmpresa/${empresaId}`, {
+      const response = await fetch(`https://estotech.dev.vilhena.ifro.edu.br/api/dadosEmpresa/${empresaId}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
