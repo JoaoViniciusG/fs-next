@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import { useRouter } from 'next/navigation';
-
+import Link from 'next/link';
 import ShineButton from '@/components/buttons/shineButton/shineButton';
 import InputLogin from '@/components/inputs/inputLogin/inputLogin';
 import StandardButton from '@/components/buttons/standardButton/standardButton';
@@ -40,7 +40,7 @@ export default function LoginPage() {
           callback={() => router.push("/#fale_conosco")}/>
 
         <p className={styles.textContent}>
-          Descubra como nosso sistema de gerenciamento de estoque e pessoas pode <span>transformar</span> seu <span>negócio!</span>
+          Descubra como nosso sistema de gerenciamento de estoque e pessoas pode <Link href="./#home"><span>transformar</span></Link> seu <Link href="./#section_plans"><span>negócio!</span></Link>
         </p>
       </div>
 

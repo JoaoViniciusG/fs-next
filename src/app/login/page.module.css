@@ -40,6 +40,12 @@
 .textContent span {
   color: var(--medium-ligth-green);
   font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+
+.textContent span:hover {
+  color: var(--light-medium-seagreen);
+  text-decoration: underline;
 }
 
 .containerRight {
