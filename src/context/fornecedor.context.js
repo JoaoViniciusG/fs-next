@@ -66,7 +66,7 @@ export default function FornecedorProvider ({ children }) {
             applicationContext.loadingDefine(true);
             const response = await PostAddFornecedor(fornecedor);
 
-            if (!response || response.status !== 201 && response.status !== 200) {
+            if (response == false || (response.status !== 201 && response.status !== 200)) {
                 applicationContext.callError("Erro ao cadastrar o fornecedor!");
                 return false;
             }

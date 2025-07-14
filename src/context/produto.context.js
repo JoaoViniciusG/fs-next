@@ -70,7 +70,7 @@ export default function ProdutoProvider({ children }) {
             applicationContext.loadingDefine(true);
             const response = await PostAddProduto(produto);
 
-            if (!response || response.status !== 201) {
+            if (!response || response.status !== 200) {
                 applicationContext.callError("Erro ao cadastrar o produto!");
                 return false;
             }
