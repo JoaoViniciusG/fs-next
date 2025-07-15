@@ -22,7 +22,12 @@ export default function ApplicationProvider({ children }) {
   const [globalFilterIsOpen, setGlobalFilterIsOpen] = useState(false);
 
   const [globalFilterChildren, setGlobalFilterChildren] = useState(<></>);
-  const [globalFilterProperty, setGlobalFilterProperty] = useState("");
+  const [globalFilterProperty, setGlobalFilterProperty] = useState({});
+  const [filterPropertyUpdater, setFilterPropertyUpdater] = useState(true);
+
+  useEffect(() => {
+    console.log(globalFilterProperty);
+  }, [globalFilterProperty]);
 
   const loadingPageDefine = (value) => {
     setIsLoadingPage(value);
@@ -73,6 +78,14 @@ export default function ApplicationProvider({ children }) {
     if(lateralBarIsOpen) setLateralBarIsOpen(false);
   }
 
+  const updateGlobalFilterProperty = (propertyName, value) => {
+    let oldProperty = globalFilterProperty;
+    oldProperty[propertyName] = value;
+
+    console.log(oldProperty);
+    setGlobalFilterProperty(oldProperty);
+  };
+
   const values = {
     loadingDefine,
     isLoading,
@@ -90,8 +103,8 @@ export default function ApplicationProvider({ children }) {
     toggleFilterBar,
     setGlobalFilterChildren,
     globalFilterChildren,
-    setGlobalFilterProperty,
-    globalFilterProperty
+    globalFilterProperty,
+    updateGlobalFilterProperty
   };
 
   return (

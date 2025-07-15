@@ -12,10 +12,13 @@ import { useRouter } from 'next/navigation';
 import { ProdutoContext } from '@/context/produto.context';
 import { useContext, useEffect, useState } from 'react';
 import { useDebounce } from '@/app/hooks/useDebounce';
+import { ApplicationContext } from '@/context/application.context';
 
 export default function PageConsultarProdutos() {
-    const router = useRouter();
+    const applicationContext = useContext(ApplicationContext);
     const context = useContext(ProdutoContext);
+    const router = useRouter();
+
     const [filtro, setFiltro] = useState("");
 
     const filtroDebounce = useDebounce(filtro.replace("R$", ""));
@@ -24,12 +27,41 @@ export default function PageConsultarProdutos() {
         context.consultarProdutos(filtroDebounce.trim());
     }, [filtroDebounce]);
 
+    const setFilter = () => {
+        applicationContext.globalFilterProperty = {
+            name: ""
+        };
+
+        return (
+            <div>
+                <InputLabel 
+                    label="Nome" 
+                    value={applicationContext.globalFilterProperty.name} 
+                    setValue={(value) => applicationContext.updateGlobalFilterProperty("name", value)}
+                    type="search" 
+                    required={false} 
+                    readonly={false}
+                    width='100%' />
+
+                <p>{applicationContext.globalFilterProperty.name ?? ""}</p>
+            </div>
+        );
+    }
+
+    useEffect(() => {
+        applicationContext.globalFilterChildren = setFilter();
+    }, [])
+
+    useEffect(() => {
+        console.log("Alterou")
+    }, [applicationContext.globalFilterProperty])
+
     return (
         <BasicScreen pageTitle="Consultar produtos">
             <BorderContainer title="Consultar Produtos:">
                 <div className={styles.div_contener_main}>
                     <div className={styles.filter_dados}>
-                        <div className={styles.button_filter}>
+                        <div className={styles.button_filter} onClick={() => applicationContext.toggleFilterBar()}>
                             <p className={styles.filter_text}>Filtro: </p>
                             <Icon.Filter className={styles.icon_filter} />
                         </div>
